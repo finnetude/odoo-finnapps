@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="grand_livre_view" model="ir.ui.view">
+        <field name="name">Grand livre</field>
+        <field name="model">finn.grand.livre</field>
+        <field name="arch" type="xml">
+            <form string="Grand livre">
+                <group>
+                    <field name="binary_file" invisible="1"/>
+                    <field name="binary_file" invisible="1"/>
+                    <group>
+                        <field name="exercice_id" required="1"/>
+                        <field name="filtrer_par_ecriture" required="1"/>
+                    </group>
+                    <group>
+                        <field name="gl_tiers" invisible="1"/>
+                    </group>
+                </group>
+                <notebook>
+                    <page string="Filtre par temps">
+                        <group>
+                            <group>
+                                <field name="filtre_par_temps" required="1"/>
+                                <field name="date_debut" invisible="filtre_par_temps != 'date'" required="filtre_par_temps == 'date'"/>
+                                <field name="date_fin"   invisible="filtre_par_temps != 'date'" required="filtre_par_temps == 'date'"/>
+                                <field name="periode_debut" invisible="filtre_par_temps !=  'periode'" required="filtre_par_temps == 'periode'"/>
+                                <field name="periode_fin"   invisible="filtre_par_temps != 'periode'" required="filtre_par_temps == 'periode'"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Filtre par compte">
+                        <group>
+                            <group>
+                                <field name="filtre_par_compte" required="1"/>
+                                <field name="group_ids" widget="many2many_tags" invisible="filtre_par_compte != 'classes_chapitres'" required="filtre_par_compte == 'classes_chapitres'"/>
+                                <field name="account_ids" widget="many2many_tags" invisible="filtre_par_compte != 'comptes'" required="filtre_par_compte == 'comptes'"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Filtrer par journaux">
+                        <group>
+                            <group>
+                                <field name="journal_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Filtrer par partenaire">
+                        <group>
+                            <group>
+                                <field name="partner_ids" widget="many2many_tags"/>
+                            </group>
+                        </group>
+                    </page>
+                    <page string="Option de format">
+                        <group>
+                            <field name="avec_devise"/>
+                            <field name="centralisation_active"/>
+                        </group>
+                    </page>
+                </notebook>
+                <footer>
+                    <button name="print_report_pdf" string="Impression" type="object" default_focus="1" icon="fa-file-pdf-o" class="btn-danger"/>
+                    <button name="print_report_excel" string="Export" type="object" icon="fa-file-excel-o" class="btn-success"/>
+                    <button string="Annuler" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    
+
+    <!-- <record id="action_grand_livre_tiers" model="ir.actions.act_window">
+        <field name="name">Grand livre tiers</field>
+        <field name="res_model">grand.livre</field>
+        <field name="context">{'default_gl_tiers':True}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record> -->
+
+
+    <record id="action_grand_livre" model="ir.actions.act_window">
+        <field name="name">Grand livre</field>
+        <field name="res_model">finn.grand.livre</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

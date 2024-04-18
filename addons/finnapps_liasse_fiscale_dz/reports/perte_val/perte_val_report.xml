@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="pert_val">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="page">
+
+                            <style>
+                                #result_part {
+                                    height: 25px;
+                                    font-weight: bold;
+                                    background: #e4e6e8;
+                                    text-indent: 10%;
+                                    
+                                }
+
+                                #part_table {
+                                    font-weight: bold;
+                                    text-align: right;
+                                    
+                                }
+
+                                thead {
+                                    background: #e4e6e8;
+                                    color: black;
+                                    
+                                }
+
+                                table {
+                                    width: 100%;
+                                    font-size: 12px;
+                                    border-collapse: collapse;
+                                    color: black;
+                                    
+                                }
+
+                                table th {
+                                    text-align: center;
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    border: 1px solid black;
+                                    
+                                }
+
+                            
+                                table td {
+                                    color: black;
+                                    border: 1px solid black;
+                                    padding: 5px 5px;
+                                    font-size: 12px;
+                                }
+
+                                .div1 {
+                                    color: black;
+                                    background: #e4e6e8;
+                                    text-align: left;
+                                    font-weight: bold;
+                                    margin-bottom: 1px;
+                                    width: 60%;
+                                    border: 1px solid black;
+                                    padding-top: 6px;
+                                    box-shadow: 1px 2px #a6af93;
+                                    height:30px;
+                                    
+                                }
+
+                                #tr_date{
+                                    color:black;
+                                    height: 10px;
+                                    
+                                }
+                                #td_date_title{
+                                    font-weight: bold;
+                                    height: 10px;
+                                    
+                                }
+                                #td_date{
+                                    height: 10px;
+                                    color:black;
+                                    
+                                }
+                                #data {
+                                    
+                                    color: black;
+                                }
+
+                                table {
+                                    font-size: 12px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    border-collapse: collapse;
+                                    color: black;
+                    
+                                }
+                                #table_date {
+                                    margin: 10px;
+                                    width: 60%;
+                                    text-align: center;
+                                    margin: auto;
+                                    width: 20%;
+                                    padding: 10px;
+                                    font-size: 12px;
+                                }
+
+                            
+                           
+                            </style>
+                            <table id="table_date" style="font-size: 12px;width: 60%;"  border="1">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold;">Exercice du</td>
+                                        <td style="color:black;"><span t-esc="o.exercice_id.date_from"
+                                                t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                        <td style="font-weight: bold;">au</td>
+                                        <td style="color:black;"><span t-esc="o.exercice_id.date_to"  t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div style="margin-top: 15px;margin-bottom: 5px;font-size: 12px;color: black;text-align: left;text-indent: 1%;"
+                                class="div1">8/1 Relevé des pertes de valeurs sur créances: </div>
+                            <table border="1" width="100%" height="100%">
+                                <thead>
+                                    <tr height="25px;">
+                                        <th>Désignation des débiteurs</th>
+                                        <th>Valeur de la créance</th>
+                                        <th>Perte de valeur constituée</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="index" t-value="0" />
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_1_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_1_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_1_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_1_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_1_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                </tbody>
+                            </table>
+                            <div style="margin-top:7px;margin-bottom:9px;text-decoration: underline;font-size: 12px;color: black;text-align: left;text-indent:1%;"
+                                class="div1">8/2 Relevé des pertes de valeurs sur actions et parts sociales: </div>
+                            <table border="1" width="100%" height="100%">
+                                <thead>
+                                    <tr height="25px;">
+                                        <th style="width:25%">Filiales</th>
+                                        <th style="width:25%">Valeur nominale au début de l’exercice</th>
+                                        <th style="width:25%">Perte de valeur constituée</th>
+                                        <th style="width:25%">Valeur nette comptable</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-set="index" t-value="0" />
+                                    <t t-if="len(o.line_perte_val_2_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_three) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_three" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_2_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_three) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_three" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_2_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_three) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_three" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                    <t t-if="len(o.line_perte_val_2_ids) > index">
+                                        <tr style="height: 50px;">
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].name">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].name" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: left;">
+                                                <t t-if="o.line_perte_val_2_ids[index].amount_col_one">
+                                                    <span t-esc="o.line_perte_val_2_ids[index].amount_col_one" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_two) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_two" />
+                                                </t>
+                                            </td>
+                                            <td style="color:black;text-align: center;">
+                                                <t t-if="abs(o.line_perte_val_2_ids[index].amount_col_three) > 0">
+                                                    <span t-esc="'%.2f'% o.line_perte_val_2_ids[index].amount_col_three" />
+                                                </t>
+                                            </td>
+                                            <t t-set="index" t-value="index + 1" />
+                                        </tr>
+                                    </t>
+                                    <t t-else="">
+                                        <tr style="height: 50px;">
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                    </t>    
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_perte_val_report" model="ir.actions.report">
+            <field name="name">Perte val. (8/1-8/2)</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.pert_val</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.pert_val</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_perte_val_report" model="ir.actions.report">
+                <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+    </data>
+</odoo>

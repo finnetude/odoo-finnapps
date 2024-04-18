@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finn_hr_ats_manager,hr_hr_ats_access_manager,model_finn_hr_ats,finnapps_hr_payroll_dz.group_hr_payroll_manager,1,1,1,1
+access_finn_hr_ats_line,access_hr_ats_line,model_finn_hr_ats_line,finnapps_hr_payroll_dz.group_hr_payroll_manager,1,1,1,1

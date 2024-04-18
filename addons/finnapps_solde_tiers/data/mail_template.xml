@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!--Email template -->
+        <record id="mail_template_solde_tiers" model="mail.template">
+            <field name="name">Montany restant dû - email</field>
+            <field name="email_from">{{ user.email_formatted }}</field>
+            <field name="subject">Montany restant dû</field>
+            <field name="email_to">{{object.partner_id.email}}</field>
+            <field name="model_id" ref="finnapps_solde_tiers.model_finn_imprimer_rapport"/>
+          <!--  <field name="report_template" ref="finnapps_solde_tiers.action_print_report_solde_tiers"/> -->
+            <field name="report_template_ids" eval="[(4, ref('finnapps_solde_tiers.action_print_report_solde_tiers'))]"/>
+
+            <field name="auto_delete" eval="False"/>
+            <field name="lang">fr_FR</field>
+            <field name="body_html">
+                <![CDATA[
+                    <div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+                        <p>Montany restant dû</p>
+                    </div>
+                ]]>
+            </field>
+        </record>
+    </data>
+</odoo>

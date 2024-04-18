@@ -1,0 +1,41 @@
+<odoo>
+	<data>
+		<record id="hr_employee_list" model="ir.ui.view">
+			<field name="name">Hr Employee Lists view wizard</field>
+			<field name="model">finn.employee.list</field>
+			<field name="arch" type="xml">
+				<form >
+						
+		
+				
+						<field name="employee_ids"  nolabel="1">
+							<tree editable="bottom">
+								<field name="name"/>
+								<field name="family_name" />
+								<field name="surname"/>
+							</tree>
+
+						</field>
+			
+						
+					<footer>
+						<button name="generate" string="Générer" type="object" class="oe_highlight" />
+	    				
+						<button string="Fermer" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_hr_employee_list" model="ir.actions.act_window">
+			<field name="name">Liste des employés</field>
+			<field name="res_model">finn.employee.list</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		
+	
+
+	</data>
+</odoo>

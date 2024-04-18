@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <function model="finn.hr.salary.rule.category" name="create_categories"/>
+        <function model="finn.hr.salary.rule" name="create_rules"/>
+        <function model="finn.hr.payroll.structure" name="create_structures"/>
+        <function model="finn.hr.rule.input" name="create_inputs"/>
+        <function model="finn.hr.salary.rule" name="check_account_in_salary_rules"/>
+        <!-- <function model="finn.hr.payslip" name="check_for_maj"/> -->
+    </data>
+</odoo>

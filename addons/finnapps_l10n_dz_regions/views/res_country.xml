@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="view_country_form">
+        <field name="name">base.view.country.form</field>
+        <field name="model">res.country</field>
+        <field name="inherit_id" ref="base.view_country_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='state_ids']" position='replace'>
+                <field name="state_ids">
+                    <tree>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </tree>
+                </field>
+            </xpath>
+        </field>
+    </record>
+
+    <record model="ir.ui.view" id="view_country_state_commune_form">
+        <field name="name">base.view.country.state.commune.form</field>
+        <field name="model">res.country.state</field>
+        <field name="inherit_id" ref="base.view_country_state_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group" position='after'>
+                <notebook>
+                    <page string="Communes">
+                        <field name='commune_ids' string="Localité"/>
+                    </page>
+                    <page string="Localités">
+                        <field name='localite_ids' string="Localité"/>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+     <record model="ir.ui.view" id="view_country_state_tree">
+        <field name="name">base.view.country.state.tree</field>
+        <field name="model">res.country.state</field>
+        <field name="inherit_id" ref="base.view_country_state_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//tree" position='replace'>
+                <tree string="State">
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="country_id" options="{'no_create': True, 'no_open': True}"/>
+                    <button name="action_read_state" type="object" icon ="fa-external-link" class="oe_highlight"/>
+                </tree>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="l10n_commune_tree"  model="ir.ui.view">
+        <field name="name">Liste des communes</field>
+        <field name="model">finn.res.country.state.commune</field>
+        <field name="arch" type="xml">
+            <tree default_order='state_id, code'>
+                <field name='name' string="Commune"/>
+                <field name='code' string="Code"/>
+                <field name='state_id' string="Wilaya"/>
+                <field name='country_id' string="Pays"/>
+                <button name="finn_action_read_commune" type="object" icon ="fa-external-link" class="oe_highlight"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="l10n_commune_action" model="ir.actions.act_window">
+        <field name="name">Communes</field>
+        <field name="res_model">finn.res.country.state.commune</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="l10n_commune_tree"/>
+    </record>
+  
+    <menuitem id="menu_l10n_commune_action"
+              name="Communes"
+              action="l10n_commune_action"
+              parent="contacts.menu_localisation"
+              sequence="2"/>
+
+    <record id="l10n_localite_tree"  model="ir.ui.view">
+        <field name="name">Liste des localites</field>
+        <field name="model">finn.res.country.state.localite</field>
+        <field name="arch" type="xml">
+            <tree default_order='state_id, code'>
+                <field name='name' string="Localité"/>
+                <field name='code' string="Code"/>
+                <field name='state_id' string="Wilaya"/>
+                <field name='country_id' string="Pays"/>
+                <button name="finn_action_read_localite" type="object" icon ="fa-external-link" class="oe_highlight"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="l10n_localite_action" model="ir.actions.act_window">
+        <field name="name">Localités</field>
+        <field name="res_model">finn.res.country.state.localite</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="l10n_localite_tree"/>
+    </record>
+  
+    <menuitem id="menu_l10n_localite_action"
+              name="Localités"
+              action="l10n_localite_action"
+              parent="contacts.menu_localisation"
+              sequence="2"/>
+    
+</odoo>

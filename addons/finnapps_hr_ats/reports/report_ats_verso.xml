@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+		<template id="internal_layout">
+			<t t-if="not o" t-set="o" t-value="doc" />
+
+			<t t-if="not company">
+				<!-- Multicompany -->
+				<t t-if="company_id">
+					<t t-set="company" t-value="company_id" />
+				</t>
+				<t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+					<t t-set="company" t-value="o.company_id.sudo()" />
+				</t>
+				<t t-else="else">
+					<t t-set="company" t-value="res_company" />
+				</t>
+			</t>
+
+			<div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+				t-att-data-oe-lang="o and o.env.context.get('lang')">
+				<t t-out="0" />
+			</div>
+		</template>
+
+
+		<template id="report_hr_employee_ats_verso_document">
+			<t t-call="finnapps_hr_ats.internal_layout" t-lang="ar_001">
+				<t t-call="web.html_container">
+					<t t-foreach="docs" t-as="o">
+						<div class="page" t-attf-style="
+						background-image:url('finnapps_hr_payroll_dz/static/src/img/verso.jpg');
+						background-size:325mm 460mm; width:325mm; height:460mm;
+						">
+						<style>
+							span{
+								font-size: 20px !important;
+							}
+						</style>
+							<!-- first table -->
+							<!-- first line -->
+							<t t-set="index" t-value="-1" />
+
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+						
+						
+						
+						display:block;
+						width:150px;
+						position: absolute;
+						top: 35mm;
+						left: 252mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+						
+						
+						
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 120mm;
+						left: 262mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+						
+						
+						
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 290mm;
+						left: 262mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+						
+						
+						
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 400mm;
+						left: 262mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 2nd line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+						
+						
+						
+						display:block;
+						width:150px;
+						position: absolute;
+						top: 35mm;
+						left: 242mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+						
+						
+						
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 120mm;
+						left: 252mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+						
+						
+						
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 290mm;
+						left: 252mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+						
+						
+						
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 400mm;
+						left: 252mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 3rd line  -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+						display:block;
+						width:150px;
+						position: absolute; 
+						top: 35mm;
+						left: 232mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 120mm;
+						left: 242mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 290mm;
+						left: 242mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 400mm;
+						left: 242mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 4th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 222mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 232mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 232mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+						display:block;
+						width:100px;
+						position: absolute;
+						top: 400mm;
+						left: 232mm;
+						-webkit-transform: rotate(90deg);
+						display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 5th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 212mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 222mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 222mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 222mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 6th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 202mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 212mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 212mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 212mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 7th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 192mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 202mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 202mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 202mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 8th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 182mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[-8]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 192mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[-8]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 192mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[-8]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 192mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[-8]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 9th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 172mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 182mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 182mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 182mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 10th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 162mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 172mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 172mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 172mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 11th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 152mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 162mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 162mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 162mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- 12th line -->
+							<t t-if="index >= (len(docs.ats_wiz_ids) * -1)">
+								<t t-if="docs.ats_wiz_ids[index]['month_year']">
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 35mm;
+					left: 142mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['month_year']" />
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 120mm;
+					left: 152mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.ats_wiz_ids[index]['worked_days']" />
+
+
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 290mm;
+					left: 152mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation'])" />
+
+
+									<span style="
+					 
+					 
+					 
+					display:block;
+					width:100px;
+					position: absolute;
+					top: 400mm;
+					left: 152mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="abs(docs.ats_wiz_ids[index]['cotisation_amount'])" />
+								</t>
+								<t t-set="index" t-value="index - 1" />
+							</t>
+							<!-- volume h journal -->
+							<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 100mm;
+					left: 122mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="docs.employee_id.resource_calendar_id.hours_per_day" />
+							<!-- print date -->
+							<span style="
+					 
+					 
+					 
+					display:block;
+					width:150px;
+					position: absolute; 
+					top: 340mm;
+					left: 102mm;
+					-webkit-transform: rotate(90deg);
+					display: inline-block;" t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y')" />
+							<span style="
+					 
+					 
+					width: auto;
+					display:inline;
+					
+					position: absolute; 
+					top: 350mm;
+					left: 63mm;
+					-webkit-transform: rotate(90deg);" ><span t-esc='user.name'/>,
+					<span t-esc='user.employee_id.job_id.name'/></span>
+
+
+						</div>
+					</t>
+				</t>
+			</t>
+		</template>
+
+		<template id="report_hr_employee_new_ats_verso">
+			<t t-call="web.html_container">
+
+				<t t-foreach="docs" t-as="o">
+					<t t-call="finnapps_hr_ats.report_hr_employee_ats_verso_document" />
+				</t>
+			</t>
+		</template>
+
+		
+
+	</data>
+</odoo>

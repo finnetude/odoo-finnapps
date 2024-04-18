@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+  <data>
+    <template id="solde_tiers_assets_backend_id" inherit_id="web.assets_backend" name="Backend Assets Solde tiers">
+       <xpath expr="." position="inside">
+        <script  type="text/javascript"  src="/finnapps_solde_tiers/static/src/js/button_imprimer.js"></script>
+        <link rel="stylesheet" type="text/scss" href="/stock/static/src/scss/stock_traceability_report.scss"/>
+      </xpath>
+    </template>
+  </data>
+</odoo>

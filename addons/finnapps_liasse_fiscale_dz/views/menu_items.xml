@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <menuitem   id="menu_liasse_fiscale" 
+                parent="finnapps_invoicing_dz.account_report_audit"
+                name="Liasse fiscal"
+                action="action_liasse_fiscale"
+                sequence="10"
+                />
+
+    <menuitem   id="menu_liasse_comptable" 
+                parent="finnapps_invoicing_dz.account_report_audit"
+                name="Liasse comptable"
+                action="action_liasse_comptable"
+                sequence="11"
+                />
+
+
+    <menuitem   id="menu_finn_liasse_fiscale_type" 
+                parent="account.account_management_menu"
+                name="Configuration de liasse fiscal"
+                action="action_finn_liasse_fiscale_type"/>
+</odoo>

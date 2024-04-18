@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="internal_layout">
+            <t t-if="not o" t-set="o" t-value="doc" />
+
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id" />
+                </t>
+                <t t-elif="o and 'company_id' in o and o.company_id.sudo()">
+                    <t t-set="company" t-value="o.company_id.sudo()" />
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company" />
+                </t>
+            </t>
+
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-out="0" />
+            </div>
+        </template>
+
+
+        <template id="report_hr_employee_ats_document">
+            <t t-call="finnapps_hr_ats.internal_layout" t-lang="ar_001">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <div class="page"
+                            t-attf-style="background-image:url('finnapps_hr_payroll_dz/static/src/img/recto.jpg'); background-size:325mm 450mm; width:325mm; height:450mm;">
+                            <style>
+                                span{
+                                    font-size: 20px !important;
+                                }
+                            </style>
+    
+                            <!-- first table -->
+                            <div style="position:absolute;top: 112mm;left:125mm;">
+                                <span t-if="o.employee_id.address_id" t-esc="o.employee_id.address_id.name" />
+                                <span t-if="not o.employee_id.address_id" t-esc="o.employee_id.company_id.name" />
+                            </div>
+
+                            <div style="position:absolute;top: 125mm;left:140mm;">
+                                <span t-esc="o.employee_id.agency_id.code_adherant" />
+                            </div>
+                            <div style="position:absolute;top: 135mm;left:120mm;">
+                                <t t-if="o.employee_id.company_id.forme_juridique.code">
+                                    <span
+                                        t-esc='o.employee_id.company_id.forme_juridique.code + ", "+ o.employee_id.company_id.name' />
+                                </t>
+                                <t t-else="">
+                                    <span t-esc='o.employee_id.company_id.name' />
+                                </t>
+                            </div>
+                            <div style="position:absolute;top: 145mm;left:105mm;">
+                                <t t-if="o.employee_id.address_id">
+                                    <t t-if="o.employee_id.address_id.street">
+                                        <span t-esc="o.employee_id.address_id.street" />
+                                        <t t-if="o.employee_id.address_id.city">
+                                            <span t-esc="o.employee_id.address_id.city" />
+                                            <t t-if="o.employee_id.address_id.state_id">
+                                                <t
+                                                    t-if="o.employee_id.address_id.city != o.employee_id.address_id.state_id.name">
+                                                    <span t-esc="o.employee_id.address_id.state_id.name" />
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <t t-if="not o.employee_id.address_id.city">
+                                            <span t-esc="o.employee_id.address_id.state_id.name" />
+                                        </t>
+                                    </t>
+                                </t>
+                                <t t-else="">
+                                    <t t-if="o.employee_id.company_id.street">
+                                        <span t-esc="o.employee_id.company_id.street" />
+                                        <t t-if="o.employee_id.company_id.city">
+                                            <span t-esc="o.employee_id.company_id.city" />
+                                            <t t-if="o.employee_id.company_id.state_id">
+                                                <t
+                                                    t-if="o.employee_id.company_id.city != o.employee_id.company_id.state_id.name">
+                                                    <span t-esc="o.employee_id.company_id.state_id.name" />
+                                                </t>
+                                            </t>
+                                        </t>
+                                        <t t-if="not o.employee_id.company_id.city">
+                                            <span t-esc="o.employee_id.company_id.state_id.name" />
+                                        </t>
+                                    </t>
+                                </t>
+                            </div>
+                            <!-- 2nd table -->
+                            <span style="width: 20%;position:absolute;top: 184mm;left:145mm;"
+                                t-esc="o.employee_id.name" />
+                            <span style="position:absolute;top: 198mm;left:145mm;" t-esc="o.employee_id.ssnid" />
+                            <t t-if="o.employee_id.birthday">
+                                <t t-set="birthday_list" t-value="str(o.employee_id.birthday).split('-')" />
+                                <t t-set="annee" t-value="birthday_list[0]" />
+                                <t t-set="mois" t-value="birthday_list[1]" />
+                                <t t-set="jour" t-value="birthday_list[2]" />
+                                <span style="position:absolute;margin-top: 209mm;margin-left:42mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;margin-top: 209mm;margin-left:52mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;margin-top: 209mm;margin-left:62mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;margin-top: 209mm;margin-left:72mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;margin-top: 209mm;margin-left:82mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;margin-top: 209mm;margin-left:92mm;" t-esc="annee[3]" />
+                            </t>
+                            <t t-if="o.employee_id.place_of_birth">
+                                <span style="position:absolute;top: 212mm;left:145mm;"
+                                    t-esc="o.employee_id.place_of_birth" />
+                            </t>
+                            <div style="position:absolute;top: 222mm;left:110mm;">
+                                <t t-if="o.employee_id.private_street">
+                                    <span t-esc="o.employee_id.private_street" />
+                                    <t t-if="o.employee_id.private_city">
+                                        <span t-esc="o.employee_id.private_city" />
+                                        <t t-if="o.employee_id.private_state_id.name">
+                                            <t
+                                                t-if="o.employee_id.private_city != o.employee_id.private_state_id.name">
+                                                <span t-esc="o.employee_id.private_state_id.name" />
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="not o.employee_id.private_city">
+                                        <span t-esc="o.employee_id.private_state_id.name" />
+                                    </t>
+                                </t>
+                            </div>
+                            <t t-if="o.employee_id.job_id.name">
+                                <span style="position:absolute;top: 231mm;left:125mm;"
+                                    t-esc="o.employee_id.job_id.name" />
+                            </t>
+                            <!-- 3rd table -->
+                            <t t-if="o.employee_id.contract_id.date_start">
+                                <t t-set="contract_date_start_list"
+                                    t-value="str(o.employee_id.contract_id.date_start).split('-')" />
+                                <t t-set="annee" t-value="contract_date_start_list[0]" />
+                                <t t-set="mois" t-value="contract_date_start_list[1]" />
+                                <t t-set="jour" t-value="contract_date_start_list[2]" />
+
+                                <span style="position:absolute;top: 267mm;left:139mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;top: 267mm;left:149mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;top: 267mm;left:159mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;top: 267mm;left:169mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;top: 267mm;left:179mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;top: 267mm;left:189mm;" t-esc="annee[3]" />
+                            </t>
+                            <t t-if="o.date_dernier">
+                                <t t-set="work_date_end_list" t-value="str(o.date_dernier).split('-')" />
+                                <t t-set="annee" t-value="work_date_end_list[0]" />
+                                <t t-set="mois" t-value="work_date_end_list[1]" />
+                                <t t-set="jour" t-value="work_date_end_list[2]" />
+
+                                <span style="position:absolute;top: 277mm;left:139mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;top: 277mm;left:149mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;top: 277mm;left:159mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;top: 277mm;left:169mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;top: 277mm;left:179mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;top: 277mm;left:189mm;" t-esc="annee[3]" />
+                            </t>
+                            <t t-if="o.date_reprise">
+                                <t t-set="work_date_reprise_list" t-value="str(o.date_reprise).split('-')" />
+                                <t t-set="annee" t-value="work_date_reprise_list[0]" />
+                                <t t-set="mois" t-value="work_date_reprise_list[1]" />
+                                <t t-set="jour" t-value="work_date_reprise_list[2]" />
+
+                                <span style="position:absolute;top: 287mm;left:139mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;top: 287mm;left:149mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;top: 287mm;left:159mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;top: 287mm;left:169mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;top: 287mm;left:179mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;top: 287mm;left:189mm;" t-esc="annee[3]" />
+                            </t>
+                            <t t-if="o.date_jour">
+                                <t t-set="work_date_jour_list" t-value="str(o.date_jour).split('-')" />
+                                <t t-set="annee" t-value="work_date_jour_list[0]" />
+                                <t t-set="mois" t-value="work_date_jour_list[1]" />
+                                <t t-set="jour" t-value="work_date_jour_list[2]" />
+
+                                <span style="position:absolute;top: 297mm;left:139mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;top: 297mm;left:149mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;top: 297mm;left:159mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;top: 297mm;left:169mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;top: 297mm;left:179mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;top: 297mm;left:189mm;" t-esc="annee[3]" />
+                            </t>
+                            <!-- 4th table -->
+                            <t t-if="o.duration_int=='inf'">
+                                <t t-set="jour_travail" t-value="str(o.duration_trav)"/>
+                                <t t-set="zero_h" t-value="str(0)"/>
+                                <span style="position:absolute;top: 331mm;left:111mm;" t-esc="jour_travail[0]"/>
+                                <span style="position:absolute;top: 331mm;left:118mm;" t-esc="jour_travail[1]"/>
+                            </t>
+                            <t t-if="o.hours!=0 and o.duration_int=='inf'">
+                                <t t-set="heures_travail" t-value="str(o.hours)"/>
+                                <span style="position:absolute;top: 331mm;left:144mm;" t-esc="heures_travail[0]"/>
+                                <span style="position:absolute;top: 331mm;left:152mm;" t-esc="heures_travail[1]"/>
+                                <span style="position:absolute;top: 331mm;left:160mm;" t-esc="heures_travail[2]"/>
+                            </t>
+                            <t t-if="o.duration_int=='inf'">
+                                <t t-set="date_start" t-value="str(o.date_start).split('-')"/>
+                                <t t-set="annee" t-value="date_start[0]"/>
+                                <t t-set="mois" t-value="date_start[1]"/>
+                                <t t-set="jour" t-value="date_start[2]"/>
+
+                                <span style="position:absolute;top: 339mm;left:33mm;" t-esc="jour[0]"/>
+                                <span style="position:absolute;top: 339mm;left:43mm;" t-esc="jour[1]"/>
+                                <span style="position:absolute;top: 339mm;left:53mm;" t-esc="mois[0]"/>
+                                <span style="position:absolute;top: 339mm;left:63mm;" t-esc="mois[1]"/>
+                                <span style="position:absolute;top: 339mm;left:73mm;" t-esc="annee[2]"/>
+                                <span style="position:absolute;top: 339mm;left:83mm;" t-esc="annee[3]"/>
+                            </t>
+                            <t t-if="o.duration_int=='inf'">
+                                <t t-set="date_end" t-value="str(o.date_end).split('-')"/>
+                                <t t-set="annee" t-value="date_end[0]"/>
+                                <t t-set="mois" t-value="date_end[1]"/>
+                                <t t-set="jour" t-value="date_end[2]"/>
+
+                                <span style="position:absolute;top: 339mm;left:108mm;" t-esc="jour[0]"/>
+                                <span style="position:absolute;top: 339mm;left:118mm;" t-esc="jour[1]"/>
+                                <span style="position:absolute;top: 339mm;left:128mm;" t-esc="mois[0]"/>
+                                <span style="position:absolute;top: 339mm;left:138mm;" t-esc="mois[1]"/>
+                                <span style="position:absolute;top: 339mm;left:148mm;" t-esc="annee[2]"/>
+                                <span style="position:absolute;top: 339mm;left:158mm;" t-esc="annee[3]"/>
+                            </t>
+                            <!-- 5th table -->
+                            <t t-if="o.duration_int=='sup'">
+                                <t t-set="jour_travail" t-value="str(o.duration_trav)" />
+                                <t t-set="zero_h" t-value="str(0)" />
+                                <span style="position:absolute;top: 415mm;left:111mm;" t-esc="jour_travail[0]" />
+                                <span style="position:absolute;top: 415mm;left:118mm;" t-esc="jour_travail[1]" />
+                            </t>
+                            <t t-if="o.hours!=0 and o.duration_int=='sup'">
+                                <t t-set="heures_travail" t-value="str(o.hours)" />
+                                <span style="position:absolute;top: 415mm;left:144mm;" t-esc="zero_h" />
+                                <span style="position:absolute;top: 415mm;left:152mm;" t-esc="heures_travail[0]" />
+                                <span style="position:absolute;top: 415mm;left:160mm;" t-esc="heures_travail[1]" />
+                            </t>
+                            <t t-if="o.duration_int=='sup'">
+                                <t t-set="date_start" t-value="str(o.date_start).split('-')" />
+                                <t t-set="annee" t-value="date_start[0]" />
+                                <t t-set="mois" t-value="date_start[1]" />
+                                <t t-set="jour" t-value="date_start[2]" />
+
+                                <span style="position:absolute;top: 425mm;left:32mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;top: 425mm;left:42mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;top: 425mm;left:52mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;top: 425mm;left:62mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;top: 425mm;left:72mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;top: 425mm;left:82mm;" t-esc="annee[3]" />
+                            </t>
+                            <t t-if="o.duration_int=='sup'">
+                                <t t-set="date_end" t-value="str(o.date_end).split('-')" />
+                                <t t-set="annee" t-value="date_end[0]" />
+                                <t t-set="mois" t-value="date_end[1]" />
+                                <t t-set="jour" t-value="date_end[2]" />
+
+                                <span style="position:absolute;top: 425mm;left:107mm;" t-esc="jour[0]" />
+                                <span style="position:absolute;top: 425mm;left:117mm;" t-esc="jour[1]" />
+                                <span style="position:absolute;top: 425mm;left:127mm;" t-esc="mois[0]" />
+                                <span style="position:absolute;top: 425mm;left:137mm;" t-esc="mois[1]" />
+                                <span style="position:absolute;top: 425mm;left:147mm;" t-esc="annee[2]" />
+                                <span style="position:absolute;top: 425mm;left:157mm;" t-esc="annee[3]" />
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="report_hr_employee_new_ats">
+            <t t-call="web.html_container">
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="finnapps_hr_ats.report_hr_employee_ats_document" />
+                </t>
+            </t>
+        </template>
+
+     
+    </data>
+</odoo>

@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finn_hr_fiscal,access_finn_hr_fiscal,model_finn_hr_fiscal,base.group_user,1,1,1,1
+access_finn_hr_fiscal_rec,access_finn_hr_fiscal_rec,model_finn_hr_fiscal_rec,base.group_user,1,1,1,1
+access_finn_hr_fiscal_droit,access_finn_hr_fiscal_droit,model_finn_hr_fiscal_droit,base.group_user,1,1,1,1
+access_finn_hr_fiscal_emp,access_finn_hr_fiscal_emp,model_finn_hr_fiscal_emp,base.group_user,1,1,1,1
+access_finn_ventilation_comptable,access_finn_ventilation_comptable,model_finn_ventilation_comptable,base.group_user,1,1,1,1
+access_finn_ventilation_comptable_line,access_finn_ventilation_comptable_line,model_finn_ventilation_comptable_line,base.group_user,1,1,1,1
+access_finn_hr_payroll_book,finn_access_hr_payroll_book,model_finn_hr_payroll_book,base.group_user,1,1,1,1
+access_finn_hr_payroll_book_total,access_finn_hr_payroll_book_total,model_finn_hr_payroll_book_total,base.group_user,1,1,1,1

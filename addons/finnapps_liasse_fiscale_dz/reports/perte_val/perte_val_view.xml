@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="finn_liasse_fiscale_line_perte_val_1_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.perte.val.1.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="name" string="Désignation des débiteurs"/>
+                    <field name="amount_col_one" string="Valeur de la créance "/>
+                    <field name="amount_col_two" string="Perte de valeur constituée"/>
+                </tree>
+			</field>
+		</record>
+
+        <record id="finn_liasse_fiscale_line_perte_val_2_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.perte.val.2.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="name" string="Filiales"/>
+                    <field name="amount_col_one" string="Valeur nominale au début de l’exercice "/>
+                    <field name="amount_col_two" string="Perte de valeur constituée"/>
+                    <field name="amount_col_three" string="Valeur nette comptable"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="finn_liasse_fiscale_report_perte_val_view_forme">
+			<field name="name">finn.liasse.fiscale.report.perte.val.view.forme</field>
+			<field name="model">finn.liasse.fiscale.report</field>
+			<field name="inherit_id" ref="finnapps_liasse_fiscale_dz.finn_liasse_fiscale_report_view_form"/>
+            <field name="priority">9</field>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+                    <page name="perte_val_1" string="Tableau (8/1)" invisible="type_report != 'perte_val'">
+                        <field name="line_perte_val_1_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_perte_val_1_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+                    <page name="perte_val_2" string="Tableau (8/2)" invisible="type_report != 'perte_val'">
+                        <field name="line_perte_val_2_ids" options="{'no_create': True}" readonly ="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_perte_val_2_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

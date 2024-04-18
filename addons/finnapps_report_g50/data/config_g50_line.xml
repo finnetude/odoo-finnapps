@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- TAP -->
+        <record id="config_g50_c1a11" model="config.g50.line">
+            <field name="name">Affaire bénéficiant d'une réfaction de 50%</field>
+            <field name="code">C1A11</field>
+            <field name="type_line">tap</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_c1a12" model="config.g50.line">
+            <field name="name">Affaire bénéficiant d'une réfaction de 30%</field>
+            <field name="code">C1A12</field>
+            <field name="type_line">tap</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_c1a13" model="config.g50.line">
+            <field name="name">Affaire sans réfaction</field>
+            <field name="code">C1A13</field>
+            <field name="type_line">tap</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_c1a14" model="config.g50.line">
+            <field name="name">Affaires exonérées</field>
+            <field name="code">C1A14</field>
+            <field name="type_line">tap</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_c1a20" model="config.g50.line">
+            <field name="name">Recettes professionelles (Professions libérales)</field>
+            <field name="code">C1A20</field>
+            <field name="type_line">tap</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- IBS -->
+        <record id="config_g50_e1m10" model="config.g50.line">
+            <field name="name">Acompte provisionnel</field>
+            <field name="code">E1M10</field>
+            <field name="type_line">ibs</field>
+            <field name="definition">{'load':['+:444100:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- IRG -->
+        <record id="config_g50_e1l20" model="config.g50.line">
+            <field name="name">IRG/Traitements salaires, pensions et rentes viagéres</field>
+            <field name="code">E1L20</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:442100:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat_bareme_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e1l30" model="config.g50.line">
+            <field name="name">IRG/Revenus des créances, dépots et cautionnèments</field>
+            <field name="code">E1L30</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat10_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e1l40" model="config.g50.line">
+            <field name="name">IRG/Bénéfices distribués par les sociétés de capitaux, libératoire</field>
+            <field name="code">E1L40</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:442300:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat15_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e1l60" model="config.g50.line">
+            <field name="name">IRG/Revenus des bons de caisse anonymes</field>
+            <field name="code">E1L60</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat50_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e1l80" model="config.g50.line">
+            <field name="name">IRG/Autres retenues à la source</field>
+            <field name="code">E1L80</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:442500:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e1m30" model="config.g50.line">
+            <field name="name">IBS/Revenus des entreprises étrangères non installées en Algérie (prestations de services)(1)</field>
+            <field name="code">E1M30</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:444000:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat24_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e1m40" model="config.g50.line">
+            <field name="name">IBS/Autres retenues à la source</field>
+            <field name="code">E1M40</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:444000:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- TIMBRE -->
+        <record id="config_g50_timbre" model="config.g50.line">
+            <field name="code">E2E00</field>
+            <field name="type_line">timbre</field>
+            <field name="definition">{'load':['+:4457:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat1_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+
+        <!-- AUTRE -->
+        <record id="config_g50_autre" model="config.g50.line">
+            <field name="code">Autretaxes</field>
+            <field name="type_line">autre</field>
+            <field name="definition">{'load':['+:207:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- TVA 9% -->
+
+        <record id="config_g50_e3b11" model="config.g50.line">
+            <field name="name">Bien, produits et denrées visées par l'article 23 du C.TCA</field>
+            <field name="code">E3B11</field>
+            <field name="type_line">tva_9</field>
+            <field name="ratio" ref="rat9_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b12" model="config.g50.line">
+            <field name="name">Présentations de services visées par l'article 23 du C.TCA</field>
+            <field name="code">E3B12</field>
+            <field name="type_line">tva_9</field>
+            <field name="ratio" ref="rat9_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b13" model="config.g50.line">
+            <field name="name">Opérations immobilière visées par l'article 23 du C.TCA</field>
+            <field name="code">E3B13</field>
+            <field name="type_line">tva_9</field>
+            <field name="ratio" ref="rat9_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b14" model="config.g50.line">
+            <field name="name">Actes médicaux</field>
+            <field name="code">E3B14</field>
+            <field name="type_line">tva_9</field>
+            <field name="ratio" ref="rat9_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b15" model="config.g50.line">
+            <field name="name">Commissionnaires et courtiers</field>
+            <field name="code">E3B15</field>
+            <field name="type_line">tva_9</field>
+            <field name="ratio" ref="rat9_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b16" model="config.g50.line">
+            <field name="name">Fourniture d'énergie</field>
+            <field name="code">E3B16</field>
+            <field name="type_line">tva_9</field>
+            <field name="ratio" ref="rat9_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- TVA 19% -->
+        <record id="config_g50_e3b21" model="config.g50.line">
+            <field name="name">Productions:Bien, produits et denrées visée par l'art. 21 du C.TCA </field>
+            <field name="code">E3B21</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b22" model="config.g50.line">
+            <field name="name">Revente en l'état:Bien, produits et denrées visée par l'art. 21 du C.TCA </field>
+            <field name="code">E3B22</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b23" model="config.g50.line">
+            <field name="name">Taux immobiliers autre que ceux soumis au taux de 7%</field>
+            <field name="code">E3B23</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b24" model="config.g50.line">
+            <field name="name">Professions libérales</field>
+            <field name="code">E3B24</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b25" model="config.g50.line">
+            <field name="name">Opérations de banque et d'assurances</field>
+            <field name="code">E3B25</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b26" model="config.g50.line">
+            <field name="name">Préstations de téléphones et de télex</field>
+            <field name="code">E3B26</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b28" model="config.g50.line">
+            <field name="name">Autre préstations de services</field>
+            <field name="code">E3B28</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b31" model="config.g50.line">
+            <field name="name">Débits de boissons</field>
+            <field name="code">E3B31</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b32" model="config.g50.line">
+            <field name="name">Productions:bien, produit et denrées visées par l'art. 21 du C.TCA </field>
+            <field name="code">E3B32</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b33" model="config.g50.line">
+            <field name="name">Revente en l'état:bien, produit et denrées visées par l'art. 21 du C.TCA </field>
+            <field name="code">E3B33</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b34" model="config.g50.line">
+            <field name="name">Tabacs et allumettes </field>
+            <field name="code">E3B34</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b35" model="config.g50.line">
+            <field name="name">Spéctacles, jeux et divertissements autres que ceux de l'art. 21 du C.TCA </field>
+            <field name="code">E3B35</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b36" model="config.g50.line">
+            <field name="name">Autre préstations de services visées a l'article 21 du C.TCA </field>
+            <field name="code">E3B36</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b37" model="config.g50.line">
+            <field name="name">Consommations sur place </field>
+            <field name="code">E3B37</field>
+            <field name="type_line">tva_19</field>
+            <field name="ratio" ref="rat19_g50"/>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- DEDUCTION -->
+        <record id="config_g50_e3b91" model="config.g50.line">
+            <field name="name">Précompte artérieurs (mois précédent) </field>
+            <field name="code">E3B91</field>
+            <field name="type_line">deduction</field>
+            <field name="definition">{'load':['+:445680:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b92" model="config.g50.line">
+            <field name="name">TVA sur achats de biens, matières et services (art. 29 C.TCA) </field>
+            <field name="code">E3B92</field>
+            <field name="type_line">deduction</field>
+            <field name="definition">{'load':['+:445660:D'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b93" model="config.g50.line">
+            <field name="name">TVA sur achats de biens, amortissables (art. 38 C. TCA)</field>
+            <field name="code">E3B93</field>
+            <field name="type_line">deduction</field>
+            <field name="definition">{'load':['+:445620:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b94" model="config.g50.line">
+            <field name="name">Régularisation du prorata(débuction complémentaire) (art. 40 C.TCA) </field>
+            <field name="code">E3B94</field>
+            <field name="type_line">deduction</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b95" model="config.g50.line">
+            <field name="name">TVA à récupérer sur factures annulées ou impayées (art. 18 C.TCA) </field>
+            <field name="code">E3B95</field>
+            <field name="type_line">deduction</field>
+            <field name="definition">{'load':['+:445660:S', '+:445620:C'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_e3b96" model="config.g50.line">
+            <field name="name">Autres déductions (notification de précompte, etc...)</field>
+            <field name="code">E3B96</field>
+            <field name="type_line">deduction</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <!-- TVA A PAYER -->
+        <record id="config_g50_e3b97" model="config.g50.line">
+            <field name="name">Régulation du prorata (art. 40 C. TCA) (+) (déduction excédentaire)</field>
+            <field name="code">E3B97</field>
+            <field name="type_line">tva_p</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+        <record id="config_g50_" model="config.g50.line">
+            <field name="name">Renversement de la déduction (art. 38 C TCA) (+)</field>
+            <field name="code">E3B98</field>
+            <field name="type_line">tva_p</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="use_line">True</field>
+            <field name="report_id" ref="config_g50"/>
+        </record>
+
+    </data>
+</odoo>

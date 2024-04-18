@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_internal_layout">
+            <t t-if="not o" t-set="o" t-value="doc" />
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-out="0" />
+            </div>
+        </template>
+        <template id="grand_livre_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="9"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="finnapps_grand_livre_dz.compta_internal_layout">
+                        <div class="page">
+                            <h4>GRAND LIVRE DES COMPTES - <span t-esc="o.env.user.company_id.name"/> - <span t-esc="o.env.user.company_id.currency_id.name"/></h4>
+
+                            <t t-set="data" t-value="o.get_lines()"/>
+
+                            <!-- tableau des filtres -->
+                            <div>
+                                <div class="row text-center" style="background-color:#d3d3d3; font-size: 10px;">
+                                    <div class="col-2" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Exercice comptable</strong>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Filtre par période</strong>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Filtre par compte</strong>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Filtre par écriture</strong>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray;">
+                                        <strong>Solde à nouveau</strong>
+                                    </div>
+                                </div>
+                                <div class="row text-center" style="font-size: 12px;">
+                                    <div class="col-2" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <span t-esc="data['exercice'].name"/>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <t t-set="filtre_temp" t-value="data['filtre_temp']"/>
+                                        <t t-if="filtre_temp['type'] == 'date'">
+                                            Depuis : <span t-esc="filtre_temp['date_debut']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/> à <span t-esc="filtre_temp['date_fin']" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                        </t>
+                                        <t t-elif="filtre_temp['type'] == 'periode'">
+                                            Depuis : <span t-esc="filtre_temp['periode_debut'].name"/> à <span t-esc="filtre_temp['periode_fin'].name"/>
+                                        </t>
+                                        <t t-else="">
+                                            /
+                                        </t>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <t t-if="data['filtre_compte'] == 'classes_chapitres'">
+                                            Classes/Chapitres
+                                        </t>
+                                        <t t-elif="data['filtre_compte'] == 'comptes'">
+                                            Comptes
+                                        </t>
+                                        <t t-else="">
+                                            /
+                                        </t>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <t t-if="data['filtre_ecriture'] == 'no_reconciled'">
+                                            Écritures non lettrées
+                                        </t>
+                                        <t t-elif="data['filtre_ecriture'] == 'all'">
+                                            Écritures lettrées et non lettrées
+                                        </t>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-top:0;">/</div>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <!-- tableau des données -->
+                            <t t-foreach="data['lines']" t-as="line">
+                                <t t-set="account_id" t-value="line[0]"/>
+                                <t t-set="move_line_ids" t-value="line[1]"/>
+
+                                <div>
+                                    <div style="page-break-inside: avoid;">
+                                        <div class="row" style="font-size: 12px;">
+                                            <div class="col-12"><strong>
+                                                <span t-esc="account_id.code"/> - <span t-esc="account_id.name"/>
+                                            </strong>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="background-color:#d3d3d3; font-size: 10px;">
+                                            <div class="col-1 text-left" style="width:100px; border-bottom:2px solid lightgray">
+                                                <strong>Date</strong>
+                                            </div>
+                                            <div class="col-1 text-left" style="width:100px; border-bottom:2px solid lightgray">
+                                                <strong>Période</strong>
+                                            </div>
+                                            <t t-if="data['avec_devise']">
+                                                <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                    <strong>Écriture</strong>
+                                                </div>
+                                                <div class="col-1 text-left" style="width:70px; border-bottom:2px solid lightgray">
+                                                    <strong>Journal</strong>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:135px; border-bottom:2px solid lightgray">
+                                                    <strong>Partenaire</strong>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                    <strong>Référence</strong>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                    <strong>Description</strong>
+                                                </div>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="col-2 text-left" style="width:150px; border-bottom:2px solid lightgray">
+                                                    <strong>Écriture</strong>
+                                                </div>
+                                                <div class="col-1 text-left" style="width:70px; border-bottom:2px solid lightgray">
+                                                    <strong>Journal</strong>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:150px; border-bottom:2px solid lightgray">
+                                                    <strong>Partenaire</strong>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:150px; border-bottom:2px solid lightgray">
+                                                    <strong>Référence</strong>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:140px; border-bottom:2px solid lightgray">
+                                                    <strong>Description</strong>
+                                                </div>
+                                            </t>
+
+                                            <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                                <strong>Débit</strong>
+                                            </div>
+                                            <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                                <strong>Crédit</strong>
+                                            </div>
+                                            <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                                <strong>Solde</strong>
+                                            </div>
+
+                                            <t t-if="data['avec_devise']">
+                                                <div class="col-1 text-center" style="width:65px; border-bottom:2px solid lightgray">
+                                                    <strong>Devise</strong>
+                                                </div>
+                                            </t>
+                                        </div>
+                                    </div>
+
+                                    <t t-set="sum_debit" t-value="0"/>
+                                    <t t-set="sum_credit" t-value="0"/>
+
+                                    <t t-foreach="move_line_ids" t-as="move_line_id">
+                                        <div class="row" style="font-size: 10px;">
+                                            <div class="col-1 text-left" style="width:100px; border-bottom:2px solid lightgray">
+                                                <span t-esc="move_line_id.date" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                            </div>
+                                            <div class="col-1 text-left" style="width:100px; border-bottom:2px solid lightgray">
+                                                <span t-esc="move_line_id.period_id.name" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                            </div>
+                                            <t t-if="data['avec_devise']">
+                                                <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.move_id.name"/>
+                                                </div>
+                                                <div class="col-1 text-left" style="width:70px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.journal_id.code"/>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:135px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.partner_id.name"/>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.ref"/>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.name"/>
+                                                </div>
+                                            </t>
+                                            <t t-else="">
+                                                <div class="col-2 text-left" style="width:150px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.move_id.name"/>
+                                                </div>
+                                                <div class="col-1 text-left" style="width:70px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.journal_id.code"/>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:150px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.partner_id.name"/>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:150px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.ref"/>
+                                                </div>
+                                                <div class="col-2 text-left" style="width:140px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.name"/>
+                                                </div>
+                                            </t>
+                                            <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                                <span t-esc="'{0:,.2f}'.format(abs(move_line_id.debit)).replace(',', ' ')"/>
+                                            </div>
+                                            <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                                <span t-esc="'{0:,.2f}'.format(abs(move_line_id.credit)).replace(',', ' ')"/>
+                                            </div>
+                                            <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                                <t t-set="solde_cumul" t-value="move_line_id.debit - move_line_id.credit"/>
+                                                <span t-esc="'{0:,.2f}'.format(abs(solde_cumul)).replace(',', ' ')"/>
+                                            </div>
+
+                                            <t t-if="data['avec_devise']">
+                                                <div class="col-1 text-center" style="width:65px; border-bottom:2px solid lightgray">
+                                                    <span t-esc="move_line_id.currency_id.name"/>
+                                                </div>
+                                            </t>
+
+                                            <t t-set="sum_debit" t-value="sum_debit + move_line_id.debit"/>
+                                            <t t-set="sum_credit" t-value="sum_credit + move_line_id.credit"/>
+                                        </div>
+                                    </t>
+                                    <div class="row" style="background-color:#d3d3d3; font-size: 10px;">
+                                        <t t-if="data['avec_devise']">
+                                            <div class="col-9 text-left" style="width:650px; border-bottom:2px solid lightgray">
+                                                <strong>
+                                                    <span t-esc="account_id.code"/> - <span t-esc="account_id.name"/>
+                                                </strong>
+                                            </div>
+                                            <div class="col-2 text-left" style="width:130px; border-bottom:2px solid lightgray">
+                                                <strong>Solde cumulé</strong>
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <div class="col-9 text-left" style="width:705px; border-bottom:2px solid lightgray">
+                                                <strong>
+                                                    <span t-esc="account_id.code"/> - <span t-esc="account_id.name"/>
+                                                </strong>
+                                            </div>
+                                            <div class="col-2 text-left" style="width:140px; border-bottom:2px solid lightgray">
+                                                <strong>Solde cumulé</strong>
+                                            </div>
+                                        </t>
+                                        <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                            <span t-esc="'{0:,.2f}'.format(abs(sum_debit)).replace(',', ' ')"/>
+                                        </div>
+                                        <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                            <span t-esc="'{0:,.2f}'.format(abs(sum_credit)).replace(',', ' ')"/>
+                                        </div>
+                                        <div class="col-1 text-right" style="width:110px; border-bottom:2px solid lightgray">
+                                            <t t-set="solde_cumule" t-value="sum_debit - sum_credit"/>
+                                            <span t-esc="'{0:,.2f}'.format(abs(solde_cumule)).replace(',', ' ')"/>
+                                        </div>
+
+                                        <t t-if="data['avec_devise']">
+                                            <div class="col-1 text-center" style="width:65px; border-bottom:2px solid lightgray">
+                                            </div>
+                                        </t>
+                                    </div>
+                                </div>
+                                <br/>
+                            </t>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+
+        <record id="action_grand_livre_report" model="ir.actions.report">
+            <field name="name">Grand Livre des comptes</field>
+            <field name="model">finn.grand.livre</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_grand_livre_dz.grand_livre_report</field>
+            <field name="report_file">finnapps_grand_livre_dz.grand_livre_report</field>
+            <field name="print_report_name"></field>
+        </record>
+    </data>
+</odoo>

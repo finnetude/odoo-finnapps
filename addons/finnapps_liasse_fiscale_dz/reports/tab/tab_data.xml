@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+        <record id="elfc_01tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Report à nouveau de l’exercice N-1 (à détailler)</field>
+			<field name="code">01tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_02tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Résultat de l’exercice N-1</field>
+			<field name="code">02tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_03tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Prélèvements sur réserves (à détailler)</field>
+			<field name="code">03tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_04tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">04tab</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_05tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Réserves (à détailler)</field>
+			<field name="code">05tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_06tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Augmentation du capital</field>
+			<field name="code">06tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_07tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Dividendes</field>
+			<field name="code">07tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_08tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">Report à nouveau (à détailler)</field>
+			<field name="code">08tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_09tab" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">09tab</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="tab_1"/>
+		</record>
+
+        <record id="elfc_10tab" model="finn.liasse.fiscale.type.line">
+			<field name="name"></field>
+			<field name="code">10tab</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tab_2"/>
+		</record>
+    </data>
+</odoo>

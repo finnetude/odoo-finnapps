@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate='0'>
+
+    <record id="stat_config1" model="finn.summary.statement.config">
+      <field name="sequence" >1</field>
+      <field name="sequence" >1</field>
+      <field name="designation">Chiffre d'affaires net des Rabais, remises,ristournes</field>
+      <field name="accounts">[700,701,702,703,705,706,708,709]</field>
+
+    </record>
+
+    <record id="stat_config2" model="finn.summary.statement.config">
+      <field name="sequence" >2</field>
+      <field name="designation">Solde Clients</field>
+      <field name="accounts">[41]</field>
+      <field name="accounts_to_exclude">[419]</field>
+    </record>
+
+    <record id="stat_config3" model="finn.summary.statement.config">
+      <field name="sequence" >3</field>
+      <field name="designation">Provisions clients</field>
+      <field name="accounts">[419]</field>
+
+    </record>
+
+    <record id="stat_config4" model="finn.summary.statement.config">
+      <field name="sequence" >4</field>
+      <field name="designation">Provisions stocks</field>
+      <field name="accounts">[39]</field>
+
+    </record>
+
+    <record id="stat_config5" model="finn.summary.statement.config">
+      <field name="sequence" >5</field>
+      <field name="designation">Stocks</field>
+      <field name="accounts">[30,31,32,33,34,35,36,37]</field>
+
+    </record>
+
+    <record id="stat_config6" model="finn.summary.statement.config">
+      <field name="sequence" >6</field>
+      <field name="designation">Capitaux propres</field>
+      <field name="accounts">[10]</field>
+
+    </record>
+
+    <record id="stat_config7" model="finn.summary.statement.config">
+      <field name="sequence" >7</field>
+      <field name="designation">Résultat net de l'exercice</field>
+
+
+    </record>
+
+    <record id="stat_config8" model="finn.summary.statement.config">
+      <field name="sequence" >8</field>
+      <field name="designation">Dividendes distribués</field>
+      <field name="accounts">[457]</field>
+
+    </record>
+
+    <record id="stat_config9" model="finn.summary.statement.config">
+      <field name="sequence" >9</field>
+      <field name="designation">Chiffre d'affaire (C.A)</field>
+      <field name="accounts">[700,70,702,703,704,705,706,708]</field>
+
+    </record>
+
+     <record id="stat_config10" model="finn.summary.statement.config">
+      <field name="sequence" >10</field>
+      <field name="designation">Résultat opérationnel</field>
+      <field name="accounts">[6,7]</field>
+      <field name="accounts_to_exclude">[67,77,66,692,693,695,698]</field>
+    </record>
+
+     <record id="stat_config11" model="finn.summary.statement.config">
+      <field name="sequence" >11</field>
+      <field name="designation">Sous-traitance générale</field>
+      <field name="accounts">[611]</field>
+
+    </record>
+
+     <record id="stat_config12" model="finn.summary.statement.config">
+      <field name="sequence" >12</field>
+      <field name="designation">Consommations de l'exercice</field>
+      <field name="accounts">[600,601,602,603]</field>
+
+    </record>
+
+     <record id="stat_config13" model="finn.summary.statement.config">
+      <field name="sequence" >13</field>
+      <field name="designation">Autres consommations</field>
+      <field name="accounts">[604,605,606,607,608]</field>
+   
+    </record>
+
+     <record id="stat_config14" model="finn.summary.statement.config">
+      <field name="sequence" >14</field>
+      <field name="designation">Autre services</field>
+      <field name="accounts">[610,612,614,617,618,620,624,626,627,628,629]</field>
+
+    </record>
+
+     <record id="stat_config15" model="finn.summary.statement.config">
+      <field name="sequence" >15</field>
+      <field name="designation">Éléments extraordinaires (Charges)</field>
+      <field name="accounts">[67]</field>
+
+    </record>
+
+    <record id="stat_config16" model="finn.summary.statement.config">
+      <field name="sequence" >16</field>
+      <field name="designation">Résultat ordinaire</field>
+      <field name="accounts">[6,7]</field>
+      <field name="accounts_to_exclude">[67,77,66,692,693,695,698]</field>
+    </record>
+
+    <record id="stat_config17" model="finn.summary.statement.config">
+      <field name="sequence" >17</field>
+      <field name="designation">Produits financiers</field>
+      <field name="accounts">[76]</field>
+
+    </record>
+
+    <record id="stat_config18" model="finn.summary.statement.config">
+      <field name="sequence" >18</field>
+      <field name="designation">Immobilisations financières</field>
+      <field name="accounts">[26,27,133]</field>
+
+    </record>
+
+    <record id="stat_config19" model="finn.summary.statement.config">
+      <field name="sequence" >19</field>
+      <field name="designation">Perte comptable</field>
+      <field name="accounts">[129]</field>
+
+    </record>
+
+    <record id="stat_config20" model="finn.summary.statement.config">
+      <field name="sequence" >20</field>
+      <field name="designation">Résultat fiscal</field>
+      <field name="accounts">[120]</field>
+
+    </record>
+
+     <record id="stat_config21" model="finn.summary.statement.config">
+      <field name="sequence" >21</field>
+      <field name="designation">Charges de personnel</field>
+      <field name="accounts">[63]</field>
+
+    </record>
+
+    <record id="stat_config22" model="finn.summary.statement.config">
+      <field name="sequence" >22</field>
+      <field name="designation">Rémunérations dirigeants</field>
+      <field name="accounts">[634,636]</field>
+
+    </record>
+
+
+  </data>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="compensation_payment_wizard_view_form" model="ir.ui.view">
+            <field name="name">compensation_payment_wizard_view_form</field>
+            <field name="model">finn.compensation.payment.wizard</field>
+            <field name="arch" type = "xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="invoice_id" invisible="1"/>
+                            <field name="partner_id" invisible="1"/>
+                            <field name="supplier_invoice_id" options="{'no_create': True, 'no_create_edit':True}" domain="[
+                                ('move_type', '=', 'in_invoice'),
+                                ('partner_id', '=',  partner_id),
+                                ('payment_state','!=' ,'paid'),
+                                ('state', '=', 'posted')
+                                    ]"/>
+
+
+                            
+                            <field name="du_amount"/>
+                            <field name="compensation_amount"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Valider" name="post" class="btn-primary" type="object"/>
+                        <button string="Annuler" class="btn-default" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    <record id="compensation_payment_wizard_action" model="ir.actions.act_window">
+        <field name="name">Compensation Payment</field>
+        <field name="res_model">finn.compensation.payment.wizard</field>
+        <field name="view_mode">tree,form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="compensation_payment_wizard_view_form"/>
+        <field name="context">{
+                'default_invoice_id': active_id,
+            }</field>
+    </record>
+
+
+    </data>
+</odoo>

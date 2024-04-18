@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_hr_employee_attestation">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="web.external_layout">
+            <div class="page">
+              <style>
+                .h1_report_title {
+                  text-align: center;
+                  font-size: 40px;
+                  font-weight: bold;
+                }
+
+                .h5_report {
+                  margin: 50px 0px 15px 0px;
+                  font-weight: bold;
+                }
+
+                .s_r {
+                  font-size: 100%;
+                  line-height: 100%;
+                }
+
+                .company_header {
+                  /* width: 60%; */
+                  border: 1px solid;
+                  margin: 0px 100px 0px 100px;
+                  padding: 10px 100px 10px 100px;
+                  text-align: center;
+                  vertical-align: middle;
+
+                }
+
+                .div_pad {
+                  padding-top: 20px;
+                  /* padding-left: 33%; */
+                }
+
+                .st-para {
+                  margin-top: 20px;
+                  font-size: 120%;
+                }
+
+                .my-span {
+                  padding-left: 17px;
+                }
+
+                .my-bold {
+                  font-weight: bold;
+                }
+              </style>
+
+              <div class="col-xs-1" align="center">
+                <div class="col-xs-12" style="margin-bottom: 10px;">
+                  <h1 class="h1_report_title">
+                      ATTESTATION DE TRAVAIL
+                  </h1>
+                </div>
+              </div>
+              <div class="col-xs-1 text-right" align="right">
+                <div class="col-xs-12">
+                  <h5 class="h5_report">
+                    <span class="s_r" t-set="d_delta" t-value="datetime.date.today()" />
+                    <span class="s_r" t-if="o.employee_id.address_id">
+                      <span t-field="o.employee_id.address_id.state_id.name" />
+                    </span>
+                    <span class="s_r" t-if="not o.employee_id.address_id">
+                      <span t-field="o.employee_id.company_id.state_id.name" />
+                    </span>
+                    <span class="s_r"> le: </span>
+                    <span class="s_r" t-esc="d_delta.strftime('%d/%m/%Y')" />
+                  </h5>
+                </div>
+              </div>
+              <div class="text-left">
+                <p class="st-para">
+                  <span class="s_r">Ref: </span>
+                  <span class="s_r" t-esc="docs.sequence" />
+                </p>
+                <br />
+                <br />
+                <p class="st-para" t-if="o.employee_id.address_id">
+                  <span class="s_r">Nous, Soussignés</span>
+                  <span class="my-bold s_r" t-field="o.employee_id.company_id.forme_juridique.code" />,
+                  <span class="my-bold s_r" t-field="o.employee_id.company_id.name" />
+                  <span class="s_r"> sise au </span>
+                  <span class="s_r" t-field="o.employee_id.company_id.street" />,
+                  <span class="s_r" t-field="o.employee_id.company_id.street2" />
+                  <span class="s_r" t-esc="o.employee_id.address_id.city">, </span>
+                  <t
+                    t-if="o.employee_id.address_id.city and o.employee_id.address_id.state_id.name">
+                    <t
+                      t-if="o.employee_id.address_id.city.lower() != o.employee_id.address_id.state_id.name.lower()">
+                      <span class="s_r" t-field="o.employee_id.address_id.state_id.name" />
+                    </t>
+                  </t>
+                  , <span class="s_r" t-field="o.employee_id.company_id.country_id.name" />
+                </p>
+                <p class="st-para" t-if="not o.employee_id.address_id">
+                  <span class="s_r">Nous, Soussignés</span>
+                  <span class="my-bold s_r" t-field="o.employee_id.company_id.name" />
+                  <span class="s_r"> sise au </span>
+                  <span class="s_r" t-field="o.employee_id.company_id.street" />
+                  <span class="s_r" t-field="o.employee_id.company_id.city">, </span>
+                  <t
+                    t-if="o.employee_id.company_id.city and o.employee_id.company_id.state_id.name">
+                    <t
+                      t-if="o.employee_id.company_id.city.lower() != o.employee_id.company_id.state_id.name.lower()">
+                      <span class="s_r" t-field="o.employee_id.company_id.state_id.name" />
+                    </t>
+                  </t>
+                </p>
+                <p class="st-para">
+                  <span class="s_r">Attestons que </span>
+                  <span class="s_r" t-if="o.employee_id.gender == 'male'">
+                    M.
+                  </span>
+                  <span class="s_r"
+                    t-if="o.employee_id.gender == 'female' and o.employee_id.marital == 'married'">
+                    Mme
+                  </span>
+                  <span class="s_r"
+                    t-if="o.employee_id.gender == 'female' and o.employee_id.marital != 'married'">
+                    Mlle
+                  </span>
+                  <span class="s_r" t-field="o.employee_id.name" />
+                  <span class="s_r">.</span>
+                </p>
+                <p class="st-para"> 
+                  <span class="my-bold s_r"
+                    t-if="o.employee_id.gender == 'female'">
+                    Née le:
+                  </span>
+                  <span class="my-bold s_r"
+                    t-if="o.employee_id.gender == 'male'">
+                    Né le:
+                  </span>
+                  <span class="my-bold s_r"
+                    t-if="o.employee_id.gender != 'male' and o.employee_id.gender != 'female'">
+                    Né(e) le:
+                  </span>
+                  <span class="s_r" t-field="o.employee_id.birthday" />
+                  <span class="s_r"> à </span>
+                  <span class="s_r" t-field="o.employee_id.place_of_birth" />,
+                  <span class="s_r" t-field="o.employee_id.country_of_birth.name" />
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r">Demeurant à/au: </span>
+                  <span class="s_r" t-field="o.employee_id.private_street" /> 
+                  <span class="s_r" t-field="o.employee_id.private_street2" />
+                  <span class="s_r" t-field="o.employee_id.private_city" /> 
+                  <span class="s_r" t-field="o.employee_id.private_zip" /> 
+                  <span class="s_r" t-field="o.employee_id.private_country_id.name" />
+
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r">Titulaire de la CNI N°: </span>
+                  <span class="s_r" t-field="o.employee_id.identification_id" />
+
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r">N° Sécurité sociale: </span>
+                  <span class="s_r" t-field="o.employee_id.ssnid" />
+                </p>
+                <p class="st-para">
+                  <span class="s_r">Est
+                    <span class="s_r" t-if="o.employee_id.gender == 'female'">
+                      employée
+                    </span>
+                    <span class="s_r" t-if="o.employee_id.gender == 'male'">
+                      employé
+                    </span>
+                    <span class="s_r"
+                      t-if="o.employee_id.gender != 'male' and o.employee_id.gender != 'female'">
+                      employé(e)
+                    </span>
+                    au sein de notre entreprise depuis le</span>
+                  <span class="s_r" t-field="o.contract_ids[0].date_start" />
+                  <t t-if="o.contract_ids[-1].date_end">
+                    Au <span class="s_r" t-field="o.contract_ids[-1].date_end" />.
+                  </t>
+                  <t t-else=" !o.contract_ids[-1].date_end">
+                    À ce jour.
+                  </t>
+                </p>
+
+                <p class="st-para">
+                  <span class="my-bold s_r">En qualité de :</span>
+                  <span class="s_r" t-field="o.contract_ids[0].job_id.name" /> du
+                   <span class="s_r" t-field="o.contract_ids[0].date_start" />
+                  <t t-if="o.contract_ids[0].date_end">
+                    Au <span class="s_r" t-field="o.contract_ids[0].date_end" />.
+                  </t>
+                  <t t-else=" !o.contract_ids[0].date_end">
+                    À ce jour.
+                  </t>
+                </p>
+                
+                <t t-foreach="o.contract_ids" t-as="haha">
+                  <t
+                    t-if="o.contract_ids[0] !=  haha">
+                    <p class="st-para">
+                      <span class="my-bold s_r">Et de : </span>
+                      <span class="s_r" t-field="haha.job_id.name" /> du <span class="s_r"
+                        t-field="haha.date_start" />
+                      <t t-if="haha.date_end">
+                        Au <span class="s_r" t-field="haha.date_end" />.
+                      </t>
+                      <t t-else="!haha.date_end ">
+                        À ce jour.
+                      </t>
+                    </p>
+                  </t>
+
+                </t>
+
+
+                <br />
+                <p class="st-para">
+                  <span class="s_r">La présente attestation est délivrée sur demande de
+                    <span class="s_r" t-field="o.employee_id.name" /> pour servir et valoir ce que de droit.</span>
+                    
+                </p>
+              </div>
+              <div class="col-xs-1 text-right" align="right">
+                <div class="col-xs-11">
+                  <h5 class="h5_report">
+                    <span class="my-bold s_r">La Direction</span>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+
+
+    </template>
+
+
+  </data>
+</odoo>

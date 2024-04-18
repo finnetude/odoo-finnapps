@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_bilan_compte_resultat">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="page">
+
+                            <style>
+                                #result_part {
+                                    font-weight: bold;
+                                    background: #e4e6e8;
+                                     font-size: 12px;
+                                    
+                                }
+
+                                #part_table {
+                                    font-weight: bold;
+                                    text-decoration: underline;
+                                    font-size: 12px;
+                                }
+
+                                thead {
+                                    height: 50px;
+                                    background: #e4e6e8;
+                                    color: black;
+                                    font-size: 12px;
+                                }
+
+                                table {
+                                    font-size: 12px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    border-collapse: collapse;
+                                    color: black;
+                                    
+
+                                }
+
+                                table th {
+                                    text-align: center;
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    border: 1px solid black;
+                                    padding: 0px 5px;
+                                    
+                                }
+
+                                table td {
+                                    color: black;
+                                    border: 1px solid black;
+                                    padding: 5px 5px;
+                                    font-size: 12px;
+                                }
+
+                                .div1 {
+                                    color: black;
+                                    background: #e4e6e8;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    text-decoration: underline;
+                                    margin: auto;
+                                    width: 25%;
+                                    border: 2px solid black;
+                                    padding: 10px;
+                                    box-shadow: 1px 2px #a6af93;
+                                    font-size: 12px;
+                                }
+
+                                #table_date {
+                                    margin: 10px;
+                                    width: 60%;
+                                    text-align: center;
+                                    margin: auto;
+                                    width: 20%;
+                                    padding: 10px;
+                                    font-size: 12px;
+                                }
+
+                                #data {
+                                    color: black;
+                                    font-size: 12px;
+                                }
+                            </style>
+                            <table id="table_date" style="font-size: 12px;width: 60%;"  border="1">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold;">Exercice du</td>
+                                        <td style="color:black;"><span t-esc="o.exercice_id.date_from"
+                                                t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                        <td style="font-weight: bold;">au</td>
+                                        <td style="color:black;"><span t-esc="o.exercice_id.date_to"  t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div style="font-size: 12px;margin-bottom: 7px;margin-top: 7px;" class="div1">COMPTE DE RESULTAT</div>
+
+                            <table style="font-size: 12px;width: 100%;"  border="1" height="100%">
+                                <thead height="100%">
+                                    <tr>
+                                        <th colspan="2" rowspan="2"><br/>Rubriques</th>
+                                        <th colspan="2">N</th>
+                                        <th colspan="2">N-1</th>
+                                    </tr>
+                                    <tr>
+                                        <th>DEBIT<br/>(en Dinars)</th>
+                                        <th>CREDIT<br/>(en Dinars)</th>
+                                        <th>DEBIT<br/>(en Dinars)</th>
+                                        <th>CREDIT<br/>(en Dinars)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '01compte_resultat')" />
+                                        <td colspan="2">Ventes de marchandises</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '02compte_resultat')" />
+                                        <td rowspan="3">Production vendue</td>
+                                        <td>Produits fabriqués</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0"  t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '03compte_resultat')" />
+                                        <td>Prestations de services</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '04compte_resultat')" />
+                                        <td>Vente de travaux</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '05compte_resultat')" />
+                                        <td colspan="2">Produits annexes</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0"  t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '06compte_resultat')" />
+                                        <td style="text-align: right;" colspan="2">Rabais, remises, ristournes accordés</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '07compte_resultat')" />
+                                        <td colspan="2">Chiffre d’affaires net des Rabais, remises, ristournes</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '08compte_resultat')" />
+                                        <td colspan="2">Production stockée ou déstockée</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" sst-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0"  t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '09compte_resultat')" />
+                                        <td colspan="2">Production immobilisée</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '10compte_resultat')" />
+                                        <td colspan="2">Subventions d’exploitation</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '11compte_resultat')" />
+                                        <td id="result_part" colspan="2">I-Production de l’exercice</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '12compte_resultat')" />
+                                        <td colspan="2">Achats de marchandises vendues</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '13compte_resultat')" />
+                                        <td colspan="2">Matières premières</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '14compte_resultat')" />
+                                        <td colspan="2">Autres approvisionnements</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '15compte_resultat')" />
+                                        <td colspan="2">Variations des stocks</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '16compte_resultat')" />
+                                        <td colspan="2">Achats d’études et de prestations de services</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '17compte_resultat')" />
+                                        <td colspan="2">Autres consommations</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '18compte_resultat')" />
+                                        <td colspan="2">Rabais, remises, ristournes obtenus sur achats</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '19compte_resultat')" />
+                                        <td rowspan="8"><br/><br/><br/>Services extérieurs</td>
+                                        <td>Sous-traitance générale</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '20compte_resultat')" />
+                                        <td>Locations</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '21compte_resultat')" />
+                                        <td>Entretien, réparations et maintenance</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '22compte_resultat')" />
+                                        <td>Primes d'assurances</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '23compte_resultat')" />
+                                        <td>Personnel extérieur à l’entreprise</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '24compte_resultat')" />
+                                        <td>Rémunération d’intermédiaires et honoraires</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '25compte_resultat')" />
+                                        <td>Publicité</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '26compte_resultat')" />
+                                        <td>Déplacements, missions et réceptions</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '27compte_resultat')" />
+                                        <td colspan="2">Autres services</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '28compte_resultat')" />
+                                        <td colspan="2">Rabais, remises, ristournes obtenus sur services extérieurs</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '28compte_resultat')" />
+                                        <td id="result_part" colspan="2">II-Consommations de l’exercice</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '29compte_resultat')" />
+                                        <td id="result_part" colspan="2">II-Valeur ajoutée d’exploitation (I–II)</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '30compte_resultat')" />
+                                        <td rowspan="1"></td>
+                                        <td>Charges de personnel</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '31compte_resultat')" />
+                                        <td rowspan="1"></td>
+                                        <td>Impôts et taxes et versements assimilés</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '33compte_resultat')" />
+                                        <td id="result_part" colspan="2">IV-Excédent brut d’exploitation</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="page-break-after:always;"> </p>
+                            <table style="font-size: 12px;width: 100%;"  border="1" height="100%">
+                                <thead style="visibility: hidden;">
+                                    <tr>
+                                        <th colspan="2" rowspan="2"><br/>Rubriques</th>
+                                        <th colspan="2">N</th>
+                                        <th colspan="2">N-1</th>
+                                    </tr>
+                                    <tr>
+                                        <th>DEBIT<br/>(en Dinars)</th>
+                                        <th>CREDIT<br/>(en Dinars)</th>
+                                        <th>DEBIT<br/>(en Dinars)</th>
+                                        <th>CREDIT<br/>(en Dinars)</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '34compte_resultat')" />
+                                        <td colspan="2">Autres produits opérationnels</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '35compte_resultat')" />
+                                        <td colspan="2">Autres charges opérationnelles</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '36compte_resultat')" />
+                                        <td colspan="2">Dotations aux amortissements</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '37compte_resultat')" />
+                                        <td colspan="2">Provision</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '38compte_resultat')" />
+                                        <td colspan="2">Pertes de valeur</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '39compte_resultat')" />
+                                        <td colspan="2">Reprise sur pertes de valeur et provisions</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '40compte_resultat')" />
+                                        <td id="result_part" colspan="2">V-Résultat opérationnel</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '41compte_resultat')" />
+                                        <td colspan="2">Produits financiers</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '42compte_resultat')" />
+                                        <td colspan="2">Charges financières</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '43compte_resultat')" />
+                                        <td id="result_part" colspan="2">VI-Résultat financier</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '44compte_resultat')" />
+                                        <td id="result_part" colspan="2">VII-Résultat ordinaire (V+VI)</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '45compte_resultat')" />
+                                        <td colspan="2">Eléments extraordinaires (produits) (*)</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '46compte_resultat')" />
+                                        <td colspan="2">Eléments extraordinaires (Charges) (*)</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '47compte_resultat')" />
+                                        <td id="result_part" colspan="2">VIII-Résultat extraordinaire</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '48compte_resultat')" />
+                                        <td colspan="2">Impôts exigibles sur résultats</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '49compte_resultat')" />
+                                        <td colspan="2">Impôts différés (variations) sur résultats</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;">
+                                        <t t-set="compte_resultat" t-value="o.line_compte_resultat_ids.filtered(lambda m: m.code == '50compte_resultat')" />
+                                        <td id="result_part" colspan="2">IX - RESULTAT NET DE L’EXERCICE</td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_one > 0" t-esc="compte_resultat.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_two > 0" t-esc="compte_resultat.amount_col_two" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_three > 0" t-esc="compte_resultat.amount_col_three" /></td>
+                                        <td style="text-align: right;color: black;"><span t-if="compte_resultat.amount_col_four > 0" t-esc="compte_resultat.amount_col_four" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p style="color: black;text-indent: 8%;">(*) À détailler sur état annexe à joindre.</p>
+
+
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_compte_resultat_report" model="ir.actions.report">
+            <field name="name">Compte de résultat</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.compta_bilan_compte_resultat</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.compta_bilan_compte_resultat</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+        
+        <record id="finnapps_liasse_fiscale_dz.action_compte_resultat_report" model="ir.actions.report">
+                <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+  
+
+    </data>
+</odoo>

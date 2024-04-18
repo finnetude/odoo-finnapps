@@ -1,0 +1,17 @@
+<odoo>
+	<data>
+
+			<!-- ___________SEQUENCE ________________-->
+		  	<record id="sequence_fiscal" model="ir.sequence">
+		            <field name="name">sequence fiscal</field>
+		            <field name="code">seq_fiscal</field>
+		            <field name="active">True</field>
+		            <field name="prefix">État annuel des déclarations fiscales/</field>
+		            <field name="number_increment">1</field>
+		            <field name="number_next">1</field>
+		            <field name="padding">3</field>
+		            <field name="implementation">standard</field>
+		  	</record>
+
+	</data>
+</odoo>

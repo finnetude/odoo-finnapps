@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_res_bank_form">
+            <field name="name">res.bank.form</field>
+            <field name="model">res.bank</field>
+            <field name="inherit_id" ref="base.view_res_bank_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="commune_id" class="oe_no_button" placeholder="Commune" style="width: 37%%" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_create': True}" domain="[('state_id', '=', state)]"/>
+                    <field name="localite_id" class="oe_no_button" placeholder="Localité" style="width: 37%%" options="{'no_quick_create': True, 'no_create_edit' : True, 'no_create': True}" domain="[('state_id', '=', state)]"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

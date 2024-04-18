@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_solde_tiers_document_all" >
+        <t t-call="web.html_container" >
+        <!-- <t t-call-assets="finnapps_solde_tiers.solde_tiers_assets_backend_id" t-js="False" /> -->
+        <t t-foreach="docs" t-as="o" >
+
+        <!-- <t t-foreach="o.invoice_ids" t-as="p">
+            <t t-call="account.report_invoice_document_with_payments" t-lang="o.partner_id.lang"/> 
+        </t>-->
+            <t t-call="web.external_layout">
+                <div class="page">
+                    <p>
+                        Document : Relevé de compte client<br/>
+                        Date: <span t-esc="o.get_date_today()"/><br/>
+                        <t t-if="o.partner_id.ref">Ref. du client : <span t-field="o.partner_id.ref"/></t>
+                    </p>
+
+                    <p t-if="o.add_message">
+                        <p>
+                            <span t-esc="o.message"/>
+                        </p>
+                    </p>
+
+                    <t t-set="lines" t-value="o.get_lines_all()"/>
+                    
+
+                    <t t-if="lines">
+                        <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-center">N°</th>
+                                <th>Client</th>
+                                <th class="text-right">Débit</th>
+                                <th class="text-right">Crédit</th>
+                                <th class="text-right">Solde partiel</th>
+                                <th class="text-right">Solde total</th>
+                                           </tr>
+                        </thead>
+                        <tbody>
+                            <tr t-foreach="lines" t-as="line">
+                                <xpath expr="//table[@class='table table-sm o_main_table']/tbody/t/tr/t" position="before">
+                                    <td class="text-center"><span t-esc="line_index + 1"/></td>
+                                </xpath>
+                                
+                                 <td>
+                                    <span t-esc="line"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="lines[line]['debit']" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="lines[line]['credit']" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="lines[line]['solde']" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="lines[line]['solde_total']" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div style="page-break-inside: avoid; margin-left:15px; margin-right:15px;">
+                        <div class="row">
+                            <table class="table table-condensed">
+                                <tbody>
+                        <!--             <tr>
+                                        <td style="width:400px"></td>
+                                        <td class="text-left"><strong>Sous-total :</strong></td>
+                                        <td class="text-right"><span t-esc="o.get_sum_due()" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/></td>
+                                        <td class="text-right"><span t-esc="o.get_sum_paye()" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/></td>
+                                        <td class="text-right"><span t-esc="o.get_sum_due() - o.get_sum_paye()" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/></td>
+                                    </tr> -->
+
+                               <!--      <tr>
+                                        <td style="width:400px"></td>
+                                        <td class="text-left"><strong>Balance :</strong></td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </t>
+                    <t t-else="">
+                        <p>
+                            <br /><strong>Aucun montant dû pour ce client.</strong>
+                        </p>
+                    </t>
+                </div>
+            </t>
+        </t>
+        </t>
+    </template>
+</odoo>

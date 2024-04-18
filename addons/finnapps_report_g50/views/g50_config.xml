@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="config_g50_view_form" model="ir.ui.view">
+            <field name="name">Configuration G50 formulaire</field>
+            <field name="model">config.g50</field>
+            <field name="arch" type="xml">
+                <form string="G50">
+                    <field name="readonly_config" invisible='1'/>
+                    <sheet>
+                        <widget name="web_ribbon" title="Standard" invisible="readonly_config == False"/>
+                    	<div class="oe_title">
+							<h1>
+								<field name="name" string="Nom" readonly="readonly_config == True"/>
+							</h1>
+						</div>
+                        <group>
+                            <group>
+                                <field name="type" readonly="readonly_config == True"/>
+                            </group>
+                            <group>
+                                <field name="use_invoice_draft" readonly="readonly_config == True"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="TAP">
+                                <field name="line_tap_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom" default_order="code">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="name" string="Opération imposables" />
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="IBS">
+                                <field name="line_ibs_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="definition"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="IRG">
+                                <field name="line_irg_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="definition"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Timbre">
+                                <field name="line_timbre_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="definition"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Autres">
+                                <field name="line_autre_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="definition"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="TVA 9%">
+                                <field name="line_tva_9_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="TVA 19%">
+                                <field name="line_tva_19_ids" editable="bottom" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Deduction">
+                                <field name="line_deduction_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="definition"/>
+                                        <field name="use_line"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="TVA à Payer">
+                                <field name="line_tva_p_ids" readonly="readonly_config == True">
+                                    <tree editable="bottom">
+                                        <field name="type_line" column_invisible="True"/>
+                                        <field name="code"/>
+                                        <field name="definition"/>
+                                        <field name="use_line"/>
+                                        <field name="ratio"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="config_g50_view_tree" model="ir.ui.view">
+            <field name="name">Configuration G50 liste</field>
+            <field name="model">config.g50</field>
+            <field name="arch" type="xml">
+                <tree  decoration-info="readonly_config == True">
+                    <field name="readonly_config" column_invisible="True"/>
+                    <field name="name"/>
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_config_g50" model="ir.actions.act_window">
+            <field name="name">Configuration G50</field>
+            <field name="res_model">config.g50</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="idpartEnh">
+        <field name="name">res.part.enh</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <data>
+                <xpath expr="//field[@name='vat']" position="before">                 
+                    <field name="is_cnas_agency" invisible= "company_type == 'person'"/>
+                    <field name="code_adherant" invisible="is_cnas_agency !=  True"/>
+                    <field name="agency_code" invisible="is_cnas_agency != True"/>
+                    <field name="is_payment_center" invisible="is_cnas_agency == True"/>
+                    <field name="declaration_type" invisible="is_payment_center != True"/>
+                </xpath> 
+                <xpath expr="//notebook/page[1]/field/form/sheet/group/group[2]/field[@name='mobile']" position="after">
+                    <field name="is_cnas_agency" invisible="1"/>            
+                    <field name="is_payment_center" invisible="is_cnas_agency == True"/>
+                    <field name="declaration_type" invisible="is_payment_center != True"/>
+                </xpath> 
+            </data>
+        </field>
+    </record>
+</odoo>

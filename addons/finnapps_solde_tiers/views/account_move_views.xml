@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>        
+    <record id="view_move_line_tree_grouped_partner" model="ir.ui.view">
+        <field name="name">account.move.line.tree.grouped.partner</field>
+        <field name="model">account.move.line</field>
+        <field name="arch" type="xml">
+            <tree string="Journal Items">
+                <header>
+                    <button name="test" string="Imprimer" type="object" class="btn-primary ms-1" display="always"/>
+                </header>  
+                <!-- create="0"  -->
+                <field name="date" readonly="1"/>
+                <field name="partner_id" readonly="1"/>
+                <field name="previous_solde" />
+                <field name="name_pc"/>
+                <field name="ref_pc"/>
+                <field name="ref" invisible="1"/>
+                <field name="name" invisible="1"/>
+                <field name="date_maturity"/>
+                <field name="debit" sum="Total Debit" readonly="1"/>
+                <field name="credit" sum="Total Credit" readonly="1"/>
+                <field name="balance" string="Montant" sum="Total Balance" readonly="1"/>
+                <field name="cumulated_balance" string="Solde"/>
+                <field name="residual" sum="Total Residual" options='{"currency_field": "currency_id"}'/>
+                <field name="cumulated_residual" invisible="1" options='{"currency_field": "currency_id"}'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_account_move_line_filter_solde" model="ir.ui.view">
+        <field name="name">account.move.line.search.solde</field>
+        <field name="model">account.move.line</field>
+        <field name="inherit_id" ref="account.view_account_move_line_filter"/>
+        <field name="arch" type="xml">
+            
+            <filter name="trade_receivable" position="after">
+                <separator/>
+                <filter string="Solde Positive" name="positive" domain="[('partner_id.solde', '&gt;', 0)]"/>
+                <filter string="Solde Negative" name="negative" domain="[('partner_id.solde', '&lt;', 0)]"/>
+                <separator/>
+                <filter string="Facture impayée" name="unpaid" domain="[('residual', '!=', 0)]"/>
+                <separator/>
+                <filter string="En cours" name="current_transaction" domain="[('current_transaction','=', True)]"/>
+               
+            </filter>
+            
+        </field>
+    </record>
+
+    <record id="action_account_moves_ledger_partner" model="ir.actions.act_window">
+        <field name="context">{'journal_type':'general', 'search_default_group_by_partner': 1, 'search_default_posted':1, 'search_default_payable':1, 'search_default_receivable':1, 'search_default_unreconciled':1, 'search_default_current_transaction':1,}</field> 
+        <field name="name">Livre des tiers</field>
+        <field name="res_model">account.move.line</field>
+        <field name="view_id" ref="view_move_line_tree_grouped_partner"/>
+        <field name="view_mode">tree</field>
+    </record>
+  
+
+
+     <menuitem id="account.menu_action_account_moves_ledger_partner"
+         name="Livre des tiers"
+         action="action_account_moves_ledger_partner"
+         parent="account.menu_finance_entries"/>
+</odoo>

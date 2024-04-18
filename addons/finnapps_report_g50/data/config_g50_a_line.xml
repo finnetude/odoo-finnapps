@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <!-- TAP -->
+        <record id="config_g50_a_c1a12" model="config.g50.line">
+            <field name="name">Affaire bénéficiant d'une réfaction de (.........%)</field>
+            <field name="code">C1A12</field>
+            <field name="type_line">tap</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <record id="config_g50_a_c1a13" model="config.g50.line">
+            <field name="name">Affaire sans réfaction</field>
+            <field name="code">C1A13</field>
+            <field name="type_line">tap</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <record id="config_g50_a_c1a14" model="config.g50.line">
+            <field name="name">Affaires exonérées</field>
+            <field name="code">C1A14</field>
+            <field name="type_line">tap</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <record id="config_g50_a_c1a20" model="config.g50.line">
+            <field name="name">Recettes professionelles (Professions libérales)</field>
+            <field name="code">C1A20</field>
+            <field name="type_line">tap</field>
+            <field name="definition">{'load':['+:70:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat1_5_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <!-- VF -->
+        <record id="config_g50_a_c1c10" model="config.g50.line">
+            <field name="name">Traitements, salaires, émoluments, primes, indémnités, rémunérations divrses</field>
+            <field name="code">C1C10</field>
+            <field name="type_line">ibs</field>
+            <field name="definition">{'load':[], 'except':[]}</field>
+            <field name="ratio" ref="rat5_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <!-- IRG -->
+        <record id="config_g50_a_e1l20" model="config.g50.line">
+            <field name="name">IRG/Traitements salaires, pensions et rentes viagéres</field>
+            <field name="code">E1L20</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:442100:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat_bareme_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <record id="config_g50_a_e1l80" model="config.g50.line">
+            <field name="name">IRG/Autres retenues à la source</field>
+            <field name="code">E1L80</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:442500:S'], 'except':[]}</field>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+        <record id="config_g50_a_e1m20" model="config.g50.line">
+            <field name="name">IBS/Revenus des entreprises étrangères non installées en Algérie (prestations de services)(1)</field>
+            <field name="code">E1M20</field>
+            <field name="type_line">irg</field>
+            <field name="definition">{'load':['+:444000:S'], 'except':[]}</field>
+            <field name="ratio" ref="rat24_g50"/>
+            <field name="report_id" ref="config_g50_a"/>
+        </record>
+
+    </data>
+</odoo>

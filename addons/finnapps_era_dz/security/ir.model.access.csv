@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+
+access_finn_summary_statement_config,access_finn_summary_statement_config,model_finn_summary_statement_config,account.group_account_user,1,1,1,1
+access_finn_summary_statement_annual,access_finn_summary_statement_annual,model_finn_summary_statement_annual,account.group_account_user,1,1,1,1
+access_finn_summary_statement_annual_line,access_finn_summary_statement_annual_line,model_finn_summary_statement_annual_line,account.group_account_user,1,1,1,1

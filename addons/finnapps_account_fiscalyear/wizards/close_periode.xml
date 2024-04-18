@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id = "close_periode_view" model = "ir.ui.view">
+            <field name = "name">close.periode.view</field>
+            <field name = "model">finn.close.periode</field>
+            <field name = "arch" type = "xml">
+                <form>
+                <sheet>
+                    <field name="period_ids" invisible="1"/>
+                    
+                        <div>
+                            <p>Êtes-vous sûr ?"</p>
+                        </div>
+                    
+                    <group>
+                        <field name = "is_confirm"/>
+                    </group>
+                </sheet>
+                    <footer>
+                        <button name="finn_confirm_close_periode"
+                                string="Clôturer la période"
+                                type="object"
+                                default_focus="1"
+                                class="oe_highlight"
+                        />
+                        <button special = "cancel" string = "Annuler"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_close_multi_periode" model="ir.actions.act_window">
+            <field name="name">Fermer les périodes</field>
+            <field name="res_model">finn.close.periode</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="close_periode_view"/>
+            <field name="binding_model_id" ref="finnapps_account_fiscalyear.model_finn_periode"/>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

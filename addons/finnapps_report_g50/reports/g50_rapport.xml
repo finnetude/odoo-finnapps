@@ -1,0 +1,2641 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+
+		<template id="report_G50_document">
+			<div class="page" >
+
+				<style type="text/css">
+					.td_f {
+						font-size: 8pt;
+						padding-left: 1px;
+					}
+					.td_pad{
+						padding-bottom: 10px;
+						padding-top: 10px;
+					}
+					.table_box_200{
+						width: 190px;
+						border: 1px solid black;
+						margin-left:30px;
+						margin-bottom: 10px;
+					}
+					.table_box_350{
+						width: 350px;
+						border: 1px solid black;
+						margin-bottom: 10px;
+					}
+					.table_box_500{
+						width: 500px;
+						border: 1px solid black;
+						margin-left:30px;
+						margin-bottom: 10px;
+					}
+					.text_center {
+						text-align: center;
+					}
+					.text_right {
+						text-align: right;
+					}
+					.text_left {
+						text-align: left;
+					}
+					.first_line {
+						border: 1px solid;
+						font-size: 10pt;
+						border-top:0;
+						border-bottom:0;
+						border-left:0;
+						border-right:0;
+					}
+					.second_line_0 {
+						border: 1px solid;
+						font-size: 10pt;
+						border-left:0;
+					}
+					.second_line_1 {
+						border: 1px solid;
+						font-size: 10pt;
+						border-left:0;
+						border-right:0;
+					}
+					.second_line {
+						border: 1px solid;
+						font-size: 10pt;
+						border-left:0;
+					}
+					.other_line_0 {
+						border: 1px solid;
+						font-size: 10pt;
+						border-bottom:1px ;
+						border-top:0;
+						border-left:0;
+					}
+					.other_line_1 {
+						border: 1px solid;
+						font-size: 10pt;
+						border-bottom:0;
+						border-left:0;
+						border-top:0;
+						border-right:0;
+					}
+					.other_line {
+						border: 1px solid;
+						font-size: 8pt;
+						border-left:0;
+						border-top:0;
+						border-bottom:0;
+					}
+					.last_line_0 {
+						border: 1px solid;
+						font-size: 8pt;
+						border-top:0;
+						border-left:0;
+					}
+					.last_line_1 {
+						border: 1px solid;
+						font-size: 8pt;
+						border-left:0;
+						border-top:0;
+						border-right:0;
+					}
+					.last_line {
+						border: 1px solid;
+						font-size: 8pt;
+						border-left:0;
+						border-top:0;
+					}
+					.total_line_0 {
+						border: 1px solid;
+						font-size: 8pt;
+						border-top:0;
+						border-left:0;
+						border-bottom:0;
+					}
+					.total_line_1 {
+						border: 1px solid;
+						font-size: 8pt;
+						border-left:0;
+						border-top:0;
+						border-right:0;
+						border-bottom:0;
+					}
+					.total_line {
+						border: 1px solid black;
+						font-size: 8pt;
+						border-left:0;
+						border-top:0;
+						border-bottom:0;
+					}
+					.table_det1 {
+						width: 100%;
+						border-left: 1px solid;
+						border-right: 1px solid;
+						border-bottom: 1px solid;
+						border-top: 1px solid;
+						margin: 10px 0px 0px 0px;
+						padding: 0px 0px 0px 0px;
+					}
+					.table_det3l {
+						width:670px;
+						border-left: 1px solid;
+						border-bottom: 1px solid;
+						border-right: 1px solid;
+					}
+					.table_det2l {
+						width:565px;
+						border-left: 1px solid;
+						border-right: 1px solid;
+						border-bottom: 1px solid;
+					}
+					.table_pic {
+						width: 39px;
+						border-bottom: 1px solid;
+						margin-right:0px;
+					}
+					.arrow {
+						width: 105px;
+					}
+					.arrow_1 {
+						width: 39px;
+					}
+					.line_h {
+						margin-top: 50px;
+						width: 90px;
+						background: black;
+						height: 2px;
+						float: left;
+					}
+					.line_v {
+						width: 2px;
+						background: black;
+						height: 52px;
+						float: left;
+					}
+					.point_left {
+						width: 0;
+						height: 0;
+						border-top: 5px solid transparent;
+						border-bottom: 5px solid transparent;
+						border-right: 10px solid black;
+						float: left;
+						margin-top: 46px;
+					}
+					.point_right {
+						width: 0;
+						height: 0;
+						border-top: 5px solid transparent;
+						border-bottom: 5px solid transparent;
+						border-left: 10px solid black;
+						float: left;
+						margin-top: 46px;
+					}
+					.my_table {
+						border-collapse: separate;
+						white-space: normal;
+						line-height: normal;
+						font-weight: normal;
+						font-size: medium;
+						font-style: normal;
+						color: -internal-quirk-inherit;
+						text-align: start;
+						border-spacing: 0px!important;
+						font-variant: normal;
+					}
+				</style>
+
+				<span t-set="lines" t-value="o.get_dict_value()"/>
+				<span t-set="total" t-value="lines['total']"/>
+				<span t-set="tap" t-value="lines['tap']"/>
+				<span t-set="tva" t-value="lines['tva']"/>
+				<span t-set="ratio" t-value="lines['ratio']"/>
+
+				<span t-set="total_tap" t-value="(lines['C1A11']+lines['C1A12']+lines['C1A13']+lines['C1A14']+lines['C1A20'])"/>
+				<span t-set="total_tap1" t-value="(tap['C1A11']+tap['C1A12']+tap['C1A13']+tap['C1A14']+tap['C1A20'])"/>
+				<span t-set="total_tap2" t-value="(total['C1A11']+total['C1A12']+total['C1A13']+total['C1A14']+total['C1A20'])"/>
+
+				<span t-set="total_ibs" t-value="lines['E1M10']"/>
+				<span t-set="total_ibs_p" t-value="total['E1M10']"/>
+
+				<span t-set="total_irg" t-value="lines['E1L30']+lines['E1L40']+lines['E1L60']+lines['E1L80']+lines['E1M30']+lines['E1M40']"/>
+				<span t-set="total_irg_p" t-value="total['E1L20']+total['E1L30']+total['E1L40']+total['E1L60']+total['E1L80']+total['E1M30']+total['E1M40']"/>
+
+				<span t-set="total_timbre" t-value="lines['E2E00']"/>
+				<span t-set="total_timbre_p" t-value="total['E2E00']"/>
+				<span t-set="total_autres" t-value="lines['Autretaxes']"/>
+				<span t-set="total_autres_p" t-value="total['Autretaxes']"/>
+				<span t-set="total_tva" t-value="lines['E3B11']+lines['E3B12']+lines['E3B13']+lines['E3B14']+lines['E3B15']+lines['E3B16']+lines['E3B21']+lines['E3B22']+lines['E3B23']+lines['E3B24']+lines['E3B25']+lines['E3B26']+lines['E3B28']+lines['E3B31']+lines['E3B32']+lines['E3B33']+lines['E3B34']+lines['E3B35']+lines['E3B36']+lines['E3B37']"/>
+				<span t-set="total_tva1" t-value="tva['E3B11']+tva['E3B12']+tva['E3B13']+tva['E3B14']+tva['E3B15']+tva['E3B16']+tva['E3B21']+tva['E3B22']+tva['E3B23']+tva['E3B24']+tva['E3B25']+tva['E3B26']+tva['E3B28']+tva['E3B31']+tva['E3B32']+tva['E3B33']+tva['E3B34']+tva['E3B35']+tva['E3B36']+tva['E3B37']"/>
+				<span t-set="total_tva_net" t-value="total['E3B11']+total['E3B12']+total['E3B13']+total['E3B14']+total['E3B15']+total['E3B16']+total['E3B21']+total['E3B22']+total['E3B23']+total['E3B24']+total['E3B25']+total['E3B26']+total['E3B28']+total['E3B31']+total['E3B32']+total['E3B33']+total['E3B34']+total['E3B35']+total['E3B36']+total['E3B37']"/>
+				<span t-set="total_tva_imposable" t-value="total_tva-total_tva1"/>
+				<span t-set="total_deduction" t-value="lines['E3B91']+lines['E3B92']+lines['E3B93']+lines['E3B94']+lines['E3B95']+lines['E3B96']"/>
+				<span t-set="total_rappeler" t-value="total_tva_net+ lines['E3B97']+lines['E3B98']"/>
+
+				<table style="width:300px; float:left;">
+					<tr>
+						<td  colspan="2" class="text_center td_f"> المديرية العامة للضرائب<br/>DIRECTION <U>GENERAL</U> DES IMPOTS </td>
+					</tr>
+					<tr>
+						<td class="text_center td_f" colspan="2" >DIRECTION  <span t-esc="o.state_id.name"/>     مديرية</td>
+					</tr>
+					<tr >
+						<td colspan="2" class="text_center td_f"> INSEPECTION <u>DES IMPOTS</u> <span t-esc="o.state_inspection_id.name"/></td>
+					</tr>
+					<tr>
+						<td colspan="2" class="text_right td_f"> قباضة الضرائب ل  </td>
+					</tr>
+					<tr>
+						<td class="text_left td_f" coslpan="2" > RECETTE <u>DES IMPOTS</u> <span t-esc="o.commune_recette_id.name"  /></td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_center td_f" colspan="2"><span> COMMUNE de</span> <span t-esc="o.commune_id.name"  />     بلدية</td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_left td_f" style="width:200px;"><span> NIS: </span><span t-esc="o.company_id.nis"  /></td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_left td_f" style="width:200px;"><span> NIF: </span><span t-esc="o.company_id.nif"  /></td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_left td_f" style="width:200px;"> <span> AI:  </span><span t-esc="o.company_id.vat"  /></td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_left td_f" style="width:200px;"> <span> BP:  </span><span t-esc="o.bp"  /></td>
+					</tr>
+
+				</table>
+
+				<div style="float:left;">
+					<table class="table_box_200">
+						<tr>
+							<td class="text_left td_f"><span t-esc="o.exercice_id.code"  /></td>
+							<td class="text_right td_f"><span>الشهر</span> <t t-if="o.type == '1'" ><span t-esc="o.month_string_to_number_arabic(int(o.month))"  /></t></td>
+						</tr>
+						<tr>
+							<td class="text_left td_f"><span t-esc="o.exercice_id.code"  /></td>
+							<td class="text_right td_f"><span>الفصل</span> <t t-if="o.type == '2'"><span t-esc=" o.get_trimestre_ara(int(o.trimestre))"/></t></td>
+						</tr>
+						<tr>
+							<td class="text_left td_f" style="width:100px;"><span>Mois de</span>
+							<t t-if="o.type == '1'"><span t-esc="dict(o._fields['month'].selection).get(o.month)"/></t>  </td>
+							<td class="text_right td_f"><span t-esc="o.exercice_id.code"/></td>
+						</tr>
+						<tr>
+							<td class="text_left td_f"><t  t-if="o.type == '2'"><span style="font-size:8pt;" t-esc="dict(o._fields['trimestre'].selection).get(o.trimestre)"/> </t><span>Trimestre</span></td>
+							<td class="text_right td_f"><span t-esc="o.exercice_id.code"  /></td>
+						</tr>
+					</table>
+
+					<table class="table_box_200">
+						<tr>
+							<td class="text_center td_f"><b>للتذكير إجباريا</b><br/>A RAPPELER OBLIGATOIREMENT</td>
+						</tr>
+					</table>
+
+					<div style="margin-left:24px; float:left;">
+						<div class="arrow">
+							<div class="point_left"></div>
+							<div class="line_h"></div>
+							<div class="line_v"></div>
+						</div>
+					</div>
+
+					<div style="margin-left:3px; float:left;">
+						<span style="vertical-align:center;" > F.J. </span><br/>
+						<t t-if="o.company_id.forme_juridique_id">
+							<span class="text_center" t-esc="o.company_id.forme_juridique_id.code"  />
+						</t>
+					</div>
+				</div>
+
+				<div style="float:left;">
+					<table class="table_box_500">
+						<tr>
+							<td class="text_center td_pad" style="font-size:10pt;">الضرائب و الرسوم المحصلة فورا أو عن طريق الإقتطاع من المصدر<br/>
+							تصريح يقوم مقام حافظة إشعار بالتسديد<br/>
+							<b>IMPOTS ET TAXE PERCUS AU COMPTANT OU PAR VOIE DE
+							RETENUE A LA SOURCE </b><br/>
+							DECLARATION TENANT LIEU DE BORDEREAU - AVIS DE VERSEMENT</td>
+						</tr>
+					</table>
+
+					<table class="table_box_500">
+						<tr style="height:24px;">
+							<td   class="text_left" style="font-size:10pt;">M        <span class="text_center" style ="margin-left:150px;" t-esc="o.company_id.name"  /> <t t-if="o.company_id.forme_juridique_id">
+							<span class="text_center" t-esc="o.company_id.forme_juridique_id.code"  />
+							</t></td>
+							<td class="text_right td_f" >(السيد (ة</td>
+						</tr>
+						<tr style="height:24px;">
+								<td   class="text_left td_f"  style="width:300px;">(nom et prenom - raison sociale)</td>
+								<td   class="text_right td_f">(الاسم - اللقب - إسم الشركة)</td>
+						</tr>
+						<tr style="height:24px;">
+								<td   class="text_left " style="font-size:12pt;width:150px;"> Activité/ Profession: <span class="text_center" t-esc="o.company_id.activity_code_id.name"  /></td>
+								<td   class="text_right" style="font-size:11pt;width:180px;">:النشاط أو المهنة</td>
+						</tr >
+						<tr style="height:24px;">
+							<td   class="text_center" colspan="2" style="font-size:12pt;width:24px;">Adresse: <span class="text_center" t-esc="o.company_id.street"  /> :العنوان</td>
+						</tr>
+					</table>
+				</div>
+
+				<div style="float:right;">
+					<h6><span style="margin-left:15px;"><b>IMPORTANT!</b></span></h6>
+					<table class="table_box_200" style="margin-left:15px;">
+						<tr>
+							<td class="text_right td_f"><span>هذا التصريح يجب أن يقدم إلى قبضات الضرائب خلال العشرين يوم الأولى من الشهر </span></td>
+						</tr>
+						<tr>
+							<td class="text_left td_f"><span>la présente déclaration doit etre déposée à la recette des impots dans les <u><b>VINGT PREMIERS JOURS DU MOIS</b></u></span></td>
+						</tr>
+					</table>
+
+					<h5><span style="margin-left:15px;"> رمز النشاط </span><br/>
+					<span style="margin-left:15px;"> CODE ACTIVE</span></h5>
+					<t t-if="o.company_id.activity_code_id">
+						<span class="text_center" style="margin-left:15px;" t-esc="o.company_id.activity_code_id.code"  />
+					</t>
+					<h6><span style="margin-left:50px;">Série G. n°50</span></h6>
+				</div>
+
+				<!--**************** 1er tableau ****************-->
+				<table class="table_det1 my_table">
+					<thead>
+						<tr style="height:24px;">
+							<th  colspan="19" class ="first_line text_center"> Taxe sur l'activité professionnelle au taux 2%  الرسم على النشاط المهني بمعدل</th>
+						</tr>
+					</thead>
+
+
+
+					<!-- _____________ TAP ______________________ -->
+					<tbody>
+						<tr style="height:24px;">
+							<td colspan="2" class="second_line_0 text_center"> Code</td>
+							<td colspan="5" class="second_line text_center"> Opérations imposables العمليات الخاضعة للضريبة </td>
+							<td colspan="4" class="second_line text_center">Chiffre d'affaires رقم الأعمال </td>
+							<td colspan="4" class="second_line text_center">Chiffre d'affaire imposable<br/> Recettes professionnelles imposables  </td>
+							<td colspan="4" class="second_line_1 text_center">Montant à payer (en DA) </td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								C 1 A 11
+							</td>
+							<td colspan="5" class="other_line text_left">
+								Affaires bénéficiant d'une réfaction de 50%
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['C1A11']>0">
+									<span t-esc="'%.2f'% lines['C1A11']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="tap['C1A11']>0">
+									<span t-esc="'%.2f'% tap['C1A11']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+								<span t-set="paye_c1a11" t-value="total['C1A11']"/>
+								<t t-if="paye_c1a11 > 0">
+									<span t-esc="'%.2f'% paye_c1a11"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								C 1 A 12
+							</td>
+							<td colspan="5" class="other_line text_left">
+								Affaires bénéficiant d'une réaction de 30%
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['C1A12']>0">
+									<span t-esc="'%.2f'% lines['C1A12']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="tap['C1A12']>0">
+									<span t-esc="'%.2f'% tap['C1A12']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+								<span t-set="paye_c1a12" t-value="total['C1A12']"/>
+								<t t-if="paye_c1a12>0">
+									<span t-esc="'%.2f'% paye_c1a12"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								C 1 A 13
+							</td>
+							<td colspan="5" class="other_line text_left">
+								Affaires sans réaction
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['C1A13']>0">
+									<span t-esc="'%.2f'% lines['C1A13']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="tap['C1A13']>0">
+									<span t-esc="'%.2f'% tap['C1A13']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+								<span t-set="total_c1a13" t-value="total['C1A13']"/>
+								<t t-if="total_c1a13>0">
+									<span t-esc="'%.2f'% total_c1a13"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								C 1 A 14
+							</td>
+							<td colspan="5" class="other_line text_left">
+								Affaires exonérées
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['C1A14']>0">
+									<span t-esc="'%.2f'% lines['C1A14']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="tap['C1A14']>0">
+									<span t-esc="'%.2f'% tap['C1A14']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+								<span t-set="total_c1a14" t-value="total['C1A14']"/>
+								<t t-if="total_c1a14>0">
+							   		<span t-esc="'%.2f'% total_c1a14"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							   	</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="last_line_0 text_center">
+								C 1 A 20
+							</td>
+							<td colspan="5" class="last_line text_left">
+								Recette professionelles (Professions libérales)
+							</td>
+							<td colspan="4" class="last_line text_center">
+								<t t-if="lines['C1A20']>0">
+									<span t-esc="'%.2f'% lines['C1A20']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="last_line text_center">
+								<t t-if="tap['C1A20']>0">
+									<span t-esc="'%.2f'% tap['C1A20']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="last_line_1 text_center">
+								<span t-set="total_c1a20" t-value="total['C1A20']" />
+								<t t-if="total_c1a20>0">
+									<span t-esc="'%.2f'% total_c1a20" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="total_line_0 text_center">
+								<b>1</b>
+							</td>
+							<td colspan="3" class="total_line text_left">
+								<b>Préciser autres taux de réfactionle cas échéant</b>
+							</td>
+							<td colspan="2" style="width:120px;" class="total_line text_center">
+								<b>TOTAL</b>
+							</td>
+							<td colspan="4" class="total_line text_center">
+								<t t-if="total_tap>0">
+									<span t-esc="'%.2f'% total_tap"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="total_line text_center">
+								<t t-if="total_tap1>0">
+									<span t-esc="'%.2f'% total_tap1"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="total_line_1 text_center">
+								<t t-if="total_tap2>0">
+									<span t-esc="'%.2f'% total_tap2" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--**************** 2eme tableau ****************-->
+				<table class="table_det1 my_table">
+					<thead>
+						<tr style="height:24px;">
+							<th  colspan="19" class ="first_line text_center"> Acomptes IBS التسبيقات على الحساب للضريبة على أرباح الشركات</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="height:24px;">
+							<td colspan="2" class="second_line_0 text_center"> Code</td>
+							<td colspan="7" class="second_line text_center"> Acomptes  IBS </td>
+							<td colspan="6" class="second_line text_center">Détermination des acomptes provisionnels </td>
+							<td colspan="4" class="second_line_1 text_center">Montant à payer </td>
+						</tr>
+
+						<tr style="height:24px;border-bottom:1px solid black;">
+							<td colspan="2" class="second_line_0 text_center">
+								E 1 M 10
+							</td>
+							<td colspan="7" class="second_line text_center">
+								<span> Acomptes provisionnel</span>
+							</td>
+							<td colspan="6" class="second_line text_center">
+								<t t-if="lines['E1M10']>0">
+									<span t-esc="'%.2f'% lines['E1M10']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="4" class="second_line_1 text_center">
+								<t t-if="total['E1M10']>0">
+                  					<span t-esc="'%.2f'% total['E1M10']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+
+
+						<tr style="height:24px;border-top:1px solid black;padding-top:3px;">
+							<td colspan="1" class="total_line_0 text_center">
+								<b>2</b>
+							</td>
+							<td colspan="14" class="total_line text_right">
+								<b>TOTAL</b>
+							</td>
+							<td colspan="4" class="total_line_1 text_center">
+								<t t-if="total_ibs_p>0">
+									<span t-esc="'%.2f'% total_ibs_p"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--**************** 3eme tableau  ****************-->
+				<table class="table_det1 my_table">
+					<thead>
+						<tr style="height:24px;">
+							<th  colspan="19" class ="first_line text_center"> IRG salaires et autres retenues à la source IRG/IBS الضريبة على الدخل الاجماعي على الاجور و الاقتطاعات الاخرى من المصدر ل ض.د.إ. /ض.أ.ش</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="height:24px;">
+							<td colspan="2" class="second_line_0 text_center"> Code</td>
+							<td colspan="6" class="second_line text_center"> Catégorie de revenus soumis à une retenue à la source IRG ou IBS </td>
+							<td colspan="4" class="second_line text_center">Revenus nets imposables </td>
+							<td colspan="2" class="second_line text_center">Taux </td>
+							<td colspan="5" class="second_line_1 text_center">Montant à payer (en DA)</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 L 20
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IRG/ Traitement salaires, pensions et rentes viagéres
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1L20']>0">
+									<span t-esc="'%.2f'% lines['E1L20']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								Barème
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1L20']>0">
+									<span t-esc="'%.2f'% total['E1L20']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 L 30
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IRG/ Revenus des créances, dépots et cautionnèments
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1L30']>0">
+									<span t-esc="'%.2f'% lines['E1L30']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								10%
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1L30']>0">
+									<span t-esc="'%.2f'% total['E1L30']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 L 40
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IRG/ Bénéfices distribués par les sociétés de capitaux, libératoire
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1L40']>0">
+									<span t-esc="'%.2f'% lines['E1L40']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								15%
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1L40']>0">
+									<span t-esc="'%.2f'% total['E1L40']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 L 60
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IRG/ Revenus des bons de caisse anonymes
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1L60']>0">
+									<span t-esc="'%.2f'% lines['E1L60']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								50%
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1L60']>0">
+									<span t-esc="'%.2f'% total['E1L60']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 L 80
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IRG/ Autres retenues à la source
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1L80']>0">
+									<span t-esc="'%.2f'% lines['E1L80']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								<span t-esc="ratio['E1L80']"  />
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1L80']>0">
+									<span t-esc="'%.2f'% total['E1L80']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 M 30
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IBS/ Revenus des entreprises étrangères non installées en Algérie(prestations de services)(1)
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1M30']>0">
+									<span t-esc="'%.2f'% lines['E1M30']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								24%
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1M30']>0">
+									<span t-esc="'%.2f'% total['E1M30']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:24px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 1 M 40
+							</td>
+							<td colspan="6" class="other_line text_left">
+								IBS/ Autres retenues à la source
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E1M40']>0">
+									<span t-esc="'%.2f'% lines['E1M40']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								<span t-esc="ratio['E1M40']"  />
+							</td>
+							<td colspan="5" class="other_line_1 text_center">
+								<t t-if="total['E1M40']>0">
+									<span t-esc="'%.2f'% total['E1M40']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+						<tr style="height:24px;">
+							<td colspan="2" style="width:60px; border-top:1px solid; border-right:1px solid; font-size:10pt;" class="text_center">
+								<b>3</b>
+							</td>
+							<td colspan="4"  style="width:550px; border-top:1px solid; border-right:1px solid; font-size:10pt;" class="text_left">
+								<b>(1) Joindre relevé détaillé des retenues à la source par entreprise</b>
+							</td>
+							<td colspan="2" style="width:120px; border-top:1px solid; border-right:1px solid; font-size:10pt;" class="text_center">
+								<b>TOTAL</b>
+							</td>
+							<td colspan="4" style="width:220px; border-top:1px solid; border-right:1px solid; font-size:10pt;" class="text_center">
+								<t t-if="total_irg>0">
+									<span t-esc="'%.2f'% total_irg" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2"  style="width:60px; border-top:1px solid; border-right:1px solid;" class="text_center">
+							</td>
+							<td colspan="5"  style="width:230px; border-top:1px solid; font-size:10pt;" class="text_center">
+								<t t-if="total_irg_p>0">
+									<span t-esc="'%.2f'% total_irg_p" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--**************** 4eme tableau ****************-->
+				<table class="table_det1 my_table" style="page-break-before: always;">
+					<thead>
+						<tr style="height:28px;">
+							<th  colspan="19" class ="first_line text_center">Droit de timbre sur état حق الطابع</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="height:28px;">
+							<td colspan="2" class="second_line_0 text_center">Code</td>
+							<td colspan="7" class="second_line text_center">Opérations imposables العمليات الخاضعة للضريبة</td>
+							<td colspan="4" class="second_line text_center">Chiffre d'affaires imposable</td>
+							<td colspan="2" class="second_line text_center">Taux</td>
+							<td colspan="4" class="second_line_1 text_center">Montant à payer (en DA)</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="other_line_0 text_center">
+								E 2 E 00
+							</td>
+							<td colspan="7" class="other_line text_left">
+								<span t-esc="lines['operations']"/>
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['E2E00']>0">
+									<span t-esc="'%.2f'% lines['E2E00']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+								<span t-esc="lines['timbre_taux']"/>
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+								<t t-if="total['E2E00']>0">
+									<span t-esc="'%.2f'% total['E2E00']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="other_line_0 text_center">
+							</td>
+							<td colspan="7" class="other_line text_left">
+							</td>
+							<td colspan="4" class="other_line text_center">
+							</td>
+							<td colspan="2" class="other_line text_center">
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+							</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="last_line_0 text_center">
+							</td>
+							<td colspan="7" class="last_line text_left">
+							</td>
+							<td colspan="4" class="last_line text_center">
+							</td>
+							<td colspan="2" class="last_line text_center">
+							</td>
+							<td colspan="4" class="last_line_1 text_center">
+							</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="total_line_0 text_center">
+								<b>4</b>
+							</td>
+							<td colspan="7" class="total_line text_right">
+								<b>TOTAL</b>
+							</td>
+							<td colspan="4" class="total_line text_center">
+								<t t-if="total_timbre>0">
+									<span t-esc="'%.2f'% total_timbre"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="total_line text_center">
+							</td>
+							<td colspan="4" class="total_line_1 text_center">
+								<t t-if="total_timbre_p>0">
+									<span t-esc="'%.2f'% total_timbre_p"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--**************** 5eme tableau ****************-->
+				<table class="table_det1 my_table">
+					<thead>
+						<tr style="height:28px;">
+							<th  colspan="19" class ="first_line text_center">Impots et taxes non repris الضرائب و الرسوم الغير واردة أعلاه</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="height:28px;">
+							<td colspan="2" class="second_line_0 text_center">Code</td>
+							<td colspan="7" class="second_line text_center">Opérations imposables العمليات الخاضعة للضريبة</td>
+							<td colspan="4" class="second_line text_center">Chiffre d'affaires imposable</td>
+							<td colspan="2" class="second_line text_center">Taux</td>
+							<td colspan="4" class="second_line_1 text_center">Montant à payer (en DA)</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="other_line_0 text_center">
+							</td>
+							<td colspan="7" class="other_line text_left">
+							</td>
+							<td colspan="4" class="other_line text_center">
+								<t t-if="lines['Autretaxes']>0">
+									<span t-esc="'%.2f'% lines['Autretaxes']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="other_line text_center">
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+								<t t-if="total['Autretaxes']>0">
+									<span t-esc="'%.2f'% total['Autretaxes']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="other_line_0 text_center">
+							</td>
+							<td colspan="7" class="other_line text_left">
+							</td>
+							<td colspan="4" class="other_line text_center">
+							</td>
+							<td colspan="2" class="other_line text_center">
+							</td>
+							<td colspan="4" class="other_line_1 text_center">
+							</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="last_line_0 text_center">
+							</td>
+							<td colspan="7" class="last_line text_left">
+							</td>
+							<td colspan="4" class="last_line text_center">
+							</td>
+							<td colspan="2" class="last_line text_center">
+							</td>
+							<td colspan="4" class="last_line_1 text_center">
+							</td>
+						</tr>
+
+						<tr style="height:28px;">
+							<td colspan="2" class="total_line_0 text_center">
+								<b>5</b>
+							</td>
+							<td colspan="7" class="total_line text_right">
+								<b>TOTAL</b>
+							</td>
+							<td colspan="4" class="total_line text_center">
+								<t t-if="total_autres>0">
+									<span t-esc="'%.2f'% total_autres"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td colspan="2" class="total_line text_center">
+							</td>
+							<td colspan="4" class="total_line_1 text_center">
+								<t t-if="total_autres_p>0">
+									<span t-esc="'%.2f'% total_autres_p" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- ________________ LAST TAB IN PAGE 2 _____________________  -->
+				<table class="table_det1 my_table" style="margin-bottom:5px;">
+					<thead>
+						<tr style="height:28px;">
+							<th style="width:200px; border-right:0;" class="last_line_0 td_f text_center"> RECAPITULAION EN (DA) </th>
+							<th style="width:200px; border-right:0;" class="last_line td_f">  </th>
+							<th style="width:200px;" class="last_line td_f text_center">  تلخيص ب (دج) </th>
+							<th style="width:300px;" class="last_line td_f text_center"> Cadre réservé au contribuable<br/> إطار خاص بالمكلف بالضريبة</th>
+							<th style="width:400px;" class="last_line td_f text_center"> Cadre réservé à la recette des impots<br/> إطار الخاص بقباضة الضرائب</th>
+							<th style="width:300px;" class="last_line_1 td_f text_center"> Cadre réservé au service d'assiettes<br/> إطار الخاص بمصلحة الوعاء</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+							</td>
+							<td style="width:200px;" class="other_line td_fb">
+							</td>
+							<td style="width:300px;" class="other_line td_f text_right">
+								 يشهد بصحة وصدق محتوى هذا التصريح و تطابقه مع الوتائق المحاسبية
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								<b>Recu-</b>ce jour, la présente déclaration enregistré sous le numéro:......
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+								Déclaration enregistée le:
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								1- TAP
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/500 026/A
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total_tap2>0">
+									<span t-esc="'%.2f'% total_tap2" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+								certifié sincère et veritable le
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								<b>payé-</b>par chèque bancaire N°:
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								2-AP/IBS
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/201 001/M1
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total_ibs_p>0">
+									<span t-esc="'%.2f'% total_ibs_p" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+								 contenu de la présente déclaration
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								du:
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+								éventuelles
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								3.1- IRG Salaires.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/201 001/100
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total['E1L20']>0">
+									<span t-esc="'%.2f'% total['E1L20']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+								et conforme aux documents
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								tiré sur l'agence:
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								3.2-IRG/Autres ret. sources.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/201 001/101/A/B/C
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total_irg_p-total['E1L20']>0">
+									<span t-esc="'%.2f'% (total_irg_p-total['E1L20'])"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+								 comptables
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								-par chèque postal N°:
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								3.3- IBS/Ret. à la sources.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/201 001/M2 et 3
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							 	 A <span t-esc="o.commune_id.name"/> le <span t-esc="o.date"/>
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								- en numéraire:
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								-TIC.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/201 003/303/A/B
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+								 Cachet,<span style="margin-left:100px;">Signature,</span>
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								prise en recette par quittance N°:
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								4- Droits de timbre.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/201 002/201
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total_timbre_p>0">
+									<span t-esc="'%.2f'% total_timbre_p"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								de ce jour.
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								5-Autre.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total_autres_p>0">
+									<span t-esc="'%.2f'% total_autres_p"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								A  le
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								6-TVA.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								C/500 020/A
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+								<t t-if="total_rappeler-total_deduction>=0">
+									<span t-set="eb1" t-value="total_rappeler-total_deduction" />
+									<span t-esc="'%.2f'% eb1"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" /></t><t t-if="total_rappeler-total_deduction&lt;0"><span>0.00</span>
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								receveur impots
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+								cachet,<span style="margin-left:100px;">Signature,</span>
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+								.
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+							</td>
+							<td style="width:200px;" class="other_line td_fb text_center">
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+
+						<tr  style="height:28px;">
+							<td style="width:200px; border-right:0;" class="other_line_0 text_left td_f">
+							</td>
+							<td style="width:200px;" class="other_line text_left td_f">
+								<b>MONTANT TOTAL A PAYER</b>
+							</td>
+							<td style="width:200px; border: 1px solid; border-left:0; border-bottom:0; font-size: 10pt;" class="td_fb text_center">
+								<span t-set="total_recap" t-value="(total_tap2+total_ibs_p+total_irg_p+total_timbre_p+total_autres_p+total_rappeler-total_deduction)"/>
+								<t t-if="total_recap>0">
+									<span t-esc="'%.2f'% total_recap" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+								</t>
+							</td>
+							<td style="width:300px;" class="other_line td_f">
+							</td>
+							<td style="width:400px;" class="other_line td_f">
+							</td>
+							<td style="width:300px;" class="other_line_1 td_f">
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!--****************** 3eme page *****************-->
+				<div style="margin-top:24px; page-break-before: always;">
+					<table class="td_f" style="float:left;">
+						<tr>
+							<td style="font-size:10pt;">
+								<b>Les chiffres d'affaires et les revenus sont inscrits<br/>
+								en dinars, le dernier chiffre étant ramené au zéro<br/>
+								(Exemple:325.626 DA=_______________325.620 DA )</b>
+							</td>
+						</tr>
+					</table>
+
+					<table class="table_box_350" style="float:left; margin-left: 150px; margin-right: 50px;">
+						<tr>
+							<td class="text_center">
+								<b>الرسم على القيمة المضافة</b><br/>
+								<b>TAXE SUR LA VALEUR AJOUTEE</b>
+							</td>
+						</tr>
+					</table>
+
+					<table class="td_f" style="float:right;">
+						<tr>
+							<td class="text_right">
+								<b>تسجيل أرقام الأعمال و المداخيل بالدينار و العدد الأخير براجع <br/>إلى الصفر</b>
+							</td>
+						</tr>
+						<tr>
+							<td class="text_right">
+								(مثال :325.626=325.620 دج)
+							</td>
+						<br/></tr>
+					</table>
+				</div>
+				<br/><br/>
+				<div class="text_center">
+					<h5 class="text_center"><b><u>A/Chiffres d'affaires imposables أ- رقم الأعمال الخاضع للضريبة</u></b></h5>
+				</div>
+
+				<div>
+					<table class="table_det1 my_table" style="width:98%; float:left;">
+						<thead>
+							<tr style="height:24px;">
+								<th style="width:75px;" class="last_line_0 td_f text_center">
+									الرمز  Code
+								</th>
+								<th style="width:600px;" class="last_line td_f">
+									Operations assujetties à la TVA العمليات الخاضعة الرسم على القيمة المضافة
+								</th>
+								<th style="width:200px;" class="last_line td_f text_center">
+									مجموع رقم الأعمال <br/> Chiffre d'affaires total
+								</th>
+								<th style="width:200px;" class="last_line td_f text_center">
+									رقم الأعمال المعفى <br/> Chiffre d'affaires exonéré
+								</th>
+								<th style="width:250px;" class="last_line td_f text_center">
+									رقم الأعمال الخاضع للضريبة <br/> Chiffre d'affaires imposable
+								</th>
+								<th class="last_line td_fb" >
+									Taux
+								</th>
+								<th style="width:224px;" class="last_line_1 td_f text_center">
+									المبلغ المدفوع ب(دج) <br/> Montant des droits(en DA)
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 11
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Bien, produits et denrées visées par l'article 23 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B11']>0">
+										<span t-esc="'%.2f'% lines['E3B11']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B11']>0">
+										<span t-esc="'%.2f'% tva['E3B11']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b11" t-value="lines['E3B11']-tva['E3B11']"/>
+									<t t-if="tva_e3b11>0">
+										<span t-esc="'%.2f'% tva_e3b11" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+									9%
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B11']>0">
+										<span t-esc="'%.2f'% total['E3B11']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 12
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Présentations des services visées par l'article 23 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B12']>0">
+										<span t-esc="'%.2f'% lines['E3B12']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B12']>0">
+										<span t-esc="'%.2f'% tva['E3B12']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b12" t-value="lines['E3B12']-tva['E3B12']"/>
+									<t t-if="tva_e3b12>0">
+										<span t-esc="'%.2f'% tva_e3b12"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B12']>0">
+										<span t-esc="'%.2f'% total['E3B12']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 13
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Operations immobilières visées par l'article 23 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B13']>0">
+										<span t-esc="'%.2f'% lines['E3B13']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B13']>0">
+										<span t-esc="'%.2f'% tva['E3B13']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b13" t-value="lines['E3B13']-tva['E3B13']"/>
+									<t t-if="tva_e3b13>0">
+										<span t-esc="'%.2f'% tva_e3b13"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B13']>0">
+										<span t-esc="'%.2f'% total['E3B13']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 14
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Actes médicaux
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B14']>0">
+										<span t-esc="'%.2f'% lines['E3B14']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B14']>0">
+										<span t-esc="'%.2f'% tva['E3B14']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b14" t-value="lines['E3B14']-tva['E3B14']"/>
+									<t t-if="tva_e3b14>0">
+										<span t-esc="'%.2f'% tva_e3b14"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B14']>0">
+										<span t-esc="'%.2f'% total['E3B14']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 15
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Commissionnaires et courtiers
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B15']>0">
+										<span t-esc="'%.2f'% lines['E3B15']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B15']>0">
+										<span t-esc="'%.2f'% tva['E3B15']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b15" t-value="lines['E3B15']-tva['E3B15']"/>
+									<t t-if="tva_e3b15>0">
+										<span t-esc="'%.2f'% tva_e3b15"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B15']>0">
+										<span t-esc="'%.2f'% total['E3B15']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="last_line_0 td_f text_center">
+									E 3 B 16
+								</td>
+								<td style="width:500px;" class="last_line td_f">
+									Fourniture d'énergie
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="lines['E3B16']>0">
+										<span t-esc="'%.2f'% lines['E3B16']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="tva['E3B16']>0">
+										<span t-esc="'%.2f'% tva['E3B16']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<span t-set="tva_e3b16" t-value="lines['E3B16']-tva['E3B16']"/>
+									<t t-if="tva_e3b16>0">
+										<span t-esc="'%.2f'% tva_e3b16" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="last_line td_fb">
+								</td>
+								<td style="width:200px;" class="last_line_1 td_f text_center">
+									<t t-if="total['E3B16']>0">
+										<span t-esc="'%.2f'% total['E3B16']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 21
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Productions: bien, produits et denrées visées par l'art. 21 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B21']>0">
+										<span t-esc="'%.2f'% lines['E3B21']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B21']>0">
+										<span t-esc="'%.2f'% tva['E3B21']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b21" t-value="lines['E3B21']-tva['E3B21']"/>
+									<t t-if="tva_e3b21>0">
+										<span t-esc="'%.2f'% tva_e3b21"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+									19%
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B21']>0">
+										<span t-esc="'%.2f'% total['E3B21']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 22
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Revente en l'état: bien, produits et denrées visées par l'art. 21 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B22']>0">
+										<span t-esc="'%.2f'% lines['E3B22']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B22']>0">
+										<span t-esc="'%.2f'% tva['E3B22']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b22" t-value="lines['E3B22']-tva['E3B22']"/>
+									<t t-if="tva_e3b22>0">
+										<span t-esc="'%.2f'% tva_e3b22"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B22']>0">
+										<span t-esc="'%.2f'% total['E3B22']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 23
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Travaux immobiliers autres que ceux soumis au taux de 7%
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B23']>0">
+										<span t-esc="'%.2f'% lines['E3B23']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B23']>0">
+										<span t-esc="'%.2f'% tva['E3B23']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b23" t-value="lines['E3B23']-tva['E3B23']"/>
+									<t t-if="tva_e3b23>0">
+										<span t-esc="'%.2f'% tva_e3b23"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B23']>0">
+										<span t-esc="'%.2f'% total['E3B23']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 24
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Professions libérales
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B24']>0">
+										<span t-esc="'%.2f'% lines['E3B24']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B24']>0">
+										<span t-esc="'%.2f'% tva['E3B24']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b24" t-value="lines['E3B24']-tva['E3B24']"/>
+									<t t-if="tva_e3b24>0">
+										<span t-esc="'%.2f'% tva_e3b24"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B24']>0">
+										<span t-esc="'%.2f'% lines['E3B24']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 25
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Opérations de banques et d'assurances
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B25']>0">
+										<span t-esc="'%.2f'% lines['E3B25']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B25']>0">
+										<span t-esc="'%.2f'% tva['E3B25']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b25" t-value="lines['E3B25']-tva['E3B25']"/>
+									<t t-if="tva_e3b25>0">
+										<span t-esc="'%.2f'% tva_e3b25"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B25']>0">
+										<span t-esc="'%.2f'% total['E3B25']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 26
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Présentations e téléphone et de télex
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B26']>0">
+										<span t-esc="'%.2f'% lines['E3B26']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B26']>0">
+										<span t-esc="'%.2f'% tva['E3B26']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b26" t-value="lines['E3B26']-tva['E3B26']"/>
+									<t t-if="tva_e3b26>0">
+										<span t-esc="'%.2f'% tva_e3b26"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B26']>0">
+										<span t-esc="'%.2f'% total['E3B26']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 28
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Autre préstations de service
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B28']>0">
+										<span t-esc="'%.2f'% lines['E3B28']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B28']>0">
+										<span t-esc="'%.2f'% tva['E3B28']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b28" t-value="lines['E3B28']-tva['E3B28']"/>
+									<t t-if="tva_e3b28>0">
+										<span t-esc="'%.2f'% tva_e3b28"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B28']>0">
+										<span t-esc="'%.2f'% total['E3B28']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 31
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Débits de boissons
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B31']>0">
+										<span t-esc="'%.2f'% lines['E3B31']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B31']>0">
+										<span t-esc="'%.2f'% tva['E3B31']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b31" t-value="lines['E3B31']-tva['E3B31']"/>
+									<t t-if="tva_e3b31>0">
+										<span t-esc="'%.2f'% tva_e3b31"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B31']>0">
+										<span t-esc="'%.2f'% total['E3B31']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 32
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Productions: bien, produits et denrée visées par l'art. 21 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B32']>0">
+										<span t-esc="'%.2f'% lines['E3B32']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B32']>0">
+										<span t-esc="'%.2f'% tva['E3B32']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b32" t-value="lines['E3B32']-tva['E3B32']"/>
+									<t t-if="tva_e3b32>0">
+										<span t-esc="'%.2f'% tva_e3b32"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B32']>0">
+										<span t-esc="'%.2f'% total['E3B32']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 33
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Revente en l'état: bien, produits et denrée visées par l'art. 21 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B33']>0">
+										<span t-esc="'%.2f'% lines['E3B33']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B33']>0">
+										<span t-esc="'%.2f'% tva['E3B33']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b33" t-value="lines['E3B33']-tva['E3B33']"/>
+									<t t-if="tva_e3b33>0">
+										<span t-esc="'%.2f'% tva_e3b33"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B33']>0">
+										<span t-esc="'%.2f'% total['E3B33']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 34
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Tabacs et allumettes
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B34']>0">
+										<span t-esc="'%.2f'% lines['E3B34']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B34']>0">
+										<span t-esc="'%.2f'% tva['E3B34']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b34" t-value="lines['E3B34']-tva['E3B34']"/>
+									<t t-if="tva_e3b34>0">
+										<span t-esc="'%.2f'% tva_e3b34"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B34']>0">
+										<span t-esc="'%.2f'% total['E3B34']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 35
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Spectacles, jeux et divertissements autres que ceux de l'art. 21 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B35']>0">
+										<span t-esc="'%.2f'% lines['E3B35']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B35']>0">
+										<span t-esc="'%.2f'% tva['E3B35']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b35" t-value="lines['E3B35']-tva['E3B35']"/>
+									<t t-if="tva_e3b35>0">
+										<span t-esc="'%.2f'% tva_e3b35"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B35']>0">
+										<span t-esc="'%.2f'% total['E3B35']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="other_line_0 td_f text_center">
+									E 3 B 36
+								</td>
+								<td style="width:500px;" class="other_line td_f">
+									Autre préstations et services visée à l'article 21 du C.TCA
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="lines['E3B36']>0">
+										<span t-esc="'%.2f'% lines['E3B36']"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<t t-if="tva['E3B36']>0">
+										<span t-esc="'%.2f'% tva['E3B36']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="other_line td_f text_center">
+									<span t-set="tva_e3b36" t-value="lines['E3B36']-tva['E3B36']"/>
+									<t t-if="tva_e3b36>0">
+										<span t-esc="'%.2f'% tva_e3b36"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<t t-if="total['E3B36']>0">
+										<span t-esc="'%.2f'% total['E3B36']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px;" class="last_line_0 td_f text_center">
+									E 3 B 37
+								</td>
+								<td style="width:500px;" class="last_line td_f">
+									Consommations sur place
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="lines['E3B37']>0">
+										<span t-esc="'%.2f'% lines['E3B37']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="tva['E3B37']>0">
+										<span t-esc="'%.2f'% tva['E3B37']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<span t-set="tva_e3b37" t-value="lines['E3B37']-tva['E3B37']"/>
+									<t t-if="tva_e3b37>0">
+										<span t-esc="'%.2f'% tva_e3b37" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="last_line td_fb">
+								</td>
+								<td style="width:200px;" class="last_line_1 td_f text_center">
+									<t t-if="total['E3B37']>0">
+										<span t-esc="'%.2f'% total['E3B37']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:75px; border-right:0;" class="last_line_0 td_f text_center">
+								</td>
+								<td style="width:500px;" class="last_line td_f text_center">
+									<b>المجموع العام لرقم الأعمال <br/> TOTAL GENERAL DES CHIFFRES D'AFFAIRE</b>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="total_tva>0">
+										<span t-esc="'%.2f'% total_tva" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="total_tva>0">
+										<span t-esc="'%.2f'% total_tva1"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td style="width:200px;" class="last_line td_f text_center">
+									<t t-if="total_tva_imposable>0">
+										<span t-esc="'%.2f'% total_tva_imposable"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+								<td class="last_line td_fb">
+								</td>
+								<td style="width:200px;" class="last_line_1 td_f text_center">
+									<t t-if="total_tva_net>0">
+										<span t-esc="'%.2f'% total_tva_net" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+									</t>
+								</td>
+							</tr>
+
+							<tr style="height:24px;">
+								<td style="width:70px;" class="other_line_0 td_f text_center">
+								</td>
+								<td style="width:410px; border-right:0;" class="other_line td_f text_left">
+									<u><b>B/Déductions à opérer</b></u>
+								</td>
+								<td style="width:200px; border-right:0;" class="other_line td_f text_center">
+									<u><b>الحسومات المجراة</b></u>
+								</td>
+								<td style="width:200px; border-right:0;" class="other_line td_f text_center">
+								</td>
+								<td style="width:200px; border-right:0;" class="other_line td_f text_center">
+									<u><b>C/TVA à payer</b></u>
+								</td>
+								<td style="border-right:0;" class="other_line td_fb">
+								</td>
+								<td style="width:200px;" class="other_line_1 td_f text_center">
+									<u><b>ت- ر.ق. م. الواجب دفعه</b></u>
+								<br/><br/></td>
+							</tr>
+						</tbody>
+					</table>
+					<div style="float:left; margin-top:540px;">
+						<div class="line_h" style="width:20px; margin-top:0px;"></div>
+						<div class="line_v" style="height:41px; margin-top:0px;"></div>
+					</div>
+				</div>
+
+				<table class="table_det3l my_table" style="margin-top:0px;float:left; width:50.4%">
+					<tr style="height:20px;">
+						<td style="width:10%;" class="last_line_0 td_f">
+						</td>
+						<td style="width:67%;" class="last_line td_f text_center" >
+							Nature des déductions
+						</td>
+						<td style="width:23%; border-right:0;" class="last_line_0 td_f text_center">
+							Montant
+						</td>
+					</tr>
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+							E 3 B 91
+						</td>
+						<td style="width:410px;" class="other_line td_f text_left">
+							précompte antérieurs (mois précédent)
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="lines['E3B91']>0">
+								<span t-esc="'%.2f'% lines['E3B91']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+							E 3 B 92
+						</td>
+						<td style="width:410px;" class="other_line td_f text_left">
+							TVA sur achats de biens, matières et services(art. 29 C.TCA)
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="lines['E3B92']>0">
+								<span t-esc="'%.2f'% lines['E3B92']" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+							E 3 B 93
+						</td>
+						<td style="width:410px;" class="other_line td_f text_left">
+							TVA sur achats de biens amortissables(art. 38 C.TCA)
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="lines['E3B93']>0">
+								<span t-esc="'%.2f'% lines['E3B93']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+							E 3 B 94
+						</td>
+						<td style="width:410px;" class="other_line td_f text_left">
+							Régularisation du prorate(déduction complémentaire) (art.40 C.TCA)
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="lines['E3B94']>0">
+								<span t-esc="'%.2f'% lines['E3B94']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+							E 3 B 95
+						</td>
+						<td style="width:410px;" class="other_line td_f text_left">
+							TVA à récuperer sur factures annulées ou impayées(art. 18 C.TCA)
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="lines['E3B95']>0">
+								<span t-esc="'%.2f'% lines['E3B95']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+							E 3 B 96
+						</td>
+						<td style="width:410px;" class="other_line td_f text_left">
+							Autre déductions (notifications de précompte, etc..)
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="lines['E3B96']>0">
+								<span t-esc="'%.2f'% lines['E3B96']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+						</td>
+						<td style="width:410px; font-size:12px;" class="other_line td_f text_left">
+							 NB: joindre un é tat détaillé des forunisseurs conformément à l'article 29 du C.TCA
+						<br/><br/></td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+						</td>
+					</tr>
+
+					<tr style="height:20px;">
+						<td style="width:70px;" class="other_line_0 td_f text_center">
+						</td>
+						<td style="width:410px;" class="other_line td_f text_right">
+							<b>مجموع الحسومات المجراة</b><br/>
+							<b>Total des déductions à opérer(B)</b>
+						</td>
+						<td style="width:120px; border-right:0;" class="other_line td_f text_center">
+							<t t-if="total_deduction>0">
+								<span t-esc="'%.2f'% total_deduction" /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+				</table>
+
+				<table class="table_pic my_table" style="float:left;">
+					<tr style="height:20px;">
+						<td style="width:39px; border-right:0;" class="last_line td_f">
+						</td>
+					</tr>
+					<tr style="height:90px;">
+					</tr>
+					<tr style="height:106px;">
+						<td>
+							<div class="arrow_1">
+								<div class="line_h" style="width:15px; margin-top:65px;"></div>
+								<div class="line_v" style="height:62px; margin-top:5px;"></div>
+								<div class="line_h" style="width:10px; margin-top:5px;"></div>
+								<div class="point_right" style="margin-top:1px;"></div>
+							</div>
+						</td>
+					</tr>
+				</table>
+
+				<table class="table_det2l my_table" style="float:left;">
+					<tr style="height:20px;">
+						<td style="width:75px;" class="td_f text_center last_line_0">
+						</td>
+						<td style="width:305px;" class="td_f text_left last_line">
+						</td>
+						<td style="width:120px;" class="td_f text_center last_line_1">
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+							C
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							-Total des droits dus.
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<t t-if="total_tva_net>0">
+								<span t-esc="'%.2f'% total_tva_net"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+							E 3 B 97
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							Régularisation du prorata(art. 40 C. TCA)(+)
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<t t-if="lines['E3B97']>0">
+								<span t-esc="'%.2f'% lines['E3B97']"/> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:21px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							(déduction excédentaire)
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+							E 3 B 98
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							-Renversement de la déduction(art.38 C.TCA)(+)
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<t t-if="lines['E3B98']>0">
+								<span t-esc="'%.2f'% lines['E3B98']"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+						</td>
+						<td style="width:200px;" class="td_f text_left other_line">
+							<b><u>TOTAL A RAPPELER(c) مجموع المستحقات</u></b>
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<span t-set="total_rappeler" t-value="total_tva_net+ lines['E3B97']+lines['E3B98']"/>
+							<span t-esc="'%.2f'% total_rappeler"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+							B
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							-Total des déductions à operer(B)(-)
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<t t-if="total_deduction>0">
+								<span t-esc="'%.2f'% total_deduction"   /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+							E 3 B 00
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							<b><u>TVA à payer au titre mois(c-B)</u></b>
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<t t-if="total_rappeler-total_deduction>=0">
+								<span t-set="eb1" t-value="total_rappeler-total_deduction" />
+								<span t-esc="'%.2f'% eb1"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+							<t t-else="">
+								<span>0.0</span>
+							</t>
+						</td>
+					</tr>
+
+					<tr style="height:22px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							(A reporter dans le cadre"Récapitualtion" ligne 10)
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+						</td>
+					</tr>
+
+					<tr style="height:21px;">
+						<td style="width:75px;" class="td_f text_center other_line_0">
+							E 3 B 99
+						</td>
+						<td style="width:305px;" class="td_f text_left other_line">
+							<u>Précompte à reporter sur le mois suivant(B-C)</u>
+						</td>
+						<td style="width:120px;" class="td_f text_center other_line_1">
+							<t t-if="total_deduction-total_rappeler>=0">
+								<span t-set="eb2" t-value="total_deduction-total_rappeler" /><span t-esc="'%.2f'% eb2"  /> <span t-esc="o.env.user.company_id.currency_id.symbol" />
+							</t>
+						</td>
+					</tr>
+				</table>
+				<div style="float:left;">
+					<div class="point_left"></div>
+					<div class="line_h" style="width:11px; margin-top:50px;"></div>
+					<div class="line_v" style="height:52px; margin-top:0px;"></div>
+
+					<div class="td_f" style="border:1px solid; border-left:0; margin-top:150px;">
+						<span style="padding-left:7px"><b>6</b></span>
+					</div>
+				</div>
+
+				<!--****************** 4eme page *****************-->
+				<div style="page-break-before: always;">
+					<table class="table_det1 my_table" style="width:490px; float:left; margin-top:40px;">
+						<thead>
+							<tr style="width:100%; height:24px;">
+								<th class="last_line_1 td_f text_center">
+									<b>كيفية ملء التصريح بالضريبة</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width:100%; font-size: 8pt;" class="td_f" dir="rtl" lang="ar">
+									ان هذا التصريح الذى يعد بمثابة جدول إشعار خاص بالدفع، يشمل آل الضرائب و الرسوم المدفوعة فوريا، أو عن طريق
+									الإقتطاع من المصدر الواجبة الأداء من طرف المكلفين بالضريبة حسب نظام الربح الحقيقى والنظام العام للرسم على
+									القيمة المضافة وأصحاب المهن الحرة. .يعوض هذا التصريح ابتداءا من أول جانفى 1995 آل من:
+									<br/>- جدول الإشعار الخاص بدفع الرسم على النشاط المهنى ( لون أصفر).
+									<br/>- جدول الإشعار الخاص بدفع التسبيقات على الحساب المتعلقة بالضريبة على أرباح الشرآات ( لون أبيض).
+									<br/>- جدول الإشعار الخاص بالدفع الجزافي و ض.د..إ. على الأجور ( لون أزرق).
+									<br/>- جدول الإشعار الخاص بدفع الحق النوعى على البنزين و المواد الصيدلانية.
+									<br/>- التصريح الخاص بالرسم الداخلي على الإستهلاك.
+									<br/>- التصريح الخاص بالرسم النوعى الإضافى.
+									<br/>- التصريح الخاص برسم الدمغة على الكشوف.
+									<br/>- التصريح الخاص بالرسم على القيمة المضافة
+									<br/><b>خانة رقم 2 :</b> تصرح و تسدد ثلاثة (03 (تسبيقات على الحساب للضريبة على أرباح الشرآات في العشرين (20 (يوم
+									الأولى من أشهر مارس، جوان و نوفمبر ( المادة 60 من قانون المالية لسنة 2003.(
+									<br/><b>خانة رقم 4 :</b> هذه الخانة تخص المكلفين بالضريبة الذين يطلبون تسديد رسم الدمغة على الكشوف .
+									<br/><b>أمثلة :</b> - المهن الحرة : الخانة1. 3 و
+									<br/>- تجار التجزئة : الخانة1. 3 و
+									<br/>- تجار الجملة : الخانة 1 ،3 و 6 ) الرسم على القيمة المضافة).
+									<br/>- المنتجون : الخانة 1 ،3 و 6 ) الرسم على القيمة المضافة) و عند الاقتضاء، الخانة 5) الرسم الداخلى على الاستهلاك)..
+									عندما تمارس أنشطة التجارة بالتجزئة أو بالجملة أو الأنشطة الإنتاجية من طرف شرآات رأس المال، فإن هذه الأخيرة
+									تندرج ضمن الخانة رقم .2
+									<br/><b>ملاحظة :</b> تستعمل الإدارات و المكلفين بالضريبة حسب النظام الجزافى نموذجا مبسطا من التصريح المذآور
+ 									<br/>(Série G n° 50)
+								<br/><br/></td>
+							</tr>
+							<tr style="height:24px;">
+								<td class="text_center td_f" style="width:100%; border-top:1px solid; border-bottom:1px solid;">
+									<b>Comment servir la déclaration</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<table style="width:100%">
+										<tr>
+											<td class="td_f" style="width:49%; font-size: 8pt; text-align: justify;">
+												<span style="padding-left:20px">La</span> présente déclaration, tenant
+												lieu de bordereau avis de versement,
+												est prévue pour l’ensemble des
+												impôts et taxes payables au comptant
+												ou par voie de retenue à la source
+												dus par les contribuables et assujettis
+												relevant du régime du bénéfice réel et
+												du régime général de la TVA et par les
+												titulaires des professions libérales.
+												Elle remplace a compter du 1er
+												janviers 1995:<br/>
+												- le bordereau avis de versement de
+												la TAP (jaune);<br/>
+												- le bordereau avis de versement des
+												acomptes IBS (blanc);<br/>
+												- le bordereau avis de versement du
+												VF et IRG salaires (bleu);<br/>
+												- les bordereaux avis de versement
+												des différentes retenues à la source
+												au titre de l’IRG et de l’ IBS;<br/>
+												- le bordereau avis de versement du
+												droit spécifique sur les carburants et
+												les produits pharmaceutiques.<br/>
+												- la déclaration relative à la taxe
+												intérieure de consommation;<br/>
+												- la déclaration relative à la taxe
+												spécifique additionnelle;<br/>
+												- la déclaration relative au droit de
+												timbre sur état.<br/>
+												- la déclaration de la TVA.
+											</td>
+											<td class="td_f" style="width:2%; font-size: 8pt;"/>
+											<td class="td_f" style="width:49%; font-size: 8pt; text-align: justify;">
+												<b>Cadre N° 2 :</b> Les trois (03) acomptes
+												provisionnels de l'impôt sur le bénéfice des
+												sociétés sont déclarés et payés
+												respectivement dans les vingt (20) premier
+												jours des mois de mars, juin et novembre.
+												(article 60 de la loi de finances pour 2003)<br/><br/>
+												<b>Cadre N° 4 :</b> Ce cadre est utilisé
+												notamment par les contribuables qui
+												auront demandé à s’acquitter du droit de
+												timbre sur état.<br/><br/>
+												<b>Exemple :</b><br/><br/>
+												<b>Professions libérales:</b> cadre 1et 3.<br/>
+												<b>Commerçants détaillants :</b> cadre 1 et 3.<br/>
+												<b>Commerçants grossistes :</b> cadre 1, 3 et
+												6 (TVA).<br/>
+												<b>Producteurs:</b> cadre 1, 3, 6 (TVA) et
+												éventuellement 5 (TIC, …).<br/><br/>
+												Lorsque les activités de commerce de
+												détail, de gros ou de production sont
+												exercées par des sociétés de capitaux,
+												elles sont concernées par le cadre n° 2<br/><br/>
+												<b>N.B/</b> Les administrations et les
+												contribuables relevant du régime du forfait
+												utiliseront un modèle simplifié de la
+												présente déclaration (Série G – n° 50 A).
+											<br/><br/></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="table_det1 my_table" style="width:490px; float:left; border-left:0; border-right:0; margin-top:40px;">
+						<thead>
+							<tr style="width:100%; height:24px;">
+								<th class="last_line_1 td_fb text_center">
+									<b>تذكير بالتزامات المكلفين بالضريبة</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width:100%; font-size: 8pt;" class="td_f" dir="rtl" lang="ar">
+									1- يجب على المكلفين بالضريبة الخاضعين لنظام الربح الحقيقي و للنظام العام للرسم على القيمة المضافة وآذا أصحاب
+									المهن الحرة المعنيين بدفع الضرائب و الرسوم فورا أو عن طريق الإقتطاع من المصدر، إيداع هذا التصريح لدى قباضة
+									الضرائب المختصة ودفع المبالغ المقابلة خلال العشرين (20 (يوما الأولى من الشهر الموالي للشهرالذي استحقت فيه
+									الحقوق الجبائية أو الذي تم فيه حسم الإقتطاعات من المصدر
+									<br/><br/>
+									(المواد 110، 121، 129-1، 159-1، 358- و 359-1 من قانون الضرائب المباشرة و الرسوم المماثلة و المواد
+									 28، 76 و 88 من قانون الرسوم على رقم الأعمال)
+									<br/><br/>
+									2- إذا آان مبلغ الحقوق المدفوعة خلال السنة أقل من خمسين ألف دينار (000.50 ( دج ، فإنه يرخص للمكلف بالضريبة في
+									السنة الموالية أن يصرح ويدفع هذه الحقوق في العشرين يوم الأولى من الشهر الموالي للفصل المدني.
+									(المادة 371 من قانون الضرائب المباشرة والرسوم المماثلة والمادة 78 من قانون الرسوم على رقم الأعمال ).
+									<br/><br/>
+									3- تطبق عقوبة 10% من الحقوق المستحقة في حالة الإيداع المتأخر لهذا التصريح.
+									<br/>
+									ترفع هذه العقوبة الى 25 % بعد اخطار المعنى بتسوية وضعيته خلال شهر واحد .
+									<br/>
+									إن الإمتناع عن التصريح بالضريبة بعد إنقضاء هذا الأجل يستوجب الفرض التلقائى للضريبة بتطبيق العقوبة الجبائية
+ 									المذآور أعلاه ( 25.( %
+									<br/><br/>
+									4- يترتب عن التسديد المتأخر للحقوق و الرسوم تحصيل عقوبة جبائية قدرها 10. %
+									<br/><br/>
+									و فيما يخص الرسوم على رقم الأعمال، تطبق غرامة إلزامية نسبتها %3 عن آل شهرتأخير أو جزء من الشهردون أن
+									المنصوص عليها أعلاه نسبة 25. %
+									يتعدى هذا الإلزام المجموع مع عقوبة 10%
+								<br/><br/></td>
+							</tr>
+							<tr style="height:24px;">
+								<td class="text_center td_f" style="width:100%; border-top:1px solid; border-bottom:1px solid;">
+									<b>Rappel des obligations des Contribuables</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<table style="width:100%">
+										<tr>
+											<td class="td_f" style="width:49%; font-size: 8pt; text-align: justify;">
+												<b>1/</b> Les contribuables relevant du régime
+												du bénéfice réel et du régime général
+												de la TVA et les titulaires de professions
+												libérales qui sont soumis au versement
+												d’impôts et taxes payables au comptant
+												ou par voie de retenue à la source, sont
+												tenus de déposer, auprès du Receveur
+												des impôts de leur circonscription, la
+												présente déclaration tenant lieu de
+												bordereau avis de versement, dans les
+												<b><u>vingt (20) premiers jours du mois</u></b>
+												qui suit le mois au titre duquel les droits
+												sont dus, ou au cours duquel les
+												retenues à la source ont été opérées et
+												de payer simultanément les montants
+												correspondants.<br/>
+												(<b>Articles</b> : 110, 121, 129-1, 159-1,
+												358-2, et 359-1 du Code des Impôts
+												Directs et Taxes Assimilées.)
+												(<b>Articles</b> : 28, 76 et 88 du Code des
+												Taxes sur le Chiffre d’Affaires.)<br/><br/>
+												<b>2/</b>Lorsque le montant des droits payés
+												au cours de l’année est inférieur à
+												cinquante mille dinars <b>(50.000 DA)</b>, le
+												contribuable est autorisé, pour l’année
+												suivante, <u>à déposer trimestriellement sa
+												déclaration et à s’acquitter de ses droits
+												et taxes, dans les vingt (20) premiers
+												jours du mois qui suit le trimestre civil.</u><br/>
+												(<b>Articles</b> 371 du Code des Impôts
+												Directs et Taxes Assimilées et 78 du
+												Code des Taxes sur le Chiffre d’Affaires). <br/><br/>
+											</td>
+											<td class="td_f" style="width:2%; font-size: 8pt;"/>
+											<td class="td_f" style="width:49%; font-size: 8pt; text-align: justify;">
+												<b>3/</b>Le dépôt tardif de la déclaration
+												donne lieu à une pénalité égale à 10 %
+												des droits dus.<br/><br/>
+												<span style="padding-left:20px">Cette</span> pénalité est portée à 25 %
+												après mise en demeure du contribuable
+												par l’administration de régulariser sa
+												situation dans un délai d’un mois.<br/><br/>
+												<span style="padding-left:20px">Le</span> défaut de déclaration à l’issue de
+												ce délai d’un mois, entraîne la taxation
+												d’office avec application de la pénalité
+												de 25 % citée ci–dessus et l’émission
+												d’un rôle, immédiatement exigible.<br/><br/>
+												<b>4/</b>Le paiement tardif de ces droits et
+												taxes donne lieu à la perception d’une
+												pénalité de retard de 10%.<br/><br/>
+												<span style="padding-left:20px">En</span> matière de taxes sur le chiffre
+												d’Affaires, une astreinte de 3 % par
+												mois ou fraction de mois de retard est
+												appliquée en sus de la pénalité de 10 %
+												citée ci – dessus avec un maximum de
+												25 %.
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<table class="table_det1 my_table" style="width:285px; float:left; margin-top:40px;">
+						<thead>
+							<tr style="width:100%; height:24px;">
+								<th class="last_line_1 td_f text_center">
+									<b>كيفية تسديد الضريبة</b>
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td style="width:100%; font-size: 8pt;" class="td_f" dir="rtl" lang="ar">
+									<br/>
+									يستحسن على آل مكلف بالضريبة، تسديد ضرائبه
+									بواسطة <b>صك بنكي</b>، مما يسمح له بأداء التزاماته الجبائية
+									عن طريق إرسل هذا
+									دون التنقل إلى قباضة الضرائب
+									التصريح إلى قابض الضرائب المختص إقليميا مرفوقا
+									بالصك.
+									<br/><br/>
+									آما يستطيع أن يقوم بالتزاماته بالدفع عن طريق <b>البريد</b>
+									بحيث يرسل هذا التصريح لقابض الضرائب مصحوبا
+									بصك الدفع البريدي.
+									<br/><br/>
+									إذا لم يكن للمكلف بالضريبة حسابا بنكيا أو بريديا، فإنه
+									يمكنه أداء الضريبة باستعمال <b>حوالة خزينة</b> بعنوان قابض
+									الضرائب المختص لدى أي مكتب بريدي. يرسل
+									التصريح في هذه الحالة إلى قابض الضرائب مرفوقا
+									بوثيقة إثبات الدفع المسلمة من طرف مكتب البريد.
+									<br/><br/>
+									إذا لم يمكن التسديد بالكيفيات المذآورة أعلاه، تبقى دائما
+									أمام المكلف بالضريبة إمكانية الدفع <b>نقدا</b> لدى قابض
+									الضرائب المختص عند إيداع التصريح
+									<br/><br/><br/><br/>
+								<br/><br/></td>
+							</tr>
+							<tr style="height:24px;">
+								<td class="text_center td_f" style="width:100%; border-top:1px solid; border-bottom:1px solid;">
+									<b>Mode de paiement de l’Impôt</b>
+								</td>
+							</tr>
+							<tr>
+								<td class="td_f" style="width:49%; font-size: 8pt; text-align: justify;">
+									<span style="padding-left:20px">Il</span> est vivement recommandé au
+									contribuable le paiement par <b>chèque
+									bancaire</b> qui lui permet d’accomplir
+									ses obligations fiscales sans se
+									déplacer, en adressant au Receveur
+									des impôts de sa circonscription la
+									présente déclaration appuyée du
+									chèque.<br/><br/>
+									<span style="padding-left:20px">Il</span> peut également s’acquitter de
+									ses droits et taxes par <b>virement
+									postal</b> en adressant au Receveur
+									concerné, la déclaration accompagnée
+									d’un chèque de virement postal.<br/><br/>
+									<span style="padding-left:20px">Au</span> cas ou il ne dispose pas d’un
+									compte bancaire ou postal, le
+									contribuable a la faculté de se libérer
+									de sa dette fiscale, par <b>Mandat carte
+									Trésor</b>, libellé au nom du Receveur
+									des impôts concerné, auprès de
+									n’importe quel bureau de poste. La
+									déclaration est alors adressée au
+									Receveur des impôts, appuyée du
+									justificatif de versement délivré par le
+									bureau de poste.<br/><br/>
+									<span style="padding-left:20px">Enfin</span>, il lui reste toujours la
+									possibilité dans le cas ou les modes de
+									paiement cités ci – dessus ne peuvent
+									être utilisés, de s’acquitter en espèces
+									à la caisse du receveur des impôts
+									territorialement compétent, lors de
+									dépôt de la déclaration
+									<br/><br/><br/><br/><br/><br/>
+								<br/></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</template>
+
+		<template id="custom_external_layout">
+     		<div class="header" style="height:0px;">
+                
+            </div>
+
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+              <t t-raw="0"/>
+            </div>
+
+            <div class="footer">
+                
+            </div>
+
+    	</template>
+
+
+		<template id="report_doc_G50">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="finnapps_report_g50.custom_external_layout">  
+						<t t-call="finnapps_report_g50.report_G50_document"/>
+					</t>
+				</t>
+			</t>
+		</template>
+
+        <!-- report G50 -->
+        <record id="report_G50" model="ir.actions.report">
+            <field name="name">Rapport G50</field>
+            <field name="model">report.g50</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_report_g50.report_doc_G50</field>
+            <field name="report_file">finnapps_report_g50.report_doc_G50</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <!-- Paper format for report_G50  -->
+        <record id="finnapps_report_g50.report_G50" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_report_g50.a1_landscape"/>
+        </record>
+
+  	</data>
+</odoo>

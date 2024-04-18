@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings" model="ir.ui.view">
+        <field name="name">res config settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//block[@name='default_taxes_setting_container']" position="after">
+                    <h2>Secteur et code d'activité sur factures</h2>
+                    <div class="row mt16 o_settings_container" >
+                        <div class="col-12 col-lg-6 o_setting_box" >
+                            <div class="o_setting_left_pane">
+                                <field name="industry_id_in_invoice"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="industry_id_in_invoice"/>
+                                <div class="text-muted" >
+                                    Afficher le secteur d'activité sur les factures
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6 o_setting_box">
+                            <div class="o_setting_left_pane">
+                                <field name="activity_code_in_invoice"/>
+                            </div>
+                            <div class="o_setting_right_pane">
+                                <label for="activity_code_in_invoice"/>
+                                <div class="text-muted" >
+                                    Afficher le code d'activité sur les factures
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box" >
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane">
+                            <span class="o_form_label" >
+                            Se baser sur
+                            </span>
+                            <div class="text-muted"></div>
+                            <field name="based_on" />
+                        </div>
+                    </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="res_config_settings_sale" model="ir.ui.view">
+        <field name="name">res config settings</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="sale.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='catalog_setting_container']" position="after">
+                <h2>Secteur et code d'activité sur devis</h2>
+                <div class="row mt16 o_settings_container" >
+                    <div class="col-12 col-lg-6 o_setting_box" >
+                        <div class="o_setting_left_pane">
+                            <field name="industry_id_in_quotation"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="industry_id_in_quotation"/>
+                            <div class="text-muted" >
+                                Afficher le secteur d'activité sur les devis
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6 o_setting_box">
+                        <div class="o_setting_left_pane">
+                            <field name="activity_code_in_quotation"/>
+                        </div>
+                        <div class="o_setting_right_pane">
+                            <label for="activity_code_in_quotation"/>
+                            <div class="text-muted" >
+                                Afficher le code d'activité sur les devis
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </xpath>
+        </field>
+    </record>
+    
+</odoo>

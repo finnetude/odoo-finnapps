@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id = "fermer_exercice_view" model = "ir.ui.view">
+            <field name = "name">fermer.exercice.view</field>
+            <field name = "model">finn.fermer.exercice</field>
+            <field name = "arch" type = "xml">
+                <form string="Fermer un exercice">
+                <sheet> 
+                    <group>
+                        <group>
+                            <field name="exercice_id" domain="[('state','=','open')]" required="1"/>
+                            <field name="description" required="1"/>
+                        </group>
+                        <group>
+                            <field name="journal_id" required="1"/>
+                        </group>
+                    </group>
+                        <footer>
+                            <button name="finn_fermer_exercice" 
+                                    string="Fermer l'exercice" 
+                                    type="object" 
+                                    default_focus="1" 
+                                    class="oe_highlight"
+                            />
+                            <button special = "cancel" string = "Annuler"/>
+                        </footer>
+                </sheet> 
+                </form>
+            </field>
+        </record>
+
+      
+        <record id="action_fermer_exercice" model="ir.actions.act_window">
+            <field name="name">Fermer un exercice</field>
+            <field name="res_model">finn.fermer.exercice</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_fermer_exercice"
+                parent='menu_fin_periode'
+                name="Fermer un exercice"
+                action="action_fermer_exercice"
+                sequence="70"/>
+    </data>
+</odoo>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id = "generer_exercice_view" model = "ir.ui.view">
+            <field name = "name">generer.exercice.view</field>
+            <field name = "model">finn.generer.exercice</field>
+            <field name = "arch" type = "xml">
+                <form string="Générer l'exercice et ces périodes">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date_from" required="1"/>
+                            <field name="date_to" required="1"/>
+                            <field name="tri_ou_men" invisible="1"/>
+                        </group>
+                        <group>
+                            <field name="type_de_periode" required="1"/>
+                        </group>
+                    </group>
+                </sheet>
+                    <footer>
+                        <button name="finn_generer_exercice" 
+                                string="Générer l'exercice et ces périodes" 
+                                type="object" 
+                                default_focus="1" 
+                                class="oe_highlight"
+                        />
+                        <button special = "cancel" string = "Annuler"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_generer_exercice" model="ir.actions.act_window">
+            <field name="name">Générer l'exercice et ces périodes</field>
+            <field name="res_model">finn.generer.exercice</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_generer_exercice"
+                parent='menu_fin_periode'
+                name="Exercices et périodes"
+                action="action_generer_exercice"
+                sequence="30"/>
+    </data>
+</odoo>

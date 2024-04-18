@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id = "annuler_ecriture_view" model = "ir.ui.view">
+            <field name = "name">annuler.ecriture.view</field>
+            <field name = "model">finn.annuler.ecriture</field>
+            <field name = "arch" type = "xml">
+                <form string="Annuler les écritures de clôture">
+                <sheet>   
+                        <div>
+                            <p>
+                                Cette action va supprimer les écritures de fermeture
+                                de l'exercice sélectionné. Notez que vous pouvez 
+                                exécuter l'assistant plusieurs fois reprises pour 
+                                le même exercice.
+                            </p>
+                        </div>
+                    
+                    <group>
+                        <field name="exercice_id" style="width:200px;" required="1" domain="[('state','=','close')]"/>
+                    </group>
+                    <footer>
+                        <button name="finn_cancel_ecriture" 
+                                string="Annuler les écritures de clôtures" 
+                                type="object" 
+                                default_focus="1" 
+                                class="oe_highlight"
+                        />
+                        <button special = "cancel" string = "Annuler"/>
+                    </footer>
+                </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_annuler_ecriture" model="ir.actions.act_window">
+            <field name="name">Annuler les écritures de clôture</field>
+            <field name="res_model">finn.annuler.ecriture</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_annuler_ecriture_cloture"
+                parent='menu_fin_periode'
+                name="Annuler les écritures de clôture"
+                action="action_annuler_ecriture"
+                sequence="60"/>
+    </data>
+</odoo>

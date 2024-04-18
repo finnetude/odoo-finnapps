@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+    <!-- ================================ TAP ======================================= -->
+        <record id="report_g50_line_tap_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (TAP)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" column_invisible="True"/>
+                    <field name="code"/>
+                    <field name="name" string="Opérations imposables"/>
+                    <field name="amount" string="Chiffre d'affaire" sum="Total"/>
+                    <field name="imposable" string="Chiffre d'affaire imposable" sum="Total"/>
+                    <field name="ratio"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_tap_view_form">
+			<field name="name">Rapport G50 formulaire (TAP)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">1</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='tap']" position="inside">
+                    <field name="line_tap_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_tap_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ IBS ======================================= -->
+        <record id="report_g50_line_ibs_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (IBS)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" invisible="1"/>
+                    <field name="code"/>
+                    <field name="name" string="Acomptes IBS"/>
+                    <field name="definition" string="Détermination des acomptes provisionnels"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_ibs_view_form">
+			<field name="name">Rapport G50 formulaire (IBS)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">2</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='ibs']" position="inside">
+                    <field name="line_ibs_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_ibs_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ IRG ======================================= -->
+        <record id="report_g50_line_irg_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (IRG)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" column_invisible="True"/>
+                    <field name="code"/>
+                    <field name="name" string="Catégorie de revenus soumis à une retenue à la source IRG ou IBS"/>
+                    <field name="amount" string="Revenus nets imposables" sum="Total"/>
+                    <field name="ratio"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_irg_view_form">
+			<field name="name">Rapport G50 formulaire (IRG)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">3</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='irg']" position="inside">
+                    <field name="line_irg_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_irg_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ TIMBRE ======================================= -->
+        <record id="report_g50_line_timbre_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (TIMBRE)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" column_invisible="True"/>
+                    <field name="code"/>
+                    <field name="name" string="Opérations Imposables"/>
+                    <field name="amount" string="Chiffre d'affaire imposable" sum="Total"/>
+                    <field name="ratio"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50__view_form">
+			<field name="name">Rapport G50 formulaire (TIMBRE)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">4</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='timbre']" position="inside">
+                    <field name="line_timbre_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_timbre_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ AUTRE ======================================= -->
+        <record id="report_g50_line_autre_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (AUTRE)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" invisible="1"/>
+                    <field name="code"/>
+                    <field name="name" string="Opérations Imposables"/>
+                    <field name="amount" string="Chiffre d'affaire imposable" sum="Total"/>
+                    <field name="ratio"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_autre_view_form">
+			<field name="name">Rapport G50 formulaire (AUTRE)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">5</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='autre']" position="inside">
+                    <field name="line_autre_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_autre_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ TVA 9% ======================================= -->
+        <record id="report_g50_line_tva_9_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (TVA 9%)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" invisible="1"/>
+                    <field name="code"/>
+                    <field name="name" string="Opérations assujetties à la TVA"/>
+                    <field name="amount" string="Chiffre d'affaire total" sum="Total"/>
+                    <field name="amount_exo" string="Chiffre d'affaire exonéré" sum="Total"/>
+                    <field name="imposable" string="Chiffre d'affaire imposable" sum="Total"/>
+                    <field name="ratio"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_tva_9_view_form">
+			<field name="name">Rapport G50 formulaire (TVA 9%)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">6</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='tva_9']" position="inside">
+                    <field name="line_tva_9_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_tva_9_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ TVA 19% ======================================= -->
+        <record id="report_g50_line_tva_19_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (TVA 19%)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" invisible="1"/>
+                    <field name="code"/>
+                    <field name="name" string="Opérations assujetties à la TVA"/>
+                    <field name="amount" string="Chiffre d'affaire total" sum="Total"/>
+                    <field name="amount_exo" string="Chiffre d'affaire exonéré" sum="Total"/>
+                    <field name="imposable" string="Chiffre d'affaire imposable" sum="Total"/>
+                    <field name="ratio"/>
+                    <field name="total" string="Montant à payé (en DA)" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_tva_19_view_form">
+			<field name="name">Rapport G50 formulaire (TVA 19%)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">7</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='tva_19']" position="inside">
+                    <field name="line_tva_19_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_tva_19_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ DEDUCTION ======================================= -->
+        <record id="report_g50_line_deduction_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (DÉDUCTION)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" column_invisible="True"/>
+                    <field name="code"/>
+                    <field name="name" string="Nature des déductions"/>
+                    <field name="amount" string="Montant" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_deduction_view_form">
+			<field name="name">Rapport G50 formulaire (DÉDUCTION)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">8</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='deduction']" position="inside">
+                    <field name="line_deduction_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_deduction_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+    <!-- ================================ TVA A PAYER ======================================= -->
+        <record id="report_g50_line_tva_p_view_form" model="ir.ui.view">
+            <field name="name">Ligne de rapport G50 formulaire (TVA à PAYÉ)</field>
+            <field name="model">report.g50.line</field>
+            <field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="type_line" column_invisible="True"/>
+                    <field name="code"/>
+                    <field name="name" string="Désignation"/>
+                    <field name="amount" string="Montant" sum="Total"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="report_g50_tva_p_view_form">
+			<field name="name">Rapport G50 formulaire (TVA à PAYÉ)</field>
+			<field name="model">report.g50</field>
+			<field name="inherit_id" ref="finnapps_report_g50.report_g50_view_form"/>
+            <field name="priority">9</field>
+			<field name="arch" type="xml">
+				<xpath expr="//page[@name='tva_p']" position="inside">
+                    <field name="line_tva_p_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_report_g50.report_g50_line_tva_p_view_form'}"  widget="total_one2many" mode="tree"/>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

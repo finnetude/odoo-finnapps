@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+       <record id="custom_ats_format" model="report.paperformat">
+              <field name="name">ATS A4</field>
+              <field name="default" eval="True"/>
+              <field name="format">A4</field>
+              <field name="orientation">Portrait</field>
+              <field name="margin_top">0</field>
+              <field name="margin_bottom">0</field>
+              <field name="margin_left">0</field>
+              <field name="margin_right">0</field>
+              <field name="header_line" eval="False"/>
+              <field name="header_spacing">0</field>
+              <field name="dpi">90</field>
+       </record>
+            
+       <record id="custom_ats_verso_format" model="report.paperformat">
+              <field name="name">ATS A4 verso</field>
+              <field name="default" eval="True"/>
+              <field name="format">A4</field>
+              <field name="orientation">Portrait</field>
+              <field name="margin_top">0</field>
+              <field name="margin_bottom">0</field>
+              <field name="margin_left">0</field>
+              <field name="margin_right">0</field>
+              <field name="header_line" eval="False"/>
+              <field name="header_spacing">0</field>
+              <field name="dpi">90</field>
+       </record>
+
+
+       <record id="hr_payroll_ats_new_recto" model="ir.actions.report">
+            <field name="name">ATS Recto</field>
+            <field name="model">finn.hr.ats</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_hr_ats.report_hr_employee_ats_document</field>
+            <field name="report_file">finnapps_hr_ats.report_hr_employee_ats_document</field>
+            <field name="paperformat_id" ref="finnapps_hr_ats.custom_ats_verso_format"/>
+            <field name="binding_model_id" ref="model_finn_hr_ats"/>
+        </record>
+
+
+        <record id="hr_payroll_ats_new_verso" model="ir.actions.report">
+            <field name="name">ATS Verso</field>
+            <field name="model">finn.hr.ats</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_hr_ats.report_hr_employee_ats_verso_document</field>
+            <field name="report_file">finnapps_hr_ats.report_hr_employee_ats_verso_document</field>
+            <field name="paperformat_id" ref="finnapps_hr_ats.custom_ats_verso_format"/>
+            <field name="binding_model_id" ref="model_finn_hr_ats"/>
+        </record>
+
+
+       
+  </data>
+</odoo>

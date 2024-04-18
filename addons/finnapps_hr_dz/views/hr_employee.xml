@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_employee_form_inherit" model="ir.ui.view">
+            <field name="name">Inheritance in employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//page[@name='hr_settings']" position="after">
+                    <page name="ss" string="Sécurité sociale">
+                        <group>
+                            <field name="disabled_or_retirement" string="Retraité / Handicapé"/>
+                        </group>
+                        <group string="Affiliation">
+                            <group>
+                                <field name="ssnid" string="N°Sécurité sociale" style="width:340px;height:28px;"/>
+                                <field name="agency_id"/>
+                                <field name="payment_center_id"/>
+                                <field name="avnt_social" string="Avantages sociaux"/>
+                            </group>
+                            <group invisible="not avnt_social">
+                              <label for="nat_cot1"/>
+                              <div class="oe_inline" name="div_km_home_work">
+                                  <!-- groups="hr.group_hr_user" -->
+                                  <field name="nat_cot1" style="width:340px;height:28px;"/><br/>
+                                  <span invisible="nat_cot1, '!=', 'R22'"><b>Pas d'avantage sur
+                                          le taux réduit de la part patronale</b></span>
+                                  <span invisible="nat_cot1, '!=', 'R06'"><b>Employé en
+                                          CDI</b></span>
+                                  <span invisible= "nat_cot1, '!=', 'R...'"><b>Personne à Mobilité
+                                          Réduite</b></span>
+                                  <span invisible="nat_cot1, '!=', 'R07'"><b>Primo-demandeur
+                                          d'emploi</b></span>
+                                  <span invisible="nat_cot1, '!=', 'R08'"><b>....</b></span>
+                              </div>
+                              <field name="num_des_abattement"/>
+                              <label for="debut_abattement" string="Période d'abattement"/>
+                              <div>
+                                    <span class="oe_inline"> De </span>
+                                    <field name="debut_abattement" class="oe_inline"/>
+                                    <label for="fin_abattement" string="A"/>
+                                    <field name="fin_abattement" class="oe_inline" options="{'horizontal': True}"/>
+                              </div>
+                            </group>
+                        </group>
+                        <group>
+                            <group string="Retenue mutuelle">
+                                <field name="mutual_restraint"/>
+                                <label for="mutual_percentage" invisible="not mutual_restraint" />
+                                <div invisible="not mutual_restraint">
+                                    <field name="mutual_percentage" class="oe_inline" />
+                                    <span class="oe_inline">%</span>
+                                </div>
+                            </group>
+                            <group name="cacobath" string="Cacobath">
+                                <field name="cacobath"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//field[@name='ssnid']" position="replace">
+                    <attribute name="ssnid" invisible="1" />
+                </xpath>
+
+                <xpath expr="//field[@name='identification_id']" position="replace">
+                    <field name="identification_id" string="Numéro de CNI" />
+                </xpath>
+
+                <xpath expr="//field[@name='gender']" position="after">
+                    <field name="blood_group" string="Groupe sanguin" />
+                </xpath>
+            </field>
+        </record>
+
+        <record id="tree_view_employee_inherit" model="ir.ui.view">
+            <field name="name">Inheritance in employee tree view</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_tree" />
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">contrat_state == 'close'</attribute>
+                </xpath>
+                <xpath expr="//field[@name='job_id']" position="after">
+                    <field name="contrat_state" invisible ="1"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>

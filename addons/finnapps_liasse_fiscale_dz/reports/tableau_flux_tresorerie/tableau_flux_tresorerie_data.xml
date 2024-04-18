@@ -1,0 +1,188 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+        <record id="elfc_01flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Encaisements réçus des clients</field>
+			<field name="code">01flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_02flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Sommes versés aux fournisseurs et au personnel</field>
+			<field name="code">02flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_03flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Intérêts et autres frais financiers payés</field>
+			<field name="code">03flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_04flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts sur les résultats payés</field>
+			<field name="code">04flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_05flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">FLux de trésorerie lié à des éléments extrardinaires (à préciser)</field>
+			<field name="code">05flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_06flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Flux de trésorerie net provenant des activités opérationelles (A)</field>
+			<field name="code">06flux</field>
+			<field name="display_type">total</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_07flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Décaissements sur acquisition d'immobilisations corporelles ou incorporelles</field>
+			<field name="code">07flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_08flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Décaissement sur acquisition d'immobilisations financières</field>
+			<field name="code">08flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_09flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Encaissement sur cessions d'immobilisations financières</field>
+			<field name="code">09flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_10flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Intérêt encaissés sur placements financiers</field>
+			<field name="code">10flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_11flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Dividendes et quote-port de résultat reçus</field>
+			<field name="code">11flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_12flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Flux de trésorerie net provenant des activités d'investissement (B)</field>
+			<field name="code">12flux</field>
+			<field name="display_type">total</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_13flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Encaissements suite à l'émission d'actions</field>
+			<field name="code">13flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_14flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Dividendes et autres distributions effectués</field>
+			<field name="code">14flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_15flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Encaissements provenant d'emprunts</field>
+			<field name="code">15flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_16flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Remboursements d'emprunts ou d'autres dettes assimilées</field>
+			<field name="code">16flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_17flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Flux de trésorerie net provenant des activités de financement (C)</field>
+			<field name="code">17flux</field>
+			<field name="display_type">total</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_18flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Incidences des variables des taux de change sur liquidités et quasi-liquidités</field>
+			<field name="code">18flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_19flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Variations de trésorerie de la pèriode (A+B+C)</field>
+			<field name="code">19flux</field>
+			<field name="display_type">total</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_20flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Trésorerie et équivalents de trésorerie à l'ouverture de l'exercice</field>
+			<field name="code">20flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_21flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Trésorerie et équivalents de trésorerie à la clôture de l'exercice</field>
+			<field name="code">21flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_22flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Variations de trésorerie de la pèriode</field>
+			<field name="code">22flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+
+        <record id="elfc_23flux" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rapprochement avec le résultat comptable</field>
+			<field name="code">23flux</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="tableau_flux_tresorerie"/>
+		</record>
+    </data>
+</odoo>

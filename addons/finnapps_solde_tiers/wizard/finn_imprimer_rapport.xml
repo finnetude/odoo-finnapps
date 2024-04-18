@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="imprimer_livre_tiers_view" model="ir.ui.view">
+            <field name="name">imprimer.livre.tiers.view</field>
+            <field name="model">finn.imprimer.rapport</field>
+            <field name="arch" type = "xml">
+                <form>
+                    
+                
+                <field name="is_error_message" invisible="1"/>
+                    <field name="impression_bv" invisible="1"/>
+                    <field name="solde_printed" invisible="1"/>
+                    <group invisible="solde_printed == True or is_error_message == True">
+                        <field name="print_type" widget="radio" />
+                        <field name="domain_record" invisible="1" />
+                    </group> 
+
+                   <div invisible="print_type != 'client'">
+                         <group string="Filtres">
+                          <group>
+                            <field name="partner_id" string="Partenaire" />  
+                          </group>
+                          
+                        </group>
+
+                  
+                    
+                        <group col="4" invisible="solde_printed == True or is_error_message == True">
+                            <field name="add_message"/>
+
+                        </group>
+                        <group invisible="solde_printed == True">                        
+                            <field
+                                name="message"
+                                invisible="add_message == False or is_error_message == True"
+                                style="width:935px; height:350px"
+                                nolabel="1"
+                            />
+                        </group>
+                    </div> 
+                     <group invisible="is_error_message == False"> 
+                        <field
+                            name="body"
+                            nolabel="1"
+                            readonly="1"
+                        />
+                    </group>
+                    <group col="4" required="impression_bv == True" invisible="solde_printed == False" >
+                        <field name="bon_de_vente"
+                               required= "impression_bv == True" invisible="solde_printed == False"
+                        />
+                    </group> 
+
+
+                    <footer>
+                        <button
+                                name="print_report_invoice"
+                                string="Imprimer"
+                                type="object"
+                                default_focus="1"
+                                class="oe_highlight"
+                                invisible="solde_printed == False or is_error_message == True"
+                            />
+                        <div invisible="print_type != 'client'" style="display: inline;">
+                            <button
+                                name="print_report"
+                                string="Imprimer le solde client"
+                                type="object"
+                                default_focus="1"
+                                class="oe_highlight"
+                                invisible="solde_printed == True or is_error_message == True"
+                                style="margin-right: 5px;"
+                            />
+
+                            <button
+                                name="send_mail"
+                                string="Envoyer par mail"
+                                type="object"
+                                default_focus="1"
+                                class="oe_highlight"
+                                invisible="solde_printed == True or is_error_message == True"
+                            />
+                        </div>
+                        <div invisible="print_type != 'all'" style="display: inline;" >
+
+                            <button
+                                name="print_report_all"
+                                string="imprimer tous les tiers "
+                                class="oe_highlight"
+                                type="object"
+                                invisible="solde_printed == True or is_error_message == False and print_type != 'all'"
+                            />
+                        </div>
+                        
+                        <button
+                            string="Annuler"
+                            class="btn btn-default"
+                            special="cancel"
+                            invisible="is_error_message == True"
+                        />
+                        <button
+                            string="Ok"
+                            class="oe_highlight"
+                            special="cancel"
+                            invisible="is_error_message == False"
+                        />
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>

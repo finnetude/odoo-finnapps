@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+    <function model="finn.forme.juridique" name="finn_verifer_juridique_records"/>
+    <function model="hr.employee" name="remove_some_resource_calendar"/>
+    <function model="hr.employee" name="remove_standard_40_hours_week"/>
+    <function model="res.company" name="_init_data_resource_calendar" eval="[]"/>
+  </data>
+</odoo>

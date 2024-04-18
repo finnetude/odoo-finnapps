@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_employee_certificate" model="ir.actions.report">
+            <field name="model">finn.hr.contract.report</field>
+            <field name="name">Certificat de travail</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_hr_dz.report_hr_employee_certificate</field>
+            <field name="report_file">finnapps_hr_dz.report_hr_employee_certificate</field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <!-- Attestation de travail -->
+        <record id="hr_employee_attestation" model="ir.actions.report">
+            <field name="model">finn.hr.contract.report</field>
+            <field name="name">Attestation de travail</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_hr_dz.report_hr_employee_attestation</field>
+            <field name="report_file">finnapps_hr_dz.report_hr_employee_attestation</field>
+            <field name="binding_model_id"></field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_config_g50_ratio,access_config_g50_ratio,model_config_g50_ratio,account.group_account_user,1,1,1,1
+
+access_config_g50,access_config_g50,model_config_g50,account.group_account_user,1,1,1,1
+access_config_g50_line,access_config_g50_line,model_config_g50_line,account.group_account_user,1,1,1,1
+
+access_report_g50,access_report_g50,model_report_g50,account.group_account_user,1,1,1,1
+access_report_g50_line,access_report_g50_line,model_report_g50_line,account.group_account_user,1,1,1,1
+
+access_account_move_g50,access_account_move_g50,model_account_move_g50,account.group_account_user,1,1,1,1

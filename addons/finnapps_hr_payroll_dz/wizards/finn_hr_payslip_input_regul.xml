@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_hr_payslip_input_regul" model="ir.ui.view">
+        <field name="name">hr.payslip.input.regul.form</field>
+        <field name="model">finn.hr.payslip.input.regul</field>
+        <field name="arch" type="xml">
+            <form string="Fiches de paie par les employés">
+                
+                <span>Veuillez choisir une régulation à appliquer sur le bulletin de paie.
+                </span>
+                
+                <group>
+                    <group>
+                        <field name="payslip_id" invisible="1"/>
+                        <field name="rule_id" required="1"/>
+                        <field name="code" readonly="1"/>
+                    </group>
+                    <group>
+                        <field name="amount"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="add_regul_input" string="Confirmer" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+</odoo>

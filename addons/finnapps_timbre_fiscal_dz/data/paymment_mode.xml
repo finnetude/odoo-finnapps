@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+
+    <record model="finn.account.payment.mode" id="bank">
+        <field name="name">Banque</field>
+        <field name="finn_mode_type">bank</field>
+    </record>
+
+    <record model="finn.account.payment.mode" id="espece">
+        <field name="name">Espèce</field>
+        <field name="finn_mode_type">cash</field>
+    </record>
+
+    <record model="finn.account.payment.mode" id="libre">
+        <field name="name">Libre</field>
+        <field name="finn_mode_type">libre</field>
+    </record>
+    
+  </data>
+</odoo>

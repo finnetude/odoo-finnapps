@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+	
+  	<menuitem id="menu_hr_cnas" 
+	 	parent="finnapps_hr_payroll_dz.sub_menu_rapport_paie_algerienne" 
+	  	name="Déclaration Salaire et CNAS"
+	  	groups="finnapps_hr_payroll_dz.group_hr_payroll_manager"
+	  	sequence="40"/>
+
+    <menuitem id="hr_cnas_repports" 
+		parent="menu_hr_cnas" 
+		name="DAC : Déclaration d'Assiettes des Cotisation"
+		action="action_finn_declaration_cotisation"/>
+
+	<menuitem id="hr_das_repports" 
+		parent="menu_hr_cnas" 
+		name="DAS : Déclaration Annuelle des Salaire"
+		action="declaration_das_action"/>
+	
+	<menuitem id="hr_lot_repports" parent="menu_hr_cnas" name="Lot de déclaration des cotisations"
+		action="lot_cotisations_action" />
+
+    </data>
+</odoo>

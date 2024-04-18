@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finn_forme_juridique,access_finn_forme_juridique,model_finn_forme_juridique,base.group_user,1,1,1,0
+access_finn_activity_code,access_finn_activity_code,model_finn_activity_code,base.group_user,1,1,1,1

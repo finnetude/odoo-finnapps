@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="hr_payslip_run_filter" model="ir.ui.view">
+            <field name="name">hr.payslip.run.search</field>
+            <field name="model">finn.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <search string="Rechercher des lots de bulletin de paie">
+                    <field name="name" string="Lots de bulletins de paie"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <filter string="Broullion" name="draft" domain="[('state','=','draft')]" help="Lots brouillons de bulletins de paie"/>
+                    <filter name="done_filter" string="Fait" domain="[('state','=','close')]"
+                            help="Lots terminés de bulletins de paie"/>
+                    <field name="journal_id" string="Journal de salaire"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="hr_payslip_run_tree" model="ir.ui.view">
+            <field name="name">hr.payslip.run.tree</field>
+            <field name="model">finn.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <tree string="Lots de bulletins de paie">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                     <field name="journal_id"/>
+                    <field name="credit_note"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="hr_payslip_run_view_kanban" model="ir.ui.view">
+            <field name="name">hr.payslip.run.kanban</field>
+            <field name="model">finn.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile">
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_content oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong>
+                                            <field name="name"/>
+                                        </strong>
+                                    </div>
+                                    <div class="col-6">
+                                        <span class="float-right badge badge-secondary">
+                                            <field name="state"/>
+                                        </span>
+                                    </div>
+                                    <div class="col-12">
+                                        <span>
+                                            <field name="date_start"/>
+                                            -
+                                            <field name="date_end"/>
+                                        </span>
+                                        <span class="float-right" title="Is a Blocking Reason?">
+                                            <field name="credit_note" widget="boolean"/>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="hr_payslip_run_form" model="ir.ui.view">
+            <field name="name">hr.payslip.run.form</field>
+            <field name="model">finn.hr.payslip.run</field>
+            <field name="arch" type="xml">
+                <form string="Lots de bulletins de paie">
+                    <header>
+                        <button name="%(action_hr_payslip_by_employees)d" 
+                                type="action"            
+                                invisible="state != 'draft'"
+                                string="Générer les bulletins de paie" 
+                                class="oe_highlight"/>
+
+                        <button string="Marquer comme brouillon" 
+                                name="draft_payslip_run"    
+                                type="object" 
+                                invisible="state != 'close'"
+                                />
+
+
+                        <button string="Marquer comme Terminer" 
+                                name="done_payslip_run" 
+                                type="object" 
+                                invisible="state != 'draft'"
+                                class="oe_highlight"
+                                />
+
+
+                        <button name="close_payslip_run" 
+                                type="object" 
+                                string="Fermer" 
+                                invisible="state != 'done'"
+                                />
+
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <label for="name" class="oe_edit_only"/>
+                        <h1>
+                            <field name="name" style="width:338px" readonly="state != 'draft'"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <label for="date_start" string="Période"/>
+                                <div>
+                                    <field name="date_start" class="oe_inline" readonly="state != 'draft'"/>
+                                    -
+                                    <field name="date_end" class="oe_inline" readonly="state != 'draft'"/>
+                                </div>
+                                
+                            </group>
+                            <group>
+                                <field name="credit_note"/>
+                                <field name="journal_id" readonly="state != 'draft'"/>
+
+                            </group>
+                        </group>
+                        <separator string="Bulletins de paie"/>
+                        <field name="slip_ids" readonly="state != 'draft'"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_hr_payslip_run_tree" model="ir.actions.act_window">
+            <field name="name">Lots de bulletins de paie</field>
+            <field name="res_model">finn.hr.payslip.run</field>
+            <field name="view_mode">tree,kanban,form</field>
+            <field name="search_view_id" ref="hr_payslip_run_filter"/>
+        </record>
+    </data>
+
+</odoo>

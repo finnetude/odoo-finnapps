@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="elfc_01cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Pertes de valeurs sur stocks (à détailler pour chaque catégorie de stock sur état annexe)</field>
+            <field name="code">01cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_02cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Pertes de valeurs sur créances (1)</field>
+            <field name="code">02cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_03cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Pertes de valeurs sur actions et parts sociales (2)</field>
+            <field name="code">03cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_04cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Provisions pour pensions et obligations similaires</field>
+            <field name="code">04cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_05cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Provisions sur litiges</field>
+            <field name="code">05cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_06cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Autres provisions liées au personnel</field>
+            <field name="code">06cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_07cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Provisions pour impôts.</field>
+            <field name="code">07cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_08cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">Autres provisions à détailler sur états annexes</field>
+            <field name="code">08cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_09cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name">TOTAL</field>
+            <field name="code">09cessprov</field>
+            <field name="display_type">total</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_2"/>
+        </record>
+
+        <record id="elfc_10cessprov" model="finn.liasse.fiscale.type.line">
+            <field name="name"></field>
+            <field name="code">10cessprov</field>
+            <field name="display_type">calcule</field>
+            <field name="definition">{}</field>
+            <field name="report_id" ref="cess_prov_1"/>
+        </record>
+    </data>
+</odoo>

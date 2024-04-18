@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+    <!-- ***** Journal pour droit de timbre fournisseur***** -->
+        <record model="account.journal" id="dtf_journal">
+            <field name="name">Droit de timbre fournisseur</field>
+            <field name="type">general</field>
+            <field name="for_supplier_timbre">True</field>
+            <field name="code">DTF</field>
+        </record>
+    </data>
+</odoo>
+

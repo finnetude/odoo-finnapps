@@ -1,0 +1,1 @@
+from . import finn_payment_wizard

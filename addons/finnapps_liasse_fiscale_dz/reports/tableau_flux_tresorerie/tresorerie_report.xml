@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="financial_custom_tableau_report">
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+
+                        <style>
+                            #table_date {
+                                margin: 10px;
+                                width: 60%;
+                                text-align: center;
+                                margin: auto;
+                                width: 20%;
+                                padding: 10px;
+                                font-size: 12px;
+                            }
+
+                            table {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+                                text-indent: 2%;
+                            }
+
+                            table td {
+                                color: black;
+                                border: 1px solid black;
+                                padding: 5px 5px;
+                                font-size: 12px;
+                                text-indent: 2%;
+                            }
+
+                            table thead {
+                                color: black;
+                                background: #e4e6e8;
+                                border: 1px solid black;
+                        </style>
+
+                        <table id="table_date" style="font-size: 12px;width: 60%;" border="1">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: bold;">Exercice du</td>
+                                    <td style="color:black;"><span t-esc="o.exercice_id.date_from"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                    <td style="font-weight: bold;">au</td>
+                                    <td style="color:black;"><span t-esc="o.exercice_id.date_to"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="row text-center" style="margin-top:5px;">
+                            <div class="col-4"></div>
+                            <div class="col-4" style="background-color:#e4e6e8;border:1px solid black;">
+                                <strong>Tableau des flux de trésorerie<br />(Méthode directe)</strong>
+                            </div>
+                            <div class="col-4"></div>
+                        </div>
+                        <table border="1" style="margin-top:5px;" width="100%" height="100%">
+                            <thead>
+                                <tr style=" text-align: center;">
+                                    <th width="60%"
+                                        style="background:white;border-top: 1px solid white;border-left: 1px solid white;border-right: 1px solid black;">
+                                    </th>
+                                    <th style="border: 1px solid black;width: 150px;">Note</th>
+                                    <th style="border: 1px solid black;width: 150px;">N</th>
+                                    <th style="border: 1px solid black;width: 150px;">N - 1</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie provenant des activités
+                                            opérationelles</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Encaisements réçus des clients</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Sommes versés aux fournisseurs et au personnel</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Intérêts et autres frais financiers payés</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Impôts sur les résultats payés</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie avant éléments
+                                            extraordinaires</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>FLux de trésorerie lié à des éléments extrardinaires (à préciser)</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie net provenant des
+                                            activités opérationelles (A)</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie provenant des activités
+                                            d'investissement</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Décaissements sur acquisition d'immobilisations corporelles ou incorporelles
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Encaissements sur cessions d'immobilisations corporelles ou incorporelles</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Décaissement sur acquisition d'immobilisations financières</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Encaissement sur cessions d'immobilisations financières</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Intérêt encaissés sur placements financiers</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Dividendes et quote-port de résultat reçus</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie net provenant des
+                                            activités d'investissement (B)</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie provenant des activités
+                                            de financement</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Encaissements suite à l'émission d'actions</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Dividendes et autres distributions effectués</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Encaissements provenant d'emprunts</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Remboursements d'emprunts ou d'autres dettes assimilées</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Flux de trésorerie net provenant des
+                                            activités de financement (C)</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Incidences des variables des taux de change sur liquidités et quasi-liquidités
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Variations de trésorerie de la pèriode
+                                            (A+B+C)</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Trésorerie et équivalents de trésorerie à l'ouverture de l'exercice</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Trésorerie et équivalents de trésorerie à la clôture de l'exercice</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td style="background: #e4e6e8;"><strong>Variations de trésorerie de la
+                                            pèriode</strong></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>Rapprochement avec le résultat comptable</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_tableau_flux_tresorerie_report" model="ir.actions.report">
+            <field name="name">Flux de tresorerie</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.financial_custom_tableau_report</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.financial_custom_tableau_report</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_tableau_flux_tresorerie_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+
+    </data>
+</odoo>

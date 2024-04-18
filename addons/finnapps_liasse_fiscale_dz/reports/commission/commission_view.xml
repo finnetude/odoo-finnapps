@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="finn_liasse_fiscale_line_commission_1_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.commission.1.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="code" groups="base.group_no_one"/>
+                    <field name="name" string="Désignation des personnes bénéficiaires"/>
+                    <field name="designation_col_one" string="Numéro d’identifiant fiscal"/>
+                    <field name="designation_col_two" string="Adresse"/>
+                    <field name="amount_col_one" string="Montant perçu"/>
+                </tree>
+			</field>
+		</record>
+
+        <record id="finn_liasse_fiscale_line_commission_2_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.commission.2.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="name" string="Lieu de payement de la TAP"/>
+                    <field name="amount_col_one" string="Chiffre d’affaires imposable Par commune"/>
+                    <field name="amount_col_two" string="Chiffre d’affaires exonéré"/>
+                    <field name="amount_col_three" string="TAP acquittée"/>
+                </tree>
+			</field>
+        </record>
+
+        <record model="ir.ui.view" id="finn_liasse_fiscale_report_commission_view_forme">
+			<field name="name">finn.liasse.fiscale.report.commission.view.forme</field>
+			<field name="model">finn.liasse.fiscale.report</field>
+			<field name="inherit_id" ref="finnapps_liasse_fiscale_dz.finn_liasse_fiscale_report_view_form"/>
+			<field name="priority">11</field>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+                    <page name="commission_1" string="Tableau (12)" invisible="type_report != 'commission'">
+                        <field name="line_commission_1_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_commission_1_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+                    <page name="commission_2" string="Tableau (13)" invisible="type_report != 'commission'">
+                        <field name="line_commission_2_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_commission_2_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

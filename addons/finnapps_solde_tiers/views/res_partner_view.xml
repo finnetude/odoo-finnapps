@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<record id="solde_tiers_res_partner_form_view" model="ir.ui.view">
+        <field name="name">res.partner.inherit.view.form.sold.tiers</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="/form/*" position="before">
+                <header>
+                    <button
+                        name="get_the_solde"
+                        string="Calcule du solde"
+                        type="object"
+                        class="oe_highlight"
+                        groups="base.group_no_one" />
+                </header>
+            </xpath>
+            
+            <xpath expr="//form" position="inside">
+                <field name="move_line_ids" invisible="1"/>
+                <field name="solde" invisible="1"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="%(action_account_moves_ledger_partner)d" type="action" class="oe_stat_button" icon="fa-money" context="{'search_default_partner_id': id}">
+                    <div class="o_form_field o_stat_info">
+                    <span class="o_stat_value">
+                        <field name="solde" widget="monetary" options='{"currency_field": "currency_id"}'/>
+                    </span>
+                    <span class="o_stat_text">
+                        Solde
+                    </span>
+                </div>
+                </button>
+
+            </xpath>
+
+            
+        </field>
+    </record>
+
+    <record id="solde_tiers_res_partner_tree_view" model="ir.ui.view">
+        <field name="name">res.partner.inherit.view.tree.sold.tiers</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                
+                <field name="solde" string="Solde" groups="account.group_account_manager" />
+            </xpath>    
+
+        </field>
+    </record>
+    <record id="solde_tiers_res_partner_kanban_view" model="ir.ui.view">
+        <field name="name">res.partner.inherit.view.kanban.sold.tiers</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.res_partner_kanban_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='email']" position="after">
+                <field name="currency_id" />
+                <field name="solde" groups="account.group_account_manager"/>
+            </xpath> 
+            <xpath expr="//ul" position="inside">
+                
+                 <li t-if="record.solde.raw_value" >Solde : <field name="solde" groups="account.group_account_manager"/><field name="currency_id" groups="account.group_account_manager"/></li>
+            </xpath>   
+
+        </field>
+    </record>
+</odoo>

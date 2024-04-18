@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='lot_cotisations_action' model='ir.actions.act_window'>
+        <field name="name">Lot de déclaration des cotisations</field>
+        <field name="res_model">finn.lot.declaration.cotisation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- Form View -->
+    <record id="lot_cotisations_form" model="ir.ui.view">
+        <field name="name">Lot de déclaration des cotisations</field>
+        <field name="model">finn.lot.declaration.cotisation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="generate" class="oe_highlight" type="object" icon="fa-cogs" string=" Générer" />
+                </header>
+                <sheet>
+                    <form>
+                        <div class="oe_title">
+                            <h2>
+                                <field name="name" readonly="1"/>
+                            </h2>
+                        </div>    
+                        <group>
+                            <group string="Période">
+                                <field name="year" options="{'format': 0}" required='1'/>
+                                <field name="month"  required='1'/>
+                                <field name="trimester" invisible="trimester == False" />
+                            </group>
+                            <group name="company" string="Sociétés">
+                                <field name="company_id"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Déclaration des cotisations">
+                                <field name="declaration_cotisation_ids" context="{'tree_view_ref': 'finnapps_hr_cnas_reports.lot_declaration_cnas_month_tree'}" />
+                            </page>
+                            
+                            <page name="general_info" string="Informations générales">
+                                <group>
+                                    <field name="creation_date" readonly="True"/>    
+                                </group>                                
+                            </page>
+                            <page name="note" string="Note">
+                                <field name="note" />
+                            </page>
+                        </notebook>
+                    </form>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="lot_cotisations_tree" model="ir.ui.view">
+        <field name="name">Lot de déclaration des cotisations</field>
+        <field name="model">finn.lot.declaration.cotisation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+            </tree>
+        </field>
+    </record>
+</odoo>

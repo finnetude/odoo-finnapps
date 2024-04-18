@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+        <!-- <menuitem id="hr_lot_advantage_menu"
+            parent="finnapps_hr_payroll_dz.sub_menu_hr_payslip_employe"
+            name="Lots de primes et avantages"
+            action="hr_lot_advantage_action"/> -->
+
+        <menuitem id="hr_bonuse_advantage_menu"
+            parent="finnapps_hr_payroll_dz.sub_menu_hr_payslip_employe"
+            name="Primes et avantages"
+            action="hr_bonuse_advantage_action"/>
+  	</data>
+</odoo>

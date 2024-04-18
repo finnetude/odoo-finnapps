@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="internal_layout_report_104">
+            <t t-if="not o" t-set="o" t-value="doc" />
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+                t-att-data-oe-lang="o and o.env.context.get('lang')">
+                <t t-out="0" />
+            </div>
+        </template>
+
+        <template id="etat_report">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+
+                <t t-if="not company">
+                    <!-- Multicompany -->
+                    <t t-if="company_id">
+                        <t t-set="company" t-value="company_id"/>
+                    </t>
+                    <t t-elif="o and 'company_id' in o">
+                        <t t-set="company" t-value="o.company_id.sudo()"/>
+                    </t>
+                    <t t-else="else">
+                        <t t-set="company" t-value="res_company"/>
+                    </t>
+                </t>
+            <t t-call="finnapps_etat_104_dz.internal_layout_report_104" t-lang="ar_001">
+            <t t-call="web.html_container">
+                
+                    <t t-foreach="docs" t-as="o">
+                        <div class="header">
+                           
+
+                            <div style="float:left;text-align: left;">
+                                <p style="font-size: 11px;">DESIGNATION DE L'ENTREPRISE</p>
+                                <p style="font-size: 14px;">
+                                    <t t-if="o.company_id.name">
+                                        <strong> <span t-esc="o.company_id.forme_juridique_id.code"/>  <span t-esc="o.company_id.name"/></strong>
+                                    </t>
+                                    <t t-else="">
+                                        <span> - </span>
+                                    </t>
+                                </p>
+                                <p style="font-size: 14px;">
+                                    <t t-if="o.company_id.street">
+                                        <span t-esc="o.company_id.street"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span> - </span>
+                                    </t>
+                                </p>
+                                <p style="font-size: 14px;">
+                                    <strong>ANNEE</strong>
+                                    <t t-if="o.exercice_id.name">
+                                        <strong> <span t-esc="o.exercice_id.name"/> </strong>
+                                    </t>
+                                    <t t-else="">
+                                        <span> - </span>
+                                    </t>
+                                </p>
+                            </div>
+                            <div style="float:left;">
+                                <h4 style="float: center;margin-top: 200px;padding: 80px;width:250px;"> <strong>ÉTAT DÉTAILLÉ DES CLIENTS</strong></h4>
+                            </div>
+
+                             <div style="float:right;text-align: right; font-size: 15px;">
+                                <small>
+                                    <span>Page:</span><span class="page"/>
+                                </small>
+                            </div>
+                        </div>
+
+                    
+                       <div class="body">
+                             <style>
+                                table {
+                                    margin-top: 50px;
+                                    width: 100%;
+                                    font-size: 12px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    border-collapse: collapse;
+                                    text-align: center;
+                                }
+
+                                table th {
+                                    font-size: 14px;
+                                    border: 1px solid black;
+                                    padding: 0px 5px;
+
+                                }
+
+                                td {
+                                    border: 1px solid black;
+                                    padding: 5px 5px;
+                                    height: 60px;
+                                    font-size: 11px;
+                                }
+
+                                body {
+                                    font-size: 11px;
+                                    text-align: center;
+                                }
+
+
+
+                                .table {
+                                    display: table;
+                                    width: 100%;
+                                }
+
+                                .table-row {
+                                    display: table-row;
+                                }
+
+                                .table-cell {
+                                    display: table-cell;
+                                    padding: 5px;
+                                    border: 1px solid #ccc;
+                                }
+
+                                .page-break {
+                                    page-break-before: always;
+                                }
+
+                            </style>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                             <t t-foreach="o.tab_implement()" t-as="item">
+                                
+                                <table style="width: 100%;margin-top:5px;">
+                                    <thead>
+                                        <tr>
+                                            <th style="border-bottom: 1px solid white;"></th>
+                                            <th style="border-bottom: 1px solid white;">Numéro <br></br><br></br> Article
+                                                </th>
+                                            <th style="border-bottom: 1px solid white;">Numéro <br></br><br></br>  Registre
+                                                </th>
+                                            <th style="border-bottom: 1px solid white;"><br></br>Matricule <br></br></th>
+                                            <th colspan="2" style="font-weight: bold;"><strong>DESIGNATION EXACTE DU CLIENT </strong></th>
+                                            <th style="border-bottom: 1px solid white;">Montant Annuel des <br></br> Opérations
+                                            </th>  
+
+                                            <th style="border-bottom: 1px solid white;">Montant Annuel des <br></br> TVA 
+                                            </th>
+
+                                        </tr>
+                                        <tr>
+                                            <td style="border-top: 1px solid white;">Numéro D'ordre</td>
+                                            <td style="border-top: 1px solid white;">D'imposition</td>
+                                            <td style="border-top: 1px solid white;">Commerce</td>
+                                            <td style="border-top: 1px solid white;"> Fiscal</td>
+                                            <td >Nom, Prénom <br></br> ou raison sociale</td>
+                                            <td >Adresse complète <br></br> (rue, N° Bâtiment, commune)</td>
+                                            <td style="border-top: 1px solid white;"><br></br> Réalisées avec
+                                                <br></br> chaque client</td>
+                                            <td style="border-top: 1px solid white;"><br></br>
+                                                Facturées avec <br></br> chaque client</td>
+                                        </tr>
+
+
+
+
+                                    </thead>
+
+                                    <tbody>
+                                        <t t-if="item == o.tab_implement()[0]" t-set="i" t-value="1"/>
+                                        <t t-set="total1" t-value="0" />
+                                        <t t-set="total2" t-value="0" />
+                                        
+                                        <tr t-if="item != o.tab_implement()[0]">
+                                                
+                                            <td style="border-bottom: 1px solid white;"></td>
+
+                                            <td style="border-bottom: 1px solid white;"></td>
+                                            <td style="border-bottom: 1px solid white;"></td>
+                                            <td style="border-bottom: 1px solid white;"></td>
+                                            <td style="border-bottom: 1px solid white;"></td>
+                                            <td style="border-bottom: 1px solid white;font-weight: bold;">REPORT</td>
+                                            <td><span t-esc="'{0:,.2f}'.format(previous_total1).replace(',', ' ')"/></td>
+                                            <td><span t-esc="'{0:,.2f}'.format(previous_total2).replace(',', ' ')"/></td>
+                                               
+                                                
+
+                                                
+                                        </tr>
+                                        <t t-foreach="item" t-as="line">
+                                            
+                                            <tr>
+                                                
+                                                <td class="numero-cell">
+                                                    <span t-esc="'%03d' % (i)" />
+                                                </td>
+                                                <t t-set="i" t-value="i+1" />
+                                                <td style="border-bottom: 1px dashed black;">
+
+                                                    <t t-if="line.company_type == 'company'">
+                                                        
+                                                        <span t-if="line.vat" t-esc="line.vat"/>
+                                                    </t>
+                                                    <t t-else = "">
+                                                        <t t-if="line.parent_id">
+                                                            
+                                                            <span  t-field="line.parent_id.vat"/>
+                                                            
+                                                        </t>
+                                                    </t>
+
+                                                </td>
+
+
+
+                                                <td style="border-bottom: 1px dashed black;"
+                                                    >
+
+                                                    <t t-if="line.company_type == 'company'">
+                                                        
+                                                        <span t-if="line.company_registry" t-esc="line.company_registry"/>
+                                                    </t>
+                                                    <t t-else = "">
+                                                        <t t-if="line.parent_id">
+                                                            
+                                                            <span  t-field="line.parent_id.company_registry"/>
+                                                            
+                                                        </t>
+                                                    </t>
+                                                </td>
+
+
+
+                                                <td style="border-bottom: 1px dashed black;">
+                                                    <t t-if="line.company_type == 'company'">
+                                                        
+                                                        <span t-if="line.nif" t-esc="line.nif"/>
+                                                    </t>
+                                                    <t t-else = "">
+                                                        <t t-if="line.parent_id">
+                                                            
+                                                            <span  t-field="line.parent_id.nif"/>
+                                                            
+                                                        </t>
+                                                    </t>
+
+                                                </td>
+
+
+                                                <td style="border-bottom: 1px dashed black;"><span t-esc="line.name"/></td>
+                                                <td style="border-bottom: 1px dashed black;"><span t-esc="line.street"/> <span t-esc="line.street2"/>  <span t-esc="line.city"/> <span t-esc="line.state_id.id"/></td>
+                                                <td style="border-bottom: 1px dashed black;"><span t-esc="'{0:,.2f}'.format(o.total_partner(line.id)).replace(',', ' ')"/></td>
+                                                <td style="border-bottom: 1px dashed black;"><span t-esc="'{0:,.2f}'.format(o.total_ht_partner(line.id)).replace(',', ' ')"/></td>
+
+                                                <t t-set="total1" t-value="total1 + o.total_partner(line.id)"/>
+                                                <t t-set="total2" t-value="total2 + o.total_ht_partner(line.id)" />
+
+                                                
+
+                                               
+                                                
+
+                                                
+                                            </tr>
+                                        </t>
+                                        <tr>
+                                                
+                                                <td style="border-top: 1px solid white;"></td>
+
+                                                <td style="border-top: 1px solid white;"></td>
+                                                <td style="border-top: 1px solid white;"></td>
+                                                <td style="border-top: 1px solid white;"></td>
+                                                <td style="border-top: 1px solid white;"></td>
+                                                <td style="border-top: 1px solid white;font-weight: bold;">TOTAL A REPORTER</td>
+                                                <td><span t-esc="'{0:,.2f}'.format(total1).replace(',', ' ')"/></td>
+                                                <td><span t-esc="'{0:,.2f}'.format(total2).replace(',', ' ')"/></td>
+
+                                                <t t-set="previous_total1" t-value="total1" />
+                                                <t t-set="previous_total2" t-value="total2" />
+                                               
+                                                
+
+                                                
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                               <div t-if="o.tab_implement()[-1] != item" class="page-break"></div>
+                                
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                
+                            
+                            </t>
+
+
+
+
+                              
+                              
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_etat" model="ir.actions.report">
+            <field name="name">État 104 (G n°03)</field>
+            <field name="model">finn.etat.104</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_etat_104_dz.etat_report</field>
+            <field name="report_file">finnapps_etat_104_dz.etat_report</field>
+            <field name="print_report_name"></field>
+            <field name="paperformat_id" ref="finnapps_etat_104_dz.custom_report_etat_104_format" />
+
+        </record>
+    </data>
+</odoo>

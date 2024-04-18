@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <menuitem   id="menu_report_g50"
+                parent="finnapps_invoicing_dz.account_report_declaration"
+                name="Déclaration mensuelle (Série G N°50)"
+                action="finnapps_report_g50.action_report_g50"
+                sequence="10"/>
+
+
+    <menuitem   id="menu_config_g50"
+                parent="account.account_management_menu" 
+                name="Configuration G50" 
+                action="action_config_g50"/>
+
+</odoo>

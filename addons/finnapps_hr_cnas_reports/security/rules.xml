@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <!-- users can only see records that have the same company the user is logged in with (each model has its own record rule)  -->
+    <record model="ir.rule" id="rule_user_access_abatement_base">
+        <field name="name">rule_user_access_abatement_base</field>
+        <field name="model_id" ref="model_finn_abatement_base"></field>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+    
+    <record model="ir.rule" id="rule_user_access_cotisation_line">
+        <field name="name">rule_user_access_cotisation_line</field>
+        <field name="model_id" ref="model_finn_cotisation_line"></field>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record model="ir.rule" id="rule_user_access_declaration_cotisation">
+        <field name="name">rule_user_access_declaration_cotisation</field>
+        <field name="model_id" ref="model_finn_declaration_cotisation"></field>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record model="ir.rule" id="rule_user_access_declaration_das">
+        <field name="name">rule_user_access_declaration_das</field>
+        <field name="model_id" ref="model_finn_declaration_das"></field>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    <record model="ir.rule" id="rule_user_access_movement_employees">
+        <field name="name">rule_user_access_movement_employees</field>
+        <field name="model_id" ref="model_finn_movement_employees"></field>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field eval="1" name="perm_read"/>
+        <field eval="1" name="perm_write"/>
+        <field eval="1" name="perm_create"/>
+        <field eval="1" name="perm_unlink"/>
+    </record>
+
+    
+</odoo>

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="finn_liasse_fiscale_line_bilan_actif_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.bilan.actif.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="display_type" column_invisible="False"/>
+                    <field name="code" groups="base.group_no_one"/>
+                    <field name="name" string="Actif"/>
+                    <field name="amount_col_one" string="Montants Bruts"/>
+                    <field name="amount_col_two" string="Amortissements, provisions et pertes de valeurs"/>
+                    <field name="amount_col_three" string="Net"/>
+                    <field name="amount_col_four" string="Net (n-1)"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="finn_liasse_fiscale_bilan_actif_view_forme">
+			<field name="name">finn.liasse.fiscale.report.bilan.actif.view.forme</field>
+			<field name="model">finn.liasse.fiscale.report</field>
+			<field name="inherit_id" ref="finnapps_liasse_fiscale_dz.finn_liasse_fiscale_report_view_form"/>
+            <field name="priority">1</field>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+                    <page name="bilan_actif" string="Tableau" invisible="type_report != 'bilan_actif'">
+                        <field name="line_bilan_actif_ids"  widget="total_one2many" mode="tree" options="{'no_create': True}" 
+                        	readonly="state == 'lock'" 
+                        	context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_bilan_actif_tree_view'}" />
+                    </page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

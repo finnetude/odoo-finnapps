@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_hr_payroll_etat_prestation_detai_doc">
+         <div class="page">
+           <t t-call="finnapps_hr_account_reports.report_custom_header" />
+           <t t-call="finnapps_hr_account_reports.report_custom_footer" />
+           
+                  
+                <style type="text/css">
+                    table, th, td, tr {
+                          border-collapse: collapse;
+                          border: 1px solid #2C3333;
+                          text-align: center;
+                        }
+                    thead, tfoot {
+                        background-color:#f2f6f6;
+                        border: 1px solid #2C3333;
+                        text-align: center;
+                    }
+                    tbody {
+                        border-collapse: collapse;
+                        border: 1px solid #2C3333;
+                        text-align: center;
+                    }
+                </style>
+                <div>
+                <t t-set="list_months" t-value="{'1':'Janvier','2':'Février','3':'Mars','4':'Avril',
+                  '5':'Mai','6':'Juin','7':'Juillet','8':'Août','9':'Septembre',
+                  '10':'Octobre','11':'Novembre','12':'Décembre'}"/>
+                    <br/><br/><br/>
+                    <center><h5 style="font-size:40px;color:#42484e;"><b>Livre des prestations de service</b></h5></center><br/>
+                    <center><b><span style="font-size:25px;">Pour  </span><span t-esc="list_months.get(o.month).upper()" style="font-size:25px;"/> <span t-esc="o.year" style="font-size:25px;"/></b></center><br/><br/>
+                </div>
+                    <t t-set="total_base_imposable" t-value="0"/>
+                    <t t-set="total_irg" t-value="0"/>
+                    <t t-set="total_net" t-value="0"/>
+                    <table class="table table-sm o_main_table" style="width:100%; ">
+                        <thead>
+                            <tr>
+                                <th>Nom et prénom</th>
+                                <th>Poste</th>
+                                <th>Base imposable</th>
+                                <th>IRG</th>
+                                <th>Montant à payer</th>
+                                <th>Signature</th>
+                            </tr>
+                        </thead>
+                        
+
+                        <tbody class="sale_tbody" >
+                        <t t-foreach="o.pyaslip_pres_ids" t-as="c">
+                                <tr>
+                                    <td class=" "><b><span t-esc="c.employee_id.name"/></b></td>
+
+                                    <td class=""><b><span t-esc="c.contract_id.job_id.name"/></b></td>
+
+
+                                    <td class="">
+                                        <t t-foreach="c.line_ids.filtered(lambda r: r.code == 'SBI')" t-as="s">
+                                            <t t-set="base_imposable" t-value="s.total"/>
+                                            <b><span t-esc="'{0:,.2f}'.format(base_imposable).replace(',', ' ')"/></b>
+                                            <t t-set="total_base_imposable" t-value="total_base_imposable+base_imposable"/>
+                                        </t>
+                                    </td>
+
+                                    <td class="">
+                                    <t t-foreach="c.line_ids.filtered(lambda r: r.code == 'IRGC')" t-as="s">
+                                        <t t-if="s.total" t-set="irg" t-value="s.total"/>
+                                        <b><span t-esc="'{0:,.2f}'.format(abs(irg)).replace(',', ' ')"/></b>
+                                        <t t-set="total_irg" t-value="total_irg+abs(irg)"/>
+                                    </t>
+                                    </td>
+
+                                    <td class="">
+                                        <t t-foreach="c.line_ids.filtered(lambda r: r.code == 'NET')" t-as="s">
+                                            <t t-set="net" t-value="s.total"/>
+                                            <b><span t-esc="'{0:,.2f}'.format(net).replace(',', ' ')"/></b>
+                                            <t t-set="total_net" t-value="total_net+net"/>
+                                        </t>
+                                    </td>
+
+                                    <td class=""></td>
+                                </tr>
+                        </t>
+                        </tbody>
+                       
+                       
+                        <tfoot class="sale_tfoot">
+                            <tr>
+                                <th colspan="2" style="text-align:center">TOTAUX :</th>
+                                <td class=""><span t-esc="'{0:,.2f}'.format(total_base_imposable).replace(',', ' ')"/></td>
+                                <td class=""><span t-esc="'{0:,.2f}'.format(total_irg).replace(',', ' ')"/></td>
+                                <td class=""><span t-esc="'{0:,.2f}'.format(total_net).replace(',', ' ')"/></td>
+                                <th></th>  
+                            </tr>
+                        </tfoot>
+
+                    </table>
+            
+        
+            </div>
+        </template>
+
+        <template id="report_hr_payroll_etat_prestation_detai" >
+            
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                       
+                        
+                        <t t-call="finnapps_hr_account_reports.report_hr_payroll_etat_prestation_detai_doc"/>
+                    </t>
+                </t>
+            </t>
+        </template>
+       
+
+
+    </data>
+</odoo>

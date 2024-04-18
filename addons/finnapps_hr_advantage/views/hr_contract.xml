@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_hr_contract_avantage_form_inherit" model="ir.ui.view">
+			<field name="name">Inheritance in contract</field>
+			<field name="model">hr.contract</field>
+			<field name="inherit_id" ref="finnapps_hr_dz.view_prevexp_form_inherit"/>
+			<field name="arch" type="xml">
+				<data>
+					<!-- Avantages -->
+					<xpath expr="//notebook" position="inside">
+						<page string="Avantages" name="avantage" invisible="check in ('Stagiaire','Consultant')">
+							<field name="advantage_ids" readonly="1">
+								<tree>
+									<field name="type_advantage"/>
+									<field name="rule_id"/>
+									<field name="category_id"/>
+									<field name="code"/>
+									<field name="amount_adv"/>
+									<field name="date_start"/>
+									<field name="date_end"/>
+									<field name="state" widget="badge" decoration-danger="state == 'cancel'" decoration-warning="state == 'end'" decoration-success="state == 'open'"/>
+								</tree>
+							</field>
+						</page>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

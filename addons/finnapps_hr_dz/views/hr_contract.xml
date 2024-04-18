@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="view_prevexp_form_inherit" model="ir.ui.view">
+			<field name="name">Inheritance in contract</field>
+			<field name="model">hr.contract</field>
+			<field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+			<field name="arch" type="xml">
+				<data>
+					<!-- form -->
+					<xpath expr="//header"  position="before">
+						<field name="check" invisible="1"/>
+					</xpath>
+
+					<!-- headers -->
+					<xpath expr="//header" position="inside">
+						<button name="action_view_contract_wizard" string="Imprimer les documents" type="object" icon="fa-print" />
+					</xpath>
+
+					<!-- Name -->
+					<xpath expr="//h2" position="after">
+						<group>
+							<field name="employee_id"/>
+							<field name="is_intern" invisible="1"/>
+
+						</group>
+					</xpath>
+
+					<!-- Contrat -->
+					<xpath expr="//group[@name='top_info_left']" position="attributes">
+						<attribute name="string">Contrat</attribute>
+					</xpath>
+
+					<xpath expr="//group[@name='top_info_left']/field[@name='employee_id']" position="attributes">
+						<attribute name="invisible">1</attribute>
+					</xpath>
+
+					<xpath expr="//label[@for='resource_calendar_id']" position="attributes">
+						<attribute name="invisible">1</attribute>
+					</xpath>
+
+					<xpath expr="//div[@id='resource_calendar_warning']" position="attributes">
+						<attribute name="invisible">1</attribute>
+					</xpath>
+
+					<xpath expr="//field[@name='date_end']" position="after">
+						<field name="motif1" invisible="not date_end" style="height:25px" options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+					</xpath>
+
+					<!-- Département -->
+					<xpath expr="//group[@name='top_info_right']" position="attributes">
+						<attribute name="string">Département</attribute>
+					</xpath>
+
+					<xpath expr="//field[@name='job_id'][1]" position="attributes">
+						<attribute name="required">1</attribute>
+					</xpath>
+					<xpath expr="//field[@name='job_id'][2]" position="attributes">
+						<attribute name="required">1</attribute>
+					</xpath>
+
+					<!-- Emploi du temps -->
+					<xpath expr="//notebook" position="inside">
+						<page name="emploi_de_temps" string="Emploi du temps">
+							<group>
+								<group>
+									<label for="resource_calendar_id"/>
+									<div id="resource_calendar_warning">
+										<field name="resource_calendar_id" groups="!hr_contract.group_hr_contract_manager" required="1" nolabel="1" options="{'no_open': True, 'no_create': True}"/>
+										<field name="resource_calendar_id" groups="hr_contract.group_hr_contract_manager" required="1" nolabel="1"/>
+										<span invisible=" not calendar_mismatch or state != 'open'"  class="fa fa-exclamation-triangle text-danger o_calendar_warning ms-3">
+										 
+										</span>
+									</div>
+								</group>
+								<group>
+									<div class="o_td_label">
+										<label for="base_mois" string="Base du mois"/>
+									  </div>
+									<div>
+									  <field name="base_mois" class="oe_inline" nolabel="1" string="Base du mois" help="Nombre de jours de travail" required="1"/>
+									  <span class="ml8">Jours</span>  
+									</div>
+								</group>
+							</group>
+						</page>
+					</xpath>
+
+					<!-- Période d'essai -->
+					<xpath expr="//notebook" position="inside">
+						<page name="periode_d_essai" string="Période d'essai" invisible="is_intern">
+							<group>
+								<group>
+									<field name="trial_date_start" string="Date de début" style="width:343px;"/>
+									<field name="trial_date_end" string="Date de fin"/>
+								</group>
+								<group>
+								</group>
+							</group>
+						</page>
+					</xpath>
+
+					<!-- Salaire  -->
+					<xpath expr="//page[@name='information']" position="attributes">
+   						 <attribute name="invisible">check == 'Stagiaire'</attribute>
+					</xpath>
+						<xpath expr="//page[@name='information']/group/group[1]" position="replace">
+						<group name="salary_and_advantages" string="Salaire de base">
+							<label for="wage"/>
+							<div class="o_row" name="wage">
+								<field name="wage" nolabel="1"/>
+								<span> Mois</span>
+								
+							</div>
+							<field name="payement_mode"
+								required="check, '!=', 'Stagiaire'"
+								style="height:28px;width:343px;"
+								options="{'no_quick_create':True,'no_create_edit':True,'no_open': True,}"/>
+						</group>
+					</xpath>
+
+					<xpath expr="//page[@name='information']/group/group[2]" position="replace">
+						<group string="Avantages annuel" name="yearly_advantages" invisible="check in ('Stagiaire','Consultant')">
+							<label for="iep"/>
+							<div class="o_row" >
+								<field name="iep" string="I.E.P."/>
+							</div>
+							<label for="exp_prec"/>
+							<div class="o_row" >
+								<field name="exp_prec" />
+								<span>Années</span>
+							</div>
+						</group>
+					</xpath>
+	
+					<!-- Contrat ANEM-->
+					<xpath expr="//notebook" position="inside">
+						<page string="Contrat ANEM" name="anem" invisible="is_intern">
+							<header>
+								<field name="state_anem" widget="statusbar" options="{'clickable': '1'}"/>
+							</header>
+							<h1><field name="full_name1" style="width:300px;"/></h1>
+							<group name="group_top">
+								<group name="group_left" string="Contrat">
+									<field name="dispositif"/>
+									<field name="contrat"/>
+									<field name="type_contrat"/>
+								</group>
+								<group name="group_right" string="Décision et Durée">
+									<field name="num_des"/>
+									<field name="debut_contrat_anem"/>
+									<field name="fin_contrat_anem"/>
+								</group>
+							</group>
+							<group name="group_bottom">
+								<field name="note" style="width=600px;height:50px;"/>
+							</group>
+						</page>
+					</xpath>
+				</data>
+			</field>
+		</record>
+	</data>
+</odoo>

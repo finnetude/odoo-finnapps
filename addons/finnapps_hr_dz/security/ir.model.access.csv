@@ -1,0 +1,17 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+finnapps_hr_dz.access_finn_forme_juridique,access_finn_forme_juridique,finnapps_hr_dz.model_finn_forme_juridique,hr.group_hr_manager,1,1,1,0
+
+finnapps_hr_dz.access_finn_hr_payement_mode,access_finn_hr_payement_mode,finnapps_hr_dz.model_finn_hr_payement_mode,hr.group_hr_user,1,1,1,1
+
+finnapps_hr_dz.access_finn_hr_reason_end_contract,access_finn_hr_reason_end_contract,finnapps_hr_dz.model_finn_hr_reason_end_contract,hr.group_hr_user,1,1,1,1
+
+finnapps_hr_dz.access_finn_hr_dispositif,access_finn_hr_dispositif,finnapps_hr_dz.model_finn_hr_dispositif,hr.group_hr_user,1,1,1,1
+
+finnapps_hr_dz.access_finn_hr_contract_anem,access_finn_hr_contract_anem,finnapps_hr_dz.model_finn_hr_contract_anem,hr.group_hr_user,1,1,1,1
+
+finnapps_hr_dz.access_finn_hr_contract_type_anem,access_finn_hr_contract_type_anem,finnapps_hr_dz.model_finn_hr_contract_type_anem,hr.group_hr_user,1,1,1,1
+
+finnapps_hr_dz.access_finn_pay_iep,access_finn_pay_iep,finnapps_hr_dz.model_finn_pay_iep,hr.group_hr_manager,1,1,1,1
+
+finnapps_hr_dz.access_finn_hr_contract_report,access_finn_hr_contract_report,finnapps_hr_dz.model_finn_hr_contract_report,base.group_user,1,1,1,1

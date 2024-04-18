@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_stock_report">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <!--__________________ DATA ____________________-->
+
+                        <!-- DECLARATION DES VARIABLES -->
+                        <t t-set="stocks_marchandises"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '01stock')" />
+                        <t t-set="matieres_fournitures"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '02stock')" />
+                        <t t-set="autres_approvisionnements"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '03stock')" />
+                        <t t-set="encours_production_biens"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '04stock')" />
+                        <t t-set="encours_production_services"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '05stock')" />
+                        <t t-set="stocks_produits" t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '06stock')" />
+                        <t t-set="stocks_provenant_immobilisations"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '07stock')" />
+                        <t t-set="stocks_exterieur"
+                            t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '08stock')" />
+                        <t t-set="total" t-value="o.line_stock_1_ids.filtered(lambda m: m.code == '09stock')" />
+                        <style>
+                            #table_date {
+                                margin: 10px;
+                                width: 60%;
+                                text-align: center;
+                                margin: auto;
+                                width: 20%;
+                                padding: 10px;
+                                font-size: 12px;
+                            }
+
+                            table.left {
+                                font-size: 12px;
+                                text-align: left;
+
+                                border-collapse: collapse;
+                                color: black;
+                                background: #e4e6e8;
+
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+                                margin-left: 0px;
+                                margin-right: auto;
+
+                            }
+
+
+                            table.tb1 {
+                                font-size: 12px;
+
+                                border-collapse: collapse;
+                                color: black;
+
+                                margin-right: 100px;
+                                margin-left: 0px;
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+
+                            }
+
+                            thead {
+                                height: 50px;
+                                background: #e4e6e8;
+                                color: black;
+                                text-align: center;
+                                padding: 10px
+                            }
+
+                            table.tb2 {
+                                font-size: 12px;
+
+                                border-collapse: collapse;
+                                color: black;
+
+                                margin-right: auto;
+                                margin-left: 0px;
+
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+
+                            }
+
+                            table th {
+                                border: 1px solid black;
+                            }
+
+                            table {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+
+
+                            }
+
+                            table td {
+                                color: black;
+                                border: 1px solid black;
+                                padding: 5px 5px;
+                                font-size: 12px;
+                            }
+
+                            table.tb1 td {
+                                height: 25px;
+                            }
+
+                            table.tb2 td {
+                                height: 15px;
+
+                            }
+
+                            .div1 {
+                                color: black;
+                                background: #e4e6e8;
+                                text-align: left;
+                                font-weight: bold;
+                                margin-bottom: 1px;
+                                width: 38%;
+                                border: 1px solid black;
+                                padding: 1px;
+                                box-shadow: 1px 2px #a6af93;
+                            }
+
+                            .div2 {
+                                color: black;
+                                background: #e4e6e8;
+                                text-align: left;
+                                font-weight: bold;
+                                margin-bottom: 1px;
+                                width: 34%;
+                                border: 1px solid black;
+                                padding: 1px;
+                                box-shadow: 1px 2px #a6af93;
+                            }
+                        </style>
+
+                        <table id="table_date" style="font-size: 12px;width: 60%;" border="1">
+                            <tbody>
+                                <tr>
+                                    <td style="font-weight: bold;">Exercice du</td>
+                                    <td style="color:black;"><span t-esc="o.exercice_id.date_from"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                    <td style="font-weight: bold;">au</td>
+                                    <td style="color:black;"><span t-esc="o.exercice_id.date_to"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="height:30px;margin-top: 15px;margin-bottom: 5px;font-size: 12px;color: black;text-align: left;text-indent: 1%;padding-top:5px;"
+                            class="div2"><u>1/Tableau des mouvements des stocks :</u></div>
+                        <table class="tb1" border="1" width="100%" height="100%">
+                            <thead>
+                                <tr>
+                                    <td rowspan="2" style="width: 230px;"><strong>Rubrique</strong></td>
+                                    <td rowspan="2" style="width: 180px;"><strong> Solde de début d’exercice</strong>
+                                    </td>
+                                    <td colspan="2" style="width: 200px;"><strong>Mouvements de la période</strong></td>
+                                    <td rowspan="2" style="width: 150px;"><strong>Solde de fin d’exercice</strong></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 100px;"><strong>Débit</strong></td>
+                                    <td style="width: 100px;"><strong>Crédit</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="width: 230px;">Stocks de marchandises</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_marchandises.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% stocks_marchandises.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_marchandises.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% stocks_marchandises.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_marchandises.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% stocks_marchandises.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_marchandises.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% stocks_marchandises.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Matières et fournitures</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(matieres_fournitures.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% matieres_fournitures.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(matieres_fournitures.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% matieres_fournitures.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(matieres_fournitures.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% matieres_fournitures.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(matieres_fournitures.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% matieres_fournitures.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Autres approvisionnements</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(autres_approvisionnements.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% autres_approvisionnements.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(autres_approvisionnements.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% autres_approvisionnements.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(autres_approvisionnements.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% autres_approvisionnements.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(autres_approvisionnements.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% autres_approvisionnements.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Encours de production de biens</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_biens.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% encours_production_biens.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_biens.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% encours_production_biens.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_biens.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% encours_production_biens.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_biens.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% encours_production_biens.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Encours de production de services</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_services.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% encours_production_services.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_services.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% encours_production_services.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_services.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% encours_production_services.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(encours_production_services.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% encours_production_services.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Stocks de produits</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_produits.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% stocks_produits.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_produits.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% stocks_produits.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_produits.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% stocks_produits.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_produits.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% stocks_produits.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Stocks provenant d’immobilisations</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_provenant_immobilisations.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% stocks_provenant_immobilisations.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_provenant_immobilisations.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% stocks_provenant_immobilisations.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_provenant_immobilisations.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% stocks_provenant_immobilisations.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_provenant_immobilisations.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% stocks_provenant_immobilisations.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 230px;">Stocks à l’extérieur</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_exterieur.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% stocks_exterieur.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_exterieur.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% stocks_exterieur.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_exterieur.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% stocks_exterieur.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(stocks_exterieur.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% stocks_exterieur.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 5px;">
+                                    <td style="width: 230px;text-align: center;">TOTAL</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(total.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% total.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(total.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% total.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(total.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% total.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(total.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% total.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="height:30px;margin-top: 15px;margin-bottom: 5px;font-size: 12px;color: black;text-align: left;text-indent: 1%;padding-top:5px;"
+                            class="div1"><u>2/ Tableau de la fluctuation de la production stockée:</u></div>
+                        <table class="tb2" width="95%" height="100%">
+                            <thead>
+                                <tr>
+                                    <td style="width: 150px;" rowspan="2"> <strong>Débit</strong></td>
+                                    <td style="width: 150px;" rowspan="2"><strong>Crédit</strong></td>
+                                    <td style="width: 300px;" colspan="2"><strong>
+                                            Solde de fin d’exercice</strong>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 150px;"><strong>Débiteur</strong></td>
+                                    <td style="width: 150px;"><strong>Créditeur</strong></td>
+                                </tr>
+                            </thead>
+
+                            <tr>
+                                <t t-set="aaaa" t-value="o.line_stock_2_ids.filtered(lambda m: m.code == '10stock')" />
+                                <td style="color:black">
+                                    <t t-if="abs(aaaa.amount_col_one) > 0">
+                                        <span t-esc="'%.2f'% aaaa.amount_col_one" />
+                                    </t>
+                                </td>
+                                <td style="color:black">
+                                    <t t-if="abs(aaaa.amount_col_two) > 0">
+                                        <span t-esc="'%.2f'% aaaa.amount_col_two" />
+                                    </t>
+                                </td>
+                                <td style="color:black">
+                                    <t t-if="abs(aaaa.amount_col_three) > 0">
+                                        <span t-esc="'%.2f'% aaaa.amount_col_three" />
+                                    </t>
+                                </td>
+                                <td style="color:black">
+                                    <t t-if="abs(aaaa.amount_col_four) > 0">
+                                        <span t-esc="'%.2f'% aaaa.amount_col_four" />
+                                    </t>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+                            <tr>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                                <td style="color:black"></td>
+                            </tr>
+
+                        </table>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_stock_report" model="ir.actions.report">
+            <field name="name">Stock</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.compta_stock_report</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.compta_stock_report</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_stock_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+    </data>
+</odoo>

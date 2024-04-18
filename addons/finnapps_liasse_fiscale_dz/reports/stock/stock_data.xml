@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+        <!-- Stock -->
+        <!-- 1/ Tableau des mouvements des stocks -->
+        <record id="elfc_01stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Stocks de marchandises</field>
+			<field name="code">01stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':['30:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['30:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_02stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Matières et fournitures</field>
+			<field name="code">02stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['31:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['31:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_03stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres approvisionnements</field>
+			<field name="code">03stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['32:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['32:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_04stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Encours de production de biens</field>
+			<field name="code">04stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['33:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['33:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_05stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Encours de production de services</field>
+			<field name="code">05stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['34:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['34:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_06stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Stocks de produits</field>
+			<field name="code">06stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['35:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['35:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_07stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Stocks provenant d’immobilisations</field>
+			<field name="code">07stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ # Stocks provenant d’immobilisations
+				'debit':{
+					'load':['36:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['36:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_08stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">Stocks à l’extérieur</field>
+			<field name="code">08stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['37:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['37:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <record id="elfc_09stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">09stock</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:01stock', '+:02stock', '+:03stock', '+:04stock', '+:05stock', '+:06stock', '+:07stock', '+:08stock']</field>
+			<field name="report_id" ref="stock_1"/>
+		</record>
+
+        <!-- 2/ Tableau de la fluctuation de la production stockée -->
+        <record id="elfc_10stock" model="finn.liasse.fiscale.type.line">
+			<field name="name">2/ Tableau de la fluctuation de la production stockée</field>
+			<field name="code">10stock</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['72:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['72:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="stock_2"/>
+		</record>
+    </data>
+</odoo>

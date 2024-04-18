@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_move_timbre" model="ir.ui.view">
+        <field name="name">account move timbre</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="finnapps_timbre_fiscal_dz.view_account_move_inherit_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//div[@name='journal_div']" position="after">
+                <field name="payment_mode_supplier"   invisible="move_type in ('out_invoice', 'out_refund','entry')" required="move_type in ('in_invoice', 'in_refund')" readonly="state !=  'draft'"/>
+                <field name="payment_mode_supplier_type"   invisible="1" />
+            </xpath>
+
+            <xpath expr="//group[@class='oe_subtotal_footer']/field[@name='tax_totals']" position="after">
+                <field name="for_based_on_in_move" invisible="1"/>
+
+                <field name="amount_timbre_supplier"  invisible="move_type not in ('in_invoice', 'in_refund') or payment_mode_supplier_type != 'cash' or for_based_on_in_move == False " readonly="state != 'draft'"/>
+                
+                <field name="amount_with_timbre_supplier"  readonly="1" invisible="move_type not in ('in_invoice', 'in_refund') or payment_mode_supplier_type != 'cash' or for_based_on_in_move == False"/>
+            </xpath>
+
+           
+
+        </field>
+    </record>
+
+</odoo>

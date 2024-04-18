@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="internal_layout_report">
+        <t t-if="not o" t-set="o" t-value="doc" />
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+            t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-out="0" />
+        </div>
+    </template>
+  </data>
+</odoo>

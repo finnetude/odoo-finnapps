@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+		<record id="hr_bonuse_advantage_view_form" model="ir.ui.view">
+			<field name="name">Formulaire primes et avantages</field>
+			<field name="model">finn.hr.bonuse.advantage</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<button name="adv_confirme" string="Confirmer" class="oe_highlight" type="object" invisible ="state in ('open','end','cancel','lock')"/>
+
+						<button name="adv_done" string="Terminer" class="oe_highlight" type="object" invisible="state in ('draft','end','cancel','lock')"/>
+
+						<button name="adv_draft" string="Remettre en bourillon" type="object" invisible="state in ('draft','open','lock')"/>
+
+
+						<button name="adv_lock" string="Bloquer" type="object" invisible="state in ('draft','end','cancel','lock')"/>
+
+						<button name="adv_unlock" string="Débloquer" type="object" invisible="state != 'lock'"/>
+
+
+						<button name="adv_cancel" string="Annuler" type="object" invisible="state in ('draft','end','cancel','lock')"/>
+
+						<field name="state" widget="statusbar" editable="top" statusbar_visible="draft,open,end"/>
+					</header>
+					<sheet>
+						<h1 invisible="type_advantage,'!=',False">
+							Veuillez choisir un type d'avatange
+						</h1>
+						<h1 invisible="rule_id != False or type_advantage == False">
+							Veuillez choisir maintenant une règle salariale à appliquer 
+						</h1>
+						<h1 invisible="type_advantage == False">
+							<field name="name"/>
+						</h1>
+						<br/>
+						<group>
+							<field name="type_advantage" readonly="state != 'draft'"/>
+						</group>
+						<group invisible="type_advantage == False">
+							<group name="group_gauche" string="Avantage">
+								<label for="rule_id"/>
+								<div id="rule_info">
+									<field name="rule_id" options="{'no_create': True}" readonly="state != 'draft'"/>
+									<field name="category_id" nolabel="1" class="oe_edit_only" invisible="category_id == False" options="{'no_open': True, 'no_create': True}"/>
+
+									<field name="code" nolabel="1" class="oe_edit_only" invisible="code == False"/>
+								</div>
+							</group>
+							<group name="group_droite" string="Validité">
+
+								<field name="date_start" 
+									required="type_advantage != False"
+									readonly="state != 'draft'"/>
+
+
+								<field name="date_end" 
+									required="type_advantage != False"
+									readonly="state != 'draft'"/>
+							</group>
+							<group string="Montant de l'avantage" invisible="rule_id == False">
+								<label for="amount_adv"/>
+								<div id="amount_adv_periode" invisible="code == False">  
+									<field name="amount_adv" class="oe_inline" 
+										readonly="state != 'draft'"/>
+									<span class="oe_inline" invisible="code not in ('DANG','NUIS','ASTR','ACTR','IFRI','ZONE1','ZONE2','ETRG','IFS','GESRES','INSPC','IFSP','ENSG','IVP','IZCV','PRR','IPAN','ITRS')">Par jours</span>
+									<span class="oe_inline" invisible="code not in ('DOCU','TEL','CAIS','APPN','HEBR', 'PRI','TRPST10','TRPST15','TRPST25','PRC','EXEP','IDV15','FDEP','P8M', 'ISUQ','PRET','PSCL','FRMS','IK','RESTO','ALOMAT','ALOF1','ALOF2', 'PSCL','LICEN','CHOM')"> Par mois</span>
+								</div>
+							</group>
+						</group>
+						<notebook invisible="type_advantage == False">
+							<page name="employee" string="Contrats" invisible="type_advantage != 'employe'">
+								<field name="employee_ids" readonly="state != 'draft'" required="type_advantage == 'employe'"/>
+							</page>
+							<page name="contract" string="Contrats" invisible="type_advantage != 'contract'">
+								<field name="contract_ids" readonly="state != 'draft'"/>
+							</page>
+							<page name="job " string="Postes de travail" invisible="type_advantage != 'job'">
+								<field name="job_ids" readonly="state != 'draft'"/>
+							</page>
+							<page name="note" string="Notes">
+								<field name="description"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="hr_bonuse_advantage_view_tree" model="ir.ui.view">
+			<field name="name">Liste primes et avantages</field>
+			<field name="model">finn.hr.bonuse.advantage</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!-- <field name="name"/> -->
+					<field name="type_advantage"/>
+					<field name="rule_id"/>
+					<field name="category_id"/>
+					<field name="code"/>
+					<field name="amount_adv"/>
+					<field name="date_start"/>
+					<field name="date_end"/>
+					<field name="employee_ids" widget="many2many_tags"/>
+					<field name="contract_ids" widget="many2many_tags"/>
+					<field name="state" widget="badge" decoration-danger="state == 'cancel'" decoration-warning="state == 'end'" decoration-success="state == 'open'"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="hr_bonuse_advantage_action" model="ir.actions.act_window">
+            <field name="name">Primes et avantages</field>
+            <field name="res_model">finn.hr.bonuse.advantage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+  	</data>
+</odoo>

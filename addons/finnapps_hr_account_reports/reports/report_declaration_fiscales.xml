@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+
+	    <template id="report_decFis_doc">
+	    	<br/>
+		    <div class="page">
+		    	
+		    	<style type="text/css">
+                    .td_f {
+						font-size: 154t;
+						padding-left: 1px;
+					}
+					.td_pad{
+						padding-bottom: 10px;
+						padding-top: 10px;
+					}
+					.b_right {
+						border-right: 1px solid;
+					}
+					.b_border {
+						border: 1px solid black;
+					}
+					
+					.text_center {
+						text-align: center;
+					}
+					.text_right {
+						text-align: right;
+					}
+					.text_left {
+						text-align: left;
+					}
+					.arrow {
+						width: 105px;
+					}
+					.arrow_1 {
+						width: 39px;
+					}
+					.line_h {
+						margin-top: 50px;
+						width: 50px;
+						background: black;
+						height: 2px;
+						float: left;
+					}
+					.line_v {
+						width: 2px;
+						background: black;
+						height: 52px;
+						float: left;
+					}
+					.point_left {
+						width: 0;
+						height: 0;
+						border-top: 5px solid transparent;
+						border-bottom: 5px solid transparent;
+						border-right: 10px solid black;
+						float: left;
+						margin-top: 46px;
+					}
+					.point_right {
+						width: 0;
+						height: 0;
+						border-top: 5px solid transparent;
+						border-bottom: 5px solid transparent;
+						border-left: 10px solid black;
+						float: left;
+						margin-top: 46px;
+					}
+					.my_table {
+						margin-bottom: 20px;
+					}
+					.underline {
+					
+					   display:block;
+					   width:50% ;
+					   border-top: 1px solid #000;
+
+					}
+					.rotate {
+						height: 500px; 
+						width: 80px ;
+	                    transform: rotate(-90deg);
+	                    -moz-transform: rotate(-90deg);
+	                    -webkit-transform: rotate(-90deg);
+	                    -o-transform: rotate(-90deg);
+	                    -ms-transform: rotate(-90deg);
+	                    margin-left: -10px;
+	                    margin-buttom: 5px;
+	                    line-height: 1.5; 
+					}
+					.rotate2 {
+						width: 30px; height: 80px;
+						flex-wrap: nowrap;
+	                    transform: rotate(-90deg);
+	                    -moz-transform: rotate(-90deg);
+	                    -webkit-transform: rotate(-90deg);
+	                    -o-transform: rotate(-90deg);
+	                    -ms-transform: rotate(-90deg);
+					}
+
+                </style>
+                <div class="row">
+                	<div class="col-12">
+                <table class="my_table" style="width:20%; float:left; margin-left:50px;">
+					<tr>
+						<td  colspan="3" class="text_center td_f"> 
+							DIRECTION GENERALE<br/>DES IMPÔTS
+
+					</td>
+					</tr>
+					
+					<br/>
+					
+					
+					<tr> 
+						<td class="text_center td_f" colspan="3" >DIRECTION DES IMPÔTS</td>
+					</tr>
+					<tr style="height:24px;">
+						<td  colspan="1" class="text_left td_f" > <span> DE </span> </td> 
+						<td colspan="2" class="text_left td_f"  ><span t-esc="o.direction_impots_fr" /></td>
+					</tr>
+				
+					<tr >
+						<td colspan="3" class="text_center td_f"><b>CENTRE DES IMPÔTS</b></td>
+					</tr>
+			
+					<tr style="height:24px;">
+						<td colspan="1" class="text_left td_f"><span> DE </span> </td> 
+						<td colspan="2" class="text_left td_f"  ><span t-esc="o.centre_impots_fr" /></td>
+
+					</tr>
+				</table>
+
+
+				<table class="my_table" style="width:50%; float:left; margin-left:10px; margin-right:10px;" >
+					<tr>
+						<td  colspan="3" class="text_center td_f"> <b>الجمهــوريــة الجـزائـريــة الديمقراطيـة الشعبيــة</b></td>
+					</tr>
+					
+
+					<tr> 
+						<td class="text_center td_f" colspan="3" >REPUBLIQUE ALGERIENNE DEMOCRATIQUE ET POPULAIRE</td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_right td_f" colspan="3" > <span t-esc="o.year" />  <span><b>التصـريـح بالمرتبات والأجـورالمختلفـة المـدفـوعـة خـلال سنة</b></span></td>
+					</tr>
+
+					<tr style="height:24px;">
+						<td class="text_left td_f" colspan="3"><span><b>Déclaration des traitements et émoluments divers payés pendant l’année</b></span> <span t-esc="o.year" /></td>
+					</tr>
+					
+					<tr> 
+						<td class="text_center td_f" colspan="3" ><b>الإقتطاعات من المصدر الخاص بالضريبة على الدخل الإجمالي</b></td>
+					</tr>
+
+					<tr style="height:24px;">
+						<td class="text_left td_f"  colspan="3"><span> <b>Retenues à la source au titre de l’Impôt sur le Revenu Global (I.R.G)</b> </span> <span t-esc="o.year" /></td>
+
+					</tr>
+				</table>
+
+
+
+
+
+
+				<table class="my_table" style="width:20%; float:right; margin-right:50px;">
+					<tr>
+						<td  colspan="3" class="text_center td_f" style="font-size: 10px;" > Série G n° 29 ter 2009</td>
+					</tr>
+					<br/>
+
+
+					<tr> 
+						<td class="text_center td_f" colspan="3" >المـديـريـة العامة الضرائب</td>
+					</tr>
+				
+					<tr> 
+						<td class="text_center td_f" colspan="3" >مـديـريـة الضرائب</td>
+					</tr>
+					
+
+					<tr style="height:24px;">
+						<td class="text_right td_f" style="width:200px;"> <span t-esc="o.direction_impots_ar" /> </td>
+						<td colspan="2" class="text_right td_f" style="width:200px;"><span> لـ </span></td>
+						
+					</tr>
+			
+					
+					<tr> 
+						<td class="text_center td_f" colspan="3" ><b>مـركـز الضرائب</b></td>
+					</tr>
+
+					<tr style="height:24px;">
+						<td class="text_right td_f" style="width:200px;"> <span t-esc="o.centre_impots_ar" /> </td>
+						<td colspan="2" class="text_right td_f" style="width:200px;"><span> لـ </span></td>
+					</tr>
+
+					
+				</table>
+				</div>
+			</div>
+
+
+				<!-- ___________________ SECOND TABLES __________________ -->
+				<div class="row" >
+					<div class="col-12">
+				 <table style="width:20%; float:left; margin-left:50px; border: 1px solid black;">
+					<tr>
+						<td class="text_center td_f">Cadre à remplir par le centre<br/>des impôts</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+
+					<tr style="height:24px;"> 
+						<td class="text_left td_f" ><span>d </span> <span> ................................</span></td>
+					</tr>
+				
+					
+					<tr>
+						<td class="text_center td_f">Accusé de réception envoyé</td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_left td_f" ><span>le </span> <span> ................................</span></td>
+
+					</tr>
+				</table>
+
+				<table style="width:50%; float:left; margin-left:10px; margin-right:10px;" >
+					<tr>
+						<td class="text_left td_f">Par M:</td>
+						<td class="text_center td_f"> <span t-esc="o.raison_sociale" /> </td>
+						<td class="text_right td_f">:من طرف السيد</td>
+
+					</tr>
+					<tr>
+						<td  class="text_center td_f" colspan="3" style="font-size:12px;" > (Nom et prénoms ou raison sociale) (الشركة إسم - اللقب - الإسم)</td>
+						
+					</tr>
+
+					<tr>
+						<td class="text_left td_f">Profession :</td>
+						<td class="text_center td_f"> <span t-esc="o.profession.name" /> </td>
+						<td class="text_right td_f">:المهنـة </td>
+
+					</tr>
+
+					<tr>
+						<td rowspan="2" class="text_center td_f" > Adresse de <br/>la Direction <br/>de l’entreprise</td>
+						<td  class="text_center td_f">actuellement: <span t-esc="o.adress" /> :حاليا</td>
+						<td rowspan="2" class="text_right td_f">عنوان مديرية الشركة</td>
+					</tr>
+					<tr>
+						<td><span class="text_center td_f">au 1er janvier:</span> <span class="text_center td_f" style="margin-left: 20px;">........................................</span> <span class="text_right td_f">:جانفي 01 من</span></td>
+
+					</tr>
+					<tr>
+						<td  class="text_center td_f" colspan="3" style="font-size:12px;" > (Nom et prénoms ou raison sociale) (الشركة إسم - اللقب - الإسم)</td>
+						
+					</tr>
+				</table>
+
+
+				<table style="width:20%; float:right; margin-right:50px; border: 1px solid black;">
+					<tr>
+						<td class="text_center td_f">إطار مخصص لممركز الضرائب الضرائب</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+
+					<tr style="height:24px;"> 
+						<td class="text_right td_f" ><span>................................ </span> <span> :بـ </span></td>
+					</tr>
+				
+					
+					<tr>
+						<td class="text_center td_f">وصل إستلام الإرسال</td>
+					</tr>
+					<tr style="height:24px;">
+						<td class="text_right td_f" ><span>................................ </span> <span> :يوم </span></td>
+
+					</tr>
+				</table>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-12">
+				<table style="width:20%; float:left; margin-left:50px; border: 1px solid black;">
+					<tr>
+						<td class="text_center td_f"><b>MONTANT<br/>des salaires bruts versés</b></td>
+					</tr>
+					<tr>
+						<td  class="text_center td_f" > <span t-esc="'{0:,.2f}'.format(abs(o.montant)).replace(',', ' ')" />  DA</td>
+					</tr>
+
+					
+				</table>
+
+				<table style="width:50%; float:left; margin-left:10px; margin-right:10px;">
+					<tr>
+						<td style="width: 10%;" class="text_center td_f"><b>رقــم التعريـف الجبائي</b></td>
+						<td rowspan="2" style="width: 70px; ">
+							<div style="margin-left:24px; float:left;">
+							<div class="arrow">
+								<div class="line_h"></div>
+								<div class="point_right"></div>
+								
+							</div>
+							</div>
+						</td>
+						<td class="text_left"  style="width: 100%; " rowspan="2">
+							
+							<table style=" margin-top:15px; border:1px solid; border-top:0; font-size:14px;">
+										<tr>
+											<t t-if="o.nif" >
+												<t t-foreach="o.nif" t-as="number">
+													<td style="width:18px; height:17px;" class="b_right text_center"> <span t-esc="number" /> </td>
+												</t>
+											</t>
+											<t t-else="" >
+												<t t-foreach="range(0,15)" t-as="number">
+													<td style="width:18px; height:17px;" class="b_right text_center">  </td>
+												</t>
+											</t>
+											
+											
+										</tr>
+							</table>
+							
+						</td>
+						
+					</tr>
+					<tr>
+						<td  style="width: 40%;" class="text_center td_f" ><b>Numéro d’Identification Fiscale</b></td>
+					</tr>
+
+					
+				</table>
+
+				<table style="width:20%; float:left; margin-right:50px; border: 1px solid black;">
+					<tr>
+						<td class="text_center td_f"><b>المبلغ الخام للأجور المدفوعة</b></td>
+					</tr>
+					<tr>
+					<td  class="text_center td_f" ><span style="float: left;margin-left:60px;">دج </span> <span style="float: right;margin-right:60px;" t-esc="'{0:,.2f}'.format(abs(o.montant)).replace(',', ' ')" /> </td>
+					</tr>
+
+					
+				</table>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-12">
+				<table style="width:90%; float:center; margin-left:50px; margin-right:50px; ">
+					
+					<tr>
+						<td  class="text_center td_f" > <span t-esc="o.year" /> أ - قيمة المبالغ المدفوعة إلى صندوق القابض والمتعلقة بالمرتبات والأجور المدفوعة خلال سنة</td>
+					</tr>
+					<tr>
+						<td  class="text_center td_f" >A. - Montant des sommes versées à la Caisse de Receveur et se rapportant aux traitements et salaires payés pendant l’année  <span t-esc="o.year" /> </td>
+					</tr>
+
+					
+				</table>
+				</div>
+			</div>
+			<p style="page-break-before:always;"/>
+
+			<br/>
+			<br/>
+			
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-1">
+					<img t-att-src="'/finnapps_hr_account_reports/static/src/img/left.png'" height="500" width="93" />
+
+				</div>
+				<div class="col-10">
+
+				
+				<table class="b_border" style="width:100%; float:center;  font-size:15px;">
+						<thead>
+
+							<tr class="b_border">
+					
+								<th class="text_center b_border" rowspan="2">MOIS<br/> auquel se rapportent <br/>les sommes versées</th>
+								<th class="text_center b_border" rowspan="2">DATE <br/>de la<br/> quittance</th>
+								<th class="text_center b_border" colspan="4">SOMMES VERSEES</th>
+								<th class="text_center b_border" colspan="4">RETENUES A LA SOURCE VERSEES</th>
+							</tr>
+							<tr class="b_border">
+								<th class="text_center b_border" colspan="2">des traitements servant<br/> de base au calcul<br/> des retenues I.R.G</th>
+								<th class="text_center b_border" colspan="2">des pensions servant de base au <br/>calcul<br/> des retenues I.R.G</th>
+								<th class="text_center b_border" colspan="2">I.R.G. traitements, Salaires</th>
+								<th class="text_center b_border" colspan="2">I.R.G. Pensions</th>
+
+							</tr>
+
+						</thead>
+						<tbody>
+							<t t-foreach="o.fiscal_rec_id" t-as="rec" >
+								<tr >
+							
+									<td class="text_left b_border"> <span t-esc="rec.mois" /></td>
+									<td class="text_center b_border"> <span t-esc="rec.date_quit" /></td>
+									<td class="text_center b_border"> <span t-esc="'{0:,.2f}'.format(abs(rec.somme_traitement)).replace(',', ' ')"/></td>
+									<td class="text_center b_border " style="width:50px;"></td>
+									<td class="text_center b_border"> <span t-esc="'{0:,.2f}'.format(abs(rec.somme_pensions)).replace(',', ' ')"/></td>
+									<td class="text_center b_border" style="width:50px;"> </td>
+									<td class="text_center b_border"> <span t-esc="'{0:,.2f}'.format(abs(rec.retenu_traitement)).replace(',', ' ')" /></td>
+									<td class="text_center b_border" style="width:50px;"> </td>
+									<td class="text_center b_border"> <span t-esc="'{0:,.2f}'.format(abs(rec.retenu_pensions)).replace(',', ' ')" /></td>
+									<td class="text_center b_border" style="width:50px;"> </td>
+							
+								
+
+								</tr>
+
+							</t>
+							
+							<!-- <tr >
+								<td class="text_left b_border"><b>Montant des salaires exonérés</b></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+								<td class="text_center b_border"></td>
+
+							</tr> -->
+							<tr>
+								<td colspan="10" class="text_center" style="border:1px white solid; "><b>B- Montant des droits dus à raison des rémunération versées pendant l'année</b> <span t-esc="o.year" /> <b>ب- سنة خلال المدفوعة المكافآت على المستحقة الحقوق قيمة </b></td>
+							</tr>
+						</tbody>
+					</table>
+					<table></table>
+
+				</div>
+				<div class="col-1" >
+					<img t-att-src="'/finnapps_hr_account_reports/static/src/img/right.png'" height="500" width="93" />
+
+				</div>
+
+			</div>
+			
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-1" style="width:10%;">
+					<img t-att-src="'/finnapps_hr_account_reports/static/src/img/left3.png'" height="250" width="22" style="float:right;"/>
+				</div>
+
+				<div class="col-10">
+					<table style="width:100%; float:center;  font-size:12px;" class="b_border">
+
+						<thead class="text_center">
+							<tr class="b_border">
+								<th class="b_border"  rowspan="2"><br/>طبيعة الضرائب و الرسوم <br/>NATURE <br/>des impôts et taxes</th>
+								<th class="b_border" colspan="4">MONTANT TOTAL DES APPOINTEMENTS, SALAIRES<br/>PENSIONS ET RETRIBUTIONS QUELCONQUES ALLOUES<br/>AU COURS DE L'ANNEE.........</th>
+								<th class="b_border" rowspan="2"><br/>Montant net des sommes imposables (col,2 + col. 3 + col. 4 + col. 5)</th>
+								<th class="b_border" rowspan="2"><br/>Montant total des sommes dues</th>
+								<th class="b_border" rowspan="2"><br/>Montant total des sommes versées</th>
+								<th class="b_border" rowspan="2"><br/>RESTE DUE ou trop versé</th>
+							</tr>
+							<tr class="b_border">
+								<th class="b_border">Sommes payées en éspèces</th>
+								<th class="b_border">Rémunérations allouées en nature</th>
+								<th class="b_border">Salaires imposables</th>
+								<th class="b_border">Pourboire indemnités diverses</th>
+							</tr>
+						</thead>
+						<tbody>
+
+							<t t-set="d" t-value="o.fiscal_droit_id" />
+							<tr>
+								<td style="border-right: solid black 1px; font-size: 10px;">الضريبة على الدخل الإجمالي للأجور I.R.G. sur Salaires</td>
+								<td class="text_center" style="border-right: solid black 1px;" > <span t-esc="'{0:,.2f}'.format(abs(d[0].somme_paye)).replace(',', ' ')"/> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].somme_allouee)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].salaire_impo)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].pourboire)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].montant_1)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].montant_2)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].montant_3)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[0].montant_4)).replace(',', ' ')" /> </td>
+							</tr>
+							<tr style="border-bottom: 1px solid black;">
+								<td style="border-right: solid black 1px; font-size: 10px;">الضريبة على الدخل الإجمالي للمعاشات I.R.G. sur les Pensions</td>
+								<td class="text_center" style="border-right: solid black 1px;" > <span t-esc="'{0:,.2f}'.format(abs(d[1].somme_paye)).replace(',', ' ')"/> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].somme_allouee)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].salaire_impo)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].pourboire)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].montant_1)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].montant_2)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].montant_3)).replace(',', ' ')" /> </td>
+								<td class="text_center" style="border-right: solid black 1px;"> <span t-esc="'{0:,.2f}'.format(abs(d[1].montant_4)).replace(',', ' ')" /> </td>
+							</tr>
+							<tr style="border: solid white 1px;">
+								<td colspan="7"  class="text_center" style="border-left: none !important; border-right: none !important; direction: rtl;" ><br/>(ب) إذا كان المبلغ المسجل في هذا العمود، مطابقا لنقص في الدفع يقدم فورًا إلى القابض مع حافضة إشعار السلسلة (50° n G )وفي حالة العكس، فان الفائض يتم ضمه إلى الدفع القادم أو يطلب
+إسترجاعه من مدير الضرائب للولاية قبل أول أفريل</td>
+								<td class="text_center"   ><br/>TOTAL(6) </td>
+								<td class="b_border"> </td>
+							</tr>
+							<tr style="border: solid white 1px;">
+								<td  colspan="7">(b) La somme inscrite dans cette colonne sera, si elle correspond à une insuffisance de versement, remise immédiatement au receveur avec un bordereau avis, Série G
+n° 50. Dans le cas contraire, l'excèdent sera imputé sur le prochain versement ou réclamé au directeur des impôts de wilaya, en restitution, avant le 1er avril ........</td>
+								<td></td>
+								<td></td>
+							</tr>
+
+						</tbody>
+					</table>
+					
+				</div>
+			</div>
+			<p style="page-break-before:always;"/>
+
+			<br/>
+			<br/>
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-12">
+					<table style="width:100%; float:center; border: 1px solid black; font-size: 10px;">
+						<thead>
+							<tr>
+
+								<th class="rotate2 b_border text_center" style="border-bottom: none;" rowspan="3" > 
+									
+					             <br/><br/>
+					            
+								الرقـم التـسـلـسـلــي<br/>
+								NUMÉRO D'ORDRE
+								</th>
+
+								<th class="b_border text_center" style="border-bottom: none;" rowspan="3">أسماء وألقاب، صفة أو عمل<br/>
+								وعنوان الاشخاص المكافئين<br/>
+								NOMS, PRÉNOMS<br/>
+								qualité ou emploi<br/>
+								et adresse<br/>
+								des personnes rétribuées</th>
+
+								<th class="b_border text_center" style="border-bottom: none;" rowspan="3">الحـالــة العـائـلـيــة<br/>
+								SITUATION DE FAMILLE<br/>
+								au 1er janvier ...........(1)</th>
+
+								<th class="b_border text_center" style="border-bottom: none;" rowspan="3">NOMBRE<br/>
+								de personnes à charge<br/>
+								au 1er janvier .........(1)</th>
+
+								<th class="b_border text_center" rowspan="2" colspan="2">التعديلات الطارئة<br/>
+								على الحالة العائلية<br/>
+								MODIFICATIONS<br/>
+								intervenant dans la<br/>
+								situation de famille</th>
+
+								<th class="b_border text_center" style="border-bottom: none;" rowspan="3"><br/><br/>وضـعـيــة<br/>
+								CONDITION D'EMPLOI</th>
+
+								<th class="b_border text_center" colspan="2">Mois de Janvier</th>
+								<th class="b_border text_center" colspan="2">Mois de Février</th>
+								<th class="b_border text_center" colspan="2">Mois de Mars</th>
+								<th class="b_border text_center" colspan="2">Mois d'Avril</th>
+								<th class="b_border text_center" colspan="2">Mois de Mai</th>
+								<th class="b_border text_center" colspan="2">Mois de Juin</th>
+							</tr>
+							<tr>
+								
+
+								<th class="b_border text_center" style="border-bottom: none;" rowspan="2">Montant<br/>net des<br/>sommes<br/>perçues (3)<br/>(أ)</th>
+								<th class="b_border text_center" style="border-bottom: none;" rowspan="2">Retenues<br/>à la<br/>source<br/>opérées<br/>(ب)</th>
+								<t t-foreach="range(0,5)" t-as="number">
+
+									<th class="b_border text_center" style="border-bottom: none;" rowspan="2">Montant<br/>net des<br/>sommes<br/>perçues <br/>(أ)</th>
+									<th class="b_border text_center" style="border-bottom: none;" rowspan="2">Retenues<br/>à la<br/>source<br/>opérées<br/>(ب)</th>
+								</t>
+								
+							</tr>
+							<tr >
+								<th class="b_border text_center" style="border-bottom: none;">التاريخ <br/>
+								Date</th>
+
+								<th class="b_border text_center" style="border-bottom: none;">الطبيعة <br/>
+								Nature</th>
+							</tr>
+							<tr >
+								<t t-foreach="range(1,20)" t-as="number">
+									<th class="text_center" style="border-left: 1px solid black;"><span t-esc="number"/></th>
+								
+								</t>
+							</tr>
+
+						</thead>
+						<tbody >
+							<t  t-foreach="o.fiscal_emp_id" t-as="emp">
+								<tr>
+									
+									<td class="b_border text_center" > <span t-esc="emp.origin_num" /> </td>
+									<td class="b_border text_center" > <span t-esc="emp.employee_id.name" /> </td>
+									<td class="b_border text_center" > <span t-field="emp.situation" /> </td>
+									<td class="b_border text_center" > <span t-esc="emp.number_dependents" /> </td>
+									<td class="b_border text_center" > <span t-esc="emp.date" /> </td>
+									<td class="b_border text_center" > <span t-field="emp.nature" /> </td>
+									<td class="b_border text_center" > <span t-esc="emp.emploi_condition" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_jan)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_jan)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_fev)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_fev)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_mars)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_mars)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_avril)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_avril)).replace(',', ' ')" /> </td>
+									
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_mai)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_mai)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_juin)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_juin)).replace(',', ' ')" /> </td>
+									
+								</tr>
+							</t>
+
+
+							
+							
+						</tbody>
+					</table>
+
+
+				</div>
+			</div>
+		
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-12" style="font-size: 14px;">
+
+					<p>(1) Porter dans cette colonne les abréviations: C. (célibataire) - M. (marié) - V. (veuf) - D. (divorcé).</p>
+					<p>(2) Porter dans cette colonne les abréviations: C. (temps complet) - P. (temps partiel). </p>
+					<p>(3) Porter dans cette colonne le montant net perçu après déduction des cotisations ouvrières (Sécurité Sociale) et des retenues pour la retraite.</p>
+				</div>
+			</div>
+			<p style="page-break-before:always;"/>
+
+			<br/>
+			<br/>
+
+			<div class="row " style="margin-top: 20px;">
+				<div class="col-12">
+					<p style="width:100%; font-size: 12px; text-align: right; float: right;">Intercalaire - Série G n° 29 Ter - 2009 - Imprimerie Officielle (7) - Alger</p>
+					<table style="width:100%; float:center; border: 1px solid black; font-size: 10px;">
+						<thead>
+							<tr>
+								<th class="b_border text_center" colspan="2">Mois de Juillet</th>
+								<th class="b_border text_center" colspan="2">Mois d'Âout</th>
+								<th class="b_border text_center" colspan="2">Mois de Septembre</th>
+								<th class="b_border text_center" colspan="2">Mois de Octobre</th>
+								<th class="b_border text_center" colspan="2">Mois de Novembre</th>
+								<th class="b_border text_center" colspan="2">Mois de Décembre</th>
+								<th class="b_border text_center" colspan="2">%اقتطاع جزافي 15 <br/>Retenue Forfaitaire de 15%</th>
+								<th class="b_border text_center" rowspan="3"><br/>المجـمـوع<br/>TOTAL </th>
+								<th class="b_border text_center" rowspan="3"><br/>مـلاحـظــات<br/>OBSERVATIONS</th>
+
+
+							</tr>
+							<tr>
+								<t t-foreach="range(0,7)" t-as="number">
+									<th class="b_border text_center" style="border-bottom: none;" >Montant<br/>net des<br/>sommes <br/>perçues<br/>(أ)</th>
+									<th class="b_border text_center" style="border-bottom: none;" >Retenues<br/>à la<br/>source<br/>opérées<br/>(ب)</th>
+								</t>
+							</tr>
+							<tr>
+								<t t-foreach="range(20,34)" t-as="number">
+									<th class="text_center" style="border-left: 1px solid black;"><span t-esc="number"/></th>
+								
+								</t>
+							</tr>
+
+						</thead>
+						<tbody>
+							<t  t-foreach="o.fiscal_emp_id" t-as="emp">
+								<tr>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_juil)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_juil)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_aout)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_aout)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_sep)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_sep)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_oct)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_oct)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_nov)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_nov)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_dec)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_dec)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.net_15)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.retenu_15)).replace(',', ' ')" /> </td>
+
+									<td class="b_border text_center" > <span t-esc="'{0:,.2f}'.format(abs(emp.total)).replace(',', ' ')" /> </td>
+									<td class="b_border text_center" > <span t-esc="emp.observations" /> </td>
+									
+									
+								
+								</tr>
+							</t>
+						</tbody>
+					</table>
+					<br/>
+					<table style="width:100%; font-size: 12px;">
+						<tr>
+							<td class="text_left">أ) = القيمة الصافية للمبالغ المقبوضة)</td>
+							<td class="text_right"> .( سجل في هذا العمود المختصرات : ع. (أعزب)، ز. (متزوج)، ر. (أرمل)، ط. (مطلق  </td>
+							<td class="text_right">(1) </td>
+						</tr>
+						<tr>
+							<td class="text_left" rowspan="2">ب) = الاقتطاعات من المصادر المجراة)</td>
+							<td class="text_right">(سجل في هذا العمود المختصرات : ك. (وقت كامل)، ج. (وقت جزئي</td>
+							<td class="text_right">(2) </td>
+
+						</tr>
+						<tr>
+							<td class="text_right">سجل في هذا العمود المبلغ الصافي المقبوض بعد حسم النفقات العمالية (الضمان الاجتماعي) والمخصومات من أجل التقاعد</td>
+							<td class="text_right">(3) </td>
+
+						</tr>
+					</table>
+					
+				</div>
+			</div>
+
+			<p style="page-break-before:always;"/>
+
+			<br/>
+			
+			<t t-foreach="range(0,3)" t-as="number">
+				<div class="row " style="margin-top: 50px; margin-left: 50px; margin-right: 50px;">
+					<div class="col-4" style="font-size: 13px;">
+						<p><b>REMARQUE PREALABLE:</b> - Les sommes considérées
+						comme mensualité distincte pour le calcul de l'I.R.G.
+						(gratifications et primes à caractère annuel, treizième mois)
+						doivent pour chaque bénéficiaire être portées en interligne en
+						dessous de la base mensuelle normale.</p>
+
+					</div>
+					<div class="col-8" style="font-size: 18px; text-align: right;">
+						<p><b>.والريوع مدى الحياة الخاضعة للإقتطاع الخاص بالضريبة على الدخل الإجمالي</b></p>
+						<p><b>II. — APPOINTEMENTS, SALAIRES RETRIBUTIONS DIVERSES PENSIONS ET</b></p>
+					</div>
+				</div>
+
+				<div class="row " style="margin-top: 50px; margin-left: 50px; margin-right: 50px;">
+					<div class="col-8" style="font-size: 18px; text-align: left;">
+						<p><b> الأجور والمكافآت والتعويضات المختلفة والمعاشات -II</b></p>
+						<p><b>RENTES VIAGERES SOUMIS A LA RETENUE AU TITRE DE L'I.R.G.</b></p>
+					</div>
+					<div class="col-4" style="font-size: 13px; text-align: right;">
+						<p><b>ملاحظة :</b>  المبـالغ المعـتبـرة كمـبالغ شـهرية مـتمـيزة من أجل حـساب الضـريبة
+						على الدخـل الإجـمــالي (المكافــآت والعــلاوات ذات الطابع السـنوي، الشـهــر
+						الثـالث عـشـر) ينبـغي تسـجيلـها بيـن السطرين لكل مـسـتفـيـد تحت القـاعـدة
+						الشهرية العادية. </p>
+
+					</div>
+					
+				</div>
+			</t>
+
+			<p style="page-break-before:always;"/>
+
+			<br/>
+			<br/>
+			<div class="row " style="margin-top: 150px; margin-left: 100px; margin-right: 100px;">
+					<div class="col-6" style="font-size: 16px; text-align: center;">
+						<p>يشهد بصحته من طرف الممضي أسفله</p>
+						<p>Certifié exact par le soussigné,</p>
+						<p>le.....................في A ...................... ب</p>
+						<br/>
+						<p style="font-size: 10px;">الإمـضــاء</p>
+						<p style="font-size: 10px;">Signature</p>
+
+					</div>
+					<div class="col-6" style="font-size: 16px; text-align: center;">
+						<p>يشهد بصحته من طرف الممضي أسفله</p>
+						<p>Certifié exact par le soussigné,</p>
+						<p>le.....................في A ...................... ب</p>
+						<br/>
+						<p style="font-size: 10px;">الإمـضــاء</p>
+						<p style="font-size: 10px;">Signature</p>
+
+					</div>
+				</div>
+
+				<div class="row " style="margin-top: 200px; margin-left: 100px; margin-right: 100px;">
+					<div class="col-6" style="font-size: 16px; text-align: center;">
+						<p>يشهد بصحته من طرف الممضي أسفله</p>
+						<p>Certifié exact par le soussigné,</p>
+						<p>le.....................في A ...................... ب</p>
+						<br/>
+						<p  style="font-size: 10px;">الإمـضــاء</p>
+						<p style="font-size: 10px;">Signature</p>
+
+					</div>
+					<div class="col-6" style="font-size: 16px; text-align: center;">
+						<p>يشهد بصحته من طرف الممضي أسفله</p>
+						<p>Certifié exact par le soussigné,</p>
+						<p>le.....................في A ...................... ب</p>
+						<br/>
+						<p style="font-size: 10px;">الإمـضــاء</p>
+						<p style="font-size: 10px;">Signature</p>
+
+					</div>
+				</div>
+
+
+			</div>
+		</template>
+
+		<template id="custom_external_layout" inherit_id="web.internal_layout">
+     		<xpath expr="//div[hasclass('header')]" position="replace">
+     			
+     		</xpath>
+    	</template>
+
+
+		<template id="report_hr_payroll_desFis" >
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="finnapps_hr_account_reports.custom_external_layout">  
+	
+						<t t-call="finnapps_hr_account_reports.report_decFis_doc"/>
+					</t>
+				</t>
+			</t>
+		</template>
+		
+	</data>
+</odoo>

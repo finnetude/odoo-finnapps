@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finn_hr_bonuse_advantage,finn.hr.bonuse.advantage,model_finn_hr_bonuse_advantage,finnapps_hr_payroll_dz.group_hr_payroll_manager,1,1,1,1
+access_finn_hr_lot_advantage,finn.hr.lot.advantage,model_finn_hr_lot_advantage,finnapps_hr_payroll_dz.group_hr_payroll_manager,1,1,1,1

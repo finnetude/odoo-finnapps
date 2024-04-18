@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+		<record id="hr_lot_advantage_view_form" model="ir.ui.view">
+			<field name="name">Formulaire de lot primes et avantages</field>
+			<field name="model">finn.hr.lot.advantage</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<!-- <button name="adv_confirme" string="Confirmer" class="oe_highlight" type="object" attrs="{'invisible':[('state','in',['open','end','cancel','lock'])]}"/>
+						<button name="adv_done" string="Terminer" class="oe_highlight" type="object" attrs="{'invisible':[('state','in',['draft','end','cancel','lock'])]}"/>
+						<button name="adv_draft" string="Remettre en bourillon" type="object" attrs="{'invisible':[('state','in',['draft','open','lock'])]}"/>
+						<button name="adv_lock" string="Bloquer" type="object" attrs="{'invisible':[('state','in',['draft','end','cancel','lock'])]}"/>
+						<button name="adv_unlock" string="Débloquer" type="object" attrs="{'in   sible':[('state','!=','lock')]}"/>
+						<button name="adv_cancel" string="Annuler" type="object" attrs="{'invisible':[('state','in',['draft','end','cancel','lock'])]}"/> -->
+						<field name="state" widget="statusbar" editable="top" statusbar_visible="draft,open,end"/>
+					</header>
+					<sheet>
+						<h1 invisible="type_advantage">
+							Veuillez choisir un type d'avatange
+						</h1>
+						<h1 invisible="rule_id != False or type_advantage == False">
+							Veuillez choisir maintenant une règle salariale à appliquer 
+						</h1>
+						<h1 invisible="not type_advantage">
+							<field name="name"/>
+						</h1>
+						<br/>
+						<group>
+							<field name="type_advantage" readonly="state != 'draft'"/>
+						</group>
+						<group invisible="type_advantage == False">
+							<group name="group_gauche" string="Avantage">
+								<label for="rule_id"/>
+								<div id="rule_info">
+									<field name="rule_id" 
+										options="{'no_create': True}" 
+										readonly="state != 'draft'"
+										/>
+
+									<field name="category_id" 
+										nolabel="1" 
+										class="oe_edit_only" 
+										invisible="category_id == False" 
+										options="{'no_open': True, 'no_create': True}"
+										/>
+
+									<field name="code" 
+										nolabel="1" 
+										class="oe_edit_only" 
+										invisible="not code"/>
+								</div>
+							</group>
+							<group name="group_droite" string="Validité">
+								<field name="date_start" 
+									required="type_advantage != False"
+									readonly="state != 'draft'"/>
+								<field name="date_end" 
+									required="type_advantage != False"
+									readonly="state != 'draft'"/>
+							</group>
+						</group>
+						<notebook invisible="not type_advantage">
+							<page name="avantage" 
+								string="Avantages" 
+								invisible="rule_id == False">
+								<field name="advantage_ids" context="{'default_type_advantage': 'type_advantage','default_rule_id': 'rule_id','default_date_start': 'date_start','default_date_end': 'date_end',}"/>
+							</page>
+							<page name="note" string="Notes">
+								<field name="description"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="hr_lot_advantage_view_tree" model="ir.ui.view">
+			<field name="name">Liste de lot de primes et avantages</field>
+			<field name="model">finn.hr.lot.advantage</field>
+			<field name="arch" type="xml">
+				<tree>
+					<!-- <field name="name"/> -->
+					<field name="type_advantage"/>
+					<field name="rule_id"/>
+					<field name="category_id"/>
+					<field name="code"/>
+					<field name="date_start"/>
+					<field name="date_end"/>
+					<field name="state" widget="badge" decoration-danger="state == 'cancel'" decoration-warning="state == 'end'" decoration-success="state == 'open'"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="hr_lot_advantage_action" model="ir.actions.act_window">
+            <field name="name">Lots de primes et avantages</field>
+            <field name="res_model">finn.hr.lot.advantage</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+  	</data>
+</odoo>

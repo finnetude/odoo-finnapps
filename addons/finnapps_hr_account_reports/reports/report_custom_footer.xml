@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <data>
+
+        <template id="report_custom_footer">
+            <div class="footer">
+               
+                <div class="row">
+                     <div style="border-top: 1px solid #437ba4;"/>
+                    <div class="text-center" style="margin-left:50%;margin-top:5px;">
+                        <span class="page" />/<span class="topage" />
+                    </div>
+                </div>
+            </div>
+        </template>
+    </data>
+</odoo>

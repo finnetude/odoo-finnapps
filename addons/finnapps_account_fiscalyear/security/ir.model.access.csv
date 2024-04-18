@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finn_periode,finn_periode,model_finn_periode,base.group_user,1,1,1,1
+access_finn_exercice,finn_exercice,model_finn_exercice,base.group_user,1,1,1,1
+access_finn_annuler_ecriture,finn_annuler_ecriture,model_finn_annuler_ecriture,base.group_user,1,1,1,1
+access_finn_close_periode,finn_close_periode,model_finn_close_periode,base.group_user,1,1,1,1
+access_finn_fermer_exercice,finn_fermer_exercice,model_finn_fermer_exercice,base.group_user,1,1,1,1
+access_finn_generer_ecriture,finn_generer_ecriture,model_finn_generer_ecriture,base.group_user,1,1,1,1
+access_finn_lettrer_ecriture,finn_lettrer_ecriture,model_finn_lettrer_ecriture,base.group_user,1,1,1,1
+access_finn_generer_exercice,finn_generer_exercice,model_finn_generer_exercice,base.group_user,1,1,1,1
+access_finn_message_error,finn_message_error,model_finn_message_error,base.group_user,1,1,1,1

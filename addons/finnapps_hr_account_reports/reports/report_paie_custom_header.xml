@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+  <data>
+    <template id="report_custom_header">
+      <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+          <t t-set="company" t-value="res_company"></t>
+      </t>
+        
+
+      <t t-set="list_months" t-value="{'1':'Janvier','2':'Février','3':'Mars','4':'Avril',
+        '5':'Mai','6':'Juin','7':'Juillet','8':'Août','9':'Septembre',
+        '10':'Octobre','11':'Novembre','12':'Décembre'}"/>
+
+        
+      <div>
+          <div>
+              <img  t-att-src="image_data_uri(company.logo)" alt="Logo" style="max-height: 45px;"/>
+              <div style="border-top: solid 1px black;margin-top:5px;"/>
+              <br/>
+              <span t-field="company.forme_juridique.code"/> <span t-field="company.name"/>
+              <div style="float: right;" >
+            <span t-esc="datetime.datetime.now().day" /> <span t-esc="list_months.get('{}'.format(datetime.datetime.now().month))"/> <span t-esc="datetime.datetime.now().year" />
+          </div>
+            
+          </div>
+          
+      </div>
+
+    </template>
+
+
+    <template id="report_custom_header3">
+      <t t-if="o and 'company_id' in o">
+        <t t-set="company" t-value="o.company_id"></t>
+      </t>
+      <t t-if="not o or not 'company_id' in o">
+          <t t-set="company" t-value="res_company"></t>
+      </t>
+        <div class="header">
+        
+        <div class="row">
+            <div class="col-xs-3">
+                <span t-field="company.partner_id.name"/><br/>
+              
+            </div>
+        </div>
+        <div>
+          <t t-foreach="o.get_datas()['total']" t-as="t">
+          <center><h2 style="font-size:55px;color:#42484e;"><b>Livre des Préstations De Service</b></h2></center>
+            <center><b><span style="font-size:25px;">Pour  </span><span t-esc="t['month'].upper()" style="font-size:25px;"/> <span t-esc="t['year']" style="font-size:25px;"/></b></center><br/><br/>
+          </t>
+        </div>
+      </div>
+    </template>
+   
+
+
+  </data>
+</odoo>

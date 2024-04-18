@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+        <!-- BALAN PASSIF -->
+		<record id="elfc_01bilanp" model="finn.liasse.fiscale.type.line">
+			<field name="name">Capital émis</field>
+			<field name="code">01bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['101:S','108:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_02bilanp" model="finn.liasse.fiscale.type.line">
+			<field name="name">Capital non appelé</field>
+			<field name="code">02bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['109:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_03bilanp" model="finn.liasse.fiscale.type.line">
+			<field name="name">Primes et réserves- Réserves consolidées(1)</field>
+			<field name="code">03bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['108:S','104:S','106:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_04bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Ecart de réévaluation</field>
+			<field name="code">04bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['105:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+
+		<record id="elfc_05bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Ecart d’équivalence (1)</field>
+			<field name="code">05bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['107:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_06bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Résultat net - Résultat net part du groupe (1)</field>
+			<field name="code">06bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['6:S','7:S','12:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_07bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres capitaux propres – Report à nouveau</field>
+			<field name="code">07bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['11:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_08bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Part de la société consolidante (1)</field>
+			<field name="code">08bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_09bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Part des minoritaires (1)</field>
+			<field name="code">09bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_10bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL I</field>
+			<field name="code">10bilanp</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:01bilanp', '+:02bilanp', '+:03bilanp', '+:04bilanp', '+:05bilanp', '+:06bilanp', '+:07bilanp', '+:08bilanp', '+:09bilanp']</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_11bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Emprunts et dettes financières</field>
+			<field name="code">11bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['16:S','17:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_12bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts (différés et provisionnés)</field>
+			<field name="code">12bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['134:S','155:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_13bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres dettes non courantes</field>
+			<field name="code">13bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['229:S','269:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_14bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Provisions et produits constatés d’avance</field>
+			<field name="code">14bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['15:S','13:S'],
+					'except':['155','133','134']
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_15bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL II</field>
+			<field name="code">15bilanp</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:11bilanp', '+:12bilanp', '+:13bilanp', '+:14bilanp']</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_16bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Fournisseurs et comptes rattachés</field>
+			<field name="code">16bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['40:S'],
+					'except':['409']
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_17bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts</field>
+			<field name="code">17bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['444:C','445:C','447:C'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_18bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres dettes</field>
+			<field name="code">18bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['419:S','509:S','42:C','43:C','440:C','441:C','442:C','443:C','446:C','448:C','449:C','45:C','46:C','47:C','48:C'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_19bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">Trésorerie Passif</field>
+			<field name="code">19bilanp</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['51:C','52:C','58:C'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_20bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL III</field>
+			<field name="code">20bilanp</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:16bilanp', '+:17bilanp', '+:18bilanp', '+:19bilanp']</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+		   
+		<record id="elfc_21bilana" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL PASSIF (I+II+III)</field>
+			<field name="code">21bilanp</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:10bilanp', '+:15bilanp', '+:20bilanp']</field>
+			<field name="report_id" ref="bilan_passif"/>
+		</record>
+	</data>
+</odoo>

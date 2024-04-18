@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id = "message_error_view" model = "ir.ui.view">
+            <field name = "name">message.error.view</field>
+            <field name = "model">finn.message.error</field>
+            <field name = "arch" type = "xml">
+                <form>
+                    <group>
+                        <field name = "body" nolabel="1" readonly="1"/>
+                    </group>
+                    <footer></footer>
+                </form>
+            </field>
+        </record>
+    </data>
+</odoo>

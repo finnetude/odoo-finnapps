@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+     <record id="res_config_settings_config_timbre" model="ir.ui.view">
+        <field name="name">res.config.settings.config.timbre</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="account.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+          <xpath expr="//block[@name='default_taxes_setting_container']" position="after">
+
+            
+                <h2 >Configuration de timbre</h2>
+                <div class="row mt16 o_settings_container" name="configuration_timbre">
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane" >
+                        <span class="o_form_label" >
+                        Tranche
+                      </span>
+                      <div class="text-muted" >
+                        
+                                            
+                                        
+                      </div>
+                      <field name="tranche" />
+                     
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane" >
+                        <span class="o_form_label" >
+                        Pourcentage
+                      </span>
+                      <div class="text-muted" >
+                        
+                                                                 
+                      </div>
+                      <field name="prix" />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane" >
+                        <span class="o_form_label" >
+                        Compte contrepartie vente
+                      </span>
+                      <div class="text-muted" >
+                        
+                                           
+                                        
+                      </div>
+                      <field name="sale_timbre" />
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane" />
+                      
+                  </div>
+
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane" >
+                        <span class="o_form_label" >
+                        Montant minimal
+                      </span>
+                      <div class="text-muted" >
+                        
+                                           
+                                        
+                      </div>
+                      <field name="mnt_min" />
+                     
+                    </div>
+                  </div>
+
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" />
+                    <div class="o_setting_right_pane" >
+                        <span class="o_form_label" >
+                        Montant maximal
+                      </span>
+                      <div class="text-muted" >
+                        
+                                           
+                                        
+                      </div>
+                      <field name="mnt_max" />
+                     
+                    </div>
+                  </div>
+
+               
+                  <div class="col-12 col-lg-6 o_setting_box" >
+                    <div class="o_setting_left_pane" >
+                        <field name="montant_en_lettre" />
+                    </div>
+                    <div class="o_setting_right_pane" >
+                      <span class="o_form_label" >
+                        Montant en lettre
+                      </span>
+                      <div class="text-muted" >
+                        
+                            Afficher le montant en lettre sur l’impression des factures.               
+                                        
+                      </div>
+
+
+                      
+                     
+                    </div>
+                  </div>
+
+                   <div class="col-12 col-lg-6 o_setting_box" >
+                        <div class="o_setting_left_pane" />
+                        <div class="o_setting_right_pane" >
+                            <span class="o_form_label" >
+                           Se baser sur
+                          </span>
+                          <div class="text-muted" >
+                            
+                                               
+                                            
+                          </div>
+                          <field name="based_on" />
+                         
+                        </div>
+                      </div>
+                    
+            </div>
+            
+          </xpath>
+
+     
+
+        </field>
+      </record>
+
+</odoo>

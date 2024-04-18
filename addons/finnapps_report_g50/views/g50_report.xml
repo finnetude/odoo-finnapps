@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_g50_view_form" model="ir.ui.view">
+            <field name="name">Rapport G50 formulaire</field>
+            <field name="model">report.g50</field>
+            <field name="arch" type="xml">
+                <form string="G50">
+                    <field name="switch_button" invisible="1"/>
+                    <header>
+                        <button name="calculate_line" string="Calculer les lignes" type="object" class="oe_highlight" 
+                            invisible="state == 'lock' or switch_button == True"/>
+
+
+                        <button name="recalculate_line" string="Recalculer les lignes" type="object" class="oe_highlight" 
+                            invisible="state == 'lock' or switch_button == False"/>
+
+
+                        <button name="to_lock" string="Verrouiller" type="object" class="oe_highlight" 
+                            invisible="state == 'lock'"/>
+
+                        <button name="to_draft" string="Remettre en brouillon" type="object" 
+                            invisible="state == 'draft'"/>
+
+
+                        <button name="action_report" type="object" string="Imprimer" class="oe_highlight" />
+
+                        <button name="reinitialisation" string="Réinitialisation le formulaire" type="object" 
+                            invisible="state == 'lock'"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" string="Nom"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group string="Exercice et période">
+                                <field name='exercice_id' options="{'no_create': True, 'no_create_edit':True}" 
+                                    readonly="state == 'lock'"/>
+
+
+                                <field name="type" readonly="state == 'lock'"/>
+                                <field name="month" string="Mois" 
+                                    invisible="type != '1'"  required="type == '1'"  readonly="state =='lock'"/>
+                                <field name="trimestre" string="Trimestre" 
+                                    invisible="type != '2'"  required="type == '2'"  readonly="state =='lock'"/>/>
+                            </group>
+                            <group string="Localisation">
+                                <field name="state_id" readonly="state == 'lock'"/>
+                                <field name="state_inspection_id" readonly="state == 'lock'"/>
+                                <field name="commune_recette_id" readonly="state == 'lock'"/>
+                                <field name="commune_id" readonly ="state == 'lock'"/>
+                            </group>
+                            <group string="Configuration">
+                                <field name="configuration_id" readonly="state == 'lock'"/>
+                                <field name="user_id" readonly="state == 'lock'"/>
+                            </group>
+                            <group string="Autres">
+                                <field name="company_id" options="{'no_create': True, 'no_create_edit':True}" readonly="1"/>
+                                <field name="date" readonly="state == 'lock'"/>
+                                <field name="lock_date" invisible="state == 'draft'" readonly="state == 'lock'"/>
+                                <field name="bp" readonly="state == 'lock'"/>
+                            </group>
+                        </group>
+                        <notebook invisible="id == False">
+                            <page string="Pièces comptables">
+                                <group>
+                                    <group>
+                                        <field name="with_move_entry" readonly="state == 'lock'"/>
+                                    </group>
+                                    <group>
+                                        <button name="calculate_move" string="Récupération des pièces comptables" type="object" class="oe_highlight" invisible="state == 'lock'" style="float:right;"/>
+                                    </group>
+                                </group>
+                                <field name="move_g50_id" readonly="state == 'lock'">
+                                    <tree>
+                                        <field name="move_id"/>
+                                        <field name="date"/>
+                                        <field name="paid_date"/>
+                                    </tree>
+                                    <form>
+                                        <group>
+                                            <group>
+                                                <field name="move_id" required="1"/>  
+                                                <field name="move_type"/>  
+                                            </group>
+                                            <group>
+                                                <field name="date"/>
+                                                <field name="paid_date"/>
+                                            </group>
+                                        </group>
+                                        <notebook>
+                                            <page string="Lignes de facturation">
+                                                <field name="invoice_line_ids" options="{'no_create': True, 'no_open': True}">
+                                                    <tree>
+                                                        <field name="product_id"/>
+                                                        <field name="name"/>
+                                                        <field name="account_id" groups="account.group_account_readonly"/>
+                                                        <!--<field name="analytic_account_id" groups="analytic.group_analytic_accounting"/>-->
+                                                        <!--<field name="analytic_tag_ids" groups="analytic.group_analytic_tags" widget="many2many_tags"/>-->
+                                                        <field name="quantity"/>
+                                                        <field name="product_uom_id" groups="uom.group_uom"/>
+                                                        <field name="price_unit"/>
+                                                        <field name="discount"/>
+                                                        <field name="tax_ids" widget="many2many_tags"/>
+                                                        <field name="price_subtotal"/>
+                                                        <field name="price_total"/>                
+                                                    </tree>
+                                                </field>
+                                            </page>
+                                            <page string="Écriture comptable">
+                                                <field name="move_line_ids"/>
+                                            </page>
+                                        </notebook>
+                                    </form>
+                                </field>
+                            </page>
+                            <page name="tap" string="TAP">
+                            </page>
+                            <page name="ibs" string="IBS">
+                            </page>
+                            <page name="irg" string="IRG">
+                            </page>
+                            <page name="timbre" string="Timbre">
+                            </page>
+                            <page name="autre" string="Autres">
+                            </page>
+                            <page name="tva_9" string="TVA 9%">
+                            </page>
+                            <page name="tva_19" string="TVA 19%">
+                            </page>
+                            <page name="deduction" string="Deduction">
+                            </page>
+                            <page name="tva_p" string="TVA à Payer">
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="report_g50_view_tree" model="ir.ui.view">
+            <field name="name">Rapport G50 liste</field>
+            <field name="model">report.g50</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="configuration_id"/>
+                    <field name="company_id"/>
+                    <field name='exercice_id'/>
+                    <field name ='month'/>
+                </tree>
+            </field>
+        </record>
+    
+        <record id="action_report_g50" model="ir.actions.act_window">
+            <field name="name">Rapport G50</field>
+            <field name="res_model">report.g50</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="internal_layout_report_cnas">
+        <t t-if="not o" t-set="o" t-value="doc" />
+        <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id"
+            t-att-data-oe-lang="o and o.env.context.get('lang')">
+            <t t-out="0" />
+        </div>
+    </template>
+
+
+    <template id="report_declaration_cnas_doc">
+        <t t-call="finnapps_hr_cnas_reports.internal_layout_report_cnas" t-lang="ar_001">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <div class="page">
+                        <style>
+                            table,
+                            th,
+                            td,
+                            tr {
+                                border-collapse: collapse;
+                                border: 1px solid #000000;
+
+
+                            }
+
+                            thead,
+                            tfooter {
+                                border: 1px solid #000000;
+                            }
+
+                            tbody {
+                                border-collapse: collapse;
+                                border: 1px solid #000000;
+                                border-bottom: 0;
+                            }
+
+                            .left {
+                                display: block;
+                                margin-left: 50px;
+
+                            }
+
+                            .right {
+                                display: block;
+                                float: right;
+
+                            }
+
+                            .container {
+                                margin-top: 10px;
+                            }
+
+                            #v {
+                                float: left;
+
+                            }
+
+                            #vk {
+                                float: right;
+
+                            }
+                            #mv_th ,#mv_td {
+                                -webkit-box-flex: 1 !important;
+                                box-flex: 1 !important;
+                                width: 30% !important;
+                            }
+        
+                        </style>
+                        <t t-call="finnapps_hr_cnas_reports.custom_session_header_footer" />
+                        <!-- <h2><span t-field="o.company_id.name" /></h2> -->
+                        <center>
+                            <h2 style="font-size:35px;"><b>DÉCLARATION D'ASSIETTE DE COTISATION</b></h2>
+                        </center>
+                        <center>
+
+                            <t t-if="o.periode == '1' ">
+
+                                <h3> Période: <b><span t-field="o.month" />/<span t-field="o.year" /></b></h3>
+
+                            </t>
+                            <t t-else="o.periode == '2' ">
+
+                                <h3> Période: <b><span t-field="o.trimester" />/<span t-field="o.year" /></b></h3>
+
+                            </t>
+
+                        </center>
+
+                        <br />
+
+                        <h4 style="font-weight: normal;">
+                            <div style="float:left; ">À founir au plus tard le: <b><span t-field="o.limit_date" /></b>
+                            </div>
+                            <div style="float:right; ">Même avec la mention néant</div>
+                        </h4><br /><br />
+                        <div>
+                            <table style="width:70%;float:left; margin-left:15px; ">
+                                <thead style="display: table-row-group">
+                                    <tr>
+                                        <th rowspan="2">CODE</th>
+                                        <th rowspan="2" colspan="3">NATURE DES COTISATIONS</th>
+                                        <th colspan="6" class="b_bottom_3">DECOMPTE DES COTISATIONS</th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">ASSIETTE</th>
+                                        <th>TAUX</th>
+                                        <th colspan="2">MONTANT</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sale_tbody">
+
+                                    <tr t-foreach="o.line_cotisation_ids" t-as="l">
+                                        <t t-if="l.assiette != 0 ">
+                                            <td class="t_center b_bottom"><span t-field="l.code" /></td>
+                                            <td colspan="3" class="b_bottom"><span t-field="l.nature_cotisation"
+                                                    style="float:left;" /></td>
+                                            <td colspan="2" class="b_bottom"><span t-field="l.assiette"
+                                                    style="float:right;" /></td>
+                                            <td class="b_bottom"><span t-field="l.taux" style="float:right;" /></td>
+                                            <td colspan="2" class="b_bottom"><span t-field="l.amount"
+                                                    style="float:right;" /></td>
+                                        </t>
+                                    </tr>
+                                    <tr style="background-color:white;">
+                                        <td colspan="4"> </td>
+                                        <td colspan="3" style="font-size:15pt;"> <br /><b>TOTAL DES COTISATION DUES</b>
+                                        </td>
+                                        <td colspan="2" class="t_center" style="font-size:15pt;"><br /><b><span
+                                                    t-field="o.total_cotis" /></b> </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                            <table style="width:25%;float:right; margin-right:15px; ">
+                                <thead style="display: table-row-group">
+                                    <tr>
+                                        <th colspan="4" class="b_bottom_3">
+                                            <center>MOUVEMENT DU PERSONNEL</center>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th colspan="2">
+                                            <center>ENTREE</center>
+                                        </th>
+                                        <th colspan="2">
+                                            <center>SORTIE</center>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="sale_tbody">
+                                    <tr>
+                                        <td colspan="2" class="t_center"> <br /><br />
+                                            <center><span t-field="o.inpu_t" /></center><br /><br />
+                                        </td>
+                                        <td colspan="2" class="t_center"><br /><br />
+                                            <center><span t-field="o.output" /></center><br /><br />
+                                        </td>
+                                    </tr>
+                                    <tr class="t_white t_center">
+                                        <td colspan="4">
+                                            <center>EFFECTIF TOTAL EN EXERCICE</center>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" class="t_center"><br /><br />
+                                            <center><span t-field="o.total_effective_in_exercise" /></center>
+                                            <br /><br />
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div style="margin-top: 400px;">
+                            <span><b>ENTREE:</b> Nombre de travailleurs embauchés durant la période de
+                                cotisation.</span><br />
+                            <span style="margin-top:8px;"><b>SORTIE:</b> Nombre de travailleurs débauchés durant la
+                                période
+                                de cotisation.</span><br />
+                            <span style="margin-top:8px;"><b>EFFECTIF TOTAL :</b> Nombre de travailleurs en exercice à
+                                la
+                                fin de la période de cotisation.</span>
+                        </div>
+                        <p style="page-break-after:always;"> </p>
+                        <!-- ssssssssssssssssssssssssssssss -->
+                        <center>
+                            <h2 style="font-size:35px;"><b>Assiettes d'abattement</b></h2>
+                        </center>
+                        <t t-if="o.abatement40_id">
+
+
+
+                            <t t-set="result" t-value="0" />
+                            <t t-foreach="o.abatement40_id" t-as="abatement40_id">
+
+                                <t t-set="result" t-value="result + 1" />
+
+                            </t>
+                            <center>
+                                <h3> R06: Bénéficiaires abattement 40%, Taux : 24.5, <b>(<span t-esc="result" /></b>
+                                    Assurés)</h3>
+                            </center>
+
+
+                            <table style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Numéro</th>
+                                        <th scope="col">Nom et Prénom</th>
+                                        <th scope="col">Date de naissance</th>
+                                        <th scope="col">Assiette</th>
+                                        <th scope="col">Justification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.abatement40_id" t-as="abatement40">
+                                        <th scope="row"><span t-field="abatement40.name" /></th>
+                                        <td style="text-align:center"><span t-field="abatement40.employee_id" /></td>
+                                        <td style="text-align:center"><span t-field="abatement40.emp_birthday" /></td>
+                                        <td style="text-align:right"><span t-field="abatement40.base" /></td>
+                                        <td><span t-field="abatement40.justification" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <!-- ssssssssssssssssssssssssssssss -->
+                        <t t-if="o.abatement80_id">
+
+
+                            <t t-set="result" t-value="0" />
+                            <t t-foreach="o.abatement80_id" t-as="abatement80_id">
+
+                                <t t-set="result" t-value="result + 1" />
+
+                            </t>
+                            <center>
+                                <h3> R07 : Bénéficiaires abattement 80%, Taux : 14.5, <b>(<span t-esc="result" /></b>
+                                    Assurés)</h3>
+                            </center>
+
+                            <table style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Numéro</th>
+                                        <th scope="col">Nom et Prénom</th>
+                                        <th scope="col">Date de naissance</th>
+                                        <th scope="col">Assiette</th>
+                                        <th scope="col">Justification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.abatement80_id" t-as="abatement80">
+                                        <th scope="row"><span t-field="abatement80.name" /></th>
+                                        <td style="text-align:center"><span t-field="abatement80.employee_id" /></td>
+                                        <td style="text-align:center"><span t-field="abatement80.emp_birthday" /></td>
+                                        <td style="text-align:right"><span t-field="abatement80.base" /></td>
+                                        <td><span t-field="abatement80.justification" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+                        <!-- ============================================================== -->
+                        <t t-if="o.abatement90_id">
+
+
+                            <t t-set="result" t-value="0" />
+                            <t t-foreach="o.abatement90_id" t-as="abatement90_id">
+
+                                <t t-set="result" t-value="result + 1" />
+
+                            </t>
+                            <center>
+                                <h3> R08 : Bénéficiaires abattement 90%, Taux : 19.5, <b>(<span t-esc="result_40" /></b>
+                                    Assurés)</h3>
+                            </center>
+
+                            <table style="width: 100%;">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Numéro</th>
+                                        <th scope="col">Nom et Prénom</th>
+                                        <th scope="col">Date de naissance</th>
+                                        <th scope="col">Assiette</th>
+                                        <th scope="col">Justification</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr t-foreach="o.abatement90_id" t-as="abatement90">
+                                        <th scope="row"><span t-field="abatement90.name" /></th>
+                                        <td style="text-align:center"><span t-field="abatement90.employee_id" /></td>
+                                        <td style="text-align:center"><span t-field="abatement90.emp_birthday" /></td>
+                                        <td style="text-align:right"><span t-field="abatement90.base" /></td>
+                                        <td><span t-field="abatement90.justification" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </t>
+
+                        <p style="page-break-after:always;"> </p>
+                                            
+                        <t t-if="o.employee_movement_id">
+                            <t t-set="data" t-value="o.company_empl_agencies()" />
+                            <t t-set="agencies_number" t-value="len(data['company_agencies'])" />
+                            <t t-set="count" t-value="0" />
+                            <tr t-foreach="data['company_agencies']" t-as="agency">
+                                <center>
+                                    <h2 style="font-size:35px;"><b>Mouvement des salariés</b></h2>
+                                </center>
+                                <center>
+            
+                                    <t t-if="o.periode == '1' ">
+                                        <h3>Mouvement des salariés du: <b><span t-field="o.month" />/<span t-field="o.year" /></b>
+                                        </h3>
+                                    </t>
+                                    <t t-else="o.periode == '2' ">
+                                        <h3>Mouvement des salariés du: <b><span t-field="o.trimester" />/<span
+                                                    t-field="o.year" /></b></h3>
+                                    </t>
+            
+                                </center><br /><br />
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div id="v">
+
+                                            <b>Numéro Employeur: </b>
+                                            <span t-field="agency.code_adherant" /><br /> 
+            
+            
+                                            <b>Nom ou Raison Sociale: </b><span
+                                                t-field="o.company_id.forme_juridique.code" />
+                                            <span t-field="o.company_id.name" />
+            
+                                        </div>
+                                        <div id="vk">
+                                            <b>Agence:</b> 
+                                            <span t-field="agency.name" />
+                                        </div>
+
+                                    </div>
+                                </div> <br/><br/><br/>                          
+                                <table style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th id="mv_th" scope="col">Numéro</th>
+                                            <th id="mv_th" scope="col">Nom et Prénom</th>
+                                            <th id="mv_th" scope="col">E/S</th>
+                                            <th id="mv_th" scope="col">Date E/S</th>
+                                            <th id="mv_th" scope="col">Observation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr t-foreach="o.employee_movement_id" t-as="employee_movement_id">
+                                            <t t-if="employee_movement_id.employee_id.agency_id == agency">
+                                                <th id="mv_th" scope="row"><span t-field="employee_movement_id.name" /></th>
+                                                <td id="mv_td" style="text-align:center"><span
+                                                        t-field="employee_movement_id.employee_id" />
+                                                </td>
+                                                <td id="mv_td" style="text-align:center"><span
+                                                        t-field="employee_movement_id.output_input" />
+                                                </td>
+                                                <t t-if="employee_movement_id.output_input == 'E' ">
+                                                    <td id="mv_td" style="text-align:center"><span
+                                                            t-field="employee_movement_id.date_out_input" />
+                                                    </td>
+                                                </t>
+                                                <t t-if="employee_movement_id.output_input == 'S' ">
+                                                    <td id="mv_td" style="text-align:center"><span
+                                                            t-field="employee_movement_id.date_out_input" />
+                                                    </td>
+                                                </t>
+                                                <td id="mv_td" style="text-align:center"><span
+                                                        t-field="employee_movement_id.observation" />
+                                                </td>                                            
+                                            </t>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <t t-set="count" t-value="count + 1" />
+                                <t t-if="count &lt; agencies_number">
+                                    <p style="page-break-after:always;"> </p>
+
+                                </t>
+                                
+
+                            </tr>
+                            
+                            
+                        </t>
+                        <t t-if="not o.employee_movement_id ">
+
+                            <h1> Aucun mouvement déclaré (EMS néant) </h1>
+
+                        </t>
+
+
+                    </div>
+                    <div class="footer">
+
+                        <div style="font-size:8;" class="row">
+
+
+                            <div class="col-xs-3 text-right">
+
+                                <b>Page <span class="page" /> sur <span class="topage" /></b>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+</odoo>

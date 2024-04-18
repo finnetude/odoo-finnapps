@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+        <template id="report_invoice_document_timbre" inherit_id="account.report_invoice_document">
+
+            <xpath expr="//div[@id='payment_term']" position="after">
+                <p t-if="o.montant_en_lettre" name="total_en_lettre">
+                    Montant à payer en lettre : <b><span t-esc="o.custom_amount_to_text(o.total_timbre)" /></b>
+                </p>
+            </xpath>
+     
+         <xpath expr="//t[@t-foreach='payments_vals']" position="after">
+                    <tr class="border-black o_total">
+                        <t t-if="o.payment_mode_type == 'cash' and o.based_on_related == 'posted_invoices'">
+                            <td><strong>Timbre</strong></td>
+                            <td class="text-end">
+                                <span t-field="o.amount_timbre"/>
+                            </td>
+                        </t>
+                    </tr>
+                    
+                    <tr class="border-black o_total">
+                        <t t-if="o.payment_mode_type == 'cash' and o.based_on_related == 'posted_invoices'">
+                            <td><strong>Total TTC </strong></td>
+                            <td class="text-end">
+                                <span t-esc="o.amount_total + o.amount_timbre" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                            </td>
+                        </t>
+                    </tr>
+
+                    <tr class="border-black o_total">
+                        <t t-if="o.payment_mode_type != 'cash' ">
+                            <td><strong>Total TTC </strong></td>
+                            <td class="text-end">
+                                <span t-field="o.amount_total" t-options="{&quot;widget&quot;: &quot;monetary&quot;, &quot;display_currency&quot;: o.currency_id}"/>
+                            </td>
+                        </t>
+                    </tr>
+
+                
+            </xpath> 
+        </template>
+            
+           
+    </data>
+
+</odoo>

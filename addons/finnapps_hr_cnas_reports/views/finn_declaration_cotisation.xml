@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_finn_declaration_cotisation" model='ir.actions.act_window'>
+        <field name="name">Déclaration Salaire et CNAS</field>
+        <field name="res_model">finn.declaration.cotisation</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <!-- Form View -->
+    <record id="declaration_cnas_form" model="ir.ui.view">
+        <field name="name">Déclaration Salaire et CNAS</field>
+        <field name="model">finn.declaration.cotisation</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <field name="state" 
+                        widget="statusbar" 
+                        statusbar_visible="draft,calculate" 
+                        />
+
+                    <button name="realculate" 
+                        class="oe_highlight" type="object" string="Recalculer"
+                        invisible="state in ('draft','confirme','cancel')"
+                        />
+
+                    <button name="calculate" 
+                        class="oe_highlight" type="object" string="Calculer"
+                        invisible="state in ('calculate','confirme','cancel')" 
+                        />
+
+                    <button name="confirm" 
+                        class="oe_highlight" type="object" string="Confirmer" 
+                        invisible="state in ('draft','confirme','cancel')" 
+                        />
+
+                    <button name="cancel" 
+                        class="oe_highlight" type="object" string="Annuler"
+                        invisible="state in ('draft','calculate','cancel')" 
+                        />
+
+                    <button name="drafter" 
+                        class="oe_highlight" type="object" string="Rendre en brouillon"
+                        invisible="state in ('draft','calculate','confirme')" 
+                        />
+
+                    <button name="print_repport" 
+                        class="oe_highlight" type="object" string="Imprimer le rapport"
+                        invisible="state in ('draft','cancel')"
+                        />
+                </header>
+            
+                <sheet>
+                    <field name="currency_id" invisible="1"/>
+                    <field name="creation_date" invisible='True'
+                                readonly="state in ('confirme','cancel')" 
+                                />
+                    <field name="limit_date" invisible='True'
+                                readonly="state in ('confirme','cancel')"
+                                />
+                    <field name="line_cotisation_ids" invisible='True'
+                                readonly="state in ('confirme','cancel')" 
+                                />
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name"/>
+                        </h1>
+                    </div>
+                    <group>
+                        <group name="affiliation" string="Affiliation">
+                            <field name="agency_id" required="1" 
+                                readonly="state in ('confirme','cancel')"/>                                
+                            <field name="payment_center_id" required="1" 
+                                readonly="state in ('confirme','cancel')"/>
+                            <field name="company_id" readonly='1'/>
+                        </group>
+                        <group string="Période">
+                            <field name="periode" required="1"
+                                readonly="state in ('confirme','cancel')"/>
+                            <field name="year" 
+                                readonly="state in ('confirme','cancel')" required="1"/>
+                            <field name="month" 
+                                invisible="periode != '1'"
+                                readonly="state in ('confirme','cancel')"/>
+                            <field name="trimester" 
+                                invisible="periode != '2'"
+                                readonly="state in ('confirme','cancel')"/>
+                        </group>
+                    </group>
+
+                    <group string="Mouvement de personnelle">
+                        <group >
+                            <field name="inpu_t" 
+                                readonly="state in ('confirme','cancel')" />
+                            <field name="output" 
+                                readonly="state in ('confirme','cancel')" />
+                        </group>
+                        <group>
+                            <field name="total_effective_in_exercise" readonly="state in ('confirme','cancel')" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Lignes des cotisations">
+                            <field name="line_cotisation_ids" mode="tree" 
+                                readonly="state == 'confirme'">
+                                <tree string="Stock Moves" editable="top">
+                                    <field name="code" />
+                                    <field name="nature_cotisation" />
+                                    <field name="assiette" />
+                                    <field name="taux" />
+                                    <field name="amount" />
+                                </tree>
+                            </field>
+                            <group >
+                                <field name="total_cotis" 
+                                    readonly="state == 'confirme'"/>
+                            </group>
+
+                        </page>
+                        
+                        <page  string="Assiette d'abattement">
+                            <separator  string="Abattement 40%" 
+                                invisible="abatement40_id == False"/>
+                            <field name="abatement40_id" mode="tree" 
+                                readonly="state == 'confirme'">
+
+                                <tree editable="top">
+                                    <field name="name" />
+                                    <field name="employee_id" />
+                                    <field name="base" />
+                                    <field name="justification" />
+                                </tree>
+                            </field>
+
+                            
+                            <separator  string="Abattement 80%" 
+                                invisible= "abatement80_id == False"/>
+                            <field name="abatement80_id" mode="tree" 
+                                readonly="state == 'confirme'">
+                                <tree editable="top">
+                                    <field name="name" />
+                                    <field name="employee_id" />
+                                    <field name="emp_birthday" />
+                                    <field name="base" />
+                                    <field name="justification" />
+                                </tree>
+                            </field>
+                            
+                            <separator string="Abattement 90%" 
+                                invisible="abatement90_id == False"/>
+                            <field name="abatement90_id" mode="tree" 
+                                readonly="state == 'confirme'">
+                                <tree editable="top">
+                                    <field name="name" />
+                                    <field name="employee_id" />
+                                    <field name="emp_birthday" />
+                                    <field name="base" />
+                                    <field name="justification" />
+                                </tree>
+                            </field>
+                            
+                        </page>
+
+                        <page string="Mouvement des salariés">
+                            <field name="employee_movement_id" mode="tree" 
+                                readonly="state == 'confirme'">
+                                <tree editable="top">
+                                    <field name="name" />
+                                    <field name="employee_id" />
+                                    <field name="emp_birthday" />
+                                    <field name="output_input" />
+                                    <field name="date_out_input" />
+                                    <field name="observation" />
+                                </tree>
+                            </field>
+                        </page>
+                        
+                        <page string="Informations comptables" 
+                            invisible="state in ('draft','cancel')">
+                            <group>
+                                <group>
+                                    <field name="journal_id" 
+                                        readonly="state == 'confirme'"
+                                        />
+                                    <field name="move_id" 
+                                        invisible="move_id == False"
+                                        readonly="state == 'confirme'"/>
+                                </group>
+                                <group>
+                                    <field name="account_debit_id" 
+                                        readonly="state == 'confirme'"/>
+                                    <field name="account_credit_id" 
+                                       readonly="state == 'confirme'"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Bulletins de paie" invisible='1'>
+                            <group string="Bulletin de paie">
+                                <field name="slip_ids" nolabel="1"/>
+                            </group>
+                        </page>
+                        <page name="general_info" string="Informations générales">
+                            <group>
+                                <field name="confirm_date" readonly="True"/>    
+                                <field name="creation_date" readonly="True"/>    
+                            </group>                                
+                        </page>
+                        <page string="Note">
+                            <field name="note"  />
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="declaration_cnas_tree" model="ir.ui.view">
+        <field name="name">Déclaration Salaire et CNAS</field>
+        <field name="model">finn.declaration.cotisation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Nom" />
+                <field name="agency_id" />
+                <field name="payment_center_id" />
+                <field name="month" optional="hide"/>
+                <field name="trimester" optional="hide"/>
+                <field name="total_cotis" />
+                <field name="state" widget="badge" decoration-danger="state == 'cancel'" decoration-warning="state == 'calculate'" decoration-success="state == 'confirme'"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="lot_declaration_cnas_month_tree" model="ir.ui.view">
+        <field name="name">Déclaration Salaire et CNAS</field>
+        <field name="model">finn.declaration.cotisation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" string="Nom"/>
+                <field name="payment_center_id" />
+                <field name="state" widget="badge"/>
+                <field name="total_cotis"/>
+                <button name="print_repport" class="oe_highlight" type="object" string="Imprimer le rapport"/>
+            </tree>
+        </field>
+    </record>
+<!-- 
+    <record id="lot_declaration_cnas_trimester_tree" model="ir.ui.view">
+        <field name="name">Déclaration Salaire et CNAS</field>
+        <field name="model">declaration.cotisation</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="agency_id" />
+                <field name="payment_center_id" />
+                <field name="trimester"/>                                        
+                <button name="calculate" class="oe_highlight" type="object" string="Calculer"/>
+            </tree>
+        </field>
+    </record> -->
+</odoo>

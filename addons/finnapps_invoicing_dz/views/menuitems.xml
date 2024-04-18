@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <menuitem    id="account_report"
+                name="Rapports"
+                parent="account.menu_finance"
+                groups="account.group_account_user"/> 
+
+                <menuitem   id="account_report_audit"
+                            name="Rapports d'audit"
+                            parent="account_report"
+                            groups="account.group_account_user"
+                            sequence="10"/>
+
+                <menuitem   id="account_report_partner"
+                            name="Rapports des partenaires"
+                            parent="account_report"
+                            groups="account.group_account_user"
+                            sequence="11"/>
+
+                <menuitem   id="account_report_declaration"
+                            name="Déclarations"
+                            parent="account_report"            
+                            groups="account.group_account_user"
+                            sequence="12"/>
+
+</odoo>

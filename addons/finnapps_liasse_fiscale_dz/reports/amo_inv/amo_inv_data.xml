@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+		<!-- 5/ Tableau des amortissements et pertes de valeurs -->
+        <record id="elfc_01amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Goodwill</field>
+			<field name="code">01amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_1"/>
+		</record>
+
+        <record id="elfc_02amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations incorporelles</field>
+			<field name="code">02amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_1"/>
+		</record>
+
+        <record id="elfc_03amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations corporelles</field>
+			<field name="code">03amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_1"/>
+		</record>
+
+          <record id="elfc_04amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Participations</field>
+			<field name="code">04amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_1"/>
+		</record>
+
+        <record id="elfc_05amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres actifs financiers non courants</field>
+			<field name="code">05amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_1"/>
+		</record>
+
+		<record id="elfc_06amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">06amoinv</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="amo_inv_1"/>
+		</record>
+
+		<!-- 6/ Tableau des immobilisations créées ou acquises au cours de l’exercice -->
+		<record id="elfc_07amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Goodwill</field>
+			<field name="code">07amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_2"/>
+		</record>
+
+        <record id="elfc_08amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations incorporelles</field>
+			<field name="code">08amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_2"/>
+		</record>
+
+        <record id="elfc_09amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations corporelles</field>
+			<field name="code">09amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_2"/>
+		</record>
+
+          <record id="elfc_10amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Participations</field>
+			<field name="code">10amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_2"/>
+		</record>
+
+        <record id="elfc_11amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres actifs financiers non courants</field>
+			<field name="code">11amoinv</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="amo_inv_2"/>
+		</record>
+
+		<record id="elfc_12amoinv" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">12amoinv</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="amo_inv_2"/>
+		</record>
+    </data>
+</odoo>

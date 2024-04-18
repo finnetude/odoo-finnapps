@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_amo_inv_report">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <style>
+                            table.date {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+                                text-align: center;
+                            }
+
+                            table.title {
+                                font-size: 12px;
+                                border-collapse: collapse;
+                                color: black;
+                                background: #e4e6e8;
+
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+                                margin-left: 0px;
+                                margin-right: auto;
+                                height: 30px;
+                            }
+
+                            thead {
+                                height: 50px;
+                                background: #e4e6e8;
+                                color: black;
+                                font-size: 12px;
+                            }
+
+                            table {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+
+
+                            }
+
+                            table th {
+                                font-size: 12px;
+                                font-weight: bold;
+                                border: 1px solid black;
+                                padding: 0px 5px;
+
+                            }
+
+                            table td {
+                                text-align: right;
+                                color: black;
+                                border: 1px solid black;
+                                padding: 5px 5px;
+                                font-size: 12px;
+                            }
+                        </style>
+
+                        <table class="date" border="1">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 150px;text-align:center;">Exercice du :</td>
+                                    <td style="width: 150px;color:black;text-align:center;"> <span t-esc="o.exercice_id.date_from"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' />
+                                    </td>
+                                    <td style="width: 10px;text-align:center;">au</td>
+                                    <td style="width: 150px;color:black;text-align:center;"> <span t-esc="o.exercice_id.date_to"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                       
+
+                        <table class="title" border="1" style=" width: 310px;font-size: 12px;">
+                                <tr>
+                                    <td><strong>5/ Tableau des amortissements et
+                                        pertes de valeurs :
+                                        </strong></td>
+                                </tr>
+                            </table>
+
+                        <table border="1" class="tb1" height="100%">
+                            <thead>
+                                <tr style="height: 50px;">
+                                    <td style="width: 200px;text-align: center;"> <strong>Rubriques et <br></br> Postes
+                                        </strong></td>
+                                    <td style="width: 200px;text-align: center;"><strong>Dotations <br></br> Cumulées en
+                                            <br></br> début d’exercice </strong></td>
+                                    <td style="width: 200px;text-align: center;"><strong>Dotations de <br></br>
+                                            l’exercice <br></br> (1) </strong></td>
+                                    <td style="width: 200px;text-align: center;"><strong>Diminutions <br></br> éléments
+                                            sortis </strong></td>
+                                    <td style="width: 200px;text-align: center;"><strong>Dotations <br></br> cumulées en
+                                            fin <br></br> d’exercice</strong></td>
+                                    <td style="width: 200px;text-align: center;"><strong> Dotations <br></br> fiscales
+                                            de <br></br> l’exercice (2)</strong></td>
+                                    <td style="width: 200px;text-align: center;"><strong>Ecarts <br></br> (1) –
+                                            (2)</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody class="bd1">
+                                <tr style="height: 40px;">
+                                    <t t-set="amo"
+                                        t-value="o.line_amo_inv_1_ids.filtered(lambda m: m.code == '01amoinv')" />
+                                    <td style="text-align: center;">Goodwill</td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_four" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_five) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_five" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_six) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_six" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <t t-set="amo"
+                                        t-value="o.line_amo_inv_1_ids.filtered(lambda m: m.code == '02amoinv')" />
+                                    <td style="text-align: center;">Immobilisations <br></br> incorporelles </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_four" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_five) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_five" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_six) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_six" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td style="text-align: center;">Immobilisations <br></br> corporelles</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_1_ids.filtered(lambda m: m.code == '03amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_four" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_five) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_five" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_six) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_six" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td style="text-align: center;">Participations</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_1_ids.filtered(lambda m: m.code == '04amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_four" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_five) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_five" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_six) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_six" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 50px;">
+                                    <td style="text-align: center;">Autres actifs <br></br> financiers non <br></br>
+                                        courants</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_1_ids.filtered(lambda m: m.code == '05amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_four" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_five) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_five" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_six) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_six" />
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="height: 5px;;text-align: center;">
+                                    <td style="text-align: center;"><strong>TOTAL</strong></td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_1_ids.filtered(lambda m: m.code == '06amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_four) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_four" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_five) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_five" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_six) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_six" />
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+
+                       
+                        <table class="title" border="1" style=" width: 420px;font-size: 12px;text-align:left;">
+                                <tr>
+                                    <td style="text-align:left;"><strong>6/ Tableau des immobilisations créées
+                                        ou acquises au cours de l’exercice :
+                                        </strong></td>
+                                </tr>
+                            </table>
+
+                        <table border="1" class="tb2" height="100%">
+                            <thead>
+                                <tr style="height: 50px;">
+                                    <td style="width: 430px;text-align: center;"><strong>Rubrique <br></br> (Nature des
+                                            immobilisations <br></br> créées ou acquises à détailler)</strong></td>
+                                    <td style="width: 250px;text-align: center;"><strong>Montants bruts</strong></td>
+                                    <td style="width: 250px;text-align: center;"><strong>TVA déduite</strong></td>
+                                    <td style="width: 250px;text-align: center;"><strong>Montant net à amortir</strong>
+                                    </td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="height: 40px;">
+                                    <td style="text-indent: 1%;text-align: center;">Goodwill</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_2_ids.filtered(lambda m: m.code == '07amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td style="text-indent: 1%;text-align: center;">Immobilisations incorporelles </td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_2_ids.filtered(lambda m: m.code == '08amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td style="text-indent: 1%;text-align: center;">Immobilisations corporelles</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_2_ids.filtered(lambda m: m.code == '09amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td style="text-indent: 1%;text-align: center;">Participations</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_2_ids.filtered(lambda m: m.code == '10amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 50px;">
+                                    <td style="text-indent: 1%;text-align: center;">Autres actifs financiers non courants</td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_2_ids.filtered(lambda m: m.code == '11amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr style="height: 5px;text-align: center;">
+                                    <td style="text-align: center;"><strong>TOTAL</strong></td>
+                                    <t t-set="amo" t-value="o.line_amo_inv_2_ids.filtered(lambda m: m.code == '12amoinv')" />
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_one) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_two) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="color:black">
+                                        <t t-if="abs(amo.amount_col_three) > 0">
+                                            <span t-esc="'%.2f'% amo.amount_col_three" />
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tfoot>
+
+                        </table>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_amo_inv_report" model="ir.actions.report">
+            <field name="name">Amo/Inv</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.compta_amo_inv_report</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.compta_amo_inv_report</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_amo_inv_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+    </data>
+</odoo>

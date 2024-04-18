@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+
+		<record id="view_form_iep" model="ir.ui.view">
+			<field name="name">Parametrage IEP</field>
+			<field name="model">finn.pay.iep</field>
+			<field name="arch" type="xml">
+				<form string="IEP" >
+					<group col="4">
+						<field name="name" invisible="0" readonly="1" />
+						<field name="taux" help="le pourcentage de l'IEP" readonly="1"/>
+						<field name="year" help="sur combien d'années" readonly="1"/>
+						<field name="year_application" help="aprés combien d'années l'IEP est-elle applicable ?" readonly="1"/>
+					</group>
+				</form>
+			</field>
+		</record>
+
+		<record id="view_tree_iep" model="ir.ui.view">
+			<field name="name">Parametrage IEP</field>
+			<field name="model">finn.pay.iep</field>
+			<field name="arch" type="xml">
+				<tree editable="bottom">
+					<field name="name"/>
+					<field name="taux"/>
+					<field name="year"/>
+					<field name="year_application"/>
+				</tree>
+			</field>
+		</record>
+
+        <record id="action_iep" model="ir.actions.act_window">
+            <field name="name">IEP</field>
+            <field name="res_model">finn.pay.iep</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- Ressources humaines / Configuration / IEP -->
+        <menuitem id="menu_iep"
+            parent="hr.menu_human_resources_configuration"
+            name="IEP"
+            action="action_iep"
+            sequence="40" 
+        />
+
+  	</data>
+</odoo>

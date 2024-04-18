@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="account_payment_register_timbre" model="ir.ui.view">
+        <field name="name">account.payment.register.timbre</field>
+        <field name="model">account.payment.register</field>
+        <field name="inherit_id" ref="account.view_account_payment_register_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='payment_date']" position="before">
+        		<field name="use_timbre_supplier" invisible="1"/>
+                <field name="amount_timbre_supplier" invisible="use_timbre_supplier == False"/>
+
+
+               
+            </xpath>
+
+           
+
+
+        </field>
+    </record>
+
+</odoo>

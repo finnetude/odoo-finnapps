@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="declaration_cotisation_repport" model="ir.actions.report">
+            <field name="model">finn.declaration.cotisation</field>
+            <field name="name">Déclaration d'Assiette de cotisation</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_hr_cnas_reports.report_declaration_cnas_doc</field>
+            <field name="report_file">finnapps_hr_cnas_reports.report_declaration_cnas_doc</field>
+            <field name="print_report_name">(object.name+'.pdf')</field>
+            <field name="paperformat_id" ref="finnapps_hr_cnas_reports.report_format_declaration_cotisation"/>
+        </record>
+
+        <record id="declaration_das_repport" model="ir.actions.report">
+            <field name="model">finn.declaration.das</field>
+            <field name="name">Déclaration annuelle des salariés</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_hr_cnas_reports.report_declaration_das_doc</field>
+            <field name="report_file">finnapps_hr_cnas_reports.report_declaration_das_doc</field>
+            <field name="print_report_name">(object.name+'.pdf')</field>
+            <field name="paperformat_id" ref="finnapps_hr_cnas_reports.report_format_declaration_das"/>
+            </record>
+    </data>
+</odoo>
+

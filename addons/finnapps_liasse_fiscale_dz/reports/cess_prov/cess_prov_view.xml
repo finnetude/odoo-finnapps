@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="finn_liasse_fiscale_line_cess_prov_1_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.cess.prov.1.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="name" string="Nature des immobilisations cédées"/>
+                    <field name="date_line" string="Date acquisition"/>
+                    <field name="amount_col_one" string="Montant net figurant à l’actif"/>
+                    <field name="amount_col_two" string="Amortissements pratiqués"/>
+                    <field name="amount_col_three" string="Valeur nette comptable"/>
+                    <field name="amount_col_four" string="Prix de cession"/>
+                    <field name="amount_col_five" string="Plus value"/>
+                    <field name="amount_col_six" string="Moins value"/>
+                </tree>
+			</field>
+		</record>
+
+        <record id="finn_liasse_fiscale_line_cess_prov_2_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.cess.prov.2.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="code" groups="base.group_no_one"/>
+                    <field name="name" string="Rubriques et postes"/>
+                    <field name="amount_col_one" string="Provisions cumulées en début d'exercice"/>
+                    <field name="amount_col_two" string="Dotations de L’exercice"/>
+                    <field name="amount_col_three" string="Reprises sur l’exercice"/>
+                    <field name="amount_col_four" string="Provisions cumulées en fin d'exercice"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="finn_liasse_fiscale_report_cess_prov_view_forme">
+			<field name="name">finn.liasse.fiscale.report.cess.prov.view.forme</field>
+			<field name="model">finn.liasse.fiscale.report</field>
+			<field name="inherit_id" ref="finnapps_liasse_fiscale_dz.finn_liasse_fiscale_report_view_form"/>
+            <field name="priority">8</field>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+                    <page name="cess_prov_1" string="Tableau (7)" invisible="type_report != 'cess_prov'">
+                        <field name="line_cess_prov_1_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_cess_prov_1_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+                    <page name="cess_prov_2" string="Tableau (8)" invisible="type_report != 'cess_prov'">
+                        <field name="line_cess_prov_2_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_cess_prov_2_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+				</xpath>
+			</field>
+		</record>
+	</data>
+</odoo>

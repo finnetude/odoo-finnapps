@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+
+        <record id="elfc_01result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Charges des immeubles non affectés directement à l’exploitation</field>
+			<field name="code">01result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_02result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Quote–part des cadeaux publicitaires non déductibles</field>
+			<field name="code">02result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_03result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Quote-part du sponsoring et parrainage non déductibles</field>
+			<field name="code">03result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_04result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Frais de réception non déductibles</field>
+			<field name="code">04result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_05result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Cotisations et dons non déductibles</field>
+			<field name="code">05result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_06result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts et taxes non déductibles</field>
+			<field name="code">06result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_07result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Provisions non déductibles</field>
+			<field name="code">07result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_08result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Amortissements non déductibles</field>
+			<field name="code">08result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_09result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Quote-part des frais de recherche développement non déductibles</field>
+			<field name="code">09result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_10result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Amortissements non déductibles liés aux opérations de crédit bail (Preneur) (cf.art 27 de LFC 2010)</field>
+			<field name="code">10result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_11result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Loyers hors produits financiers (bailleur) (cf.art 27 de LFC 2010)</field>
+			<field name="code">11result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_12result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôt exigible sur le résultat</field>
+			<field name="code">12result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_13result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôt différé (variation)</field>
+			<field name="code">13result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_14result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Pertes de valeurs non déductibles</field>
+			<field name="code">14result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_15result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Amendes et pénalités</field>
+			<field name="code">15result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_16result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres réintégrations (*)</field>
+			<field name="code">16result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_17result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Total des réintégrations</field>
+			<field name="code">17result</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_18result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Plus values sur cession d’éléments d’actif immobilisés (cf.art 173 du CIDTA)</field>
+			<field name="code">18result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_19result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Les produits et les plus values de cession des actions et titre assimilés ainsi que ceux des actions ou part d’OPCVM cotées en bourse.</field>
+			<field name="code">19result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_20result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Les revenus provenant de la distribution des bénéfices ayant été soumis à l'impôt sur les bénéfices des sociétés ou expressément exonérés (cf.art 147 bis du CIDTA)</field>
+			<field name="code">20result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_21result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Amortissements liés aux opérations de crédit bail (Bailleur) (cf.art 27 de LFC 2010)</field>
+			<field name="code">21result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_22result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Loyers hors charges financières (Preneur) (cf.art 27 de LFC 2010)</field>
+			<field name="code">22result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_23result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Complément d’amortissements</field>
+			<field name="code">23result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_24result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres déductions (*)</field>
+			<field name="code">24result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_25result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Total des déductions</field>
+			<field name="code">25result</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_26result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Déficit de l’année 20</field>
+			<field name="code">26result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_27result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Déficit de l’année 20</field>
+			<field name="code">27result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_28result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Déficit de l’année 20</field>
+			<field name="code">28result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_29result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Déficit de l’année 20</field>
+			<field name="code">29result</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{}</field>
+			<field name="report_id" ref="result"/>
+		</record>
+
+        <record id="elfc_30result" model="finn.liasse.fiscale.type.line">
+			<field name="name">Total des déficits à déduire</field>
+			<field name="code">30result</field>
+			<field name="display_type">total</field>
+			<field name="definition">[]</field>
+			<field name="report_id" ref="result"/>
+		</record>
+    </data>
+</odoo>

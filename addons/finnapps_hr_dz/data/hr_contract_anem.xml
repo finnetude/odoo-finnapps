@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="1">
+    <!-- Dispositif -->
+    <record model="finn.hr.dispositif" id="daip">
+      <field name="code">DAIP</field>
+      <field name="name" >Dispositif d’Aide à l’Insertion Professionnelle</field>
+    </record>
+
+    <record model="finn.hr.dispositif" id="classique">
+      <field name="code">Classique</field>
+      <field name="name" >Contrat de travail classique</field>
+    </record>
+
+    <!-- Contrat ANEM -->
+    <record model="finn.hr.contract.anem" id="cta">
+      <field name="code">CTA</field>
+      <field name="name" >Contrat de travail aidé</field>
+    </record>
+    
+    <!-- Type de contrat ANEM -->
+    <record model="finn.hr.contract.type.anem" id="cid">
+      <field name="code">CID</field>
+      <field name="name">Contrat à durée indéterminée</field>
+    </record>
+
+    <record model="finn.hr.contract.type.anem" id="cip">
+      <field name="code">CIP</field>
+      <field name="name">Convention d’immersion professionnelle</field>
+    </record>
+
+    <record model="finn.hr.contract.type.anem" id="cfi">
+      <field name="code">CFI</field>
+      <field name="name">Contrat formation-insertion</field>
+    </record>
+    
+  </data>
+</odoo>

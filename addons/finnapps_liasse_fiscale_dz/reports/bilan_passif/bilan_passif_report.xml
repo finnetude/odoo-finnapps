@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_bilan_passif">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="page">
+
+                            <style>
+                                #result_part {
+                                    height: 25px;
+                                    font-weight: bold;
+                                    background: #e4e6e8;
+                                    text-indent: 10%;
+                                }
+
+                                #part_table {
+                                    font-weight: bold;
+                                    text-decoration: underline;
+                                }
+
+                                thead {
+                                    height: 50px;
+                                    background: #e4e6e8;
+                                    color: black;
+                                }
+
+                                table {
+                                    font-size: 12px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    border-collapse: collapse;
+                                    color: black;
+
+                                }
+
+                                table th {
+                                    font-size: 14px;
+                                    font-weight: bold;
+                                    border: 1px solid black;
+                                    padding: 0px 5px;
+                                }
+
+                                table td {
+                                    text-align: right;
+                                    color: black;
+                                    border: 1px solid black;
+                                    padding: 5px 5px;
+                                }
+
+                                .div1 {
+                                    color: black;
+                                    background: #e4e6e8;
+                                    text-align: center;
+                                    font-weight: bold;
+                                    text-decoration: underline;
+                                    margin: auto;
+                                    width: 20%;
+                                    border: 1px solid black;
+                                    padding: 10px;
+                                    box-shadow: 1px 2px #a6af93;
+                                }
+
+                                #table_date {
+                                    width: 60%;
+                                    text-align: center;
+                                    margin: auto;
+                                    padding: 10px;
+                                }
+
+                                #data {
+                                    color: black;
+                                }
+                            </style>
+                            <table id="table_date" style="width: 50%;" border="1">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold;width: 45%;text-align:center;">Exercice clos le</td>
+                                        <td style="color:black;width: 55%;text-align:center;"><span t-esc="o.exercice_id.date_to"
+                                                t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <div class="div1">BILAN (PASSIF)</div>
+                            <br />
+                            <table style="width: 100%;" border="1">
+                                <thead style="height: 160px;text-align: center;">
+                                    <tr style=" height: 50px;text-align:center;"> 
+                                        <th style="width: 60%;text-align:center;">PASSIF</th>
+                                        <th style="width: 20%;text-align:center;">N</th>
+                                        <th style="width: 20%;text-align:center;">N-1</th>
+                                    </tr>
+                                </thead>
+                                <tbody style="text-align:left">
+                                    <tr style="text-align:left">
+                                        <td id="part_table" style="text-align:left">CAPITAUX PROPRES :</td>
+                                        <td style="text-align: right;color: black;text-align:left"></td>
+                                        <td style="text-align: right;color: black;text-align:left"></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '01bilanp')" />
+                                        <td style="text-align:left">Capital émis</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '02bilanp')" />
+                                        <td style="text-align:left">Capital non appelé</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '03bilanp')" />
+                                        <td style="text-align:left">Primes et réserves- Réserves consolidées(1)</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <td style="text-align:left">Ecarts de réévaluation</td>
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '04bilanp')" />
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '05bilanp')" />
+                                        <td style="text-align:left">Ecart d’équivalence (1)</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if ="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if ="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '06bilanp')" />
+                                        <td style="text-align:left">Résultat net - Résultat net part du groupe (1)</td>
+                                        <td style="text-align: right;color: black;"><span
+                                               t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                               t-if ="bilanp.amount_col_two > 0"  t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align:left">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '07bilanp')" />
+                                        <td style="text-align:left">Autres capitaux propres – Report à nouveau</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: right;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '08bilanp')" />
+                                        <td style="font-weight: bold;text-align: right;">Part de la société consolidante (1)</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: right;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '09bilanp')" />
+                                        <td style="font-weight: bold;text-align: right;">Part des minoritaires (1)</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;text-align: center;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '10bilanp')" />
+                                        <td id="result_part" style="text-align: center;">TOTAL I</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if ="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+
+                                        <td id="part_table" style="text-align: left;">PASSIFS NON-COURANTS :</td>
+                                        <td style="text-align: left;color: black;"></td>
+                                        <td style="text-align: left;color: black;"></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '11bilanp')" />
+                                        <td style="text-align: left;">Emprunts et dettes financières</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0"  t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '12bilanp')" />
+                                        <td style="border-bottom-width: 3px;text-align: left;">Impôts (différés et provisionnés)</td>
+                                        <td style="border-bottom-width: 3px;text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="border-bottom-width: 3px;text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '13bilanp')" />
+                                        <td style="text-align: left;">Autres dettes non courantes</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '14bilanp')" />
+                                        <td style="text-align: left;">Provisions et produits constatés d’avance</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;text-align: center;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '15bilanp')" />
+                                        <td id="result_part" style="text-align: center;">TOTAL II</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <td id="part_table" style="text-align: left;">PASSIFS COURANTS :</td>
+                                        <td style="text-align: right;color: black;"></td>
+                                        <td style="text-align: right;color: black;"></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <td style="text-align: left;">Fournisseurs et comptes rattachés</td>
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '16bilanp')" />
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <td style="text-align: left;">Impôts</td>
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '17bilanp')" />
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '18bilanp')" />
+                                        <td style="text-align: left;">Autres dettes</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="text-align: left;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '19bilanp')" />
+                                        <td style="text-align: left;">Trésorerie Passif</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;text-align: center;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '20bilanp')" />
+                                        <td id="result_part" style="text-align: center;">TOTAL III</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if ="bilanp.amount_col_one > 0"  t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                               t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                    <tr style="background: #e4e6e8;text-align: center;">
+                                        <t t-set="bilanp"
+                                            t-value="o.line_bilan_passif_ids.filtered(lambda m: m.code == '21bilanp')" />
+                                        <td id="result_part" style="text-align: center;">TOTAL PASSIF (I+II+III)</td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_one > 0" t-esc="bilanp.amount_col_one" /></td>
+                                        <td style="text-align: right;color: black;"><span
+                                                t-if="bilanp.amount_col_two > 0" t-esc="bilanp.amount_col_two" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br />
+                            <p style="color: black;text-indent: 8%;">(1) à utiliser uniquement pour la présentation
+                                d’états
+                                financiers consolidés</p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_bilan_passif_report" model="ir.actions.report">
+            <field name="name">Bilan (PASSIF)</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.compta_bilan_passif</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.compta_bilan_passif</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_bilan_passif_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+
+    </data>
+</odoo>

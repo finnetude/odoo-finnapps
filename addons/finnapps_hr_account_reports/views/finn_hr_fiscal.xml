@@ -1,0 +1,404 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<!-- Vue formulaire -->
+		<record id="finn_hr_fiscal_view" model="ir.ui.view">
+			<field name="name">finn.hr.fiscal.form</field>
+			<field name="model">finn.hr.fiscal</field>
+			<field name="arch" type="xml">
+				<form >
+					<header>
+						<button name="calculer_lignes" string="Générer les lignes" type="object" class="oe_highlight"/>
+						<button name="print_report" string="Imprimer" type="object" class="oe_highlight"/>
+					</header>
+					<sheet>
+						<group>
+							<group class="group_left" string="Informations de la société">
+								<field name="type" invisible="1"/>
+								<field name="company_id" invisible="1"/>
+								<field name="raison_sociale"/>
+								<field name="adress"/>
+								<field name="profession"/>
+								<field name="nif" />
+							</group>
+							<group class="group_right" string="Direction générale des impôts">
+								<field name="year"/>
+								<label for="direction_impots_fr" />
+								<div>
+									<field name="direction_impots_fr" class="oe_inline" placeholder="Direction des impôts" />
+									-
+									<field name="direction_impots_ar" class="oe_inline" placeholder="مديرية الضرائب" />
+								</div>
+								<label for="centre_impots_fr" />
+								<div>
+									<field name="centre_impots_fr" class="oe_inline" placeholder="Centre des impôts" />
+									-
+									<field name="centre_impots_ar" class="oe_inline" placeholder="مركز الضرائب" />
+								</div>
+							</group>
+						</group>
+					<notebook>
+						<page string="Recapitulation générale">
+							<group>
+								<field name="currency_id" invisible="1"/>
+								<field name="montant" widget='monetary' options="{'currency_field': 'currency_id'}" optional="show" readonly="1"/>
+
+							</group>
+							<field name="fiscal_rec_id">
+								<tree editable="bottom" delete="false" create="false" >
+									<field name="mois" />
+									<field name="date_quit" />
+									<field name="somme_traitement" />
+									<field name="somme_pensions" />
+									<field name="retenu_traitement" />
+									<field name="retenu_pensions" />
+								</tree>
+							</field>
+							<p> Veuillez Remplir la date de la quittance avec la date de dépôt du G50 du mois en question </p>
+						</page>
+
+						<page string="Montant des droits">
+							<field name="fiscal_droit_id">
+								<tree editable="bottom" delete="false" create="false"> 
+									<field name="nature_impo" />
+									<field name="somme_paye" />
+									<field name="somme_allouee" />
+									<field name="salaire_impo" />
+									<field name="pourboire" />
+									<field name="montant_1" />
+
+									<field name="montant_2" />
+									<field name="montant_3" />
+									<field name="montant_4" sum="Total" />
+						
+
+								</tree>
+
+								<form>
+									<sheet>
+									 <div class="oe_title">
+					                    <label for="nature_impo" class="oe_edit_only"/>
+					                    <h1>
+					                        <field name="nature_impo" string="Nature des impôts et taxes" />
+					                    </h1>
+					                </div>
+									<group string="MONTANT TOTAL DES APPOINTEMENTS, SALAIRES PENSIONS ET RETRIBUTIONS QUELCONQUES ALLOUES AU COURS DE L'ANNEE ">
+										
+											<field name="somme_paye" string="Sommes payées en éspèces" />
+											<field name="somme_allouee" string="Rémunérationsallouées en nature" />
+											<field name="salaire_impo" string="Salaires imposables" />
+											<field name="pourboire" string="Pourboire indemnités diverses" />
+
+									</group>
+
+									<group string="Montant" >
+											<field name="montant_1" string="Net des sommes imposables" />
+
+											<field name="montant_2" string="Total des sommes dues" />
+											<field name="montant_3" string="Total des sommes versées" />
+											<field name="montant_4" string="RESTE DUE ou trop versé" />
+									</group>
+
+
+
+									</sheet>
+
+
+								</form>
+
+							</field>
+							<field name="note_fiscal_droit" readonly="1"/>
+						</page>
+
+						<page string="Par employée">
+							<field name="fiscal_emp_id">
+								<tree editable="bottom" delete="false" create="false">
+									<field name="origin_num" />
+									<field name="employee_id" />
+									<field name="situation" />
+									<field name="number_dependents" />
+									<field name="date" />
+									<field name="nature" />
+									<field name="emploi_condition" />
+								</tree>
+
+								<form>
+									<sheet>
+									 <div class="oe_title">
+					                    <label for="employee_id" string="Employée" class="oe_edit_only"/>
+					                    <h1>
+					                        <field name="employee_id" string="Employée" />
+					                    </h1>
+					                </div>
+									<group >
+										
+											<field name="origin_num" string="Numero d'ordre" />
+											<field name="situation" string="Situation de famille au 1er janvier" />
+											<field name="number_dependents" string="Nombre de personnes à charge au 1er janvier" />
+											<field name="emploi_condition" string="Condition d'emploi" />
+
+									</group>
+									<group string="MODIFICATIONS intervenant dans la situation de famille">
+										
+											<field name="date" string="Date" />
+											<field name="nature" string="Nature" />
+										
+									</group>
+									<notebook>
+										<page string="Montant par mois">
+											<group>
+
+												<group class="group_left" string="Janvier">
+											
+													<field name="net_jan" string="Net" />
+													<field name="retenu_jan" string="Retenu" />
+											
+												</group>
+												<group class="group_right" string="Février">
+											
+													<field name="net_fev" string="Net" />
+													<field name="retenu_fev" string="Retenu" />
+											
+												</group>
+											</group>
+
+											<group>
+												<group class="group_left" string="Mars">
+											
+													<field name="net_mars" string="Net" />
+													<field name="retenu_mars" string="Retenu" />
+											
+												</group>
+												<group class="group_right" string="Avril">
+											
+													<field name="net_avril" string="Net" />
+													<field name="retenu_avril" string="Retenu" />
+											
+												</group>
+											</group>
+											<group>
+												<group class="group_left" string="Mai">
+											
+													<field name="net_mai" string="Net" />
+													<field name="retenu_mai" string="Retenu" />
+											
+												</group>
+												<group class="group_right" string="Juin">
+											
+													<field name="net_juin" string="Net" />
+													<field name="retenu_juin" string="Retenu" />
+											
+												</group>
+											</group>
+
+											<group>
+												<group class="group_left" string="Juillet">
+											
+													<field name="net_juil" string="Net" />
+													<field name="retenu_juil" string="Retenu" />
+											
+												</group>
+												<group class="group_right" string="Âout">
+											
+													<field name="net_aout" string="Net" />
+													<field name="retenu_aout" string="Retenu" />
+											
+												</group>
+											</group>
+
+											<group>
+												<group class="group_left" string="Septembre">
+											
+													<field name="net_sep" string="Net" />
+													<field name="retenu_sep" string="Retenu" />
+											
+												</group>
+												<group class="group_right" string="Octobre">
+											
+													<field name="net_oct" string="Net" />
+													<field name="retenu_oct" string="Retenu" />
+											
+												</group>
+											</group>
+
+											<group>
+												<group class="group_left" string="Novembre">
+											
+													<field name="net_nov" string="Net" />
+													<field name="retenu_nov" string="Retenu" />
+											
+												</group>
+												<group class="group_right" string="Décembre">
+											
+													<field name="net_dec" string="Net" />
+													<field name="retenu_dec" string="Retenu" />
+											
+												</group>
+											</group>
+
+										</page>
+										
+									</notebook>
+
+
+									
+
+
+
+									</sheet>
+
+
+								</form>
+							</field>
+							<field name="fiscal_emp_id2">
+
+								<tree editable="bottom" delete="false" create="false" >
+									<field name="origin_num" />
+									<field name="employee_id" />
+
+									<field name="net_jan" />
+									<field name="retenu_jan" />
+
+									<field name="net_fev" />
+									<field name="retenu_fev" />
+
+									<field name="net_mars" />
+									<field name="retenu_mars" />
+
+									<field name="net_avril" />
+									<field name="retenu_avril" />
+
+									<field name="net_mai" />
+									<field name="retenu_mai" />
+
+
+								</tree>
+							</field>
+
+							<field name="fiscal_emp_id3">
+								<tree editable="bottom" delete="false" create="false">
+									<field name="origin_num" />
+									<field name="employee_id" />
+
+									<field name="net_juin" />
+									<field name="retenu_juin" />
+
+									<field name="net_juil" />
+									<field name="retenu_juil" />
+
+									<field name="net_aout" />
+									<field name="retenu_aout" />
+
+									<field name="net_sep" />
+									<field name="retenu_sep" />
+
+									<field name="net_oct" />
+									<field name="retenu_oct" />
+
+								</tree>
+							</field>
+							<field name="fiscal_emp_id4">
+								<tree editable="bottom" delete="false" create="false">
+									<field name="origin_num" />
+									<field name="employee_id" />
+
+									<field name="net_nov" />
+									<field name="retenu_nov" />
+
+									<field name="net_dec" />
+									<field name="retenu_dec" />
+
+									<field name="net_15" />
+									<field name="retenu_15" />
+
+									<field name="total" />
+									<field name="observations" />
+									
+
+
+						
+
+								</tree>
+							</field>
+							<field name="note_fiscal_emp" readonly="1"/>
+						</page>
+					</notebook>
+					
+				</sheet>
+				</form>
+			</field>
+		</record>
+
+		
+
+
+		<record id="finn_hr_fiscal_view_tree" model="ir.ui.view">
+			<field name="name">finn.hr.fiscal.tree</field>
+			<field name="model">finn.hr.fiscal</field>
+			<field name="arch" type="xml">
+				<tree >
+					<field name="name" />
+					<field name="year" />
+					<field name="direction_impots_fr" />
+					<field name="raison_sociale" />
+				
+	
+				</tree>
+			</field>
+		</record>
+
+		
+
+		<record id="action_finn_hr_fiscal" model="ir.actions.act_window">
+			<field name="name">301 Bis, 29G ter</field>
+			<field name="res_model">finn.hr.fiscal</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="finn_hr_fiscal_view_tree" />
+			<field name="context">{"default_type": "employee"}</field>
+            <field name="domain">[('type', '=', 'employee')]</field>
+
+			<field name="target">current</field>
+	
+		</record>
+
+
+        
+
+		<record id="action_finn_hr_fiscal_consult" model="ir.actions.act_window">
+			<field name="name">301 Bis, 29G ter</field>
+			<field name="res_model">finn.hr.fiscal</field>
+			<field name="view_mode">tree,form</field>
+			<field name="view_id" ref="finn_hr_fiscal_view_tree" />
+			<field name="context">{"default_type": "consultant"}</field>
+            <field name="domain">[('type', '=', 'consultant')]</field>
+			<field name="target">current</field>
+	
+		</record>
+
+		<menuitem id="menu_hr_fiscal" 
+		 	parent="finnapps_hr_payroll_dz.sub_menu_rapport_paie_algerienne" 
+		  	name="État annuel des déclarations fiscales (301 bis, 29G ter)"
+		  	groups="finnapps_hr_payroll_dz.group_hr_payroll_manager"
+		  	sequence="30"/>
+
+		<menuitem id="menu_hr_fiscal_emp" 
+			parent="menu_hr_fiscal"
+		  	name="Pour employée"
+		  	action="action_finn_hr_fiscal"
+		  	groups="finnapps_hr_payroll_dz.group_hr_payroll_manager"
+		  	sequence="1"
+		/>
+		<menuitem id="menu_hr_fiscal_consult" 
+			parent="menu_hr_fiscal"
+		  	name="Pour consultant"
+		  	action="action_finn_hr_fiscal_consult"
+		  	groups="finnapps_hr_payroll_dz.group_hr_payroll_manager"
+		  	sequence="2"
+		/>
+
+
+		 
+
+
+	</data>
+</odoo>

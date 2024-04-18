@@ -1,0 +1,22 @@
+
+// this js file will add background color to one2many listview based on condition display_type === 'total'
+
+table.o_display_type_list_view tr.o_data_row.o_is_total,
+div.oe_kanban_card.o_is_total{
+    font-weight: bold;
+    background-color: #DDDDDD;
+}
+table.o_display_type_list_view tr.o_data_row.o_is_total{
+    border-top: 1px solid #BBB;
+    border-bottom: 1px solid #BBB;
+}
+
+table.o_display_type_list_view tr.o_data_row {
+    &.o_is_total{
+        td {
+            // There is an undeterministic CSS behaviour in Chrome related to
+            // the combination of the row's and its children's borders.
+            border: none !important;
+        }
+    }
+}

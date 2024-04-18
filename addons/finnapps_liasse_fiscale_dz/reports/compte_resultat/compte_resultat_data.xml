@@ -1,0 +1,765 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+        <!-- COMPTE DE RESULTAT -->
+		<record id="elfc_01compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Ventes de marchandises</field>
+			<field name="code">01compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['700:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_02compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Production vendue - Produits fabriqués</field>
+			<field name="code">02compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['701:C','702:C','703:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_03compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Production vendue - Prestations de services</field>
+			<field name="code">03compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['705:C','706:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_04compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Production vendue - Vente de travaux</field>
+			<field name="code">04compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['704:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_05compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Produits annexes</field>
+			<field name="code">05compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['708:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_06compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rabais, remises, ristournes accordés</field>
+			<field name="code">06compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['709:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_07compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Chiffre d’affaires net des Rabais, remises, ristournes</field>
+			<field name="code">07compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:01compte_resultat', '+:02compte_resultat', '+:03compte_resultat', '+:04compte_resultat', '+:05compte_resultat', '+:06compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_08compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Production stockée ou déstoc</field>
+			<field name="code">08compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['72:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['72:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_09compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Production immobilisée</field>
+			<field name="code">09compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['73:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_10compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Subventions d’exploitation</field>
+			<field name="code">10compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['74:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_11compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">I-Production de l’exercice</field>
+			<field name="code">11compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:08compte_resultat', '+:09compte_resultat', '+:10compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_12compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Achats de marchandises vendues</field>
+			<field name="code">12compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ # Achats de marchandises vendues
+				'debit':{
+					'load':['600:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_13compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Matières premières</field>
+			<field name="code">13compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['601:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_14compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres approvisionnements</field>
+			<field name="code">14compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['602:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_15compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Variations des stocks</field>
+			<field name="code">15compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['603:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['603:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_16compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Achats d’études et de prestations de services</field>
+			<field name="code">16compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['604:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_17compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres consommations</field>
+			<field name="code">17compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['605:D','606:D','607:D','608:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_18compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rabais, remises, ristournes obtenus sur achats</field>
+			<field name="code">18compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['609:C'],
+					'except':[]
+					}
+    		}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_19compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Sous-traitance générale</field>
+			<field name="code">19compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['611:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_20compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Locations</field>
+			<field name="code">20compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':['613:D','614:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_21compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Entretien, réparations et maintenance</field>
+			<field name="code">21compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':['615:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_22compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Primes d'assurances</field>
+			<field name="code">22compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['616:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_23compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Personnel extérieur à l’entreprise</field>
+			<field name="code">23compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['621:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_24compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Rémunération d’intermédiaires et honoraires</field>
+			<field name="code">24compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['622:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_25compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Publicité</field>
+			<field name="code">25compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['623:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_26compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services extérieurs - Déplacements, missions et réceptions</field>
+			<field name="code">26compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['625:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_27compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres services</field>
+			<field name="code">27compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['626:D','627:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_28compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rabais, remises, ristournes obtenus sur services extérieurs</field>
+			<field name="code">28compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['619:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_29compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">II-Consommations de l’exercice</field>
+			<field name="code">29compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:12compte_resultat', '+:13compte_resultat', '+:14compte_resultat', '+:15compte_resultat', '+:16compte_resultat', '+:17compte_resultat', '+:18compte_resultat', '+:19compte_resultat', '+:20compte_resultat', '+:21compte_resultat', '+:22compte_resultat', '+:23compte_resultat', '+:24compte_resultat', '+:25compte_resultat', '+:26compte_resultat', '+:27compte_resultat', '+:28compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_30compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">III-Valeur ajoutée d’exploitation (I–II)</field>
+			<field name="code">30compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:11compte_resultat', '-:29compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_31compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Charges de personnel</field>
+			<field name="code">31compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{ 
+				'debit':{
+					'load':['63:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_32compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts et taxes et versements assimilés</field>
+			<field name="code">32compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['64:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_33compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">IV- Excédent brut d’exploitation</field>
+			<field name="code">33compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:30compte_resultat', '+:31compte_resultat', '+:32compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_34compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres produits opérationnels</field>
+			<field name="code">34compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['75:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_35compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres charges opérationnelles</field>
+			<field name="code">35compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['65:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_36compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Dotations aux amortissements</field>
+			<field name="code">36compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['68:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_37compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Provision</field>
+			<field name="code">37compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['685:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_38compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Pertes de valeur</field>
+			<field name="code">38compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['685:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_39compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Reprise sur pertes de valeur et provisions</field>
+			<field name="code">39compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['78:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_40compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">V- Résultat opérationnel</field>
+			<field name="code">40compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:33compte_resultat', '+:34compte_resultat', '+:35compte_resultat', '+:36compte_resultat', '+:37compte_resultat', '+:38compte_resultat', '+:39compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_41compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Produits financiers</field>
+			<field name="code">41compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['76:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_42compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Charges financières</field>
+			<field name="code">42compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['66:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_43compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">VI-Résultat financier</field>
+			<field name="code">43compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:41compte_resultat', '+:42compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_44compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">VII-Résultat ordinaire (V+VI)</field>
+			<field name="code">44compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:40compte_resultat', '+:43compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_45compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Eléments extraordinaires (produits) (*)</field>
+			<field name="code">45compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':[],
+					'except':[]
+					},
+				'credit':{
+					'load':['77:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_46compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Eléments extraordinaires (Charges) (*)</field>
+			<field name="code">46compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['67:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_47compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">VIII-Résultat extraordinaire</field>
+			<field name="code">47compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:45compte_resultat', '+:46compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_48compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts exigibles sur résultats</field>
+			<field name="code">48compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['695:D','698:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':[],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_49compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts différés (variations) sur résultats</field>
+			<field name="code">49compte_resultat</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'debit':{
+					'load':['692:D','693:D'],
+					'except':[]
+					},
+				'credit':{
+					'load':['692:C','693:C'],
+					'except':[]
+					}
+			}</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+
+        <record id="elfc_50compte_resultat" model="finn.liasse.fiscale.type.line">
+			<field name="name">IX - RESULTAT NET DE L’EXERCICE</field>
+			<field name="code">50compte_resultat</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:47compte_resultat', '+:48compte_resultat', '+:49compte_resultat']</field>
+			<field name="report_id" ref="compte_resultat"/>
+		</record>
+    </data>
+</odoo>

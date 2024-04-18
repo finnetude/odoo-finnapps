@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+      <record model="ir.rule" id="rule_hr_ats">
+        <field name="name">acces_ats</field>
+        <field name="model_id" ref="model_finn_hr_ats"></field>
+        <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+        <field name="groups" eval="[(4, ref('finnapps_hr_payroll_dz.group_hr_payroll_manager'))]"/>
+      </record>
+  </data>
+</odoo>

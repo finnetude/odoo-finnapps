@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="periode_form_view">
+            <field name="name">periode form view</field>
+            <field name="model">finn.periode</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="finn_close_periode"
+                                string="Clôturer la période"
+                                type="object"
+                                default_focus="1"
+                                class="oe_highlight"
+                                invisible="state,'=','close'"
+                        />
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="company_id" required="1" invisible="1"/>
+                                <field name="name" required="1"/>
+                                <field name="exercice_id" required="1"/>
+                                <label for="date_from" string="Duré"/>
+                                <div>
+                                    <field name="date_from" required="1" class="oe_inline"/>
+                                    <label for="date_to" string=" "/>
+                                    <field name="date_to" required="1" class="oe_inline"/>
+                                </div>
+                            </group>
+                            <group>
+                                <field name="code"/>
+                                <field name="is_opening_date"/>
+                                <field name="is_closing_date"/>
+                                
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="periode_tree_view">
+            <field name="name">periode tree view</field>
+            <field name="model">finn.periode</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="is_opening_date"/>
+                    <field name="exercice_id" invisible="1"/>
+                    <field name="company_id" invisible="1"/>
+                    <field name="is_closing_date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_periode" model="ir.actions.act_window">
+            <field name="name">Périodes</field>
+            <field name="res_model">finn.periode</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="periode_tree_view"/>
+        </record>
+
+        <record id="action_periode_open" model="ir.actions.act_window">
+            <field name="name">Périodes</field>
+            <field name="res_model">finn.periode</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="periode_tree_view"/>
+            <field name="domain">[('state','=','open')]</field>
+
+        </record>
+
+        <menuitem id="menu_fin_periode"
+                parent='account.menu_finance'
+                name="Gestion des exercices"
+                groups="account.group_account_user"
+                sequence="20"/>
+
+        <menuitem id="menu_periodes"
+                parent='menu_fin_periode'
+                name="Périodes"
+                action="action_periode"
+                sequence="20"/>
+
+        <menuitem id="menu_fermer_les_periodes"
+                parent='menu_fin_periode'
+                name="Fermer les périodes"
+                action="action_periode_open"
+                sequence="40"/>
+    </data>
+</odoo>

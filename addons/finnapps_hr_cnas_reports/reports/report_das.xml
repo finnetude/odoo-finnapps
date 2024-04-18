@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_declaration_das">
+        
+                <div class="page">
+                    <t t-call="finnapps_hr_cnas_reports.report_das_custom_footer" />
+                    <style>
+                    table, th, td, tr {
+                        border-collapse: collapse;
+                        border: 1px solid black;
+                        border-top: 1px solid black;
+                        color: black;                          
+                    }
+                    thead, tfoot {
+                        border: 1px solid black;
+                        border-top: 1px solid black;
+                        color: black;
+                    }
+                    tbody {
+                        border-collapse: collapse;
+                        border: 1px solid black;
+                        color: black;
+                    }                        
+                    </style>
+                    <!-- <br/><br/> -->
+                    <t t-call="finnapps_hr_cnas_reports.custom_session_header_footer" />
+                    <table class="table table-sm o_main_table " style="width: 100%;" >
+                        <thead style="display: table-row-group">
+                            <tr>
+                                <th class="b_bottom_0 " style="text-align:center; ">N° SS</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Nom</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Mont Ann</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">NbJ</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Date Entr.</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Date Sort.</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Mont. 1<br/>TR </th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Nbj</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Mont. 2<br/>TR </th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Nbj</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Mont. 3<br/>TR </th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Nbj</th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Mont. 4<br/>TR </th>
+                                <th class="b_bottom_0 " style="text-align:center; ">Nbj</th>
+                            </tr>
+                            
+                        </thead>
+                        <tbody class="sale_tbody" >
+                            <t t-set="eff" t-value="0"/>
+                            <t t-set="total_annual_amount" t-value="0"/>
+                            <t t-set="total_1" t-value="0"/>
+                            <t t-set="total_2" t-value="0"/>
+                            <t t-set="total_3" t-value="0"/>
+                            <t t-set="total_4" t-value="0"/>
+
+                            <t t-foreach="o.declaration_das_line_ids" t-as="line" >
+                                <tr>
+                                    <td class="b_bottom"><t style="color:black;" t-esc="line.name" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.employee_id.name" /> </td>
+                                    <td class="b_bottom"><t t-esc="'{0:,.2f}'.format(line.annual_amount).replace(',', ' ')" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.total_number_day" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.input_date" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.output_date" /> </td>
+                                    <td class="b_bottom"><t t-esc="'{0:,.2f}'.format(line.first_trimester_amount).replace(',', ' ')" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.first_trimester_number_day" /> </td>
+
+                                    <td class="b_bottom"><t t-esc="'{0:,.2f}'.format(line.second_trimester_amount).replace(',', ' ')" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.second_trimester_number_day" /> </td>
+
+                                    <td class="b_bottom"><t t-esc="'{0:,.2f}'.format(line.third_trimester_amount).replace(',', ' ')" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.third_trimester_number_day" /> </td>
+
+                                    <td class="b_bottom"><t t-esc="'{0:,.2f}'.format(line.fourth_trimester_amount).replace(',', ' ')" /> </td>
+                                    <td class="b_bottom"><t t-esc="line.fourth_trimester_number_day" /> </td>
+                                </tr>
+                                <t t-set="eff" t-value="eff + 1"/>
+                                <t t-set="total_annual_amount" t-value="total_annual_amount + line.annual_amount"/>
+                                <t t-set="total_1" t-value="total_1 + line.first_trimester_amount"/>
+                                <t t-set="total_2" t-value="total_2 + line.second_trimester_amount"/>
+                                <t t-set="total_3" t-value="total_3 + line.third_trimester_amount"/>
+                                <t t-set="total_4" t-value="total_4 + line.fourth_trimester_amount"/>
+                            </t>
+
+                        </tbody>
+
+                        <tfoot class="sale_tfoot">
+                                <tr style="font-size:16px">
+                                    <th style="text-align:center;color: black;">Effectif :<t t-esc="eff" /> </th>
+                                    <th > </th>
+                                    <th style="text-align:center;color: black;">Total : <t t-esc="'{0:,.2f}'.format(total_annual_amount).replace(',', ' ')" /></th>
+                                    <th > </th>
+                                    <th > </th>
+                                    <th > </th>
+                                    <th style="text-align:center;color: black;"> <t t-esc="'{0:,.2f}'.format(total_1).replace(',', ' ')" /></th>
+                                    <th> </th>
+
+                                    <th style="text-align:center;color: black;"> <t t-esc="'{0:,.2f}'.format(total_2).replace(',', ' ')" /></th>
+                                    <th> </th>
+
+                                    <th style="text-align:center;color: black;"> <t t-esc="'{0:,.2f}'.format(total_3).replace(',', ' ')" /></th>
+                                    <th> </th>
+
+                                    <th style="text-align:center;color: black;"> <t t-esc="'{0:,.2f}'.format(total_4).replace(',', ' ')" /></th>
+                                    <th> </th>
+
+                                    
+                                    
+                                </tr>
+                            </tfoot>
+                    </table>
+
+
+
+                </div>
+
+        
+    </template>
+   
+
+    <template id="report_declaration_das_doc" >
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                  <t t-call="finnapps_hr_cnas_reports.report_das_custom_header" />
+                    <t t-call="web.external_layout">
+                        <t t-call="finnapps_hr_cnas_reports.report_declaration_das"/>
+                    </t>
+                </t>                
+            </t>
+    </template>        
+
+</odoo>

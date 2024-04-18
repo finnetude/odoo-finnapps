@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id = "generer_ecriture_view" model = "ir.ui.view">
+            <field name = "name">generer.ecriture.view</field>
+            <field name = "model">finn.generer.ecriture</field>
+            <field name = "arch" type = "xml">
+                <form string="Générer l'écriture d'ouverture">
+                   <sheet>
+                        <div>
+                            <p>
+                                Cette action génère les écritures de fin d'exercice pour 
+                                l'exercice sélectionnée. Il peut être utilisé plusieurs 
+                                fois pour le même exercice : il remplacera alors les anciennes 
+                                écritures par les nouvelles si et seulement si la pièce 
+                                comptable n’est pas validée.
+                            </p>
+                        </div>
+                    
+                    <group >
+                        <group >
+                            <field name="exercice_to_close_id" required="1" domain="[('state','=','open')]"/>
+                            <field name="journal_to_close_id" required="1"/>
+                        </group>
+                        <group >
+                            <field name="exercice_to_open_id" required="1" domain="[('state','=','open')]"/>
+                            <field name="journal_id" required="1"/>
+                        </group>
+                        <group>
+                            <field name="description" required="1"/>
+                        </group>
+                    </group >
+                    <footer>
+                        <button name="finn_generer_ecriture" 
+                                string="Créer" 
+                                type="object" 
+                                default_focus="1" 
+                                class="oe_highlight"
+                        />
+                         <button name="finn_test_generer_ecriture" 
+                                string="Journal" 
+                                type="object" 
+                                class="oe_highlight"
+                        />
+                        <button special = "cancel" string = "Annuler"/>
+                    </footer>
+                 </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_generer_ecriture" model="ir.actions.act_window">
+            <field name="name">Générer l'écriture d'ouverture</field>
+            <field name="res_model">finn.generer.ecriture</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_generer_ecriture_ouverture"
+                parent='menu_fin_periode'
+                name="Générer l'écriture d'ouverture"
+                action="action_generer_ecriture"
+                sequence="50"/>
+    </data>
+</odoo>

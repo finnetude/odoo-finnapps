@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+
+    <record id="hr_contract_report_view" model="ir.ui.view">
+      <field name="name">Contract Report</field>
+      <field name="model">finn.hr.contract.report</field>
+      <field name="arch" type="xml">
+		<form string="Contract Report">
+		  <group string="Ce wizard demandera et obtiendra des informations sur les rapports">
+		    <field name="name_report"/>
+		    <field name="employee_id"/>
+		    <!-- <field name="contract_ids" domain="[('employee_id', '=', 'employee_id')]"	/> -->
+			<field name="contract_ids" domain="[('employee_id', '=', 'employee_id')]" mode="tree">
+				<tree editable="top" default_order="date_start asc">
+					<field name="employee_id" domain = "(['|', ('company_id', '=', False), ('company_id', '=', 'employee_id.company_id')])" />
+					<field name="date_start" />
+					<field name="date_end" />
+					<field name="state" />
+				</tree>
+			</field>
+
+		    <field name="sequence"/>
+		  </group>
+		  <footer>
+		    <button name="finn_print_report" string="imprimer"  type="object" class="oe_highlight"  />
+		    où
+		    <button string="Annuler" class="oe_link" special="cancel" />
+		  </footer>
+
+		</form>
+      </field>
+    </record>
+
+
+  </data>
+</odoo>
+ 

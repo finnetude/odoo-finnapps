@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_solde_tiers_document">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+                <div class="page">
+                    <t t-set="address">
+                        <div>
+                            <div style="line-height: 50%; padding-top:10px; font-size:12px;">
+                                <div>
+                                    <strong><span t-field="o.partner_id.name"/></strong>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    <span t-field="o.partner_id.street"/>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    <span t-field="o.partner_id.street2"/>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    <span t-field="o.partner_id.zip"/> <span t-field="o.partner_id.city"/> <span t-if="o.partner_id.state_id">(<span t-field="o.partner_id.state_id"/>),</span> <span t-field="o.partner_id.country_id"/>
+                                </div>
+                                <div style="padding-top:10px;">
+                                    <span t-if="o.partner_id.phone">Tél:<span t-field="o.partner_id.phone"/>-</span><span t-if="o.partner_id.mobile"> Mobile:<span t-field="o.partner_id.mobile"/>-</span>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </t>
+                    <p>
+                        Document : Relevé de compte client<br/>
+                        Date: <span t-esc="o.get_date_today()"/><br/>
+                        <t t-if="o.partner_id.ref">Ref. du client : <span t-field="o.partner_id.ref"/></t>
+                    </p>
+
+                    <p t-if="o.add_message">
+                        <p>
+                            <span t-esc="o.message"/>
+                        </p>
+                    </p>
+
+                    <t t-set="lines" t-value="o.get_lines()"/>
+
+
+                    <t t-if="lines">
+                        <table class="table table-condensed">
+                        <thead>
+                            <tr>
+                                <th><span style="margin-right: 50px;" >Date</span></th>
+                                <th>Ref</th>
+                                <th>Libellé</th>
+                                <th class="text-center">Échéance</th>
+                                <th class="text-right">Montant</th>
+                                <th class="text-right">Solde</th>
+                                <th class="text-right">Résiduel</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <t t-set="total_all_balance" t-value="o.get_previous_solde()"/>
+                            <t t-set="total_all_residuel" t-value="0"/>
+
+                            <t t-foreach="lines" t-as="line">
+
+                                <t t-set="total_balance" t-value="0.0"/>
+                                <t t-set="total_residuel" t-value="0.0"/>
+                                <t t-foreach="lines[line]" t-as="d">
+
+                                    <t t-set="total_balance" t-value="total_balance+ d[4]"/>
+                                    <t t-set="total_residuel" t-value="total_residuel+ d[5]"/>
+                                </t>
+                                <t t-set="total_all_balance" t-value="total_all_balance+ total_balance"/>
+                                <t t-set="total_all_residuel" t-value="total_all_residuel+ total_residuel"/>
+
+                                <t t-if="o.partner_id">
+                                  <tr style="background-color: #eeeeee">
+                                    <td colspan="2" />
+                                    <td   class="text-right" colspan="2" ><span style="font-weight: bold" >Solde antérieur :</span></td>
+                                    <td class="text-right" ><span t-esc="o.get_previous_solde()" style="font-weight: bold"  t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/> </td>
+                                    <td class="text-right" ><span t-esc="o.get_previous_solde()" style="font-weight: bold"  t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/> </td>
+                                    <td/>
+
+
+
+                                </tr>
+                                </t>
+                                <t t-else="">
+                                 <tr style="background-color: #eeeeee">
+                                    <td colspan="4">
+                                        <span t-esc="line" style="font-weight: bold"/>
+                                    </td>
+
+                                     <td class="text-right">
+                                        <span t-esc="total_balance" style="font-weight: bold" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    </td>
+                                    <td> </td>
+                                    <td class="text-right">
+                                        <span t-esc="total_residuel" style="font-weight: bold" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    </td>
+
+
+
+                                </tr>
+                                </t>
+                                <t t-set="sold_cumule" t-value="o.get_previous_solde()"/>
+                                <t t-foreach="lines[line]" t-as="data">
+                                <tr>
+                                    <td  style="font-size: 14px;">
+                                        <span t-esc="data[0]"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span style="font-size: 14px;" t-esc="data[1]"/>
+                                    </td>
+                                    <td style="font-size: 14px;">
+                                        <span t-esc="data[2]"/>
+                                    </td>
+                                    <td class="text-right" style="font-size: 14px; padding-right : 3px;">
+                                        <span t-esc="data[3]"/>
+                                    </td>
+                                    <td class="text-right" style="font-size: 14px;">
+                                        <span t-esc="data[4]" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    </td>
+                                    <t t-set="sold_cumule" t-value="sold_cumule + data[4] "/>
+                                    <td class="text-right" style="font-size: 14px;">
+                                        <span t-esc="sold_cumule" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    </td>
+
+                                    <td class="text-right" style="font-size: 14px;">
+                                        <span t-esc="data[5]" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/>
+                                    </td>
+
+
+                                </tr>
+
+
+
+                                </t>
+                            </t>
+                            <tr style="background-color: #eeeeee">
+                              <td colspan="2"/>
+                              <td colspan="2" class="text-left"><strong>Total :</strong></td>
+
+                              <td class="text-right"><span t-esc="total_all_balance" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/></td>
+                              <td />
+                              <td class="text-right"><span t-esc="total_all_residuel" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/></td>
+                          </tr>
+                          <tr>
+                              <td colspan="2"></td>
+                              <td colspan="2" class="text-left"><strong>Total échu au:</strong>
+                              <span t-esc="datetime.datetime.now().strftime('%Y-%m-%d')"/></td>
+
+                              <td class="text-right"><span t-esc="o.get_montant_du()" t-options="{'widget': 'monetary', 'display_currency': o.env.user.company_id.currency_id}"/></td>
+
+                          </tr>
+                        </tbody>
+                    </table>
+
+
+                    </t>
+                    <t t-else="">
+                        <p>
+                            <br/><strong>Aucun montant dû pour ce client.</strong>
+                        </p>
+                    </t>
+                </div>
+            </t>
+
+        </t>
+        </t>
+    </template>
+</odoo>

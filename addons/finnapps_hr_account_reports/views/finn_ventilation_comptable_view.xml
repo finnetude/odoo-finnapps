@@ -1,0 +1,121 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<!-- Vue formulaire -->
+		<record id="finn_hr_vent_compt_view_form" model="ir.ui.view">
+			<field name="name">finn.ventilation.comptable.form</field>
+			<field name="model">finn.ventilation.comptable</field>
+			<field name="arch" type="xml">
+				<form >
+					<header>
+						<button name="get_line_vc" string="Générer les lignes" type="object" class="oe_highlight"/>
+					
+					</header>
+					<sheet>
+						 <div class="oe_title">
+                            
+                            <h1>
+                                <field name="name" placeholder="Employé" readonly="1" />
+                            </h1>
+                        </div>
+
+						<group>
+							<group class="group_left" >
+						
+								<field name="company_id"  invisible="1"/>
+								<field name="month" required="1" />
+								
+							</group>
+							<group class="group_right" >
+								<field name="year" required="1" />
+								
+							</group>
+						</group>
+					<notebook>
+						<page string="Lignes de ventilation comptable" >
+							<div class="o_row no-gutters d-flex">
+	                        	 <button name="print_ventilation" string="Imprimer ventilation comptable" type="object" class="oe_highlight"/>
+                        	</div><br/>
+
+							<field name="ventilation_line_ids" >
+								<tree editable="bottom" create="false">
+									<field name="name"/>
+									<field name="rubric"/>
+									<field name="account_id"/>
+									<field name="base"/>
+									<field name="payments"/>
+									<field name="returneds"/>
+								</tree>
+							</field>
+							<group class="oe_subtotal_footer oe_right" >
+								<label for="total_payments" string="Totaux"/>
+	                            <div>
+	                                <field name="total_payments" class="oe_inline"/>
+	                                
+	                                <field name="total_retenus" class="oe_inline"/>
+	                            </div>
+
+                                <field name="base_ss" readonly="1"/>
+                                <field name="retenu_ss" readonly="1"/>
+                               
+                            </group>
+						</page>
+						<page string="Note">
+							<field name="note"/>
+						</page>
+						
+					</notebook>
+					
+				</sheet>
+				</form>
+			</field>
+		</record>
+
+		<record id="finn_hr_vent_compt_view_tree" model="ir.ui.view">
+			<field name="name">finn.ventilation.comptable.tree</field>
+			<field name="model">finn.ventilation.comptable</field>
+			<field name="arch" type="xml">
+				<tree >
+					<field name="name" />
+					<field name="month" />
+					<field name="year" />
+				
+	
+				</tree>
+			</field>
+		</record>
+
+		
+
+		<record id="action_finn_hr_vent_compt" model="ir.actions.act_window">
+			<field name="name">Ventilation comptable</field>
+			<field name="res_model">finn.ventilation.comptable</field>
+			<field name="view_mode">tree,form</field>
+		
+
+		</record>
+
+		
+		<menuitem id="menu_hr_fiscal_parent" 
+		 	parent="finnapps_hr_payroll_dz.sub_menu_rapport_paie_algerienne" 
+		  	name="Rapport de comptabilité de la paie"
+		  	groups="finnapps_hr_payroll_dz.group_hr_payroll_manager"
+		  	sequence="10"
+		/>
+
+
+
+		<menuitem id="menu_hr_vent_compt" 
+		 	parent="finnapps_hr_account_reports.menu_hr_fiscal_parent" 
+		  	name="Ventilation comptable"
+		  	action="action_finn_hr_vent_compt"
+		  	groups="finnapps_hr_payroll_dz.group_hr_payroll_manager"
+		  	sequence="30"
+		/>
+
+    
+
+	
+
+	</data>
+</odoo>

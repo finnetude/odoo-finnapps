@@ -1,0 +1,269 @@
+<?xml version="1.0"?>
+<odoo>
+    <template id="report_account_invoice_document_custom_base" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//div[@class='row']" position="replace">            
+
+            <div class="row">
+                <t t-if="o.partner_shipping_id and (o.partner_shipping_id != o.partner_id)">
+                        <div class="col-6">
+                            <t t-set="information_block">
+                                <div groups="account.group_delivery_invoice_address" name="shipping_address_block">
+                                    <strong>Shipping Address:</strong>
+                                    <div t-field="o.partner_shipping_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                </div>
+                            </t>
+                        </div>
+                    <div class="col-6" name="address_not_same_as_shipping">
+                        <t t-set="address">
+                            <div style="line-height: 50%; padding-top:10px; font-size:12px;">
+                                <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.phone">
+                                        <b>Tél:</b>
+                                        <span t-field="o.partner_id.phone"/>
+                                    </span>
+                                </div>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.mobile">
+                                        <b>Mobile:</b>
+                                        <span t-field="o.partner_id.mobile"/>
+                                        <span t-if="o.partner_id.mobile and o.partner_id.fax"> - </span>
+                                    </span>
+                                    <span t-if="o.partner_id.fax">
+                                        <b>Fax:</b>
+                                        <span t-field="o.partner_id.fax"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="line-height: 50%; padding-top:1px; font-size:11px;">
+                                <div>
+                                    <t t-if="o.company_id.activity_code_in_invoice == True">
+                                        <t t-if="o.partner_id.company_type == 'company'">
+                                            <div style="padding-top:1px;line-height: 100%;">
+                                                <span><strong>Code d'activité :</strong></span>
+                                                <span  t-field="o.partner_id.activity_code_id"/>
+                                            </div>
+                                        </t>
+                                        <t t-else = "">
+                                            <t t-if="o.partner_id.parent_id">
+                                                <div style="padding-top:1px;line-height: 100%;">
+                                                    <span><strong>Code d'activité :</strong></span>
+                                                    <span  t-field="o.partner_id.parent_id.activity_code_id"/>
+                                                </div> 
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="o.company_id.industry_id_in_invoice == True">
+                                        <t t-if="o.partner_id.company_type == 'company'">
+                                            <div style="padding-top:1px;line-height: 100%;" t-if="o.partner_id.industry_id.name">
+                                                <span><strong>Secteur d'activité :</strong></span>
+                                                <span t-field="o.partner_id.industry_id.name" />
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-if="o.partner_id.parent_id">
+                                                <div style="padding-top:1px;line-height: 100%;" t-if="o.partner_id.parent_id.industry_id.name">
+                                                    <span><strong>Secteur d'activité :</strong></span>
+                                                    <span t-field="o.partner_id.parent_id.industry_id.name" />
+                                                </div>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </div>
+                                <div>
+                                    <span t-if="o.partner_id.company_registry"><b>RC N°:</b> <span t-field="o.partner_id.company_registry"/></span>
+                                    <span t-if="o.partner_id.vat"><b>AI : </b><span t-field="o.partner_id.vat"/></span>
+                                </div>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.nif"><b>NIF :</b> <span t-field="o.partner_id.nif" style="text-align:left"/></span>
+                                    <span t-if="o.partner_id.nis"><b>NIS : </b> <span t-field="o.partner_id.nis" style="text-align:left"/></span>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+
+                <t t-elif="o.partner_shipping_id and (o.partner_shipping_id == o.partner_id)">
+                    <div class="offset-col-6 col-6" name="address_same_as_shipping">
+                        <t t-set="address">
+                            <div style="line-height: 50%; padding-top:10px; font-size:12px;">
+                                <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.phone">
+                                        <b>Tél:</b>
+                                        <span t-field="o.partner_id.phone"/>
+                                    </span>
+                                </div>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.mobile">
+                                        <b>Mobile:</b>
+                                        <span t-field="o.partner_id.mobile"/>
+                                        <span t-if="o.partner_id.mobile and o.partner_id.fax"> - </span>
+                                    </span>
+                                    <span t-if="o.partner_id.fax">
+                                        <b>Fax:</b>
+                                        <span t-field="o.partner_id.fax"/>
+                                    </span>
+                                </div>
+                            </div>
+            
+                            <div style="line-height: 50%; padding-top:1px; font-size:11px;">
+                                <div>
+                                    <t t-if="o.company_id.activity_code_in_invoice == True">
+                                        <t t-if="o.partner_id.company_type == 'company'">
+                                            <div style="padding-top:1px;line-height: 100%;">
+                                                <span><strong>Code d'activité :</strong></span>
+                                                <span  t-field="o.partner_id.activity_code_id"/>
+                                            </div>
+                                        </t>
+                                        <t t-else = "">
+                                            <t t-if="o.partner_id.parent_id">
+                                                <div style="padding-top:1px;line-height: 100%;">
+                                                    <span><strong>Code d'activité :</strong></span>
+                                                    <span  t-field="o.partner_id.parent_id.activity_code_id"/>
+                                                </div> 
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="o.company_id.industry_id_in_invoice == True">
+                                        <t t-if="o.partner_id.company_type == 'company'">
+                                            <div style="padding-top:1px;line-height: 100%;" t-if="o.partner_id.industry_id.name">
+                                                <span><strong>Secteur d'activité :</strong></span>
+                                                <span t-field="o.partner_id.industry_id.name" />
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-if="o.partner_id.parent_id">
+                                                <div style="padding-top:1px;line-height: 100%;" t-if="o.partner_id.parent_id.industry_id.name">
+                                                    <span><strong>Secteur d'activité :</strong></span>
+                                                    <span t-field="o.partner_id.parent_id.industry_id.name" />
+                                                </div>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </div>
+                                <div>
+                                    <span t-if="o.partner_id.company_registry"><b>RC N°:</b> <span t-field="o.partner_id.company_registry"/></span>
+                                    <span t-if="o.partner_id.vat"><b>AI : </b><span t-field="o.partner_id.vat"/></span>
+                                </div>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.nif"><b>NIF :</b> <span t-field="o.partner_id.nif" style="text-align:left"/></span>
+                                    <span t-if="o.partner_id.nis"><b>NIS : </b> <span t-field="o.partner_id.nis" style="text-align:left"/></span>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+                <t t-else="">
+                    <div class="offset-col-6 col-6" name="no_shipping">
+                        <t t-set="address">
+                            <div style="line-height: 50%; padding-top:10px; font-size:12px;">
+                                <address class="mb-0" t-field="o.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: True}"/>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.phone">
+                                        <b>Tél:</b>
+                                        <span t-field="o.partner_id.phone"/>
+                                    </span>
+                                </div>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.mobile">
+                                        <b>Mobile:</b>
+                                        <span t-field="o.partner_id.mobile"/>
+                                        <span t-if="o.partner_id.mobile and o.partner_id.fax"> - </span>
+                                    </span>
+                                    <span t-if="o.partner_id.fax">
+                                        <b>Fax:</b>
+                                        <span t-field="o.partner_id.fax"/>
+                                    </span>
+                                </div>
+                            </div>
+                            <div style="line-height: 50%; padding-top:1px; font-size:11px;">
+                                <div>
+                                    <t t-if="o.company_id.activity_code_in_invoice == True">
+                                        <t t-if="o.partner_id.company_type == 'company'">
+                                            <div style="padding-top:1px;line-height: 100%;">
+                                                <span><strong>Code d'activité :</strong></span>
+                                                <span  t-field="o.partner_id.activity_code_id"/>
+                                            </div>
+                                        </t>
+                                        <t t-else = "">
+                                            <t t-if="o.partner_id.parent_id">
+                                                <div style="padding-top:1px;line-height: 100%;">
+                                                    <span><strong>Code d'activité :</strong></span>
+                                                    <span  t-field="o.partner_id.parent_id.activity_code_id"/>
+                                                </div> 
+                                            </t>
+                                        </t>
+                                    </t>
+                                    <t t-if="o.company_id.industry_id_in_invoice == True">
+                                        <t t-if="o.partner_id.company_type == 'company'">
+                                            <div style="padding-top:1px;line-height: 100%;" t-if="o.partner_id.industry_id.name">
+                                                <span><strong>Secteur d'activité :</strong></span>
+                                                <span t-field="o.partner_id.industry_id.name" />
+                                            </div>
+                                        </t>
+                                        <t t-else="">
+                                            <t t-if="o.partner_id.parent_id">
+                                                <div style="padding-top:1px;line-height: 100%;" t-if="o.partner_id.parent_id.industry_id.name">
+                                                    <span><strong>Secteur d'activité :</strong></span>
+                                                    <span t-field="o.partner_id.parent_id.industry_id.name" />
+                                                </div>
+                                            </t>
+                                        </t>
+                                    </t>
+                                </div>
+                                <div>
+                                    <span t-if="o.partner_id.company_registry"><b>RC N°:</b> <span t-field="o.partner_id.company_registry"/></span>
+                                    <span t-if="o.partner_id.vat"><b>AI : </b><span t-field="o.partner_id.vat"/></span>
+                                </div>
+                                <div style="padding-top:1px;">
+                                    <span t-if="o.partner_id.nif"><b>NIF :</b> <span t-field="o.partner_id.nif" style="text-align:left"/></span>
+                                    <span t-if="o.partner_id.nis"><b>NIS : </b> <span t-field="o.partner_id.nis" style="text-align:left"/></span>
+                                </div>
+                            </div>
+                        </t>
+                    </div>
+                </t>
+            </div>
+        </xpath>
+
+        <xpath expr="//div[@class='mb-2']" position="replace">
+            
+              
+        </xpath>
+
+        <xpath expr="//div[@id='payment_term']" position="after">
+            
+            <div class="mb-2">
+                <p class="text-end lh-sm" t-if="o.company_id.display_invoice_amount_total_words" style="float:left;margin-top:110px;">
+                    Montant total en toutes lettres :
+                    <small class="text-muted lh-sm"><span t-field="o.amount_total_words">Thirty one dollar and Five cents</span></small>
+                </p>
+            </div>
+            
+            <br/>
+            <table style="width: 100%; height: 140px; padding-top:10px; padding-bottom:15px; padding-left:4px; page-break-before: auto;">
+                <tr style="border: 1px solid white;" >
+                    <th style="border: 1px solid black; width:25%; font-size:13px;">
+                        <p style="padding-top:5px; text-align:center;">
+                            Visa / Signature client: <br/> <strong class="list-inline-item" style="text-align:center;">Solde actuel: <span t-field="o.amount_total"/></strong>
+                            
+                        </p>
+                    </th>
+                    <th style="width:50%;">
+                    </th>
+                    <th style="border: 1px solid black; width:25%; font-size:13px;">
+                        <p style="text-decoration:underline;padding-top:5px; text-align:center;">
+                            Visa / Signature :
+                        </p>
+                    </th>
+                </tr>
+            </table>
+        </xpath>
+
+
+       
+
+    </template>
+</odoo>

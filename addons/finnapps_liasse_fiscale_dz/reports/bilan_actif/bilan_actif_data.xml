@@ -1,0 +1,352 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+		<!-- BILAN ACTIF -->
+		  <record id="elfc_01bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Ecart d’acquisition – goodwill positif ou négatif</field>
+			<field name="code">01bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['207:S'],
+					'except':[]
+					},
+				'amort_prov':{ 
+					'load':['2807:S','2907:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+		  
+		<record id="elfc_02bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations incorporelles</field>
+			<field name="code">02bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['20:S'],
+					'except':['207']
+					},
+				'amort_prov':{
+					'load':['280:S','290:S'],
+					'except':['2807','2907']
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+          		  
+		<record id="elfc_bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Terrains</field>
+			<field name="code">03bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['211:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['2811:S','2911:S'],
+					'except':[]
+					},
+				}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+
+		<record id="elfc_04bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Bâtiments</field>
+			<field name="code">04bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['212:S','213:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['2812:S','2912:S','2813:S','2913:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_05bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres immobilisations corporelles</field>
+			<field name="code">05bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['21:S'],
+					'except':['211','212','213']
+					},
+				'amort_prov':{
+					'load':['281:S','291:S'],
+					'except':['2811','2911','2812','2912','2813','2913']
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_06bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations en concession</field>
+			<field name="code">06bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['22:S'],
+					'except':['229']
+					},
+				'amort_prov':{
+					'load':['282:S','282:S'],
+					'except':['2829','2929']
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_07bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Immobilisations encours</field>
+			<field name="code">07bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['23:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['283:S','293:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_08bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Titres mis en équivalence</field>
+			<field name="code">08bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['265:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_09bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres participations et créances rattachées</field>
+			<field name="code">09bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['26:S'],
+					'except':['265','269']
+					},
+				'amort_prov':{
+					'load':['296:S'],
+					'except':['2965','2969']
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_10bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres titres immobilisés</field>
+			<field name="code">10bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['271:S','272:S','273:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['2971:S','2972:S','2973:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_11bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Prêts et autres actifs financiers non courants</field>
+			<field name="code">11bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['274:S','275:S','276:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['2974:S','2975:S','2976:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_12bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts différés actif</field>
+			<field name="code">12bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['133:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+
+		<record id="elfc_13bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL ACTIF NON COURANT</field>
+			<field name="code">13bilana</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:01bilana', '+:02bilana', '+:03bilana', '+:04bilana', '+:05bilana', '+:06bilana', '+:07bilana', '+:08bilana', '+:09bilana', '+:10bilana', '+:11bilana', '+:12bilana']</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+		
+		<record id="elfc_14bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Stocks et encours</field>
+			<field name="code">14bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['30:S','31:S','32:S','33:S','34:S','35:S','36:S','37:S','38:S'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['39:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_15bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Clients</field>
+			<field name="code">15bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['41:S'],
+					'except':['419']
+					},
+				'amort_prov':{
+					'load':['491:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_16bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres débiteurs</field>
+			<field name="code">16bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['409:S','42:D','43:D','440:D','441:D','442:D','443:D','446:D','448:D','449:D','45:D','46:D','47:D','486:D','489:D'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['495:S','496:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_17bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts et assimilés</field>
+			<field name="code">17bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['444:D','445:D','447:D'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+		<record id="elfc_18bilan" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres créances et emplois assimilés</field>
+			<field name="code">18bilana</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'brut':{
+					'load':['48:D'],
+					'except':['486','489']
+					},
+				'amort_prov':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+		</record>
+           
+        <record id="elfc_19bilan" model="finn.liasse.fiscale.type.line">
+            <field name="name">Placements et autres actifs financiers courants</field>
+            <field name="code">19bilana</field>
+			<field name="display_type">calcule</field>
+            <field name="definition">{        
+				'brut':{
+					'load':['50:S'],
+					'except':['509']
+					},
+				'amort_prov':{
+					'load':[],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+        </record>
+
+        <record id="elfc_20bilan" model="finn.liasse.fiscale.type.line">
+            <field name="name">Trésorerie</field>
+            <field name="code">20bilana</field>
+			<field name="display_type">calcule</field>
+            <field name="definition">{        
+				'brut':{
+					'load':['53:S','54:S','51:D','52:D','58:D'],
+					'except':[]
+					},
+				'amort_prov':{
+					'load':['59:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="bilan_actif"/>
+        </record>
+
+        <record id="elfc_21bilan" model="finn.liasse.fiscale.type.line">
+            <field name="name">TOTAL ACTIF COURANT</field>
+            <field name="code">21bilana</field>
+			<field name="display_type">total</field>
+            <field name="definition">['+:14bilana', '+:15bilana', '+:16bilana', '+:17bilana', '+:18bilana', '+:19bilana', '+:20bilana']</field>
+			<field name="report_id" ref="bilan_actif"/>
+        </record>
+
+        <record id="elfc_22bilan" model="finn.liasse.fiscale.type.line">
+            <field name="name">TOTAL GENERAL ACTIF</field>
+            <field name="code">22bilana</field>
+			<field name="display_type">total</field>
+            <field name="definition">['+:13bilana', '+:21bilana']</field>
+			<field name="report_id" ref="bilan_actif"/>
+        </record>
+	</data>
+</odoo>

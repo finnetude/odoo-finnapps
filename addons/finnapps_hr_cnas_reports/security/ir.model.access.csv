@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_finn_declaration_cotisation,finn_declaration_cotisation_default,model_finn_declaration_cotisation,base.group_user,1,1,1,1
+acl_finn_cotisation_line,finn_cotisation_line_default,model_finn_cotisation_line,base.group_user,1,1,1,1
+acl_finn_abatement_base,finn_abatement_base_default,model_finn_abatement_base,base.group_user,1,1,1,1
+acl_finn_movement_employees,finn_movement_employees_default,model_finn_movement_employees,base.group_user,1,1,1,1
+acl_finn_declaration_das,finn_declaration_das_default,model_finn_declaration_das,base.group_user,1,1,1,1
+acl_finn_lot_declaration_cotisation,finn_lot_declaration_cotisation_default,model_finn_lot_declaration_cotisation,base.group_user,1,1,1,1
+acl_finn_declaration_das_line,finn_declaration_das_line_default,model_finn_declaration_das_line,base.group_user,1,1,1,1
+finn_employee_list,finn_employee_list,model_finn_employee_list,base.group_user,1,1,1,1
+access_finn_activity_code,finn.activity.code,model_finn_activity_code,base.group_user,1,1,1,1

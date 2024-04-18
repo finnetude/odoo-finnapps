@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+        <!-- comptable -->
+		<record id="bilan_actif" model="finn.liasse.fiscale.type">
+			<field name="name">Bilan (ACTIF)</field>
+			<field name="code">bilan_actif</field>
+			<field name="type_liasse">comptable</field> 
+			<field name="notes"><![CDATA[Rapport : Bilan (ACTIF)
+Montants Bruts
+Amortissements, provisions et pertes de valeurs
+Net = Montants Bruts - Amortissements, provisions et pertes de valeurs
+Net (n-1) = Montants Bruts (n-1) - Amortissements, provisions et pertes de valeurs (n-1)]]></field> 
+		</record>
+
+		<record id="bilan_passif" model="finn.liasse.fiscale.type">
+			<field name="name">Bilan (PASSIF)</field>
+			<field name="code">bilan_passif</field>
+			<field name="type_liasse">comptable</field> 
+			<field name="notes"><![CDATA[Rapport : Bilan (PASSIF)]]></field> 
+		</record>
+
+		<record id="compte_resultat" model="finn.liasse.fiscale.type">
+			<field name="name">Compte de résultat</field>
+			<field name="code">compte_resultat</field>
+			<field name="type_liasse">comptable</field>
+			<field name="notes"><![CDATA[Rapport : Compte de résultat]]></field>
+		</record>
+
+		<record id="tableau_flux_tresorerie" model="finn.liasse.fiscale.type">
+			<field name="name">Tableau des flux de trésorerie</field>
+			<field name="code">tableau_flux_tresorerie</field>
+			<field name="type_liasse">comptable</field> 
+			<field name="notes"><![CDATA[Rapport : ]]></field>
+		</record>
+
+        <!-- Fiscale -->
+		<!-- Stock (1-2) -->
+        <record id="stock_1" model="finn.liasse.fiscale.type">
+			<field name="name">1/ Tableau des mouvements des stocks</field>
+			<field name="code">stock_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des mouvements de stocks (N°1) et Tableau de la fluctuation de la production stockée (N°2)]]></field>
+		</record>
+
+        <record id="stock_2" model="finn.liasse.fiscale.type">
+			<field name="name">2/ Tableau de la fluctuation de la production stockée</field>
+			<field name="code">stock_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"></field>
+		</record>
+
+		<!-- Charge (3-4) -->
+        <record id="charge_1" model="finn.liasse.fiscale.type">
+			<field name="name">3/ Charges de personnel, impôts, taxes et versements assimilés, autres services</field>
+			<field name="code">charge_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des charges de personnel, impôts, taxes et versements assimilés, autres services (N°3)
+Tableau des autres charges et produits opérationnels (N°4)]]></field>
+		</record>
+
+		<record id="charge_2" model="finn.liasse.fiscale.type">
+			<field name="name">4/ Autres charges et produits opérationnels</field>
+			<field name="code">charge_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"></field>
+		</record>
+        
+		<!-- Amo/Inv (5-6) -->
+        <record id="amo_inv_1" model="finn.liasse.fiscale.type">
+			<field name="name">5/ Tableau des amortissements et pertes de valeurs</field>
+			<field name="code">amo_inv_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des amortissements et pertes de valeurs (N°5)
+Tableau des immobilisations créées ou acquises au cours de l’exercice (N°6)]]></field>
+		</record>
+
+		<record id="amo_inv_2" model="finn.liasse.fiscale.type">
+			<field name="name">6/ Tableau des immobilisations créées ou acquises au cours de l’exercice</field>
+			<field name="code">amo_inv_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"></field>
+		</record>
+
+		<!-- Cess./prov. (7-8) -->
+        <record id="cess_prov_1" model="finn.liasse.fiscale.type">
+			<field name="name">7/ Tableau des immobilisations cédées (plus ou moins value) au cours de l’exercice</field>
+			<field name="code">cess_prov_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des immobilisations cédées (plus ou moins values) au cours de l’exercice (N°7)]]></field>
+		</record>
+
+		<record id="cess_prov_2" model="finn.liasse.fiscale.type">
+			<field name="name">8/ Tableau des provisions et pertes de valeurs</field>
+			<field name="code">cess_prov_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des immobilisations cédées (plus ou moins values) au cours de l’exercice (N°7)]]></field>
+		</record>
+        
+		<!-- Perte val. (8/1-8/2) -->
+        <record id="perte_val_1" model="finn.liasse.fiscale.type">
+			<field name="name">8/1 Relevé des pertes de valeurs sur créances</field>
+			<field name="code">perte_val_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des provisions et pertes de valeurs (N°8)]]></field>
+		</record>
+
+		<record id="perte_val_2" model="finn.liasse.fiscale.type">
+			<field name="name">8/2 Relevé des pertes de valeurs sur actions et parts sociales</field>
+			<field name="code">perte_val_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau des provisions et pertes de valeurs (N°8)]]></field>
+		</record>
+
+		<!-- D. résultat (9) -->
+        <record id="result" model="finn.liasse.fiscale.type">
+			<field name="name">9/ Tableau de détermination du résultat fiscal</field>
+			<field name="code">result</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau de détermination du résultat fiscal (N°9)]]></field>
+		</record>
+
+		<!-- Tab. (10-11) -->
+        <record id="tab_1" model="finn.liasse.fiscale.type">
+			<field name="name">10/ Tableau d’affectation du résultat et des réserves (N-1)</field>
+			<field name="code">tab_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Tableau d’affectation du résultat et des réserves (N-1) (N°10)
+Tableau des participations (filiales et associés) (N°11)]]></field>
+		</record>
+
+		<record id="tab_2" model="finn.liasse.fiscale.type">
+			<field name="name">11/ Tableau des participations (filiales et entités associées)</field>
+			<field name="code">tab_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"></field>
+		</record>
+
+		<!-- Commission (12 - 13) -->
+        <record id="commission_1" model="finn.liasse.fiscale.type">
+			<field name="name">12/ Commissions et courtages, redevances, honoraires, sous-traitance, rémunérations diverses et frais de siège</field>
+			<field name="code">commission_1</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"><![CDATA[Rapport : Commissions et courtages, redevances, honoraires, sous-traitance, rémunérations diverses et frais de siège (N°12)
+Taxe sur l’activité professionnelle (N°13)]]></field>
+		</record>
+
+        <record id="commission_2" model="finn.liasse.fiscale.type">
+			<field name="name">13/ Taxe sur l’activité professionnelle</field>
+			<field name="code">commission_2</field>
+			<field name="type_liasse">fiscale</field> 
+			<field name="notes"></field>
+		</record>
+
+        
+	</data>
+</odoo>

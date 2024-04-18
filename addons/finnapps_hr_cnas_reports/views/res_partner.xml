@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  
+    <record model="ir.ui.view" id="view_res_partner_code">
+            <field name="name">Code in res partner view</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form" />
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='industry_id']" position="after">
+                    <field name="activity_code_id"  widget="many2many_tags" invisible="company_type == 'person'"/>
+                </xpath>
+
+
+            </field>
+    </record>
+</odoo>

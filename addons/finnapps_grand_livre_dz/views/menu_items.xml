@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  
+            
+    <menuitem   id="menu_grand_livre"
+                parent='finnapps_invoicing_dz.account_report_audit'
+                name="Grand livre"
+                action="action_grand_livre"
+                sequence="12"/>
+
+
+    <!-- <menuitem   id="menu_grand_livre_tiers"
+                parent='l10n_dz_finnetude.account_report_partner'
+                name="Grand livre des tiers"
+                action="action_grand_livre_tiers"
+                sequence="10"/>  
+  -->
+
+              
+                
+
+</odoo>

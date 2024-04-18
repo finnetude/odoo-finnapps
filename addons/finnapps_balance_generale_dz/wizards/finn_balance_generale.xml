@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="balance_generale_view" model="ir.ui.view">
+        <field name="name">Balance générale</field>
+        <field name="model">finn.balance.generale</field>
+        <field name="arch" type="xml">
+        <form string="Balance générale">
+            <group col="4">
+                <field name="exercice_id" required="1"/>
+                <field name="filtrer_par_ecriture" required="1"/>
+                <field name="filtrer_par_compte" required="1"/>
+                <field name="filtrer_par_piece" required="1"/>
+            </group>
+            <group col="4">
+                <field name="bg_tiers" invisible="1"/>
+                <field name="bg_clients" invisible="1"/>
+                <field name="bg_fournisseurs" invisible="1"/>
+            </group>
+            <notebook>
+                <page string="Filtrer par temps">
+                    <group>
+                        <field  name="filtrer_par_temps" style="width:200px;" required="1"/>
+                    </group>
+                    <group invisible="filtrer_par_temps != 'date'">
+                        <field  name="date_from" required="filtrer_par_temps == 'date'" style="width:200px;"/>
+                        <field  name="date_to" required="filtrer_par_temps == 'date'" style="width:200px;"/>
+                    </group>
+                    <group invisible="filtrer_par_temps != 'periode'">
+                        <field  name="period_from_id" domain="[('exercice_id','=',exercice_id)]" required="filtrer_par_temps == 'periode'" style="width:200px;"/>
+                        <field  name="period_to_id" domain="[('exercice_id','=',exercice_id)]" required="filtrer_par_temps == 'periode'" style="width:200px;"/>
+                    </group>
+                </page>
+            </notebook>
+            <footer>
+                <button name="imprimer_rapport" string="Imprimer" type="object" default_focus="1" class="oe_highlight"/>
+                <button string="Annuler" class="btn btn-default" special="cancel" />
+            </footer>
+        </form>
+        </field>
+    </record>
+
+    <record id="action_balance_generale" model="ir.actions.act_window">
+        <field name="name">Balance générale</field>
+        <field name="res_model">finn.balance.generale</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <!-- <record id="action_balance_generale_clients" model="ir.actions.act_window">
+        <field name="name">Balance générale des clients</field>
+        <field name="res_model">balance.generale</field>
+        <field name="context">{'default_bg_tiers':True,'default_filtrer_par_compte':'tous'}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="action_balance_generale_agees_clients" model="ir.actions.act_window">
+        <field name="name">Balance générale agées des clients</field>
+        <field name="res_model">balance.generale</field>
+        <field name="context">{'default_bg_clients':True,'default_filtrer_par_compte':'tous'}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+
+    <record id="action_balance_generale_agees_fournisseurs" model="ir.actions.act_window">
+        <field name="name">Balance générale agées des fournisseurs</field>
+        <field name="res_model">balance.generale</field>
+        <field name="context">{'default_bg_fournisseurs':True,'default_filtrer_par_compte':'tous'}</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+ -->
+</odoo>

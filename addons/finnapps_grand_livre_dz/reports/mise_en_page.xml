@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <template id="internal_layout_l10n_dz_report">
+            <div class="footer">
+                <div class="row">
+                    <center><span>Page </span><span class="page" /> / <span class="topage" /></center>
+                </div>
+            </div>
+            <div class="article">
+                <t t-raw="0" />
+            </div>
+        </template>
+
+    </data>
+</odoo>

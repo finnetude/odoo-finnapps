@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data> 
+        <record id="base_vat.view_partner_base_vat_form" model="ir.ui.view">
+            <field name="active">False</field>
+        </record>
+
+        <record id="finnetude_inherit_view_partner_form" model="ir.ui.view">
+            <field name="name">.finnetude.inherit.view.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='company_registry']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='vat']" position="attributes">
+                    <attribute name="invisible">True</attribute>
+                </xpath>
+
+                <xpath expr="//group[@name='fiscal_information']" position="inside">
+                    <field name="forme_juridique_id"/>
+                    <field name="forme_juridique_code" invisible="0"/>
+                    <field name="activity_code_id" widget="many2many_tags"/>
+                    <field name="company_registry" string="N° RC" invisible="parent_id"/>
+                    <field name="nif" invisible="parent_id"/>
+                    <field name="vat" string="A.I" invisible="parent_id"/>
+                    <field name="nis" invisible="parent_id"/>
+                </xpath>
+
+                <xpath expr="//field[@name='user_ids']" position="before">
+                    <field name="fax" widget="phone"/>
+                </xpath>
+
+                <xpath expr="//div[@class='o_address_format']/field[@name='state_id']" position="attributes">
+                    <attribute name="placeholder">Wilaya</attribute>
+                </xpath>
+
+            </field>
+        </record>
+    </data>
+</odoo>

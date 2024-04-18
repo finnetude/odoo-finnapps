@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Vue formulaire -->
+    <record id="finn_forme_juridique_view_form" model="ir.ui.view">
+        <field name="name">finn.juridique.view.form</field>
+        <field name="model">finn.forme.juridique</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="code"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vue liste -->
+    <record id="finn_forme_juridique_view_tree" model="ir.ui.view">
+        <field name="name">finn.juridique.view.tree</field>
+        <field name="model">finn.forme.juridique</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Action -->
+     <record id='action_finn_forme_juridique' model='ir.actions.act_window'>
+        <field name="name">Formes juridiques</field>
+        <field name="res_model">finn.forme.juridique</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu -->
+    <menuitem   id="menu_finn_forme_juridique" 
+                name="Formes juridiques"
+                action="action_finn_forme_juridique"
+                parent="contacts.res_partner_menu_config"/>
+
+</odoo>

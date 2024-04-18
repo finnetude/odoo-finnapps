@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="l10n_dz_finnetude_inherit_res_company_form" model="ir.ui.view">
+        <field name="name">l10n.dz.finnetude.inherit.res.company.form</field>
+        <field name="model">res.company</field>
+        <field name="inherit_id" ref="base.view_company_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='state_id']" position="attributes">
+                <attribute name="placeholder">Wilaya</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='company_registry']" position="attributes">
+                <attribute name="string">N° RC</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='company_registry']" position="after">
+                <field name="nif"/>
+                <field name="nis"/>
+            </xpath>
+
+            <xpath expr="//field[@name='color']" position="after">
+                <field name="forme_juridique_id"/>
+                <field name="activity_code_id" widget="many2many_tags"/>
+                <field name="capital_social" widget="monetary"/>
+            </xpath>
+
+            <xpath expr="//field[@name='mobile']" position="after">
+                <field name="fax"/>
+                
+                
+            </xpath>
+            
+            <xpath expr="//field[@name='vat']" position="attributes">
+                <attribute name="string">AI</attribute>
+            </xpath>
+
+            <xpath expr="//notebook" position="inside">
+                <page name="Bas de page">
+                    <field name="report_footer"/>
+                </page>
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

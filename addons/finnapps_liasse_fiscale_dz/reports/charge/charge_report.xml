@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="charge_repo">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+
+                        <div class="page">
+
+                            <style>
+                                #result_part {
+                                    height: 25px;
+                                    font-weight: bold;
+                                    background: #e4e6e8;
+                                    text-indent: 10%;
+
+                                }
+
+                                #part_table {
+                                    font-weight: bold;
+                                    text-align: right;
+
+                                }
+
+                                thead {
+                                    background: #e4e6e8;
+                                    color: black;
+
+                                }
+
+                                table {
+                                    font-size: 12px;
+                                    margin-left: auto;
+                                    margin-right: auto;
+                                    border-collapse: collapse;
+                                    color: black;
+                                }
+
+                                table th {
+                                    font-size: 12px;
+                                    font-weight: bold;
+                                    border: 1px solid black;
+
+                                }
+
+                                tr {
+                                    height: 20px;
+                                }
+
+                                table td {
+                                    
+                                    color: black;
+                                    border: 1px solid black;
+                                    font-size: 12px;
+                                }
+
+
+                                .div1 {
+                                    color: black;
+                                    background: #e4e6e8;
+                                    text-align: left;
+                                    font-weight: bold;
+                                    margin-bottom: 1px;
+                                    width: 60%;
+                                    border: 1px solid black;
+                                    padding: 1px;
+                                    box-shadow: 1px 2px #a6af93;
+
+                                }
+
+                                #table_date {
+                                    width: 60%;
+                                    text-align: center;
+                                    margin: auto;
+                                }
+
+                                #table_date td {
+                                    color: black;
+                                    border: 1px solid black;
+                                    padding: 5px 5px;
+                                    font-size: 12px;
+                                }
+
+                                #data {
+                                    color: black;
+
+                                }
+
+                                table.title {
+                                    font-size: 12px;
+                                    text-align: left;
+                                    border-collapse: collapse;
+                                    color: black;
+                                    background: #e4e6e8;
+                                    margin-bottom: 10px;
+                                    margin-top: 10px;
+                                    margin-left: 0px;
+                                    margin-right: auto;
+                                    height: 30px;
+                                }
+                            </style>
+                            <table id="table_date" style="width: 60%;" border="1">
+                                <tbody>
+                                    <tr>
+                                        <td style="font-weight: bold;">Exercice du</td>
+                                        <td style="color:black;"><span t-esc="o.exercice_id.date_from"
+                                                t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                        <td style="font-weight: bold;">au</td>
+                                        <td style="color:black;"><span t-esc="o.exercice_id.date_to"
+                                                t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="title" border="1" style=" width: 500px;font-size: 12px;text-indent: 1%;">
+                                <tr>
+                                    <td><strong>3/ Charges de personnel, impôts, taxes et versements assimilés, autres
+                                            services:
+                                        </strong></td>
+                                </tr>
+                            </table>
+
+                            <table style="font-size: 12px;color: black;text-align: center;" border="1" width="100%"
+                                height="100%">
+                                <thead>
+                                    <tr style="height: 20px;">
+                                        <th>Rubrique</th>
+                                        <th>Montants</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="height: 20px;background: #e4e6e8;text-align: center;font-weight: bold;">
+                                        <td>Autres services</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Charges locatives et charges de copropriété</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '01charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '02charge')" />
+                                        <td style="text-align:left;">Etudes et recherches</td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '03charge')" />
+                                        <td style="text-align:left;">Documentation et divers</td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Transports de biens et transport collectif du personnel</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '04charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Frais postaux et de télécommunications</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '05charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Services bancaires et assimilés</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '06charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Cotisations et divers</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '07charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;" id="part_table">
+                                        <td>TOTAL (1)</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '08charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;background: #e4e6e8;text-align: center;font-weight: bold;">
+                                        <td style="text-align:left;">Charges de personnel</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rémunérations du personnel</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '09charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Rémunérations de l’exploitant individuel (cas d’une EURL)</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '10charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Cotisations aux organismes sociaux</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '11charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Charges sociales de l’exploitant individuel (cas d’une EURL)</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '12charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Autres charges sociales</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '13charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Autres charges de personnels</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '14charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;" id="part_table">
+                                        <td>TOTAL (2)</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '15charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;background: #e4e6e8;text-align: center;font-weight: bold;">
+                                        <td style="text-align:left;">Impôts, taxes et versements assimilés</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Impôts, taxes et versements assimilés sur rémunérations</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '16charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Impôts et taxes non récupérables sur chiffres d’affaires</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '17charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Autres impôts et taxes (hors impôts sur les résultats</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '18charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;" id="part_table">
+                                        <td>TOTAL (3)</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '19charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;" id="part_table">
+                                        <td>TOTAL (1) +(2) +(3)</td>
+                                        <t t-set="charge" t-value="o.line_charge_1_ids.filtered(lambda m: m.code == '20charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <table class="title" border="1" style=" width: 250px;font-size: 12px;text-indent: 1%;">
+                                <tr>
+                                    <td><strong> 4/ Autres charges et produits opérationnels:
+                                        </strong></td>
+                                </tr>
+                            </table>
+
+                            <table style="font-size: 12px;color: black;text-align: center;" border="1" height="100%"
+                                width="100%">
+                                <thead>
+                                    <tr style="height: 20px;background: #e4e6e8;text-align: center;font-weight: bold;">
+                                        <th>Autres charges opérationnelles</th>
+                                        <th>Montants</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:left;">Redevances pour concessions, brevets, licences, logiciels et valeurs
+                                            similaires</td>
+                                            <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '21charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Moins values sur sorties d’actifs immobilisés non financiers</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '22charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Jetons de présence</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '23charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Perte sur créances irrécouvrables</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '24charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Quote-part de résultat sur opérations faites en commun</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '25charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Amendes et pénalités, subventions accordées, dons et libéralités</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '26charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Charges exceptionnelles de gestion courante</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '27charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Autres charges de gestion courante</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '28charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;" id="part_table">
+                                        <td>TOTAL</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '29charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;background: #e4e6e8;text-align: center;font-weight: bold;">
+                                        <td>Autres produits opérationnels</td>
+                                        <td>Montants</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Redevances pour concessions, brevets, licences, logiciels et valeurs
+                                            similaires</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '30charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Plus values sur sorties d’actifs immobilisés non financiers</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '31charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Jetons de présence et rémunérations d’administrateurs ou de gérant</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '32charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Quotes-parts de subventions d’investissement virées au résultat de
+                                            l’exercice</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '33charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Quote-part de résultat sur opérations faites en commun</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '34charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Rentrée sur créances amorties</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '35charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Produits exceptionnels sur opérations de gestion</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '36charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style="text-align:left;">Autres produits de gestion courante</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '37charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 20px;" id="part_table">
+                                        <td>TOTAL</td>
+                                        <t t-set="charge" t-value="o.line_charge_2_ids.filtered(lambda m: m.code == '38charge')" />
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(charge.amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% charge.amount_col_one" />
+                                            </t>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_charge_report" model="ir.actions.report">
+            <field name="name">Charges</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.charge_repo</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.charge_repo</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_charge_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+
+
+    </data>
+</odoo>

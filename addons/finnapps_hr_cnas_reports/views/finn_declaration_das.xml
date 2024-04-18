@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='declaration_das_action' model='ir.actions.act_window'>
+        <field name="name">Déclaration annuelle des salariés</field>
+        <field name="res_model">finn.declaration.das</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- Form View -->
+    <record id="declaration_das_form" model="ir.ui.view">
+        <field name="name">Déclaration annuelle des salariés</field>
+        <field name="model">finn.declaration.das</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="calcule_lines" string="Générer les lignes" type="object" class="oe_highlight"/>
+                    <button name="print_report" string="Imprimer" type="object" class="oe_highlight"/>
+                    <button name="generate_employee_file" string="Télé-déclaration employés" type="object" class="oe_highlight" />
+                    <button name="generate_company_file" string="Télé-déclaration société" type="object" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <form>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group name="affiliation" string="Affiliation">
+                                <field name="agency_id" />                                
+                                <field name="payment_center_id" />
+                                <field name="company_id" />
+                            </group>
+                            <group name="periode" string="Période">
+                                <field name="periode" required="1" />
+                                <field name="rtf_type_declaration" />
+                                <field name="effect_employees" />
+                                
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Ligne de déclaration annuelle des salariés">
+                                <field name="declaration_das_line_ids" >
+                                    <tree  editable="bottom">
+                                        <field name="name" readonly='True'/>
+                                        <field name="payment_center_line_id" column_invisible="True"/>
+                                        <field name="employee_id" domain ="[('payment_center_id','=',payment_center_line_id)]"/>
+                                        <field name="input_date" />
+                                        <field name="output_date" />
+                                        <field name="total_number_day" sum="NB jour annuel"/>
+                                        <field name="annual_amount" sum="Montant annuel"/>
+                                        <field name="first_trimester_amount" optional="hide" sum="1st montant"/>
+                                        <field name="first_trimester_number_day" optional="hide" sum="1st NB jour"/>
+                                        <field name="second_trimester_amount" optional="hide" sum="2nd montant"/>
+                                        <field name="second_trimester_number_day" optional="hide" sum="2nd NB jour"/>
+                                        <field name="third_trimester_amount" optional="hide" sum="3rd montant"/>
+                                        <field name="third_trimester_number_day" optional="hide" sum="3rd NB jour"/>
+                                        <field name="fourth_trimester_amount" optional="hide" sum="4th montant"/>
+                                        <field name="fourth_trimester_number_day" optional="hide" sum="4th montant"/>
+
+                                    </tree>
+                                </field>
+                            </page>
+                            
+                            <page name="general_info" string="Informations générales">
+                                <group>
+                                    <field name="creation_date" readonly="True"/>    
+                                </group>                                
+                            </page>
+                            <page string="Note">
+                                <field name="note"  />
+                            </page>
+                        </notebook>
+                    </form>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="declaration_das_tree" model="ir.ui.view">
+        <field name="name">Déclaration annuelle des salariés</field>
+        <field name="model">finn.declaration.das</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name" />
+                <field name="company_id" />
+                <field name="periode"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

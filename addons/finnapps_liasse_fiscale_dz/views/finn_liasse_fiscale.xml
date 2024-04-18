@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<!-- Vue formulaire -->
+		<record id="finn_liasse_fiscale_view_form" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.view.form</field>
+			<field name="model">finn.liasse.fiscale</field>
+			<field name="arch" type="xml">
+				<form>
+					<field name="company_id" invisible="1"/>
+					<field name="switch_button" invisible="1"/>
+					<header>
+						<button name="calculate_line" string="Calculer les rapports" type="object" class="oe_highlight" 
+							invisible= "state == 'lock' or switch_button == True"/>
+
+
+						<button name="recalculate_line" string="Recalculer les rapports" type="object" class="oe_highlight" invisible= "state == 'lock' or switch_button == False"/>
+
+
+						<button name="action_report_full" string="Imprimer le rapport complet" type="object" class="oe_highlight" invisible= "state == 'draft'"/>
+
+
+						<button name="to_lock" string="Verrouiller" type="object" class="oe_highlight" invisible= "state == 'lock'"/>
+
+
+						<button name="to_draft" string="Remettre en brouillon" type="object" invisible= "state == 'draft'"/>
+                        <!-- <button name="action_report_full" string="Imprimer le rapport complet" type="object" attrs="{'invisible':[('state','=','lock')]}"/> -->
+
+
+						<button name="reinitialisation" string="Réinitialisation les rapports" type="object"  invisible= "state == 'lock'"/>
+                        <field name="state" widget="statusbar"/>
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name" string="Nom"/>
+							</h1>
+						</div>
+						<group string="">
+							<group>
+								<field name="type_liasse" readonly= "state == 'lock'"/>
+								<field name="exercice_id" readonly= "state == 'lock'"/>
+							</group>
+							<group>
+								<field name="create_date" string="Date de création"/>
+								<field name="lock_date" invisible= "state == 'draft'"/>
+								<field name="company_id" options="{'no_create': True, 'no_create_edit':True}"/>
+							</group>
+						</group>
+						<!-- <notebook attrs="{'invisible':[('id','=',False)]}"> -->
+						<notebook invisible="id == False">
+							<page name="rapports" string="Rapports">
+								<field name="report_liasse_fiscal_ids">
+									<tree>
+										<field name="name"/>
+										<field name="state"/>
+									</tree>
+								</field>
+							</page>
+							<page name="note" string="Notes">
+								<field name="notes"/>
+							</page>
+						</notebook>
+					</sheet>
+				</form>
+			</field>
+		</record>
+
+		<!-- Vue liste -->
+		<record id="finn_liasse_fiscale_view_tree" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.view.tree</field>
+			<field name="model">finn.liasse.fiscale</field>
+			<field name="arch" type="xml">
+				<tree>
+					<field name="name"/>
+					<field name="type_liasse"/>
+					<field name="exercice_id"/>
+					<field name="state"/>
+				</tree>
+			</field>
+		</record>
+
+		
+
+
+		<!-- Action Liasse fiscale -->
+		<record id="action_liasse_fiscale" model="ir.actions.act_window">
+			<field name="name">Liasse fiscale</field>
+			<field name="res_model">finn.liasse.fiscale</field>
+			<field name="domain">[('type_liasse','=','fiscale')]</field>
+			<field name="context">{'default_type_liasse':'fiscale'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		<!-- Action Liasse comptable -->
+		<record id="action_liasse_comptable" model="ir.actions.act_window">
+			<field name="name">Liasse comptable</field>
+			<field name="res_model">finn.liasse.fiscale</field>
+			<field name="domain">[('type_liasse','=','comptable')]</field>
+			<field name="context">{'default_type_liasse':'comptable'}</field>
+			<field name="view_mode">tree,form</field>
+		</record>
+
+		
+	</data>
+</odoo>

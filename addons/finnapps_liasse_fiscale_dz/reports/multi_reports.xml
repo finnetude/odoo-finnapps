@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="multi_reports_report">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+
+
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_amo_inv_report" />
+                        <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_bilan_actif" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_bilan_passif" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_cess_prov_report" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.charge_repo" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_commission_report" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_bilan_compte_resultat" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.pert_val" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_result_fiscal_report" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.compta_stock_report" />
+                          <div class="page"> 
+                        <p style="page-break-after:always;">   </p>
+                        </div>
+                        <t t-call="finnapps_liasse_fiscale_dz.tab" />
+                    </t>
+                </t>
+            </t>
+        </template>
+        <record id="action_muli_report" model="ir.actions.report">
+            <field name="name">multi</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.multi_reports_report</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.multi_reports_report</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_muli_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+
+
+    </data>
+</odoo>

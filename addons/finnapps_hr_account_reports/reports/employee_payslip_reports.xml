@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data noupdate="0">
+
+
+    <!-- Livre de paie-->
+    <record id="report_hr_payroll_book_payrol" model="ir.actions.report">
+        <field name="model">finn.hr.payroll.book</field>
+        <field name="name">Livre de paie</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">finnapps_hr_account_reports.report_hr_payroll_book_pay</field>
+        <field name="report_file">finnapps_hr_account_reports.report_hr_payroll_book_pay</field>
+        <field name="paperformat_id" ref="finnapps_hr_account_reports.custom_book_format"/>
+        <field name="binding_model_id"></field>
+    </record>
+
+
+    <!-- Etat prestation de service -->
+    <record id="hr_payroll_etat_prestation_details" model="ir.actions.report">
+        <field name="model">finn.hr.payroll.book</field>
+        <field name="name">État des prestations de service</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">finnapps_hr_account_reports.report_hr_payroll_etat_prestation_detai</field>
+        <field name="report_file">finnapps_hr_account_reports.report_hr_payroll_etat_prestation_detai</field>
+        <field name="paperformat_id" ref="finnapps_hr_account_reports.custom_book_format"/>
+        <field name="binding_model_id"></field>
+    </record>
+
+    <!-- Etat de fiscal -->
+    <record id="hr_payroll_fisc" model="ir.actions.report">
+        <field name="model">finn.hr.fiscal</field>
+        <field name="name">Déclarations Fiscales</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">finnapps_hr_account_reports.report_hr_payroll_desFis</field>
+        <field name="report_file">finnapps_hr_account_reports.report_hr_payroll_desFis</field>
+        <field name="paperformat_id" ref="finnapps_hr_account_reports.fiscal_landscape_format"/>
+        <field name="binding_model_id"></field>
+        
+    </record>
+
+     <!-- Ventilation comptable -->
+    <record id="hr_payroll_ventilation_comptable" model="ir.actions.report">
+        <field name="model">finn.ventilation.comptable</field>
+        <field name="name">Ventilation Comptable</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">finnapps_hr_account_reports.report_hr_payroll_ventilation_comptable</field>
+        <field name="report_file">finnapps_hr_account_reports.report_hr_payroll_ventilation_comptable</field>
+        <field name="paperformat_id" ref="finnapps_hr_account_reports.custom_book_format"/>
+        <field name="binding_model_id"></field>
+    </record>
+
+
+  </data>
+</odoo>

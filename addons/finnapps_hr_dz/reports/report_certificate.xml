@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <template id="report_hr_employee_certificate">
+      <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+          <t t-call="web.external_layout">
+            <div class="page">
+              <style>
+                .h1_report_title {
+                  text-align: center;
+                  font-weight: bold;
+                  font-size: 40px;
+                }
+
+                .h5_report {
+                  margin: 50px 0px 15px 0px;
+                  font-weight: bold;
+                }
+
+                .s_r {
+                  font-size: 100%;
+                  line-height: 100%;
+                }
+
+                .company_header {
+                  /* width: 60%; */
+                  border: 1px solid;
+                  margin: 0px 100px 0px 100px;
+                  padding: 10px 100px 10px 100px;
+                  text-align: center;
+                  vertical-align: middle;
+
+                }
+
+                .div_pad {
+                  padding-top: 20px;
+                  /* padding-left: 33%; */
+                }
+
+                .st-para {
+                  margin-top: 20px;
+                  font-size: 120%;
+                }
+
+                .my-span {
+                  padding-left: 17px;
+                }
+
+                .my-bold {
+                  font-weight: bold;
+                }
+              </style>
+              <div class="col-xs-1" align="center">
+                <div class="col-xs-12" style="margin-bottom: 10px;">
+                  <h1 class="h1_report_title">
+                    CERTIFICAT DE TRAVAIL
+                  </h1>
+                </div>
+              </div>
+              <div class="col-xs-1 text-right" align="right">
+                <div class="col-xs-12">
+                  <h5 class="h5_report">
+                    <span class="s_r" t-if="o.contract_ids.employee_id.address_id">
+                      <span t-field="o.contract_ids.employee_id.address_id.state_id.name" />
+                    </span>
+                    <span class="s_r" t-if="not o.contract_ids.employee_id.address_id">
+                      <span t-field="o.contract_ids.employee_id.company_id.state_id.name" />
+                    </span>
+                    <span class="s_r"> le : </span>
+                    <span class="s_r" t-set="today_date" t-value="datetime.date.today()" />
+                    <span class="s_r" t-esc="today_date.strftime('%d/%m/%Y')" />
+                  </h5>
+                </div>
+              </div>
+              <div class="text-left">
+                <p class="st-para">
+                  <span class="s_r">Ref: </span>
+                  <span class="my-bold s_r" t-esc="docs.sequence" />
+
+
+                </p>
+                <br />
+                <br />
+                <p class="st-para" t-if="o.employee_id.address_id">
+                  <span class="s_r">Nous, Soussignés</span>
+                  <span class="my-bold s_r" t-field="o.employee_id.company_id.forme_juridique.code" />,
+                  <span class="my-bold s_r" t-field="o.employee_id.company_id.name" />
+                  <span class="s_r"> sise au </span>
+                  <span class="s_r" t-field="o.employee_id.company_id.street" />,
+                  <span class="s_r" t-field="o.employee_id.company_id.street2" />
+                  <span class="s_r" t-esc="o.employee_id.address_id.city">, </span>
+                  <t t-if="o.employee_id.address_id.city and o.employee_id.address_id.state_id.name">
+                    <t t-if="o.employee_id.address_id.city.lower() != o.employee_id.address_id.state_id.name.lower()">
+                      <span class="s_r" t-field="o.employee_id.address_id.state_id.name" />
+                    </t>
+                  </t>
+                  , <span class="s_r" t-field="o.employee_id.company_id.country_id.name" />
+                </p>
+                <p class="st-para" t-if="not o.employee_id.address_id">
+                  <span class="s_r">Nous, Soussignés</span>
+                  <span class="my-bold s_r" t-field="o.employee_id.company_id.name" />
+                  <span class="s_r"> sise au </span>
+                  <span class="s_r" t-field="o.employee_id.company_id.street" />
+                  <span class="s_r" t-field="o.employee_id.company_id.city">, </span>
+                  <t t-if="o.employee_id.company_id.city and o.employee_id.company_id.state_id.name">
+                    <t t-if="o.employee_id.company_id.city.lower() != o.employee_id.company_id.state_id.name.lower()">
+                      <span class="s_r" t-field="o.employee_id.company_id.state_id.name" />
+                    </t>
+                  </t>
+                </p>
+
+                <p class="st-para">
+                  <span class="s_r">Attestons que </span>
+                  <span class="s_r" t-if="o.employee_id.gender == 'male'">
+                    M.
+                  </span>
+                  <span class="s_r" t-if="o.employee_id.gender == 'female' and o.employee_id.marital == 'married'">
+                    Mme
+                  </span>
+                  <span class="s_r" t-if="o.employee_id.gender == 'female' and o.employee_id.marital != 'married'">
+                    Mlle
+                  </span>
+                  <span class="s_r" t-field="o.employee_id.name" />
+                  <span class="s_r">.</span>
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r" t-if="o.employee_id.gender == 'female'">
+                    Née le:
+                  </span>
+                  <span class="my-bold s_r" t-if="o.employee_id.gender == 'male'">
+                    Né le:
+                  </span>
+                  <span class="my-bold s_r" t-if="o.employee_id.gender != 'male' and o.employee_id.gender != 'female'">
+                    Né(e) le:
+                  </span>
+                  <span class="s_r" t-field="o.employee_id.birthday" />
+                  <span class="s_r"> à </span>
+                  <span class="s_r" t-field="o.employee_id.place_of_birth" />,
+                  <span class="s_r" t-field="o.employee_id.country_of_birth.name" />
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r">Demeurant à/au: </span>
+                  <span class="s_r" t-field="o.employee_id.private_street" /> 
+                  <span class="s_r" t-field="o.employee_id.private_street2" />
+                  <span class="s_r" t-field="o.employee_id.private_city" /> 
+                  <span class="s_r" t-field="o.employee_id.private_zip" /> 
+                  <span class="s_r" t-field="o.employee_id.private_country_id.name" />
+
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r">Titulaire de la CNI N°: </span>
+                  <span class="s_r" t-field="o.employee_id.identification_id" />
+
+                </p>
+                <p class="st-para">
+                  <span class="my-bold s_r">N° Sécurité sociale: </span>
+                  <span class="s_r" t-field="o.employee_id.ssnid" />
+                </p>
+
+                <p class="st-para">
+                  A été
+                  <span class="s_r" t-if="o.employee_id.gender == 'female'">
+                    employée
+                  </span>
+                  <span class="s_r" t-if="o.employee_id.gender == 'male'">
+                    employé
+                  </span>
+                  <span class="s_r" t-if="o.employee_id.gender != 'male' and o.employee_id.gender != 'female'">
+                    employé(e)
+                  </span>
+                  au sein de notre entreprise du
+                  <span class="s_r" t-field="o.contract_ids[0].date_start" />
+                  <t t-set="first_contract" t-value="o.contract_ids[0]" />
+                  <t t-if="o.contract_ids[-1].date_end">
+                    Au <span class="s_r" t-field="o.contract_ids[-1].date_end" />.
+                  </t>
+                  <t t-else="!o.contract_ids[-1].date_end ">
+                    À ce jour.
+                  </t>
+
+                </p>
+
+                <p class="st-para">
+                  Il a travaillé dans notre entreprise :
+                </p>
+
+                <p class="st-para">
+                  <span class="my-bold s_r">En qualité de :</span>
+                  <span class="s_r" t-field="first_contract.job_id.name" /> du
+                  <span class="s_r" t-field="first_contract.date_start" />
+                  <t t-if="first_contract.date_end">
+                    Au <span class="s_r" t-field="first_contract.date_end" />.
+                  </t>
+                  <t t-else="!first_contract.date_end ">
+                    À ce jour.
+                  </t>
+                </p>
+
+                <t t-foreach="o.contract_ids" t-as="haha">
+                  <t t-if="first_contract !=  haha">
+                    <p class="st-para">
+                      <span class="my-bold s_r">Et de : </span>
+                      <span class="s_r" t-field="haha.job_id.name" /> du <span class="s_r"
+                        t-field="haha.date_start" />
+                      <t t-if="haha.date_end">
+                        Au <span class="s_r" t-field="haha.date_end" />.
+                      </t>
+                      <t t-else="!haha.date_end ">
+                        À ce jour.
+                      </t>
+                    </p>
+                  </t>
+                </t>
+
+
+                <p class="st-para">
+                  Soit une durée totale de
+                  <t t-if="docs.employee_id.contract_ids[-1].date_end">
+                    <t t-set="dif"
+                      t-value="relativedelta(docs.employee_id.contract_ids[-1].date_end, docs.employee_id.contract_ids[0].date_start)" />
+                  </t>
+                  <t t-else="">
+                    <t t-set="dif" t-value="relativedelta(today_date, docs.employee_id.contract_ids[0].date_start)" />
+                  </t>
+
+                  <t t-if="dif.years != 0">
+                    <t t-if="dif.years == 1">
+                      <span t-esc="dif.years" /> année,
+                    </t>
+                    <t t-else="">
+                      <span t-esc="dif.years" /> années,
+                    </t>
+                  </t>
+                  <t t-if="dif.months != 0">
+                    <t t-if="dif.months == 1">
+                      <span t-esc="dif.months" /> moi,
+                    </t>
+                    <t t-else="">
+                      <span t-esc="dif.months" /> mois,
+                    </t>
+                  </t>
+                  <t t-if="dif.days != 0">
+                    <t t-if="dif.days == 1">
+                      <span t-esc="dif.days" /> journée.
+                    </t>
+                    <t t-else="">
+                      <span t-esc="dif.days" /> journées.
+                    </t>
+                  </t>
+                </p>
+
+                <p class="st-para">
+                  En foi de quoi le présent certificat lui est délivré conformément aux
+                  textes législatifs et réglementaires en vigueur pour servir et valoir ce que de droit.
+                </p>
+
+                <p class="st-para" style="font-size: 10px;font-weight: bold;">
+                  NB : Il n'est délivré qu'un seul exemplaire de ce certificat et à la date de fin de contrat de travail
+                  .<br></br>
+                  Il appartient donc à l'intéressé(e) d'en faire des photocopies certifiées conformes à l'original.
+                </p>
+
+              </div>
+              <div class="col-xs-1 text-right" align="right">
+                <div class="col-xs-11">
+                  <h5 class="h5_report">
+                    <span class="s_r">La Direction</span>
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </t>
+        </t>
+      </t>
+
+
+    </template>
+    <record id="finnapps_hr_dz.hr_employee_certificate" model="ir.actions.report">
+      <field name="paperformat_id" ref="finnapps_hr_dz.ats_book_format" />
+    </record>
+
+  </data>
+</odoo>

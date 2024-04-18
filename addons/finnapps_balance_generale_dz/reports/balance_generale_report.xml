@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="balance_generale_report">
+            <t t-call="web.html_container">
+                <t t-set="data_report_margin_top" t-value="12"/>
+                <t t-set="data_report_header_spacing" t-value="9"/>
+                <t t-set="data_report_dpi" t-value="110"/>
+
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="finnapps_balance_generale_dz.internal_layout_balance_generale">
+                        <div class="page">
+                            <h4>BALANCE GÉNÉRALE - <span t-esc="o.env.user.company_id.name"/></h4>
+
+                            <t t-set="data" t-value="o.get_data()"/>
+
+                            <!-- tableau des filtres -->
+                            <div>
+                                <div class="row text-center" style="background-color:#d3d3d3; font-size: 10px;">
+                                    <div class="col-2" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Exercice comptable</strong>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Filtre par période</strong>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Filtre par compte</strong>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Filtre par écriture</strong>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray;">
+                                        <strong>Filtre par mouvement</strong>
+                                    </div>
+                                </div>
+                                <div class="row text-center" style="font-size: 12px;">
+                                    <div class="col-2" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <span t-esc="data['exercice_name']"/>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <span t-esc="data['periode_intervale']"/>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <span t-esc="data['filtrer_par_compte']"/>
+                                    </div>
+                                    <div class="col-2" style="border:2px solid lightgray; border-top:0; border-right:0;">
+                                        <span t-esc="data['filtrer_par_piece']"/>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-top:0;">
+                                        <span t-esc="data['filtrer_par_ecriture']"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <!-- tableau des données -->
+                            <div t-if="data['account_data']">
+                                <!-- header -->
+                                <div class="row text-center" style="background-color:#d3d3d3; font-size: 10px;">
+                                    <div class="col-3" style="background-color:#ffffff; border:2px solid lightgray; border-left:0; border-top:0; border-bottom:0;"></div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-left:0; border-right:0;">
+                                        <strong>Ouverture</strong>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray; border-right:0;">
+                                        <strong>Période</strong>
+                                    </div>
+                                    <div class="col-3" style="border:2px solid lightgray;">
+                                        <strong>Soldes</strong>
+                                    </div>
+                                </div>
+                                <div class="row" style="font-size: 10px;">
+                                    <div class="col-3" style="background-color:#ffffff; border:2px solid lightgray; border-left:0; border-top:0;"></div>
+                                    <div class="col-2 text-right" style="width:133px; background-color:#e6e5e5; border:2px solid lightgray; border-left:0; border-right:0;">
+                                        <strong>Débit</strong>
+                                    </div>
+                                    <div class="col-2 text-right" style="width:133px; background-color:#f3f2f2; border:2px solid lightgray; border-right:0;">
+                                        <strong>Crédit</strong>
+                                    </div>
+                                    <div class="col-2 text-right" style="width:133px; background-color:#e6e5e5; border:2px solid lightgray; border-right:0;">
+                                        <strong>Débit</strong>
+                                    </div>
+                                    <div class="col-2 text-right" style="width:133px; background-color:#f3f2f2; border:2px solid lightgray; border-right:0;">
+                                        <strong>Crédit</strong>
+                                    </div>
+                                    <div class="col-2 text-right" style="width:132px; background-color:#e6e5e5; border:2px solid lightgray; border-right:0;">
+                                        <strong>Débit</strong>
+                                    </div>
+                                    <div class="col-2 text-right" style="width:132px; background-color:#f3f2f2; border:2px solid lightgray;">
+                                        <strong>Crédit</strong>
+                                    </div>
+                                </div>
+                                <!-- body -->
+                                <t t-foreach="data['account_data']" t-as="grp_1">
+                                    <!-- afficher groupe de niveau 1 -->
+                                    <div class="row" style="page-break-inside: avoid;">
+                                        <div class="col-12 text-center" style="font-size: 10px; border:2px solid lightgray; border-top:0;">
+                                            <strong><span t-esc="grp_1.code_prefix_start"/> - <span t-esc="grp_1.name"/></strong>
+                                        </div>
+                                    </div>
+                                    <t t-foreach="grp_1_value" t-as="grp_2">
+                                        <!-- afficher groupe de niveau 2 -->
+                                        <div class="row" style="page-break-inside: avoid;">
+                                            <div class="col-12 text-center" style="font-size: 10px; border:2px solid lightgray; border-top:0;">
+                                                <strong><span t-esc="grp_2.code_prefix_start"/> - <span t-esc="grp_2.name"/></strong>
+                                            </div>
+                                        </div>
+
+                                                <t t-set="sum_debit_ouverture" t-value="0"/>
+                                                <t t-set="sum_credit_ouverture" t-value="0"/>
+                                                <t t-set="sum_debit_periode" t-value="0"/>
+                                                <t t-set="sum_credit_periode" t-value="0"/>
+                                                <t t-set="sum_debit_solde" t-value="0"/>
+                                                <t t-set="sum_credit_solde" t-value="0"/>
+
+                                        <t t-foreach="grp_2_value" t-as="sub_elemnt_1">
+                                            
+                                                    <t t-if="isinstance(sub_elemnt_1_value, dict)">
+                                                        <t t-foreach="sub_elemnt_1_value" t-as="sub_elemnt_2">
+                                                            <t t-if="all(isinstance(element, tuple) for element in sub_elemnt_2_value)">
+                                                                <!-- affichage des comptes -->
+                                                                <t t-foreach="sub_elemnt_2_value" t-as="line">
+                                                                    <div class="row" style="font-size: 10px; page-break-inside: avoid;">
+                                                                        <div class="col-3" style="border:2px solid lightgray; border-top:0;">
+                                                                            <div style="margin-left:5px;">
+                                                                                <strong><span t-esc="line[0].code"/> - <span t-esc="line[0].name"/></strong>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0; border-top:0;">
+                                                                            <span t-esc="'{0:,.2f}'.format(abs(line[1][0])).replace(',', ' ')"/>
+                                                                        </div>
+                                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                            <span t-esc="'{0:,.2f}'.format(abs(line[1][1])).replace(',', ' ')"/>
+                                                                        </div>
+                                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                            <span t-esc="'{0:,.2f}'.format(abs(line[1][2])).replace(',', ' ')"/>
+                                                                        </div>
+                                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                            <span t-esc="'{0:,.2f}'.format(abs(line[1][3])).replace(',', ' ')"/>
+                                                                        </div>
+                                                                        <div class="col-2 text-right" style="width:132px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                            <span t-esc="'{0:,.2f}'.format(abs(line[1][4])).replace(',', ' ')"/>
+                                                                        </div>
+                                                                        <div class="col-2 text-right" style="width:132px; border:2px solid lightgray;  border-top:0;">
+                                                                            <span t-esc="'{0:,.2f}'.format(abs(line[1][5])).replace(',', ' ')"/>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <t t-set="sum_debit_ouverture" t-value="sum_debit_ouverture + line[1][0]"/>
+                                                                    <t t-set="sum_credit_ouverture" t-value="sum_credit_ouverture + line[1][1]"/>
+                                                                    <t t-set="sum_debit_periode" t-value="sum_debit_periode + line[1][2]"/>
+                                                                    <t t-set="sum_credit_periode" t-value="sum_credit_periode + line[1][3]"/>
+                                                                    <t t-set="sum_debit_solde" t-value="sum_debit_solde + line[1][4]"/>
+                                                                    <t t-set="sum_credit_solde" t-value="sum_credit_solde + line[1][5]"/>
+                                                                </t>
+                                                            </t>
+                                                            <t t-else="">
+                                                                <!-- affichage des comptes -->
+                                                                <div class="row" style="font-size: 10px; page-break-inside: avoid;">
+                                                                    <div class="col-3" style="border:2px solid lightgray; border-top:0;">
+                                                                        <div style="margin-left:5px;">
+                                                                            <strong><span t-esc="sub_elemnt_2.code"/> - <span t-esc="sub_elemnt_2.name"/></strong>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0; border-top:0;">
+                                                                        <span t-esc= "'{0:,.2f}'.format(abs(sub_elemnt_2_value[0])).replace(',', ' ')"/>
+                                                                    </div>
+                                                                    <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                        <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_2_value[1])).replace(',', ' ')"/>
+                                                                    </div>
+                                                                    <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                        <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_2_value[2])).replace(',', ' ')"/>
+                                                                    </div>
+                                                                    <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                        <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_2_value[3])).replace(',', ' ')"/>
+                                                                    </div>
+                                                                    <div class="col-2 text-right" style="width:132px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                        <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_2_value[4])).replace(',', ' ')"/>
+                                                                    </div>
+                                                                    <div class="col-2 text-right" style="width:132px; border:2px solid lightgray;  border-top:0;">
+                                                                        <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_2_value[5])).replace(',', ' ')"/>
+                                                                    </div>
+                                                                </div>
+
+                                                                <t t-set="sum_debit_ouverture" t-value="sum_debit_ouverture + sub_elemnt_2_value[0]"/>
+                                                                <t t-set="sum_credit_ouverture" t-value="sum_credit_ouverture + sub_elemnt_2_value[1]"/>
+                                                                <t t-set="sum_debit_periode" t-value="sum_debit_periode + sub_elemnt_2_value[2]"/>
+                                                                <t t-set="sum_credit_periode" t-value="sum_credit_periode + sub_elemnt_2_value[3]"/>
+                                                                <t t-set="sum_debit_solde" t-value="sum_debit_solde + sub_elemnt_2_value[4]"/>
+                                                                <t t-set="sum_credit_solde" t-value="sum_credit_solde + sub_elemnt_2_value[5]"/>
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-else="">
+                                                        <!-- affichage des comptes -->
+                                                        <div class="row" style="font-size: 10px; page-break-inside: avoid;">
+                                                            <div class="col-3" style="border:2px solid lightgray; border-top:0;">
+                                                                <div style="margin-left:5px;">
+                                                                    <strong><span t-esc="sub_elemnt_1.code"/> - <span t-esc="sub_elemnt_1.name"/></strong>
+                                                                </div>
+                                                            </div>
+                                                           <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0; border-top:0;">
+                                                                <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_1_value[0])).replace(',', ' ')"/>
+                                                            </div>
+                                                            <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_1_value[1])).replace(',', ' ')"/>
+                                                            </div>
+                                                            <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_1_value[2])).replace(',', ' ')"/>
+                                                            </div>
+                                                            <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_1_value[3])).replace(',', ' ')"/>
+                                                            </div>
+                                                            <div class="col-2 text-right" style="width:132px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                                <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_1_value[4])).replace(',', ' ')"/>
+                                                            </div>
+                                                            <div class="col-2 text-right" style="width:132px; border:2px solid lightgray;  border-top:0;">
+                                                                <span t-esc="'{0:,.2f}'.format(abs(sub_elemnt_1_value[5])).replace(',', ' ')"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <t t-set="sum_debit_ouverture" t-value="sum_debit_ouverture + sub_elemnt_1_value[0]"/>
+                                                        <t t-set="sum_credit_ouverture" t-value="sum_credit_ouverture + sub_elemnt_1_value[1]"/>
+                                                        <t t-set="sum_debit_periode" t-value="sum_debit_periode + sub_elemnt_1_value[2]"/>
+                                                        <t t-set="sum_credit_periode" t-value="sum_credit_periode + sub_elemnt_1_value[3]"/>
+                                                        <t t-set="sum_debit_solde" t-value="sum_debit_solde + sub_elemnt_1_value[4]"/>
+                                                        <t t-set="sum_credit_solde" t-value="sum_credit_solde + sub_elemnt_1_value[5]"/>
+                                                    </t>
+                                                </t>
+                                                <!-- affichage des totaux -->
+                                                <div style="page-break-inside: avoid;">
+                                                    <div class="row" style="font-size: 10px;">
+                                                        <div class="col-3 text-right" style="border:2px solid lightgray; border-top:0;">
+                                                            <strong>Total</strong>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0; border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_debit_ouverture)).replace(',', ' ')"/>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_credit_ouverture)).replace(',', ' ')"/>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_debit_periode)).replace(',', ' ')"/>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_credit_periode)).replace(',', ' ')"/>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:132px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_debit_solde)).replace(',', ' ')"/>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:132px; border:2px solid lightgray;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_credit_solde)).replace(',', ' ')"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- affichage des soldes -->
+                                                    <div class="row" style="font-size: 10px;">
+                                                        <div class="col-3 text-right" style="border:2px solid lightgray; border-top:0;">
+                                                            <strong>Solde</strong>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0; border-top:0;">
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0;  border-top:0;">
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0;  border-top:0;">
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:133px; border:2px solid lightgray; border-left:0; border-right:0;  border-top:0;">
+                                                        </div>
+
+                                                        <t t-set="solde_final" t-value="(sum_debit_ouverture + sum_debit_periode) - (sum_credit_ouverture + sum_credit_periode)"/>
+
+                                                        <t t-if="solde_final > 0">
+                                                            <t t-set="sum_debit_solde" t-value="solde_final"/>
+                                                            <t t-set="sum_credit_solde" t-value="0"/>
+                                                        </t>
+                                                        <t t-elif="solde_final * (-1) > 0">
+                                                            <t t-set="sum_debit_solde" t-value="0"/>
+                                                            <t t-set="sum_credit_solde" t-value="solde_final * (-1)"/>
+                                                        </t>
+                                                        <t t-else="">
+                                                            <t t-set="sum_debit_solde" t-value="0"/>
+                                                            <t t-set="sum_credit_solde" t-value="0"/>
+                                                        </t>
+
+                                                        <div class="col-2 text-right" style="width:132px; border:2px solid lightgray; border-right:0;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_debit_solde)).replace(',', ' ')"/>
+                                                        </div>
+                                                        <div class="col-2 text-right" style="width:132px; border:2px solid lightgray;  border-top:0;">
+                                                            <span t-esc="'{0:,.2f}'.format(abs(sum_credit_solde)).replace(',', ' ')"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </t>
+                                        </t>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <template id="internal_layout_balance_generale">
+            <div class="footer">
+                <div class="row" style="font-size: 14px;">
+                    <!-- afficher la date d'impression -->
+                    <div class="col-6 text-left" style="border:1px solid black; border-bottom:0; border-left:0; border-right:0;">
+                        <span t-esc="o.get_current_date()" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                    </div>
+                    <!-- afficher numero de page -->
+                    <div class="col-6 text-right" style="border:1px solid black; border-bottom:0; border-left:0; border-right:0;">
+                        <span>Page </span><span class="page" /> / <span class="topage" />
+                    </div>
+                </div>
+            </div>
+            <div class="article">
+                <t t-raw="0" />
+            </div>
+        </template>
+
+        <record id="action_balance_generale_report" model="ir.actions.report">
+            <field name="name">Balance générale</field>
+            <field name="model">finn.balance.generale</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_balance_generale_dz.balance_generale_report</field>
+            <field name="report_file">finnapps_balance_generale_dz.balance_generale_report</field>
+            <field name="print_report_name"></field>
+        </record>
+    </data>
+</odoo>

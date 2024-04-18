@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="report_hr_payroll_book_pay_doc">
+            <div class="page">
+                <t t-call="finnapps_hr_account_reports.report_custom_header" />
+                <t t-call="finnapps_hr_account_reports.report_custom_footer" />
+               
+                    
+                        <style type="text/css">
+                            table,
+                            th,
+                            td,
+                            tr {
+                                border-collapse: collapse;
+                                border: 1px solid #2C3333;
+                                text-align: center;
+                            }
+
+                            thead,
+                            tfoot {
+                                background-color:#f2f6f6;
+                                border: 1px solid #2C3333;
+                                text-align: center;
+                       
+                            }
+
+                            tbody {
+                                text-align: center;
+                                border-collapse: collapse;
+                                border: 1px solid #2C3333;
+                            }
+                        </style>
+
+
+                        <div class="col-sm-3 col-md-6">
+                            <br /><br />
+                            <t t-set="list_months" t-value="{'1':'Janvier','2':'Février','3':'Mars','4':'Avril',
+		                        '5':'Mai','6':'Juin','7':'Juillet','8':'Août','9':'Septembre',
+		                        '10':'Octobre','11':'Novembre','12':'Décembre'}" />
+                            <center>
+                                <h2 style="font-size:55px;color:#42484e;"><b>Livre de Paie</b></h2>
+                            </center><br />
+                            <center><b><span style="font-size:25px;">Pour </span><span
+                                        t-esc="list_months.get(o.month).upper()" style="font-size:25px;" /> <span
+                                        t-esc="o.year" style="font-size:25px;" /></b>
+                            </center><br /><br />
+                            <table class="table table-sm o_main_table" style="width:100%;">
+                                <thead style="display: table-row-group">
+                                    <tr>
+                                        <th class="b_bottom_0" style="width:35px;">Nom / Fonction</th>
+                                        <th class="b_bottom_0">Nbr</th>
+
+                                        <t t-foreach="o.payslip_details_total_ids" t-as="s">
+                                            <th class="b_bottom_0"><span t-esc="s.name" /></th>
+                                        </t>
+
+                                    </tr>
+                                </thead>
+                                <t t-set="total1" t-value="0" />
+                                <t t-set="res" t-value="o.get_datas()" />
+                                <t t-set="index" t-value="0" />
+                                <tbody class="sale_tbody">
+                                    <t t-foreach="o.payslip_ids" t-as="p">
+                                        <tr>
+
+                                            <td class=""><b><span
+                                                    t-esc="p.employee_id.name" /></b><br /><b><span
+                                                    t-esc="p.contract_id.job_id.name" /></b></td>
+                                            <td class="t_center "><span
+                                                    t-esc="sum(p.worked_days_line_ids.filtered(lambda x: x.code in ['WORK100', 'CP']).mapped('number_of_days'))" /></td>
+                                            <t t-foreach="res[index]" t-as="l">
+                                                <td class=""><span
+                                                    t-esc="'{0:,.2f}'.format(abs(l)).replace(',', ' ')" /></td>
+                                            </t>
+                                        </tr>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </t>
+                                    
+                                </tbody>
+
+                                <tfoot class="sale_tfoot">
+                                    <tr style="font-size:16px">
+                                        <th colspan="2" style="text-align:center">TOTAUX : </th>
+
+                                        <t t-foreach="o.payslip_details_total_ids" t-as="l">
+                                            <td class=""><span
+                                                    t-esc="'{0:,.2f}'.format(abs(l.total)).replace(',', ' ')" /></td>
+                                        </t>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                            
+
+                        </div>
+
+
+            </div>
+        </template>
+
+
+        <template id="report_hr_payroll_book_pay" >
+            
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.internal_layout">
+                       
+                        <t t-call="finnapps_hr_account_reports.report_hr_payroll_book_pay_doc"/>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>

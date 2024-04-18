@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<odoo>
+	<data>
+		<record id="finn_liasse_fiscale_line_stock_1_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.stock.1.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="code" groups="base.group_no_one"/>
+                    <field name="name" string="Rubrique" readonly="1"/>
+                    <field name="amount_col_one" string="Solde de début d’exercice"/>
+                    <field name="amount_col_two" string="Débit"/>
+                    <field name="amount_col_three" string="Crédit"/>
+                    <field name="amount_col_four" string="Solde de fin d’exercice"/>
+                </tree>
+			</field>
+		</record>
+
+        <record id="finn_liasse_fiscale_line_stock_2_tree_view" model="ir.ui.view">
+			<field name="name">finn.liasse.fiscale.line.stock.2.view.tree</field>
+			<field name="model">finn.liasse.fiscale.line</field>
+			<field name="arch" type="xml">
+                <tree editable="top" create="0" delete="0">
+                    <field name="display_type" column_invisible="True"/>
+                    <field name="code" groups="base.group_no_one"/>
+                    <field name="amount_col_one" string="Débit"/>
+                    <field name="amount_col_two" string="Crédit"/>
+                    <field name="amount_col_three" string="Débiteur"/>
+                    <field name="amount_col_four" string="Créditeur"/>
+                </tree>
+			</field>
+		</record>
+
+        <record model="ir.ui.view" id="finn_liasse_fiscale_report_stock_view_forme">
+			<field name="name">finn.liasse.fiscale.report.stock.view.forme</field>
+			<field name="model">finn.liasse.fiscale.report</field>
+			<field name="inherit_id" ref="finnapps_liasse_fiscale_dz.finn_liasse_fiscale_report_view_form"/>
+            <field name="priority">5</field>
+			<field name="arch" type="xml">
+				<xpath expr="//notebook" position="inside">
+                    <page name="stock_1" string="Tableau (1)" invisible="type_report != 'stock'">
+                        <field name="line_stock_1_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_stock_1_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+                    <page name="stock_2" string="Tableau (2)" invisible="type_report != 'stock'">
+                        <field name="line_stock_2_ids" options="{'no_create': True}" readonly="state == 'lock'" context="{'tree_view_ref' : 'finnapps_liasse_fiscale_dz.finn_liasse_fiscale_line_stock_2_tree_view'}" widget="total_one2many" mode="tree"/>
+                    </page>
+				</xpath>
+			</field>
+		</record>
+
+	</data>
+</odoo>

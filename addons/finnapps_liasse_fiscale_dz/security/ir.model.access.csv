@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_finn_liasse_fiscale,access_finn_liasse_fiscale,model_finn_liasse_fiscale,base.group_user,1,1,1,1
+access_finn_liasse_fiscale_type,access_finn_liasse_fiscale_type,model_finn_liasse_fiscale_type,base.group_user,1,1,1,1
+access_finn_liasse_fiscale_config,access_finn_liasse_fiscale_config,model_finn_liasse_fiscale_config,base.group_user,1,1,1,1
+access_finn_liasse_fiscale_line,access_finn_liasse_fiscale_line,model_finn_liasse_fiscale_line,base.group_user,1,1,1,1
+access_finn_liasse_fiscale_type_line,access_finn_liasse_fiscale_type_line,model_finn_liasse_fiscale_type_line,base.group_user,1,1,1,1
+access_finn_liasse_fiscale_report,access_finn_liasse_fiscale_report,model_finn_liasse_fiscale_report,base.group_user,1,1,1,1

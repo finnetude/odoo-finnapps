@@ -1,0 +1,470 @@
+<?xml version="1.0"?>
+<odoo>
+	<data noupdate="0">
+
+        <record id="elfc_01charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Charges locatives et charges de copropriété</field>
+			<field name="code">01charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['614:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_02charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Etudes et recherches</field>
+			<field name="code">02charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['617:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_03charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Documentation et divers</field>
+			<field name="code">03charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['618:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_04charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Transports de biens et transport collectif du personnel</field>
+			<field name="code">04charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['624:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_05charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Frais postaux et de télécommunications</field>
+			<field name="code">05charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['626:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_06charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Services bancaires et assimilés</field>
+			<field name="code">06charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['627:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_07charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Cotisations et divers</field>
+			<field name="code">07charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['628:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_08charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL (1)</field>
+			<field name="code">08charge</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:01charge', '+:02charge', '+:03charge', '+:04charge', '+:05charge', '+:06charge', '+:07charge']</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_09charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rémunérations du personnel</field>
+			<field name="code">09charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['631:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_10charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rémunérations de l’exploitant individuel (cas d’une EURL)</field>
+			<field name="code">10charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['634:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_11charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Cotisations aux organismes sociaux</field>
+			<field name="code">11charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['635:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_12charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Charges sociales de l’exploitant individuel (cas d’une EURL)</field>
+			<field name="code">12charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['636:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_13charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres charges sociales</field>
+			<field name="code">13charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['637:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_14charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres charges de personnels</field>
+			<field name="code">14charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['638:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_15charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL (2)</field>
+			<field name="code">15charge</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:09charge', '+:10charge', '+:11charge', '+:12charge', '+:13charge', '+:14charge']</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_16charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts, taxes et versements assimilés sur rémunérations</field>
+			<field name="code">16charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['641:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_17charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Impôts et taxes non récupérables sur chiffres d’affaires</field>
+			<field name="code">17charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['642:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_18charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres impôts et taxes (hors impôts sur les résultats</field>
+			<field name="code">18charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['645:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_19charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL (3)</field>
+			<field name="code">19charge</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:16charge', '+:17charge', '+:18charge']</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+        <record id="elfc_20charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL (1) +(2) +(3)</field>
+			<field name="code">20charge</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:08charge', '+:15charge', '+:19charge']</field>
+			<field name="report_id" ref="charge_1"/>
+		</record>
+
+	<!-- 4/ Autres  charges  et produits opérationnels : -->
+        <record id="elfc_21charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Redevances pour concessions, brevets, licences, logiciels et valeurs similaires</field>
+			<field name="code">21charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['651:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_22charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Moins values sur sorties d’actifs immobilisés non financiers</field>
+			<field name="code">22charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['652:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_23charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Jetons de présence</field>
+			<field name="code">23charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['653:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_24charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Perte sur créances irrécouvrables</field>
+			<field name="code">24charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['654:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_25charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Quote-part de résultat sur opérations faites en commun</field>
+			<field name="code">25charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['655:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_26charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Amendes et pénalités, subventions accordées, dons et libéralités</field>
+			<field name="code">26charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['656:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_27charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Charges exceptionnelles de gestion courante</field>
+			<field name="code">27charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['657:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_28charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres charges de gestion courante</field>
+			<field name="code">28charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['658:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_29charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">29charge</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:21charge', '+:22charge', '+:23charge', '+:24charge', '+:25charge', '+:26charge', '+:27charge', '+:28charge']</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_30charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Redevances pour concessions, brevets, licences, logiciels et valeurs similaires</field>
+			<field name="code">30charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['751:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_31charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Plus values sur sorties d’actifs immobilisés non financiers</field>
+			<field name="code">31charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['752:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_32charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Jetons de présence et rémunérations d’administrateurs ou de gérant</field>
+			<field name="code">32charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['753:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_33charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Quotes-parts de subventions d’investissement virées au résultat de l’exercice</field>
+			<field name="code">33charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['754:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_34charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Quote-part de résultat sur opérations faites en commun</field>
+			<field name="code">34charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['755:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_35charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Rentrée sur créances amorties</field>
+			<field name="code">35charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['756:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_36charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Produits exceptionnels sur opérations de gestion</field>
+			<field name="code">36charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['757:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_37charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">Autres produits de gestion courante</field>
+			<field name="code">37charge</field>
+			<field name="display_type">calcule</field>
+			<field name="definition">{
+				'net':{
+					'load':['758:S'],
+					'except':[]
+					},
+			}</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+
+        <record id="elfc_38charge" model="finn.liasse.fiscale.type.line">
+			<field name="name">TOTAL</field>
+			<field name="code">38charge</field>
+			<field name="display_type">total</field>
+			<field name="definition">['+:30charge', '+:31charge', '+:32charge', '+:33charge', '+:34charge', '+:35charge', '+:36charge', '+:37charge']</field>
+			<field name="report_id" ref="charge_2"/>
+		</record>
+    </data>
+</odoo>

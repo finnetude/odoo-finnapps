@@ -1,0 +1,797 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_cess_prov_report">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+
+                        <style>
+                            table.date {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+                                text-align: center;
+                            }
+
+                            table.title {
+                                font-size: 12px;
+                                text-align: left;
+                                border-collapse: collapse;
+                                color: black;
+                                background: #e4e6e8;
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+                                margin-left: 0px;
+                                margin-right: auto;
+                                height: 30px;
+
+                            }
+
+                            thead {
+                                height: 50px;
+                                background: #e4e6e8;
+                                color: black;
+
+                            }
+
+                            table {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+
+
+                            }
+
+                            table th {
+                                font-size: 12px;
+                                font-weight: bold;
+                                border: 1px solid black;
+                                padding: 0px 5px;
+
+                            }
+
+                            table td {
+                                color: black;
+                                border: 1px solid black;
+                                padding: 5px 5px;
+
+                            }
+                        </style>
+
+                        <table class="date" border="1" style="">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 150px;">Exercice du :</td>
+                                    <td style="width: 150px; color:black;"> <span t-esc="o.exercice_id.date_from"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' />
+                                    </td>
+                                    <td style="width: 10px;">au</td>
+                                    <td style="width: 150px;color:black;"> <span t-esc="o.exercice_id.date_to"
+                                            t-options='{"widget": "date","format": "dd-MM-yyyy"}' />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <table class="title" border="1">
+                            <tr>
+                                <td style="width: 500px;"><strong> 7/ Tableau des immobilisations cédées (plus ou moins
+                                        value) au cours de l’exercice :
+                                    </strong></td>
+                            </tr>
+                        </table>
+                        <table border="1" width="100%" height="100%">
+                            <thead>
+                                <tr style="height: 30px; text-align: center;">
+                                    <td rowspan="2" style="width: 200px;"><strong> Nature des <br></br> immobilisations
+                                            <br></br> cédées</strong></td>
+                                    <td rowspan="2" style="width: 150px;"><strong>Date <br></br> acquisition</strong>
+                                    </td>
+                                    <td rowspan="2" style="width: 150px;"><strong>Montant net <br></br> figurant à
+                                            <br></br> l’actif</strong></td>
+                                    <td rowspan="2" style="width: 150px;"><strong>
+                                            Amortissements<br></br>pratiqués</strong></td>
+                                    <td rowspan="2" style="width: 150px;"><strong>Valeur nette <br></br> comptable
+                                        </strong></td>
+                                    <td rowspan="2" style="width: 150px;"><strong>Prix de <br></br> cession</strong>
+                                    </td>
+                                    <td colspan="2" style="width: 200px;"><strong> Plus ou moins <br></br>
+                                            value</strong></td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 100px;"><strong>Plus<br></br> value</strong></td>
+                                    <td style="width: 100px;"><strong>Moins<br></br> value</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody class="bd1">
+                                <t t-set="index" t-value="0" />
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_cess_prov_1_ids)>index">
+                                    <tr style="height: 20px;">
+                                        <td style="text-align: left;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].name">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: center;color:black">
+                                            <t t-if="o.line_cess_prov_1_ids[index].date_line">
+                                                <span t-esc="o.line_cess_prov_1_ids[index].date_line" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_four) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_four" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_five) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_five" />
+                                            </t>
+                                        </td>
+                                        <td style="text-align: right;color:black">
+                                            <t t-if="abs(o.line_cess_prov_1_ids[index].amount_col_six) > 0">
+                                                <span t-esc="'%.2f'% o.line_cess_prov_1_ids[index].amount_col_six" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+
+                            </tbody>
+                        </table>
+                        <table class="title" border="1" style="">
+                            <tr>
+                                <td style="width: 300px;"><strong> 8/ Tableau des provisions et pertes de valeurs :
+
+                                    </strong></td>
+                            </tr>
+                        </table>
+
+                        <table border="1" width="100%" height="100%">
+
+                            <thead>
+                                <tr style="height: 30px; text-align: center;">
+                                    <td><strong>Rubriques et postes </strong></td>
+                                    <td><strong> Provisions<br></br> cumulées en <br></br>début d'exercice </strong>
+                                    </td>
+                                    <td><strong> Dotations de<br></br> L’exercice</strong></td>
+                                    <td><strong> Reprises<br></br> sur l’exercice</strong> </td>
+                                    <td><strong> Provisions<br></br> cumulées en<br></br> fin d'exercice </strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="index" t-value="0" />
+                                <tr style="height: 40px;">
+                                    <td>Pertes de valeurs sur stocks (à détailler pour chaque catégorie de stock sur
+                                        état annexe)</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '01cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Pertes de valeurs sur créances (1)</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '02cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Pertes de valeurs sur actions et parts sociales (2)</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '03cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Provisions pour pensions et obligations similaires</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '04cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Provisions sur litiges</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '05cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Autres provisions liées au personnel</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '06cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Provisions pour impôts</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '07cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 40px;">
+                                    <td>Autres provisions à détailler sur états annexes</td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '08cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr style="height: 5px;text-align: center;">
+                                    <td><strong>TOTAL</strong></td>
+                                    <t t-set="cess"
+                                        t-value="o.line_cess_prov_2_ids.filtered(lambda m: m.code == '09cessprov')" />
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_one) > 0">
+                                            <span t-esc="cess.amount_col_one" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_two) > 0">
+                                            <span t-esc="cess.amount_col_two" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_three) > 0">
+                                            <span t-esc="cess.amount_col_three" />
+                                        </t>
+                                    </td>
+                                    <td style="text-align: right;color: black;">
+                                        <t t-if="abs(cess.amount_col_four) > 0">
+                                            <span t-esc="cess.amount_col_four" />
+                                        </t>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div style="color: black;right:1000px;font-size: 12px;">
+                            <br />
+                            <p class="text-left"><strong>(1) Adétailler en tableau 8/1 <br />(2) A détailler en teableau
+                                    8/2</strong></p>
+                        </div>
+
+
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_cess_prov_report" model="ir.actions.report">
+            <field name="name">Cess./prov</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.compta_cess_prov_report</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.compta_cess_prov_report</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_cess_prov_report" model="ir.actions.report">
+            <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+
+    </data>
+</odoo>

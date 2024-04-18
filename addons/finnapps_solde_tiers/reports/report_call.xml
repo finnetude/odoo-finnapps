@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- QWeb Reports -->
+
+        <record  id="action_print_report_solde_tiers"  model="ir.actions.report">
+            <field name="name">Solde tiers</field>            
+            <field name="model">finn.imprimer.rapport</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_file">finnapps_solde_tiers.report_solde_tiers_document</field>
+            <field name="report_name">finnapps_solde_tiers.report_solde_tiers_document</field>
+            <field name="binding_type">report</field>
+        </record>
+        
+        
+        <record  id="action_print_report_solde_tiers_all"  model="ir.actions.report">
+            <field name="name">Solde tiers de tous les clients</field>            
+            <field name="model">finn.imprimer.rapport</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_file">finnapps_solde_tiers.report_solde_tiers_document_all</field>
+            <field name="report_name">finnapps_solde_tiers.report_solde_tiers_document_all</field>
+            <field name="binding_type">report</field>
+        </record>
+
+    
+    </data>
+</odoo>

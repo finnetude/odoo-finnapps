@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+        <!-- Rapport Paie Algerienne / Attestation travail salaire -->
+        <menuitem id="menu_attestation_travail_salaire1" 
+            parent="finnapps_hr_payroll_dz.menu_payroll_docs" 
+            name="Attestation de travail et de salaire"
+            action="action_hr_ats"
+            sequence="10" 
+        />
+    </data>
+</odoo>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+
+		<template id="document_summary_statement_annual">
+			<div class="page">
+		
+				<style type="text/css">
+                    table, th, td, tr {
+		                  border-collapse: collapse ;
+		                  border: 1px solid #437ba4;
+                          
+                        }
+                    thead, tfooter {
+                		background-color: #ededed;
+                        border-collapse: collapse ;
+                        border: 1px solid #437ba4;
+                    }
+                    tbody {
+                
+                        border-collapse: collapse;
+		                border: 1px solid #437ba4;
+                    }
+					th:nth-child(1), td:nth-child(1), th:nth-child(3), td:nth-child(3) {
+						text-align: center;
+					}
+					
+									
+                </style>
+               
+                <center><h3 style="font-size:30px;color:#42484e;"><b>État récapitulatif annuel</b></h3></center>
+
+                <center style="font-size: 20px; margin-top: 10px;" > <h5><pre><b>Exercice: </b> <span t-esc="o.fiscalyear_id.name" /></pre></h5>
+                </center>
+			
+                <center style="font-size: 20px; margin-top: 10px;" > <h5><pre><b>Période du </b> <span t-esc="o.date_start.strftime('%d/%m/%Y')" /> <b>		au </b> <span t-esc="o.date_end.strftime('%d/%m/%Y')" /></pre></h5>
+                </center>
+
+
+				
+				<table class="table-sm o_main_table" style="width: 100%;" >
+					<thead>
+						<tr>
+							<th style="color :black" >N°</th>
+							<th style="color :black" >Désignation</th>
+							<th style="color :black" >Total</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<t t-set="i" t-value="1" />
+						<t t-foreach="o.ssa_line_ids" t-as="line">
+							<tr>
+								<td> <span t-esc="i" /> </td>
+								<td> <span t-esc="line.name" /> </td>
+								<td> <span  t-esc="'{0:,.2f}'.format(abs(line.amount)).replace(',', ' ')" /><span t-esc="o.currency_id.symbol"/> </td>
+							</tr>
+							<t t-set="i" t-value="i+1" />
+						</t>
+						
+						
+					</tbody>
+					
+				</table>
+			
+			</div>
+		</template>
+
+		<template id="report_custom_header_ssa">
+			<div class="header">
+            
+            <div class="row">
+                <div class="col-4" >
+				    <b><span t-esc="'{}  {}'.format(o.company_id.forme_juridique_id.code, o.company_id.partner_id.name)" /></b>
+                </div>
+          		<div class="col-4"></div>
+     
+                <div class="col-4" style="text-align: right;">
+                   <b> Date d'impression:</b> <span t-field="o.date_now"/><br/><br/>
+                  
+                </div>
+            </div>
+            
+          </div>
+
+        </template>
+
+
+        <template id="report_custom_footer_ssa">
+            <div class="footer">
+               
+            </div>
+        </template>
+
+		<template id="report_summary_statement_annual">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<t t-call="finnapps_era_dz.report_custom_header_ssa" />
+					<t t-call="finnapps_era_dz.report_custom_footer_ssa" />
+					<t t-call="web.external_layout">
+
+						<t t-call="finnapps_era_dz.document_summary_statement_annual"/>
+					</t>
+				</t>
+			</t>
+		</template>
+
+		
+
+		 <record id="custom_era_format" model="report.paperformat">
+	      <field name="name">book A4</field>
+	      <field name="default" eval="True"/>
+	      <field name="format">A4</field>
+	      <field name="orientation">Portrait</field>
+	      <field name="margin_top">40</field>
+	      <field name="margin_bottom">5</field>
+	      <field name="margin_left">5</field>
+	      <field name="margin_right">5</field>
+	      <field name="header_line" eval="False"/>
+	      <field name="header_spacing">15</field>
+	      <field name="dpi">90</field>
+	    </record>
+		
+
+		
+
+
+        <record id="action_sumstate_annual" model="ir.actions.report">
+            <field name="model">finn.summary.statement.annual</field>
+            <field name="name">État récapitulatif annuel</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_era_dz.report_summary_statement_annual</field>
+            <field name="report_file">finnapps_era_dz.report_summary_statement_annual</field>
+            <field name="paperformat_id" ref="finnapps_era_dz.custom_era_format"/>
+        </record>
+
+
+		
+
+
+	</data>
+</odoo>

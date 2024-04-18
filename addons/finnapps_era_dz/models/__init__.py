@@ -1,0 +1,1 @@
+from . import finn_summary_statement_config

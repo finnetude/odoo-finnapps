@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_tree_sumstate_config" model="ir.ui.view">
+            <field name="name">summary.statement.config.Tree</field>
+            <field name="model">finn.summary.statement.config</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom" create="false" delete="false">
+                    <field name="sequence"/>
+                    <field name="designation" readonly="1" />
+                    <field name="accounts"/>
+                    <field name="accounts_to_exclude"/>
+                    <field name="company_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_sumstate_config" model="ir.actions.act_window">
+            <field name="name">Configuration de l'État récapitulatif</field>
+            <field name="res_model">finn.summary.statement.config</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <menuitem id="menu_principale_Rapports_comptables"
+              parent="account.menu_finance_configuration"
+              name="Rapports comptables"
+              sequence="20"/>
+
+        <menuitem id="menu_sumstate_config"
+            name="Configuration de l'État récapitulatif"
+            parent="menu_principale_Rapports_comptables"
+            sequence="30"
+            action="action_sumstate_config"
+            groups="account.group_account_user" />
+            
+    </data>
+</odoo>

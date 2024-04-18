@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="compta_commission_report">
+
+            <t t-call="finnapps_liasse_fiscale_dz.compta_internal_layout" t-lang="ar_001">
+                <t t-call="finnapps_liasse_fiscale_dz.compta_internal_head" />
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <style>
+                            #table_date {
+                                margin: 10px;
+                                margin: auto;
+                                padding: 10px;
+                                height: 10px;
+                                text-align: center;
+                                font-size: 12px;
+                                width: 60%;
+                            }
+
+                            #tr_date {
+                                color: black;
+                                height: 10px;
+                                
+                            }
+
+                            #td_date_title {
+                                font-weight: bold;
+                                height: 10px;
+                                
+                            }
+
+                            #td_date {
+                                height: 10px;
+                                color: black;
+                                
+                            }
+
+
+                            table.title {
+                                font-size: 12px;
+                                text-align: left;
+                                border-collapse: collapse;
+                                color: black;
+                                background: #e4e6e8;
+                                margin-bottom: 10px;
+                                margin-top: 10px;
+                                margin-left: 0px;
+                                margin-right: auto;
+                                height: 30px;
+                            }
+
+                            thead {
+                                height: 50px;
+                                background: #e4e6e8;
+                                color: black;
+                            }
+
+                            table {
+                                font-size: 12px;
+                                margin-left: auto;
+                                margin-right: auto;
+                                border-collapse: collapse;
+                                color: black;
+                            }
+
+                            table th {
+                                font-size: 12px;
+                                font-weight: bold;
+                                border: 1px solid black;
+                                padding: 0px 5px;
+                            }
+
+                            table td {
+                                color: black;
+                                border: 1px solid black;
+                                padding: 5px 5px;
+                            }
+                            #data {
+                                
+                                color: black;
+                                }
+
+                        </style>
+                         
+                        <table id="table_date" border="1">
+                            <tr id="tr_date">
+                                <td id="td_date_title">Exercice du</td>
+                                <td id="td_date"><span t-esc="o.exercice_id.date_from"
+                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                                <td id="td_date_title">au</td>
+                                <td id="td_date"><span t-esc="o.exercice_id.date_to"
+                                        t-options='{"widget": "date","format": "dd-MM-yyyy"}' /></td>
+                            </tr>
+                        </table>
+
+
+                        <table class="title" border="1"
+                            style=" width: 658px;font-size: 12px;">
+                            <tr>
+                                <td><strong>12/ Commissions et courtages, redevances, honoraires, sous-traitance,
+                                        rémunérations diverses et frais de siège :
+
+                                    </strong></td>
+                            </tr>
+                        </table>
+                        <table border="1" style=" font-size: 12px;" width = "100%"   height="100%">
+                            <thead>
+                                <tr style="height: 35px; text-align: center;">
+                                    <td style="width: 200px;"><strong>Désignation des personnes bénéficiaires</strong></td>
+                                    <td style="width: 200px;"><strong> Numéro d’identifiant fiscal</strong></td>
+                                    <td style="width: 200px;"><strong>Adresse</strong></td>
+                                    <td style="width: 200px;"><strong>Montant perçu</strong></td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="index" t-value="0" />
+                                <t t-if="len(o.line_commission_1_ids) > index">
+                                    <tr>
+                                        <td style="height: 50px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].name">
+                                                <span t-esc="o.line_commission_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_one">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_two">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_commission_1_ids) > index">
+                                    <tr>
+                                        <td style="height: 50px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].name">
+                                                <span t-esc="o.line_commission_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_one">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_two">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_commission_1_ids) > index">
+                                    <tr>
+                                        <td style="height: 50px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].name">
+                                                <span t-esc="o.line_commission_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_one">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_two">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_commission_1_ids) > index">
+                                    <tr>
+                                        <td style="height: 50px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].name">
+                                                <span t-esc="o.line_commission_1_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_one">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="o.line_commission_1_ids[index].designation_col_two">
+                                                <span t-esc="o.line_commission_1_ids[index].designation_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_1_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_1_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 50px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <table class="title" border="1"
+                            style="width: 250px;">
+                            <tr>
+                                <td><strong>13/ Taxe sur l’activité professionnelle :
+
+
+                                    </strong></td>
+                            </tr>
+                        </table>
+                        <table border="1"  style=" font-size: 12px;" width = "100%"   height="100%">
+
+                            <thead>
+                                <tr style="height: 60px; text-align: center;">
+                                    <th style="width: 200px;">Lieu de payement de la TAP</th>
+                                    <th style="width: 200px;">Chiffre d’affaires imposable Par commune</th>
+                                    <th style="width: 200px;">Chiffre d’affaires exonéré</th>
+                                    <th style="width: 200px;">TAP acquittée</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-set="index" t-value="0" />
+                                <t t-if="len(o.line_commission_2_ids) > index">
+                                    <tr>
+                                        <td style="height: 60px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_2_ids[index].name">
+                                                <span t-esc="o.line_commission_2_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 60px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_commission_2_ids) > index">
+                                    <tr>
+                                        <td style="height: 60px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_2_ids[index].name">
+                                                <span t-esc="o.line_commission_2_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 60px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_commission_2_ids) > index">
+                                    <tr>
+                                        <td style="height: 60px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_2_ids[index].name">
+                                                <span t-esc="o.line_commission_2_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 60px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                                <t t-if="len(o.line_commission_2_ids) > index">
+                                    <tr>
+                                        <td style="height: 60px;color:black;text-align: left;">
+                                            <t t-if="o.line_commission_2_ids[index].name">
+                                                <span t-esc="o.line_commission_2_ids[index].name" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_one) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_one" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: left;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_two) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_two" />
+                                            </t>
+                                        </td>
+                                        <td style="color:black;text-align: center;">
+                                            <t t-if="abs(o.line_commission_2_ids[index].amount_col_three) > 0">
+                                                <span t-esc="'%.2f'% o.line_commission_2_ids[index].amount_col_three" />
+                                            </t>
+                                        </td>
+                                        <t t-set="index" t-value="index + 1" />
+                                    </tr>
+                                </t>
+                                <t t-else="">
+                                    <tr style="height: 60px;">
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+        <record id="action_commission_report" model="ir.actions.report">
+            <field name="name">Commission</field>
+            <field name="model">finn.liasse.fiscale.report</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">finnapps_liasse_fiscale_dz.compta_commission_report</field>
+            <field name="report_file">finnapps_liasse_fiscale_dz.compta_commission_report</field>
+            <field name="print_report_name"></field>
+            <field name="binding_model_id"></field>
+        </record>
+
+        <record id="finnapps_liasse_fiscale_dz.action_commission_report" model="ir.actions.report">
+                <field name="paperformat_id" ref="finnapps_liasse_fiscale_dz.compta_report_format" />
+        </record>
+
+
+    </data>
+</odoo>
