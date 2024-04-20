@@ -1,0 +1,212 @@
+<templates xml:space="preserve">
+    <t t-name="finnapps_solde_compte.clientaction">
+    <div style="width:100%">   <form class="form-inline">
+                <div class="row" style=" margin : 20px">
+                    <div style="font-weight: bold;font-size:18px">
+                        <label>Plan des comptes</label>
+
+                    </div>
+                    <div style="margin-top:20px">
+                        <div class="row" style=" display: flex;">
+                            <div style="width:300px;">
+                                <label>Filter par journaux</label>
+                                <select class="o_input o_filtrer_journals">
+                                    <option t-att-data-type="0" t-att-value="0"  t-on-click="() => handleJournalFilterChange(0)">--</option>
+                                    <t t-foreach="state.journals" t-as="journal" t-key="journal.id" t-att-value="journal.id">
+                                        <option t-att-value="journal.id" t-att-data-type="journal.id"  t-on-click="() => handleJournalFilterChange(journal.id)">
+                                       <t t-esc="journal.name" /> 
+                                           
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+                            <div style="width:300px;">
+                                <label>Filtrer par exercices</label>
+                                <select class="o_input o_filtrer_exercices">
+                                    <option t-att-data-type="0" t-att-value="0" t-on-click="() => handleExerciseFilterChange(0)">--</option>
+                                    <t t-foreach="state.exercises" t-as="exercise" t-key="exercise.id" t-att-value="exercise.id">
+                                        <option t-att-value="exercise.id" t-att-data-type="exercise.id"  t-on-click="() => handleExerciseFilterChange(exercise.id)">
+                                            <t t-esc="exercise.name"/>
+                                        </option>
+                                    </t>
+                                </select>
+                            </div>
+
+                            <div style="width:300px;">
+                                <label>Filtrer par périodes</label>
+                                <select class="o_input o_filtrer_periodes" id="select_periodes">
+                                    <option t-att-data-type="0" t-att-value="0" t-on-click="() => handlePeriodFilterChange(0)">--</option>
+                                    <t t-foreach="state.periods" t-as="period" t-key="period.id" t-att-value="period.id">
+                                        <option t-att-value="period.id" t-att-data-type="period.id"  t-on-click="() => handlePeriodFilterChange(period.id)">
+                                            <t t-esc="period.name"/>
+                                        </option>
+                                    </t>
+
+                                </select>
+                            </div>
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </form>
+      
+        <div class="scroller" style="position:absolute; padding-left:80px;margin-top:5px;height:90%;width:95%;">
+
+
+            <div class="row" width="100%">
+                <div class="col-xl-12" width="100%" style="margin-bottom: 122px;">
+                    <div class="mt16" width="100%">
+                        <table width="100%" style="border: solid 1px black;">
+                            <thead style="border-bottom: solid 1px black;border-top: solid 1px black;padding-bottom: 125px;">
+                                <tr class="o_report_header">
+                                    <th class="o_report_line_header" style="font-weight: bold;">Code</th>
+                                    <th class="o_report_line_header" style="font-weight:bold;">Nom</th>
+                                    <th class="o_report_line_header" style="font-weight:bold;">Debit</th>
+                                    <th class="o_report_line_header" style="font-weight:bold;">Credit</th>
+                                    <th class="o_report_line_header" style="font-weight:bold;">Solde</th>
+                                </tr>
+                            </thead>
+                            <tbody style="border-bottom: solid 1px black;border-top: solid 1px black;">
+                                <t t-foreach="state.topLevelGroups" t-as="group" t-key="group.id">
+                                    <tr class="o_group_header table-row">
+                                        <td>
+                                            <span t-on-click="() => toggleGroup(group.id)">
+                                                <i class="fa fa-fw" t-att-class="{
+                                                'fa-caret-right': !isGroupExpanded(group.id),
+                                                'fa-caret-down': isGroupExpanded(group.id)
+                                            }"></i>
+                                            </span>
+
+
+                                            <span style="color: #875A7B;" t-on-click="() => redirectToGroup(group.id)">
+
+                                                <t t-esc="group.code_prefix_start"/>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span style="color: #875A7B;" t-on-click="() => redirectToGroup(group.id)">
+
+                                                <t t-esc="group.name" />
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <t t-esc="group.debit"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="group.credit"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="group.balance"/>
+                                        </td>
+
+                                    </tr>
+                                    <t t-if="isGroupExpanded(group.id)">
+                                        <t t-foreach="getChildGroups(group.id)" t-as="childGroup" t-key="childGroup.id" t-name="recursive_group_template">
+                                            <tr class="table-row" >
+                                                <td>
+                                                    <span t-on-click="() => toggleGroup(childGroup.id)" style="padding-left: 20px;">
+                                                        <i class="fa fa-fw" t-att-class="{
+                                                        'fa-caret-right': !isGroupExpanded(childGroup.id),
+                                                        'fa-caret-down': isGroupExpanded(childGroup.id)
+                                                    }"></i>
+                                                    </span>
+
+                                                    <span style="color: #875A7B;" t-on-click="() => redirectToGroup(group.id)">
+
+                                                        <t t-esc="childGroup.code_prefix_start"/>
+
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span style="color: #875A7B;" t-on-click="() => redirectToGroup(group.id)">
+
+                                                        <t t-esc="childGroup.name"/>
+
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="childGroup.debit"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="childGroup.credit"/>
+                                                </td>
+                                                <td>
+                                                    <t t-esc="childGroup.balance"/>
+                                                </td>
+                                            </tr>
+                                            <t t-call="recursive_group_template" t-foreach="getChildGroups(childGroup.id)" t-as="subChildGroup" t-key="subChildGroup.id"/>
+                                            <t t-if="isGroupExpanded(childGroup.id)">
+
+                                                <t t-foreach="state.lines" t-as="line" t-key="line.id">
+                                                    <t t-if="childGroup.id == line.groupId">
+
+                                                        <tr style="color: #6E6295; " class="table-row">
+
+
+                                                            <td t-on-click="() => redirectToAccount(line.id)">
+                                                                <span style="padding-left: 40px;">
+                                                                    <t t-esc="line.code"/>
+                                                                </span>
+                                                            </td>
+                                                            <td t-on-click="() => redirectToAccount(line.id)">
+                                                                <t t-esc="line.name"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="line.debit"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="line.credit"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="line.balance"/>
+                                                            </td>
+                                                        </tr>
+
+                                                    </t>
+                                                </t>
+                                            </t>
+                                        </t>
+                                    </t>
+
+                                </t>
+                                <tr style="border-bottom: solid 1px gray;" />
+
+
+                            </tbody>
+                            <tfoot style="border-bottom: solid 1px black;border-top: solid 1px black;">
+                                <tr>
+                                    <td/>
+                                    
+                                    <td style="font-weight:bold;padding-left:800px">Solde total</td>
+                                   <td class="text-right">
+                                        <t t-esc="state.topLevelTotals.totalDebit"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-esc="state.topLevelTotals.totalCredit"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <t t-esc="state.topLevelTotals.totalBalance"/>
+                                    </td>
+                                </tr>
+
+
+
+                            </tfoot>
+
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+      
+         
+
+    </t>
+</templates>

@@ -245,10 +245,3 @@ class AccountPaymentRegister(models.TransientModel):
     def _visible_timbre_fiscal(self):
         for payment in self:
             payment.use_timbre_supplier = True if payment.journal_id.type == 'cash' and payment.partner_type == "supplier" and payment.company_id.based_on == 'payment' else False
-            
-
-    
-  
-
-
-   

@@ -1,0 +1,9 @@
+.scroller {
+  overflow-x: scroll;
+  scrollbar-color: black whitesmoke;
+  scrollbar-width: thin;
+}
+
+.table-row:hover {
+  background-color: lightgray;
+}

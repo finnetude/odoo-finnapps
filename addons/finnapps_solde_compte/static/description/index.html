@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>finnetude</title>
+</head>
+
+<body>
+    <div class="container" style="font-family: 'roboto';">
+        <div class="oe_styling_v8">
+            <div class="row justify-content-between" style="margin-left:auto;margin-right: auto; color:#000; border-bottom:1px solid #e4e4e4; text-align:center; 
+            width: 50%; padding-top: 10px; padding-bottom: 10px; border-radius: 20px;box-shadow: 10px 10px 5px grey;">
+                <a href="https://www.finnetude.net/" target="_blank" style="width: 80%;">
+                    <img src="photos/modules/logo_finnetude_et_odoo.png" style="width: 500px;" alt="">
+                </a>
+            </div>
+            <br><br>
+
+            <div class="row" style="margin:75px 0; color:#000; border-bottom:1px solid #e4e4e4; padding-bottom:30px">
+                <div class="col-md-7 col-sm-12 col-xs-12" style="padding:0px;">
+                    <h2 style="font-weight:600; font-size:1.8rem; margin-top:15px">Solde des comptes</h2>
+                    <p style="display:flex; font-size:16px">Restructure le plan comptable.</p>
+                    <p style="display:flex; font-size:16px">Lecture facile de (Débit, Crédit, Solde) sur les comptes et
+                        les classes.</p>
+                </div>
+                <!-- <div class="col-md-5 col-sm-12 col-xs-12"><img width="400" height="300" src="photos/101 formulaire.png"
+                     class="img-responsive" alt="">
+                </div> -->
+            </div>
+            <!--Création des Onglets-->
+            <section class="oe_container mt32 mb32" style="margin-left:calc(-42vw + 50%); width:84vw">
+                <div class="row" style="max-width:1540px; margin:0 auto; padding-bottom:64px; border-radius:15px">
+                    <ul role="tablist" class="nav nav-tabs justify-content-center" data-tabs="tabs"
+                        style="border:none; background-color:unset; margin:0 auto">
+
+                        <!-- Création de l'Onglet n° 01 = Fonctionnalités-->
+                        <li class="nav-item"
+                            style="border-top-right-radius:10px; border-top-left-radius:10px; background-color:#e6f6ff; margin-right:10px; border:1px solid #ddd; border-bottom:0">
+                            <a href="#fonctionalities" data-bs-toggle="tab" aria-expanded="true" class="show active"
+                                style="font-family:Roboto; text-transform:uppercase; font-weight:600; font-size:15px; letter-spacing:1px; padding:11px 20px; border-top-left-radius:10px; border-top-right-radius:10px; color:#2b2b2b; border:1px solid transparent">
+                                <img src="icones/icone_onglet_fonctionnalites.png"
+                                    style="width:18px; margin-top:-4px; margin-right:6px">Fonctionnalités</a> <span
+                                class="border-left-0"
+                                style="float:left; margin-top:-4px; margin-left:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 5px 0"></span>
+                            <span class="border-right-0"
+                                style="float:right; margin-top:-4px; margin-right:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 0 5px"></span>
+                        </li>
+                        <!-- Création de l'Onglet n° 02 = Capture d'écran -->
+                        <li class="nav-item"
+                            style="border-top-right-radius:10px; border-top-left-radius:10px; background-color:#e6f6ff; margin-right:10px; border:1px solid #ddd; border-bottom:0">
+                            <a href="#captures_decran" data-bs-toggle="tab" aria-expanded="true" class="show"
+                                style="font-family:Roboto; text-transform:uppercase; font-weight:600; font-size:15px; letter-spacing:1px; padding:11px 20px; border-top-left-radius:10px; border-top-right-radius:10px; color:#2b2b2b; border:1px solid transparent">
+                                <img src="icones/icone_onglet_captures.png"
+                                    style="width:18px; margin-top:-4px; margin-right:6px">Captures d'écran</a> <span
+                                class="border-left-0"
+                                style="float:left; margin-top:-4px; margin-left:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 5px 0"></span>
+                            <span class="border-right-0"
+                                style="float:right; margin-top:-4px; margin-right:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 0 5px"></span>
+                        </li>
+                        <!-- Création de l'Onglet n°03 = Vidéos -->
+                        <li class="nav-item"
+                            style="border-top-right-radius:10px; border-top-left-radius:10px; background-color:#e6f6ff; margin-right:10px; border:1px solid #ddd; border-bottom:0">
+                            <a href="#videos" data-bs-toggle="tab" aria-expanded="true" class="show"
+                                style="font-family:Roboto; text-transform:uppercase; font-weight:600; font-size:15px; letter-spacing:1px; padding:11px 20px; border-top-left-radius:10px; border-top-right-radius:10px; color:#2b2b2b; border:1px solid transparent">
+                                <img src="icones/icone_onglet_videos.png"
+                                    style="width:18px; margin-top:-4px; margin-right:6px">Gif's & Vidéos</a> <span
+                                class="border-left-0"
+                                style="float:left; margin-top:-4px; margin-left:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 5px 0"></span>
+                            <span class="border-right-0"
+                                style="float:right; margin-top:-4px; margin-right:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 0 5px"></span>
+                        </li>
+                        <!-- Création de l'Onglet n°04 = Implémentation -->
+                        <li class="nav-item"
+                            style="border-top-right-radius:10px; border-top-left-radius:10px; background-color:#e6f6ff; margin-right:10px; border:1px solid #ddd; border-bottom:0">
+                            <a href="#implementation" data-bs-toggle="tab" aria-expanded="true" class="show"
+                                style="font-family:Roboto; text-transform:uppercase; font-weight:600; font-size:15px; letter-spacing:1px; padding:11px 20px; border-top-left-radius:10px; border-top-right-radius:10px; color:#2b2b2b; border:1px solid transparent">
+                                <img src="icones/icone_onglet_implementation.png"
+                                    style="width:18px; margin-top:-4px; margin-right:6px">Implémentation</a> <span
+                                class="border-left-0"
+                                style="float:left; margin-top:-4px; margin-left:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 5px 0"></span>
+                            <span class="border-right-0"
+                                style="float:right; margin-top:-4px; margin-right:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 0 5px"></span>
+                        </li>
+                        <!-- Création de l'Onglet n°05 = Versions -->
+                        <li class="nav-item"
+                            style="border-top-right-radius:10px; border-top-left-radius:10px; background-color:#e6f6ff; margin-right:10px; border:1px solid #ddd; border-bottom:0">
+                            <a href="#versions" data-bs-toggle="tab" aria-expanded="true" class="show"
+                                style="font-family:Roboto; text-transform:uppercase; font-weight:600; font-size:15px; letter-spacing:1px; padding:11px 20px; border-top-left-radius:10px; border-top-right-radius:10px; color:#2b2b2b; border:1px solid transparent">
+                                <img src="icones/icone_onglet_versions.png"
+                                    style="width:18px; margin-top:-4px; margin-right:6px">Versions</a>
+                            <span class="border-left-0"
+                                style="float:left; margin-top:-4px; margin-left:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 5px 0"></span>
+                            <span class="border-right-0"
+                                style="float:right; margin-top:-4px; margin-right:-5px; width:5px; height:5px; border:1px solid #ddd; border-top:0; border-radius:0 0 0 5px"></span>
+
+                        </li>
+                    </ul>
+                    <!-- Fin de la création des onglets -->
+
+                    <!-- Début du Contenus des Onglets -->
+                    <div class="container-fluid" style="border:1px solid #eee; border-radius:10px">
+                        <div class="tab-content container pt-3" id="tabs_content">
+                            <!-- Début contenus de l'onglet fonctionalities -->
+                            <div class="tab-pane show active" id="fonctionalities">
+                                <div class="container mt48">
+                                    <section id="other-legal-references">
+                                        <h2 style="font-weight:600; text-align:center; width:100%">Fonctionnalités</h2>
+                                        <hr
+                                            style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                        <ul style="padding:0 1px">
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Structure le plan comptable en arborescence (SCF, Classes,
+                                                Groupes,Comptes)
+                                                <br>
+                                            </li>
+                                            <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                            Lecture de (Débit, Crédit et Solde) des comptes comptables et des
+                                            groupes.
+                                            <br>
+                                            </li>
+
+
+                                            <br><br>
+                                            <h2 style="font-weight:600; text-align:center; width:100%">Fonctionnement
+                                            </h2>
+                                            <hr
+                                                style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Après avoir effectué des opérations, odoo génère des pièces
+                                                comptables.<br>
+                                            </li>
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Dans le module <strong> &ensp; « Facturation »&ensp; </strong> dans le
+                                                menu <strong> &ensp; « Comptabilité »&ensp; </strong> Cliquez sur
+                                                <strong> &ensp; « Plan des comptes »&ensp; </strong>.<br>
+                                            </li>
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                S'affiche, a ce moment-là, un tableau reprenant votre plan comptable et
+                                                son arborescence avec le (Crédit, Débit et solde) des comptes et des
+                                                groupes.<br>
+                                            </li>
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Pour une meilleur recherche, il est possible de filtrer par :<br>
+                                            </li>
+                                            <ul style="padding-left:100px">
+                                                <li>
+                                                    Journal.
+                                                </li>
+                                                <li>
+                                                    Exercice.
+                                                </li>
+                                                <li>
+                                                    Période comptable.
+                                                </li>
+                                            </ul>
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                En cliquant sur un compte en particulier, vous accédez à sa vue
+                                                formulaire qui contient encore plus de détails.<br>
+                                            </li>
+
+                                            <br><br>
+                                            <h2 style="font-weight:600; text-align:center; width:100%">Avantages</h2>
+                                            <hr
+                                                style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Organiser votre plan comptable selon une arborescence conforme aux
+                                                normes comptables.<br>
+                                            </li>
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Permet une lecture spécifique d’un compte et générale d’un groupe ou
+                                                classe sur le même tableau.<br>
+                                            </li>
+                                            <li style="display:flex; padding:8px 0; font-size:16px">
+                                                <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                                Facilite la recherche de données dans votre plan comptable.
+                                                <br>
+                                            </li>
+
+                                        </ul>
+                                    </section>
+                                </div>
+                            </div>
+                            <!-- Fin du contenus Fonctionnalités -->
+
+                            <!-- Début contenus de l'onglet Capture d'écran -->
+                            <div class="tab-pane show" id="captures_decran">
+                                <div>
+                                    <section class="oe_container">
+                                        <h2 style="font-weight:600; text-align:center; width:100%">Captures d'écran</h2>
+                                        <hr
+                                            style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                        <div id="demo" class="row carousel slide  mb32" data-bs-ride="carousel">
+                                            <div class="carousel-inner">
+                                                <div class="carousel-item active" style="min-height:0px">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 mb16 mt16"
+                                                        style="float:left">
+                                                        <h3 class="alert"
+                                                            style="font-weight:400; text-align:left; border-radius:0; font-size:18px">
+                                                            <img src="icones/nombre.png"
+                                                                style="width:18px; margin-top:-4px; margin-right:6px">L'accès
+                                                            au plan des comptes:
+                                                        </h3>
+                                                        <div style="box-shadow: 10px 10px 5px grey;">
+                                                            <img class="img img-responsive center-block"
+                                                                style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                                                src="photos/captures/100 menus.png">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item" style="min-height:0px">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 mb16 mt16"
+                                                        style="float:left">
+                                                        <h3 class="alert"
+                                                            style="font-weight:400; text-align:left; border-radius:0; font-size:18px">
+
+                                                            <img src="icones/2.png"
+                                                                style="width:18px; margin-top:-4px; margin-right:6px">Tableau
+                                                            plan des comptes avant de montrer l'arborecence:
+                                                        </h3>
+                                                        <div style="box-shadow: 10px 10px 5px grey;">
+                                                            <img class="img img-responsive center-block"
+                                                                style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                                                src="photos/captures/103 plan comptable vierge.png">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item" style="min-height:0px">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 mb16 mt16"
+                                                        style="float:left">
+                                                        <h3 class="alert"
+                                                            style="font-weight:400; text-align:left; border-radius:0; font-size:18px">
+
+                                                            <img src="icones/3.png"
+                                                                style="width:18px; margin-top:-4px; margin-right:6px">Tableau
+                                                            plan des comptes avec l'arborecence:
+                                                        </h3>
+                                                        <div style="box-shadow: 10px 10px 5px grey;">
+                                                            <img class="img img-responsive center-block"
+                                                                style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                                                src="photos/captures/104 plan comptable apr_s op_rations.png">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="carousel-item" style="min-height:0px">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 mb16 mt16"
+                                                        style="float:left">
+                                                        <h3 class="alert"
+                                                            style="font-weight:400; text-align:left; border-radius:0; font-size:18px">
+
+                                                            <img src="icones/4.png"
+                                                                style="width:18px; margin-top:-4px; margin-right:6px">Les
+                                                            comptes liés:
+                                                        </h3>
+                                                        <div style="box-shadow: 10px 10px 5px grey;">
+                                                            <img class="img img-responsive center-block"
+                                                                style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                                                src="photos/captures/101 compte li_s.png">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="carousel-item" style="min-height:0px">
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 mb16 mt16"
+                                                        style="float:left">
+                                                        <h3 class="alert"
+                                                            style="font-weight:400; text-align:left; border-radius:0; font-size:18px">
+                                                            <img src="icones/5.png"
+                                                                style="width:18px; margin-top:-4px; margin-right:6px">Les
+                                                            groupes liés:
+                                                        </h3>
+                                                        <div style="box-shadow: 10px 10px 5px grey;">
+                                                            <img class="img img-responsive center-block"
+                                                                style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                                                src="photos/captures/102 groupes li_s.png">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                                <a class="carousel-control-prev" href="#demo" data-bs-slide="prev"
+                                                    style="width:35px; color:#000"> <span
+                                                        class="carousel-control-prev-icon"><i class="fa fa-chevron-left"
+                                                            style="font-size:24px"></i></span>
+                                                </a> <a class="carousel-control-next" href="#demo" data-bs-slide="next"
+                                                    style="width:35px; color:#000"> <span
+                                                        class="carousel-control-next-icon"><i
+                                                            class="fa fa-chevron-right"
+                                                            style="font-size:24px"></i></span>
+                                                </a>
+                                            </div>
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin de l'onglet Capture d'écran -->
+
+                        <!-- Début contenus de l'onglet Vidéos -->
+                        <div class="tab-pane show" id="videos">
+                            <div class="container mt48">
+                                <section id="other-legal-references">
+                                    <h2 style="font-weight:600; text-align:center; width:100%">Exemple de saisie</h2>
+                                    <hr
+                                        style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                    <ul style="padding:0 1px">
+                                        <div aligne="center">
+                                            <img src="photos/demo.gif"
+                                                style="width: 98%; border: 1px solid lightgrey;" />
+                                        </div>
+                                    </ul>
+                                    <h2 style="font-weight:600; text-align:center; width:100%">Vidéos</h2>
+                                    <hr
+                                        style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                    <ul style="padding:0 1px">
+                                        <li style="display:flex; padding:8px 0; font-size:16px">
+                                            <div class="container-fluid odoo-software2 py-7">
+                                                <div class="container">
+                                                    <div class="section-heading mb-5 text-center">
+                                                        <h2>Prochainement disponible ici</h2>
+                                                    </div>
+                                                    <div aligne="center">
+                                                        <a href="https://youtu.be/zEUrQvqW1tk">
+                                                            <div class="col-md-5 col-sm-12 col-xs-12"><img
+                                                                    src="photos/106 videos.png" class="img-responsive"
+                                                                    alt="">
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- Fin du contenus de l'onglet Vidéos -->
+
+                        <!-- Début du contenus de l'onglet Implémentation -->
+                        <div class="tab-pane show" id="implementation">
+                            <div class="container mt48">
+                                <section id="other-legal-references">
+                                    <h2 style="font-weight:600; text-align:center; width:100%">Implémentation</h2>
+                                    <hr
+                                        style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                    <ul style="padding:0 1px">
+                                        <li style="display:flex; padding:8px 0; font-size:16px">
+                                            <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                            L'ajout d'un menu <strong> &ensp; « Plan des comptes »&ensp; </strong>
+                                            dans le menu plan des comptes.<br>
+                                        </li>
+                                        <li style="display:flex; padding:8px 0; font-size:16px">
+                                            <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                            Ce menu contient:<br>
+                                        </li>
+                                        <ul style="padding-left:100px">
+                                            <li>
+                                                Un tableau de plan de comptes avec ces colonnes:<br>
+                                            </li>
+                                            <ul style="padding-left:100px">
+                                                <li>
+                                                    Code.
+                                                </li>
+                                                <li>
+                                                    Nom.
+                                                </li>
+                                                <li>
+                                                    Débit.
+                                                </li>
+                                                <li>
+                                                    Crédit.
+                                                </li>
+                                                <li>
+                                                    Solde.
+                                                </li>
+                                            </ul>
+                                            <li>
+                                                Trois champs de filtrage:<br>
+                                            </li>
+                                            <ul style="padding-left:100px">
+                                                <li>
+                                                    Un champs <strong> &ensp; « Filter par journaux »&ensp;
+                                                    </strong>ui permet le filtrage par journaux.
+                                                </li>
+                                                <li>
+                                                    un champs <strong> &ensp; « Filter par exercices »&ensp;
+                                                    </strong>qui permet le filtrage par exercices.
+                                                </li>
+                                                <li>
+                                                    Un champs <strong> &ensp; « Filter par périodes »&ensp;
+                                                    </strong>qui permet le filtrage par périodes.
+                                                </li>
+                                            </ul>
+                                        </ul>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- Début contenus de l'onglet Implémentation -->
+
+                        <!-- Début contenus de l'onglet Versions -->
+                        <div class="tab-pane show" id="versions">
+                            <div class="container mt48">
+                                <section id="other-legal-references">
+                                    <h2 style="font-weight:600; text-align:center; width:100%">Versions</h2>
+                                    <hr
+                                        style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+                                    <ul style="padding:0 1px">
+
+                                        <li style="display:flex; padding:8px 0; font-size:16px">
+                                            <i class="fa fa-check-circle-o" style="width:40px; color:#07B700"></i>
+                                            Version 17.0.1.0 | Avril 2024 <br>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                        <!-- Début contenus de l'onglet Versions -->
+
+                        <!-- Début contenus de l'onglet Vidéos -->
+                    </div>
+                </div>
+                <!-- Fin du Contenus des Onglets -->
+        </div>
+        <!-- Fin des Onglets -->
+        </section>
+
+        <!-- Debut de Autres produits suggérés -->
+        <section class="oe_container" style="padding:2rem 3rem 1rem; font-family: 'roboto';">
+            <h2 style="font-weight:600; text-align:center; margin-bottom:25px; width:100%">Autres produits suggérés</h2>
+            <hr
+                style="margin-top:0px; margin-bottom:2%; border:0; text-align:center; border-top:3px solid #07B700; width:5%">
+            <div id="demo1" class="row carousel slide" data-bs-ride="carousel">
+                <!-- The slideshow -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active" style="min-height:0px">
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/finnapps_account_fiscalyear/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module3.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/finnapps_origin_stockmove/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module5.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/12.0/finnapps_simplified_inventory/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module6.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/l10n_dz_finnetude/" target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module1.png">
+                                </div>
+                            </a></div>
+
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/finnapps_l10n_dz_regions/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module7.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0//finnapps_sequence_tiers/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module2.png">
+                                </div>
+                            </a></div>
+                        <!--****-->
+
+                        <!--*****-->
+
+
+
+                    </div>
+                    <!--**********************************************-->
+
+                    <div class="carousel-item" style="min-height:0px">
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/12.0/finnetude_stock_in_saleordreline/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module11.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/finnapps_cancel_saleorder/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module4.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/12.0/finnapps_partner_map_view/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module10.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/finnapps_compensation_payment/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module8.png">
+                                </div>
+                            </a></div>
+
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/14.0/finnapps_solde_compte/" target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module9.png">
+                                </div>
+                            </a></div>
+                        <div class="col-xs-12 col-sm-4 col-md-4 mb16 mt16" style="float:left"><a
+                                href="https://apps.odoo.com/apps/modules/12.0/finnapps_global_discount/"
+                                target="_blank">
+                                <div style="border-radius:10px">
+                                    <img class="img img-responsive center-block"
+                                        style="border-top-left-radius:10px; border-top-right-radius:10px"
+                                        src="photos/modules/module12.png">
+                                </div>
+                            </a></div>
+                    </div>
+
+
+
+                    <!-- Left and right controls -->
+                    <a class="carousel-control-prev" href="#demo1" data-bs-slide="prev" style="width:35px; color:#000">
+                        <span class="carousel-control-prev-icon"><i class="fa fa-chevron-left"
+                                style="font-size:24px"></i></span>
+                    </a>
+                    <a class="carousel-control-next" href="#demo1" data-bs-slide="next" style="width:35px; color:#000">
+                        <span class="carousel-control-next-icon"><i class="fa fa-chevron-right"
+                                style="font-size:24px"></i></span>
+                    </a>
+                </div>
+        </section>
+</body>
+
+</html>

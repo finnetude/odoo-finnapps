@@ -1,0 +1,14 @@
+<odoo>
+    <record model="ir.actions.client" id="finn_solde_compte">
+        <field name="name">Plan des comptes</field>
+        <field name="tag">finnapps_solde_compte.finn_solde_compte</field>
+    </record>
+
+        <menuitem
+            id="menuitem_finn_solde_compte"
+            name="Plan des comptes"
+            action="finnapps_solde_compte.finn_solde_compte"
+            parent="account.menu_finance_entries"
+            sequence="40"/>
+
+</odoo>

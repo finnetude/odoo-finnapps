@@ -8,7 +8,6 @@
 
 
     "contributors": [
-   
     ],
     
     'sequence': 1,

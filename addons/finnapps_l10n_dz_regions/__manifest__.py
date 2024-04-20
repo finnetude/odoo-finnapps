@@ -18,7 +18,6 @@
     'live_test_url' : "https://www.finnetude.com/",
 
     "contributors": [
-
     ],
 
     'license' : "OPL-1",

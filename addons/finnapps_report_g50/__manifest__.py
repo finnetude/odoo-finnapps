@@ -8,14 +8,13 @@
 
 
 
-    'author'      : "finnetude",
-    'company'     : 'finnetude',
-    'maintainer'  : 'finnetude',
+    'author'      : "Finnetude",
+    'company'     : 'Finnetude',
+    'maintainer'  : 'Finnetude',
     'category': 'Accounting/Localizations/Reporting',
 
 
     "contributors": [
-
     ],
     'sequence': 1,
     

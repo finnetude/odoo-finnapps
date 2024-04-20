@@ -23,7 +23,6 @@
     'live_test_url': "https://www.finnetude.com/",
 
     "contributors": [
-
     ],
     'sequence': 1,
 

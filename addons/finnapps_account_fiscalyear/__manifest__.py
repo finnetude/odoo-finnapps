@@ -20,7 +20,6 @@
     "currency": 'EUR',
     
     "contributors": [
-      
     ],
     'depends': [
             'base',

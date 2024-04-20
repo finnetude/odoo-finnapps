@@ -21,7 +21,6 @@
 
 
     "contributors": [
-        
     ],
 
     'license': "LGPL-3",

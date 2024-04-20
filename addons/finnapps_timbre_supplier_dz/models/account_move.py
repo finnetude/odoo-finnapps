@@ -161,7 +161,9 @@ class AccountMove(models.Model):
                         'move_id': invoice.id,
                         'date_maturity': fields.Date.to_date(invoice.invoice_date_due),
                         'discount_date': False,
-                        'discount_percentage': 0
+                        'discount_balance': 0.0,
+                        'discount_amount_currency': 0.0
+
                     })] = {
                         'balance': balance2,
                         'amount_currency': amount_currency2 ,
