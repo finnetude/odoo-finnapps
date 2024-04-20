@@ -47,7 +47,7 @@
         'data/accounting_group.xml',
         'data/cron_remplir_periode.xml',
     ],
-    'images': ['images/baneer.gif'],
+    'images': ['images/banner.gif'],
     'installable': True,
     'auto_install': False,
     "application": True,

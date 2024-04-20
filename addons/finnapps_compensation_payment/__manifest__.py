@@ -20,7 +20,7 @@
     'currency'     : 'Eur',
     'live_test_url': "https://www.finnetude.com/",
     'images'       : [
-        'images/baneer.gif'
+        'images/banner.gif'
         ],
 
     'depends': ['base', 'account'],

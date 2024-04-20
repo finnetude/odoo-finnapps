@@ -20,7 +20,7 @@
     "price": 0.0,
     "currency": 'EUR',
     # 'live_test_url' : "LIEN VERS FORMULAIRE POUR CREATION DE BASES TEST PROPRE A LA VERSION DU MODULE",
-    'images' : ['images/banner.png'],
+    'images' : ['images/banner.gif'],
 #
     'depends' : [
             'base',
