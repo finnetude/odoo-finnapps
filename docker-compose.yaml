@@ -29,9 +29,22 @@ services:
       - odoo-db-data:/var/lib/postgresql/data/pgdata
     secrets:
       - postgresql_password
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: test@finnetude.com
+      PGADMIN_DEFAULT_PASSWORD: test
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
 volumes:
   odoo-web-data:
   odoo-db-data:
+  pgadmin-data:
 
 
 secrets:

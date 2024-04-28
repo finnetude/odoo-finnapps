@@ -4,7 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
 
-class ELoPeriode(models.Model):
+class EloPeriode(models.Model):
     _name = 'finn.periode'
 
     name = fields.Char(
