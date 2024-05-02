@@ -59,10 +59,16 @@
         <field name="arch" type="xml">
             <xpath expr="//field[@name='email']" position="after">
                 <field name="currency_id" />
+                 <button
+                        
+                        name="get_the_solde"
+                        string="Calcule du solde"
+                        type="object"
+                        class="oe_highlight"
+                        groups="base.group_no_one" />
                 <field name="solde" groups="account.group_account_manager"/>
             </xpath> 
             <xpath expr="//ul" position="inside">
-                
                  <li t-if="record.solde.raw_value" >Solde : <field name="solde" groups="account.group_account_manager"/><field name="currency_id" groups="account.group_account_manager"/></li>
             </xpath>   
 
