@@ -24,13 +24,14 @@ class ResPartner(models.Model):
         sudo = self.sudo()
         sql_receivable = "SELECT id FROM account_account WHERE account_type in ('asset_receivable','asset_payable')"
         sql_posted = "SELECT id FROM account_move WHERE state = 'posted'"
+        final_sql = sql_receivable if self.customer else sql_posted
         for record in self:
             ids = tuple(record.env['account.move.line'].search([('partner_id','=',record.id),('move_id.state','=', 'posted')]).ids)
             if ids :
                 if len(ids) == 1:
-                    sql = "select SUM(debit - credit) as solde FROM account_move_line WHERE account_move_line.id IN ({}) and account_id IN ({}) ".format(ids[0], sql_receivable)
+                    sql = "select SUM(debit - credit) as solde FROM account_move_line WHERE account_move_line.id IN ({}) and account_id IN ({}) ".format(ids[0], final_sql)
                 else:
-                    sql = "select SUM(debit - credit) as solde FROM account_move_line WHERE account_move_line.id IN {} and account_id IN({}) ".format(ids, sql_receivable)
+                    sql = "select SUM(debit - credit) as solde FROM account_move_line WHERE account_move_line.id IN {} and account_id IN({}) ".format(ids, final_sql)
 
 
                 self.env.cr.execute(sql)

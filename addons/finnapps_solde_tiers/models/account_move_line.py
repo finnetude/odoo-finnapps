@@ -192,7 +192,7 @@ class AccountMoveLine(models.Model):
             for k in result:
                 keys.append(k)
 
-            move_lines = self.env['account.move.line'].search([('id','in',keys)],order="date asc")
+            move_lines = self
 
             first = True
 

@@ -364,7 +364,7 @@ class AccountInvoice(models.Model):
                 if move.payment_mode.finn_mode_type != 'cash' or move.amount_timbre == 0 or move.line_ids.filtered(lambda l: l.display_type == 'timbre' and l.balance != -1* move.amount_timbre):
              
                     move.line_ids.filtered(
-                        lambda l: l.display_type == 'timbre' and l.balance != -1* move.amount_timbre or l.balance == 0
+                        lambda l: l.display_type == 'timbre' and (l.balance != -1* move.amount_timbre or l.balance == 0)
                     ).with_context(dynamic_unlink=True).unlink()
 
 
