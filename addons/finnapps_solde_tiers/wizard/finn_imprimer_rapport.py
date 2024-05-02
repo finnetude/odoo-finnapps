@@ -137,6 +137,7 @@ class FinnImprimerRapport(models.TransientModel):
                 previous_solde = 0
             else :
                 order = "date desc ,id desc ,id"
+                print("oooookey")
                 result ,result_all = self.env['account.move.line'].compute_cumulated_balance(order, list_dom, limit=True)
 
                 move_lines = self.env['account.move.line'].search([('id','=',list(result.keys())[0])],order="date asc ,id asc ,id")

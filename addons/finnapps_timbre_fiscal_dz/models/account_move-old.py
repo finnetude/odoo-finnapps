@@ -41,15 +41,6 @@ class AccountInvoice(models.Model):
     
     based_on_related = fields.Selection(string='Based', related="company_id.based_on")
 
-    def get_timbre_montant_en_lettre(self):
-        for record in self:
-            record.montant_en_lettre=""
-    def _total_amount_timbre(self):
-        for record in self:
-            record.total_timbre=0
-            record.needed_timbre=0
-            record.needed_timbre_dirty=False
-            record.amount_timbre=0
 
     @api.onchange('payment_mode')
     def _onchange_payment_mode(self):
@@ -61,12 +52,16 @@ class AccountInvoice(models.Model):
 
             record.payment_mode_type = record.payment_mode.finn_mode_type if record.payment_mode else False
 
+
+
+
+
     def _timbre(self, amount_total):
-            timbre = 0.0
-            if self.payment_mode and self.payment_mode.finn_mode_type == "cash":
-                timbre = int(self.company_id._timbre(amount_total))
-            return timbre
-    
+        timbre = 0.0
+        if self.payment_mode and self.payment_mode.finn_mode_type == "cash":
+            timbre = int(self.company_id._timbre(amount_total))
+        return timbre
+
     @api.depends('amount_total','payment_mode','invoice_line_ids','invoice_payment_term_id')
     def _compute_amount_timbre(self):
         for record in self:
@@ -97,6 +92,10 @@ class AccountInvoice(models.Model):
             else :
                 record.amount_timbre = int(record._timbre(amount_total))
             record.total_timbre = amount_total + record.amount_timbre if record.amount_timbre else 0.0
+
+
+ 
+    # With this the new line of timber is created/edited
     @api.depends('invoice_date_due', 'currency_id', 'amount_timbre','invoice_payment_term_id')
     def _compute_needed_timbre(self):
         
@@ -129,6 +128,7 @@ class AccountInvoice(models.Model):
 
                 }
 
+    # override the function that create/edit line of terms
     @api.depends('invoice_payment_term_id', 'invoice_date', 'currency_id', 'amount_total_in_currency_signed', 'invoice_date_due','payment_mode')
     def _compute_needed_terms(self):
         for invoice in self:
@@ -184,6 +184,8 @@ class AccountInvoice(models.Model):
                         'name': invoice.payment_reference or '',
                     }
     
+
+
     @api.depends('payment_mode')
     def get_timbre_montant_en_lettre(self):
         for record in self:
@@ -192,7 +194,7 @@ class AccountInvoice(models.Model):
             if record.payment_mode and record.payment_mode.finn_mode_type == "cash":
                 logic = self.company_id.montant_en_lettre
             record.montant_en_lettre = logic
-
+           
     def custom_amount_to_text(self, montant):
         currency_id = self.currency_id or self.env.ref('base.DZD')
         res = currency_id.amount_to_text(montant)
@@ -201,7 +203,7 @@ class AccountInvoice(models.Model):
         if montant > 1.0:
             res = res.replace('Dinar', 'Dinars')
         return res.lower().capitalize()
-    
+
 
     @api.depends(
         'line_ids.matched_debit_ids.debit_move_id.move_id.payment_id.is_matched',
@@ -265,7 +267,11 @@ class AccountInvoice(models.Model):
             move.amount_total_in_currency_signed = abs(move.amount_total) if move.move_type == 'entry' else -(sign * move.amount_total)
             # Compute total_timbre
           #  move.total_timbre = move.amount_total + move.amount_timbre if move.amount_timbre else 0.0
-          
+
+
+  
+
+    # override the original function
     @contextmanager
     def _sync_dynamic_lines(self, container):
         with self._disable_recursion(container, 'skip_invoice_sync') as disabled:
@@ -358,8 +364,13 @@ class AccountInvoice(models.Model):
                 if move.payment_mode.finn_mode_type != 'cash' or move.amount_timbre == 0 or move.line_ids.filtered(lambda l: l.display_type == 'timbre' and l.balance != -1* move.amount_timbre):
              
                     move.line_ids.filtered(
-                        lambda l: l.display_type == 'timbre' and (l.balance != -1* move.amount_timbre or l.balance == 0)
+                        lambda l: l.display_type == 'timbre' and l.balance != -1* move.amount_timbre or l.balance == 0
                     ).with_context(dynamic_unlink=True).unlink()
+
+
+
+
+
 class AccountInvoiceLine(models.Model):
     _inherit = 'account.move.line'
 

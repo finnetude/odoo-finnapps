@@ -3,6 +3,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import logging as log
 
+_logger = log.getLogger(__name__)
 
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
@@ -108,7 +109,6 @@ class AccountPayment(models.Model):
             else:
                 writeoff_lines += line
 
-
         return liquidity_lines, counterpart_lines, writeoff_lines
 
 
@@ -130,7 +130,6 @@ class AccountPayment(models.Model):
 
         for pay in self.with_context(skip_account_move_synchronization=True):
             liquidity_lines, counterpart_lines, writeoff_lines = pay._seek_for_lines()
-
             # Dans le cas ou le timbre est utilisé
             if self.use_timbre:
 
@@ -281,7 +280,6 @@ class AccountPaymentRegister(models.TransientModel):
     def _create_payment_vals_from_wizard(self ,batch_result):
 
         result = super(AccountPaymentRegister, self)._create_payment_vals_from_wizard(batch_result)
-
         result['droit_timbre']=self.droit_timbre
         return result
 
