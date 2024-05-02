@@ -197,9 +197,6 @@ class AccountMoveLine(models.Model):
                 keys.append(k)
 
             move_lines = self
-            # _logger.info(move_lines)
-            # move_lines = self.env['account.move.line'].search([('id','in',keys)],order="date asc")
-            # _logger.info(move_lines)
             first = True
 
             epsilon = 0
