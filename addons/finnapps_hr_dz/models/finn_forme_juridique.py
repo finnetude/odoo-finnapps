@@ -3,7 +3,7 @@ from odoo import models, fields, api
 
 from odoo.addons.finnapps_hr_dz.commun import data
 
-class EloFormeJuridique(models.Model):
+class FInnFormeJuridique(models.Model):
 
     _name = 'finn.forme.juridique'
     _description = 'Forme jutidique'

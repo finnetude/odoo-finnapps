@@ -2,6 +2,7 @@
 from odoo import models, fields, api
 
 import logging
+_logger = logging.getLogger(__name__)
 
 class ResPartner(models.Model):
     _inherit = 'res.partner'
@@ -26,7 +27,7 @@ class ResPartner(models.Model):
                     seq = self.env['ir.sequence'].next_by_code('res.partner.customer') or ""
                 elif partner.supplier:
                     seq = self.env['ir.sequence'].next_by_code('res.partner.supplier') or ""
-
+                
                 if seq:
                     partner.update({'compte_tiers': seq})
 
@@ -43,7 +44,6 @@ class ResPartner(models.Model):
                     seq = self.env['ir.sequence'].next_by_code('res.partner.customer') or ""
                 elif partner.supplier:
                     seq = self.env['ir.sequence'].next_by_code('res.partner.supplier') or ""
-
                 if seq:
                     partner.update({'compte_tiers': seq})
         return res
