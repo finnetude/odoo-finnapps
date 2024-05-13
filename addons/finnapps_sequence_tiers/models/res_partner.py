@@ -54,7 +54,7 @@ class ResPartner(models.Model):
     def _compute_display_name(self):
         for partner in self:
             if partner.compte_tiers:
-                display_value = '[' + partner.compte_tiers + '] ' + partner.name
+                display_value = '[' + str(partner.compte_tiers) + '] ' + str(partner.name)
             else:
                 display_value = partner.name
             
