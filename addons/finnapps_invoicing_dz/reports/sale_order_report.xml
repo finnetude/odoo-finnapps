@@ -25,6 +25,12 @@
                             <span t-field="doc.partner_id.fax"/>
                         </span>
                     </div>
+                    <div style="padding-top:1px;">
+                        <span t-if="doc.partner_shipping_id.street">
+                            <b>Address:</b>
+                            <span t-field="doc.partner_shipping_id.street"/>
+                        </span>
+                    </div>
                 </div>
                 <div style="line-height: 50%; padding-top:1px; font-size:11px;">
                     <div>
@@ -62,6 +68,7 @@
                         </t>
 
                     </div><br/> <br/>
+                    
                     <div>
                         <span t-if="doc.partner_id.company_registry"><b>RC N°:</b> <span t-field="doc.partner_id.company_registry"/></span>
                         <span t-if="doc.partner_id.vat"><b>AI : </b><span t-field="doc.partner_id.vat"/></span>
@@ -85,7 +92,7 @@
             <br/> -->
             <table style="width: 100%; height: 140px; padding-top:10px; padding-bottom:15px; padding-left:4px; page-break-before: auto;">
                 <tr style="border: 1px solid white">
-                    <th style="border: 1px solid black; width:25%; font-size:13px;">
+                    <!-- <th style="border: 1px solid black; width:25%; font-size:13px;">
                         <p style="padding-top:5px; text-align:center;">
 	                        Visa / Signature client: <br/> <strong class="list-inline-item" style="text-align:center;">Solde actuel: <span t-field="doc.amount_total"/></strong>
                             <t t-if="doc.signature" >
@@ -93,8 +100,8 @@
                                 <img t-att-src="image_data_uri(doc.signature)" style="max-height:140px; max-width:170px;"/>
                             </t>
 	                    </p>
-                    </th>
-                    <th style="width:50%;">
+                    </th> -->
+                    <th style="width:75%;">
                     </th>
                     <th style="border: 1px solid black; width:25%; font-size:13px;">
                         <p style="text-decoration:underline;padding-top:5px; text-align:center;">
