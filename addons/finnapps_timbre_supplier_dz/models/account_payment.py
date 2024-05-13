@@ -4,6 +4,7 @@ from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from odoo.exceptions import UserError
 import logging as log
+_logger = log.getLogger(__name__)
 
 
 class AccountPayment(models.Model):
@@ -155,6 +156,9 @@ class AccountPayment(models.Model):
         if journal.type == 'cash' and 'add_droit_timbre' in vals:
             if vals['add_droit_timbre'] == True:
                 vals['create_move_id'] = True
+        # vals.update({"force_balance": None})
+        _logger.info(vals)
+        _logger.info(type(vals))
         res = super(AccountPayment, self).create(vals)
         '''Générer les lignes de la pièce compatable'''
         res.create_move_timbre_supplier()

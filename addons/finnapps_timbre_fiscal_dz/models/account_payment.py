@@ -10,7 +10,7 @@ class AccountPayment(models.Model):
     
     based_on_related = fields.Selection(string='Based', related="company_id.based_on")
 
-    def _prepare_move_line_default_vals(self, write_off_line_vals=None):
+    def _prepare_move_line_default_vals(self, write_off_line_vals=None,force_balance=None):
         line_vals_list = super(AccountPayment, self)._prepare_move_line_default_vals(write_off_line_vals)
 
 
