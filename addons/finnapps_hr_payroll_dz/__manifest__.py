@@ -26,6 +26,7 @@
         'base',
         'account',
         'finnapps_hr_dz',
+        'finnapps_custom_employee',
         'finnapps_account_account_dz',
         'hr_contract',
         'hr_holidays',

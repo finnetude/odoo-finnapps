@@ -34,6 +34,20 @@
                         <table class="table table-sm table-bordered">
                             <tr>
                                 <td>
+                                    <strong>N° Employeur</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.company_id.employer_number"/>
+                                </td>
+                                <td>
+                                    <strong>Matricule</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.employee_id.registration_number"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
                                     <strong>Nom</strong>
                                 </td>
                                 <td>
