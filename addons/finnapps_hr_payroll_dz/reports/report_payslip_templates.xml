@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-
     <template id="report_payslip">
+
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
+                <div class="header">
+                    <div class="row">
+                        <div class="col-auto">
+                            <div>
+                                <img t-if="o.company_id.logo" style="max-width:260px;max-height:89px;"
+                                    t-att-src="image_data_uri(o.company_id.logo)"
+                                    class="float-left" alt="Logo"/>
+                            </div>
+                        </div>
+                        <div class="col pt-3">
+                            <h1 class="text-center my-auto" t-field="o.company_id.name"/>
+                        </div>
+                    </div>
+                </div>
                 <t t-call="web.external_layout">
                 <t t-set="rubriques_cotisables" t-value="sum(p.total for p in o.line_ids.filtered(lambda r: r.category_id.code == 'COT'))"/>
                 <t t-set="rubriques_imposables" t-value="sum(p.total for p in o.line_ids.filtered(lambda r: r.category_id.code
@@ -18,182 +32,174 @@
                 <t t-set="salaire_net" t-value="sum(p.total for p in o.line_ids.filtered(lambda r: r.category_id.code == 'NET'))"/>
 
                 <t t-set="quantity_total" t-value="sum(p.quantity for p in o.line_ids.filtered(lambda line: line.appears_on_payslip and line.amount and line.code not in ['GROSS','NET']))"/>
-                
-
-                
-
+                    
                     <div class="page">
                         <t t-if="o.all_accounts_balance == True" >
-                            <h1 style="font-size:35px;margin-left:250px;margin-bottom:70px;margin-top:0px;"><b>Solde de tout compte</b></h1>
+                            <h1 style="font-size:30px;margin-left:10px;margin-bottom:20px;margin-top:0px;"><b>Solde de tout compte</b></h1>
                        </t>
                        <t t-else="" >
-                            <h1 style="font-size:35px;margin-left:300px;margin-bottom:70px;margin-top:0px;"><b>Bulletin de paie</b></h1>
+                            <h1 style="font-size:30px;margin-left:10px;margin-bottom:20px;margin-top:0px;"><b>Bulletin de paie</b></h1>
                        </t>
 
                        
-                        <table class="table table-sm table-bordered">
-                            <tr>
-                                <td>
-                                    <strong>N° Employeur</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.company_id.employer_number"/>
-                                </td>
-                                <td>
-                                    <strong>Matricule</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.registration_number"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Nom</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id"/>
-                                </td>
-                                <td>
-                                    <strong>Désignation</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.job_id"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Addresse</strong>
-                                </td>
-                                <td colspan="3">
-                                    <span><span t-field="o.employee_id.private_street"/>, <span t-field="o.employee_id.private_street2"/></span>
-                                    <span t-field="o.employee_id.private_state_id"/>
-                                    <span t-field="o.employee_id.private_zip"/>
-                                    <span t-field="o.employee_id.private_country_id"/>
+                        <div class="row mb-2">
+                            <div class="col-6">
+                                <div class="container">
+                                    <div class="row py-1 text-dark">
+                                        <div class="col-6">
+                                            <strong>N° Employeur:</strong>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-field="o.company_id.employer_number"/>
+                                        </div>
+                                    </div>
+                                    <div class="row py-1 text-dark">
+                                            <strong>Periode de :</strong>
+                                            <span t-field="o.date_from"/>
+                                            <strong class='ml-2'> au :</strong>
+                                            <span t-field="o.date_to"/>
+                                    </div>
+                                    <div class="row py-1">
+                                        <div class="col-6 text-dark">
+                                            <strong>N° Compte:</strong>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-field="o.employee_id.bank_account_id"/>
+                                        </div>
+                                    </div>
+                                    
+                                    <t t-if="o.all_accounts_balance == True" >
+                                        <div class="row py-1">
+                                            <div class="col-6 text-dark">
+                                                <strong>Date de Solde:</strong>
+                                            </div>
+                                            <div class="col-6">
+                                                <span t-field="o.balance_date"/>
+                                            </div>
+                                        </div>
+                                    </t>
+                                    <t t-if="o.company_id.iep_rate == True" >
+                                        <t t-set="exp_prec" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],limit=1).exp_prec"/>
+                                        <t t-if="exp_prec">
+                                            <div class="row py-1">
+                                                <div class="col-6 text-dark">
+                                                    <strong>Taux IEP:</strong>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="exp_prec"/>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </t>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <table class="table table-sm table-bordered table-striped">
+                                    <tr>
+                                        <!-- <td>
+                                            <strong>N° Employeur</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.company_id.employer_number"/>
+                                        </td> -->
+                                        <td>
+                                            <strong>Matricule</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.employee_id.registration_number"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Nom</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.employee_id"/>
+                                        </td>
+                                       
+                                    </tr>
+                                    <tr>
+                                      
+                                        <td>
+                                            <strong>Fonction</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.employee_id.job_id"/>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                      
+                                        <td>
+                                            <strong>Structure</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.employee_id.department_id"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            
+                                            <t t-if="o.company_id.recrutement_date" >
+                                                <strong>Date d'entrée</strong>
+                                            </t>
+                                            <t t-else="" >
+                                                <strong>Référence</strong>
+                                            </t>
+                                        </td>
+                                        <td>
+                                            
+                                            <t t-if="o.company_id.recrutement_date" >
+                                                <t t-set="date_start" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start asc',limit=1).date_start"/>
+                                                    <t t-if="date_start" >
+                                                    <span t-esc="date_start.strftime('%d/%m/%Y')"/>
+                                                    </t>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Email</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.work_email"/>
-                                </td>
-                                <td>
-                                    <strong>N° d'identification</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.identification_id"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    
-                                    <t t-if="o.company_id.recrutement_date" >
-                                        <strong>Date de recrutement</strong>
-                                    </t>
-                                    <t t-else="" >
-                                        <strong>Référence</strong>
-                                    </t>
-                                </td>
-                                <td>
-                                    
-                                    <t t-if="o.company_id.recrutement_date" >
-                                        <t t-set="date_start" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start asc',limit=1).date_start"/>
-                                            <t t-if="date_start" >
-                                            <span t-esc="date_start.strftime('%d/%m/%Y')"/>
+                                            </t>
+                                            <t t-else="" >
+                                                <span t-field="o.number"/>
                                             </t>
 
-                                    </t>
-                                    <t t-else="" >
-                                        <span t-field="o.number"/>
-                                    </t>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Sécurité sociale</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.employee_id.ssnid"/>
+                                        </td>
+                                    </tr>
+                                     <tr>
+                                        <td>
+                                            <strong>Sit Familiale</strong>
+                                        </td>
+                                        <td>
+                                            <span t-field="o.employee_id.marital"/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <strong>Addresse</strong>
+                                        </td>
+                                        <td>
+                                            <span><span t-field="o.employee_id.private_street"/>, <span t-field="o.employee_id.private_street2"/></span>
+                                            <br/>
+                                            <span t-field="o.employee_id.private_state_id"/>
+                                            <span t-field="o.employee_id.private_zip"/>
+                                            <span t-field="o.employee_id.private_country_id"/>
 
-                                </td>
-                                <td>
-                                    <strong>Compte bancaire</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.bank_account_id"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>Date de début</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.date_from"/>
-                                </td>
-                                <td>
-                                    <strong>Date de fin</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.date_to"/>
-                                </td>
-                            </tr>
-                            <t t-if="o.all_accounts_balance == True" >
-                                <tr>
-                                    <td>
-                                        <strong>Date du solde</strong>
-                                    </td>
-                                    <td colspan="3">
-                                        <div t-field="o.balance_date"/>
-                                    </td>
-                                </tr>
-                            </t>
-
-                            
-                            <tr>
-                                <td>
-                                    <strong>Date de naissance</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.birthday"/>
-                                </td>
-                                <td>
-                                    <strong>Sécurité sociale</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.ssnid"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>État Civil</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.marital"/>
-                                </td>
-                                <td>
-                                    <strong>Nombre d'enfants</strong>
-                                </td>
-                                <td>
-                                    <span t-field="o.employee_id.children"/>
-                                </td>
-                            </tr>
-                            <t t-if="o.company_id.iep_rate" >
-                                <tr>
-                                    <td>
-                                        <strong>Taux IEP</strong>
-                                    </td>
-                                    <td>
-                                        <t t-set="iep" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id),('state','=', 'open')],limit=1).iep"/>
-                                        <t t-if="iep" >
-                                            <span t-esc="iep.taux"/> %
-                                        </t>
-                                    </td>
-                                </tr>
-                            </t>
-
-                            
-                        </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
 
                         <table class="table table-sm">
                             <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Base</th>
-                                <th>Nombre de jours/Quantité</th>
+                                <th>Libelle</th>
+                                <th>N/Base</th>
+                                <th>Taux</th>
                                 <th>Gains</th>
                                 <th>Retenues</th>
                             </tr>
@@ -265,7 +271,7 @@
                                     <th>Base imposable</th>
                                     <th>Ret. I.R.G</th>
                                     <th>Salaire brut</th>
-                                    <th>NET A PAYER</th>
+                                    <th class="text-dark">NET A PAYER</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -285,7 +291,7 @@
                             </tbody>
                         </table>
                         <br/>
-                        <t t-if="o.all_accounts_balance == True" >
+                        <!-- <t t-if="o.all_accounts_balance == True" >
                             <table style="width: 100%; height: 140px; padding-top:10px; padding-bottom:15px; padding-left:4px; page-break-before: auto; border: none;">
                                 <tr>
                                     <th style="border: 1px solid black; width:25%; font-size:13px;">
@@ -315,7 +321,7 @@
                                     </th>
                                 </tr>
                             </table>
-                        </t>
+                        </t> -->
 
 
 
