@@ -79,17 +79,28 @@
                                         </div>
                                     </t>
                                     <t t-if="o.company_id.iep_rate == True" >
-                                        <t t-set="exp_prec" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],limit=1).exp_prec"/>
-                                        <t t-if="exp_prec">
+                                        <t t-set="payement_mode" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).payement_mode"/>
+                                        <t t-if="payement_mode">
                                             <div class="row py-1">
                                                 <div class="col-6 text-dark">
-                                                    <strong>Taux IEP:</strong>
+                                                    <strong>Mode de paiement:</strong>
                                                 </div>
                                                 <div class="col-6">
-                                                    <span t-esc="exp_prec"/>
+                                                    <span t-esc="payement_mode"/>
                                                 </div>
                                             </div>
                                         </t>
+                                    </t>
+                                    <t t-set="exp_prec" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).exp_prec"/>
+                                    <t t-if="exp_prec">
+                                        <div class="row py-1">
+                                            <div class="col-6 text-dark">
+                                                <strong>Taux IEP:</strong>
+                                            </div>
+                                            <div class="col-6">
+                                                <span t-esc="exp_prec"/>
+                                            </div>
+                                        </div>
                                     </t>
                                 </div>
                             </div>
