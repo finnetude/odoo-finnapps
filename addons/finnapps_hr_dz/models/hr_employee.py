@@ -23,6 +23,8 @@ class employee(models.Model):
         default='R22'
     )
 
+
+
     blood_group = fields.Selection(
         [('ap','A+'),
         ('am','A-'),
