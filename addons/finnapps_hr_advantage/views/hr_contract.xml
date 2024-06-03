@@ -10,7 +10,7 @@
 					<!-- Avantages -->
 					<xpath expr="//notebook" position="inside">
 						<page string="Avantages" name="avantage" invisible="check in ('Stagiaire','Consultant')">
-							<field name="advantage_ids" readonly="1">
+							<field name="advantage_ids">
 								<tree>
 									<field name="type_advantage"/>
 									<field name="rule_id"/>
