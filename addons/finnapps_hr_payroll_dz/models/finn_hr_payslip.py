@@ -423,9 +423,11 @@ class FinnHrPayslip(models.Model):
             if payslip.struct_id:
                 number = payslip.number or self.env['ir.sequence'].next_by_code('salary.slip')
                 # delete old payslip lines
-                payslip.line_ids.unlink()
+                self.action_load_payslip()
+
                 # set the list of contract for which the rules have to be applied
                 # if we don't give the contract, then the rules to apply should be for all current contracts of the employee
+                
                 contract_ids = payslip.contract_id.ids or \
                     self.get_contract(payslip.employee_id, payslip.date_from, payslip.date_to)
                 lines = [(0, 0, line) for line in self._get_payslip_lines(contract_ids, payslip.id)]
@@ -742,6 +744,8 @@ class FinnHrPayslip(models.Model):
             structure_ids = list(set(payslip.struct_id._get_parent_structure().ids))
         else:
             structure_ids = contracts.get_all_structures()
+        log.info("structure_ids")
+        log.info(payslips)
         #get the rules of the structure and thier children
         rule_ids = self.env['finn.hr.payroll.structure'].browse(structure_ids).get_all_rules()
         #run the rules by sequence
@@ -796,9 +800,9 @@ class FinnHrPayslip(models.Model):
                     }
                 else:
                     #blacklist this rule and its children
-                    blacklist += [id for id, seq in rule._recursive_search_of_rules()]
-
-        return list(result_dict.values())
+                    blacklist += [id for id, seq in rule._recursive_search_of_rules()]  
+        values = list(result_dict.values())
+        return values
 
     @api.model
     def get_worked_day_lines(self, contracts, date_from, date_to):

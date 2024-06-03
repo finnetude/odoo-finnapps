@@ -63,8 +63,8 @@
 								<div id="amount_adv_periode" invisible="code == False">  
 									<field name="amount_adv" class="oe_inline" 
 										readonly="state != 'draft'"/>
-									<span class="oe_inline" invisible="code not in ('DANG','NUIS','ASTR','ACTR','IFRI','ZONE1','ZONE2','ETRG','IFS','GESRES','INSPC','IFSP','ENSG','IVP','IZCV','PRR','IPAN','ITRS')">Par jours</span>
-									<span class="oe_inline" invisible="code not in ('DOCU','TEL','CAIS','APPN','HEBR', 'PRI','TRPST10','TRPST15','TRPST25','PRC','EXEP','IDV15','FDEP','P8M', 'ISUQ','PRET','PSCL','FRMS','IK','RESTO','ALOMAT','ALOF1','ALOF2', 'PSCL','LICEN','CHOM')"> Par mois</span>
+									<span class="oe_inline" invisible="code not in ('DANG','ACTR','IFRI','ZONE1','ZONE2','ETRG','IFS','GESRES','INSPC','ENSG','IVP','IZCV','IPAN','ITRS')">Par jours</span>
+									<span class="oe_inline" invisible="code not in ('DOCU','NUIS','TEL','ASTR','CAIS','APPN','HEBR', 'PRI','TRPST10','TRPST15','IFSP','TRPST25','PRC','EXEP','IDV15','FDEP','P8M','PRR', 'ISUQ','PRET','PSCL','FRMS','IK','RESTO','ALOMAT','ALOF1','ALOF2', 'PSCL','LICEN','CHOM')"> Par mois</span>
 								</div>
 							</group>
 						</group>

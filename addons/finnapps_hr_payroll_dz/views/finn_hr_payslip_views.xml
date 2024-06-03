@@ -221,8 +221,8 @@
                         <notebook>
                             <page string="Jours travaillés et congés">
                                 <div>
-                                  <separator string="Jours travaillés"/>
-                                  <button name="action_compute_work" class="string oe_highlight" icon="fa-refresh" type="object"/>
+                                    <separator string="Jours travaillés"/>
+                                    <button name="action_compute_work" class="string oe_highlight" icon="fa-refresh" type="object"/>
                                 </div>
                                   
                                 <span invisible="not test_base_mois" class="fa fa-exclamation-triangle text-danger pl-3"/>

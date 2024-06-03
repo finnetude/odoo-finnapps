@@ -97,6 +97,7 @@ class FinnHrBonuseAdvantage(models.Model):
         self.state = "draft"
 
     def adv_confirme(self):
+        log.info(self)
         if self.type_advantage == False:
             raise ValidationError(_("Veuillez remplir le type d'avantage pour confirmer"))
         if self.rule_id == False:

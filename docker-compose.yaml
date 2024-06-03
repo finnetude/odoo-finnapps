@@ -4,6 +4,7 @@ services:
     image: odoo:17.0
     depends_on:
       - db
+    command: --dev=all
     ports:
       - "8069:8069"
     volumes:

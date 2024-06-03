@@ -29,7 +29,8 @@ class FinnHrPayslip(models.Model):
                     # Si l'employé est lié à l'avantage et si l'avantage est de type employé
                     # Si aucun employé n'est lié à l'avantage et si l'avantage est de type employé
                     if  (contract.id in advantage.contract_ids.ids and advantage.type_advantage == 'contract') \
-                        or (contract.employee_id.id in advantage.employee_ids.ids and  advantage.type_advantage == 'employe'):
+                        or (contract.employee_id.id in advantage.employee_ids.ids and  advantage.type_advantage == 'employe') \
+                        or (contract.employee_id.job_id.id in advantage.job_ids.ids and  advantage.type_advantage == 'job'):
                         # Si la règle de l'avantage fait partie de la stucture
                         if advantage.rule_id.id in contract.struct_id.rule_ids.ids:
                             advantages_eligible += [advantage]
