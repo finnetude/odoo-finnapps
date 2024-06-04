@@ -148,11 +148,11 @@
                   <span class="s_r" t-field="o.employee_id.private_country_id.name" />
 
                 </p>
-                <p class="st-para">
+                <!-- <p class="st-para">
                   <span class="my-bold s_r">Titulaire de la CNI N°: </span>
                   <span class="s_r" t-field="o.employee_id.identification_id" />
 
-                </p>
+                </p> -->
                 <p class="st-para">
                   <span class="my-bold s_r">N° Sécurité sociale: </span>
                   <span class="s_r" t-field="o.employee_id.ssnid" />
@@ -214,7 +214,7 @@
                 </t>
 
 
-                <p class="st-para">
+                <!-- <p class="st-para">
                   Soit une durée totale de
                   <t t-if="docs.employee_id.contract_ids[-1].date_end">
                     <t t-set="dif"
@@ -248,7 +248,7 @@
                       <span t-esc="dif.days" /> journées.
                     </t>
                   </t>
-                </p>
+                </p> -->
 
                 <p class="st-para">
                   En foi de quoi le présent certificat lui est délivré conformément aux
@@ -256,7 +256,7 @@
                 </p>
 
                 <p class="st-para" style="font-size: 10px;font-weight: bold;">
-                  NB : Il n'est délivré qu'un seul exemplaire de ce certificat et à la date de fin de contrat de travail
+                  NB : Il n'est délivré qu'un seul exemplaire de ce certificat et à la date de fin de travail
                   .<br></br>
                   Il appartient donc à l'intéressé(e) d'en faire des photocopies certifiées conformes à l'original.
                 </p>

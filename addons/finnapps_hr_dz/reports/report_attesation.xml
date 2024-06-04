@@ -77,7 +77,7 @@
               <div class="text-left">
                 <p class="st-para">
                   <span class="s_r">Ref: </span>
-                  <span class="s_r" t-esc="docs.sequence" />
+                  <span class="my-bold s_r" t-esc="docs.sequence" />
                 </p>
                 <br />
                 <br />
@@ -155,11 +155,11 @@
                   <span class="s_r" t-field="o.employee_id.private_country_id.name" />
 
                 </p>
-                <p class="st-para">
+                <!-- <p class="st-para">
                   <span class="my-bold s_r">Titulaire de la CNI N°: </span>
                   <span class="s_r" t-field="o.employee_id.identification_id" />
 
-                </p>
+                </p> -->
                 <p class="st-para">
                   <span class="my-bold s_r">N° Sécurité sociale: </span>
                   <span class="s_r" t-field="o.employee_id.ssnid" />
@@ -178,10 +178,10 @@
                     </span>
                     au sein de notre entreprise depuis le</span>
                   <span class="s_r" t-field="o.contract_ids[0].date_start" />
-                  <t t-if="o.contract_ids[-1].date_end">
+                  <!-- <t t-if="o.contract_ids[-1].date_end < datetime.datetime.now().date()">
                     Au <span class="s_r" t-field="o.contract_ids[-1].date_end" />.
-                  </t>
-                  <t t-else=" !o.contract_ids[-1].date_end">
+                  </t> -->
+                  <t>
                     À ce jour.
                   </t>
                 </p>

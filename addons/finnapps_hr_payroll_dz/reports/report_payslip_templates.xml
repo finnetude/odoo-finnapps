@@ -79,7 +79,7 @@
                                         </div>
                                     </t>
                                     <t t-if="o.company_id.iep_rate == True" >
-                                        <t t-set="payement_mode" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).payement_mode"/>
+                                        <t t-set="payement_mode" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).payement_mode[0].name"/>
                                         <t t-if="payement_mode">
                                             <div class="row py-1">
                                                 <div class="col-6 text-dark">
