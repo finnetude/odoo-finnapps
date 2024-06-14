@@ -1,6 +1,6 @@
 from datetime import date
 import logging as log
-
+import datetime
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 from odoo.addons.finnapps_hr_advantage.tools import hr_type_bonuse_advantage
@@ -33,7 +33,8 @@ class FinnHrBonuseAdvantage(models.Model):
     code            = fields.Char(string="Référence", compute="_compute_code")
     category_id     = fields.Many2one('finn.hr.salary.rule.category', string='Catégorie', compute="_compute_category")
     date_start      = fields.Date(string="Date de début", copy=False)
-    date_end        = fields.Date(string="Date de fin", copy=False)
+    is_infinity     = fields.Boolean(string = "l'infinie",default=True)
+    date_end        = fields.Date(string="Date de fin",default=datetime.datetime.today(), copy=False)
     employee_ids    = fields.Many2many('hr.employee', 'hr_advantage_employee_employee', 'advantage_employee_id', 'employee_id', string='Employé(s)', copy=False)
     contract_ids    = fields.Many2many('hr.contract', 'hr_advantage_employee_contract', 'advantage_contract_id', 'contract_id', string='Contrats', copy=False)
     job_ids         = fields.Many2many('hr.job', 'hr_advantage_employee_hr_job', 'advantage_job_id', 'job_id', string='Postes de travail', copy=False)
@@ -89,8 +90,9 @@ class FinnHrBonuseAdvantage(models.Model):
     def finn_cron_adventage_state(self):
         advantage = self.env['finn.hr.bonuse.advantage'].search([])
         for obj in advantage:
-            if obj.date_end < date.today():
-                obj.adv_done()
+            if(obj.is_infinity):
+                if obj.date_end < date.today():
+                    obj.adv_done()
 
 # ======================== BOUTON ========================
     def adv_draft(self):
@@ -102,15 +104,17 @@ class FinnHrBonuseAdvantage(models.Model):
             raise ValidationError(_("Veuillez remplir le type d'avantage pour confirmer"))
         if self.rule_id == False:
             raise ValidationError(_("Veuillez remplir la règle salariale pour confirmer"))
-        if self.date_start == False or self.date_end == False:
+        if self.date_start == False and self.is_infinity == True:
+            raise ValidationError(_("Veuillez remplir les date de début "))
+        elif (self.date_end == False or self.date_start == False) and self.is_infinity == False : 
             raise ValidationError(_("Veuillez remplir les date de début et de fin pour confirmer"))
-        if self.date_start > self.date_end:
+        if self.date_start > self.date_end and self.is_infinity == False:
             raise ValidationError(_("La date de début ne doit pas être supérieur à la date de fin, veuillez corriger pour confirmer"))
         if not self.contract_ids and self.type_advantage == 'contract':
             raise ValidationError(_("Veuillez renseigner un contrat pour confirmer"))
 
-        clause_final = [('rule_id','=',self.rule_id.id), ('state','=','open'),('date_end', '>=', self.date_start), ('date_start', '<=', self.date_end)]
-
+        clause_final = [('rule_id','=',self.rule_id.id), ('state','=','open')]
+    #,('date_end', '>=', self.date_start), ('date_start', '<=', self.date_end)
         advantages = self.search(clause_final)
 
         if advantages:

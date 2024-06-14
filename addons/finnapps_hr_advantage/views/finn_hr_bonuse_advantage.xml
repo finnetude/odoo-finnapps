@@ -53,9 +53,12 @@
 									required="type_advantage != False"
 									readonly="state != 'draft'"/>
 
-
+								<field name="is_infinity" 
+									readonly="state != 'draft'"/>
+									
 								<field name="date_end" 
-									required="type_advantage != False"
+									invisible="is_infinity != False"
+									required="is_infinity != False"
 									readonly="state != 'draft'"/>
 							</group>
 							<group string="Montant de l'avantage" invisible="rule_id == False">
@@ -99,7 +102,7 @@
 					<field name="code"/>
 					<field name="amount_adv"/>
 					<field name="date_start"/>
-					<field name="date_end"/>
+					<field name="date_end" invisible="is_infinity == True"/>
 					<field name="employee_ids" widget="many2many_tags"/>
 					<field name="contract_ids" widget="many2many_tags"/>
 					<field name="state" widget="badge" decoration-danger="state == 'cancel'" decoration-warning="state == 'end'" decoration-success="state == 'open'"/>

@@ -77,8 +77,10 @@
                 <p class="st-para">
                   <span class="s_r">Ref: </span>
                   <span class="my-bold s_r" t-esc="docs.sequence" />
-
-
+                </p>
+                <p class="st-para">
+                  <span class="s_r">N°: Employeur: </span>
+                  <span class="my-bold s_r"  t-field="o.employee_id.company_id.employer_number" />
                 </p>
                 <br />
                 <br />
@@ -256,7 +258,7 @@
                 </p>
 
                 <p class="st-para" style="font-size: 10px;font-weight: bold;">
-                  NB : Il n'est délivré qu'un seul exemplaire de ce certificat et à la date de fin de travail
+                  NB : Il n'est délivré qu'un seul exemplaire de ce certificat et à la date de fin de relation de travail
                   .<br></br>
                   Il appartient donc à l'intéressé(e) d'en faire des photocopies certifiées conformes à l'original.
                 </p>

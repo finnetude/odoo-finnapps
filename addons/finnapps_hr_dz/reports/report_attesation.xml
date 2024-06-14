@@ -79,6 +79,10 @@
                   <span class="s_r">Ref: </span>
                   <span class="my-bold s_r" t-esc="docs.sequence" />
                 </p>
+                <p class="st-para">
+                  <span class="s_r">N°: Employeur: </span>
+                  <span class="my-bold s_r"  t-field="o.employee_id.company_id.employer_number" />
+                </p>
                 <br />
                 <br />
                 <p class="st-para" t-if="o.employee_id.address_id">
@@ -188,14 +192,15 @@
 
                 <p class="st-para">
                   <span class="my-bold s_r">En qualité de :</span>
-                  <span class="s_r" t-field="o.contract_ids[0].job_id.name" /> du
+                  <span class="s_r" t-field="o.contract_ids[0].job_id.name" /> 
+                  <!-- du
                    <span class="s_r" t-field="o.contract_ids[0].date_start" />
                   <t t-if="o.contract_ids[0].date_end">
                     Au <span class="s_r" t-field="o.contract_ids[0].date_end" />.
                   </t>
                   <t t-else=" !o.contract_ids[0].date_end">
                     À ce jour.
-                  </t>
+                  </t> -->
                 </p>
                 
                 <t t-foreach="o.contract_ids" t-as="haha">

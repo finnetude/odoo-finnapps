@@ -59,14 +59,6 @@
                                             <strong class='ml-2'> au :</strong>
                                             <span t-field="o.date_to"/>
                                     </div>
-                                    <div class="row py-1">
-                                        <div class="col-6 text-dark">
-                                            <strong>N° Compte:</strong>
-                                        </div>
-                                        <div class="col-6">
-                                            <span t-field="o.employee_id.bank_account_id"/>
-                                        </div>
-                                    </div>
                                     
                                     <t t-if="o.all_accounts_balance == True" >
                                         <div class="row py-1">
@@ -78,6 +70,14 @@
                                             </div>
                                         </div>
                                     </t>
+                                     <div class="row py-1 text-dark">
+                                            <div class="col-6 text-dark">
+                                                <strong>Date de paiement :</strong>
+                                            </div>
+                                            <div class="col-6">
+                                                <span t-esc="o.date_to"/>
+                                            </div>
+                                    </div>
                                     <t t-if="o.company_id.iep_rate == True" >
                                         <t t-set="payement_mode" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).payement_mode[0].name"/>
                                         <t t-if="payement_mode">
@@ -91,6 +91,14 @@
                                             </div>
                                         </t>
                                     </t>
+                                    <div class="row py-1">
+                                        <div class="col-6 text-dark">
+                                            <strong>N° Compte:</strong>
+                                        </div>
+                                        <div class="col-6">
+                                            <span t-field="o.employee_id.bank_account_id"/>
+                                        </div>
+                                    </div>
                                     <t t-set="exp_prec" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).exp_prec"/>
                                     <t t-if="exp_prec">
                                         <div class="row py-1">
@@ -251,7 +259,7 @@
                                     </td>
 
                                 </tr>
-                                <tfoot class="tfooter-book">
+                                <!-- <tfoot class="tfooter-book">
                                     <tr style="font-size:16px" >
                                         <th >TOTAUX : </th>
                                         <th> </th>
@@ -269,7 +277,7 @@
                                         
                                     </tr>
 
-                                </tfoot>
+                                </tfoot> -->
                             </tbody>
 
                         </table>
