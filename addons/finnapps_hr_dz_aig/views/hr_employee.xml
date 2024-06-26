@@ -13,6 +13,9 @@
                         </tree>
                     </field>
                 </xpath>
+                <xpath expr="//field[@name='identification_id']" position="after">
+                    <field name="birth_act"/>
+                </xpath>
             </field>
         </record>
     </data>

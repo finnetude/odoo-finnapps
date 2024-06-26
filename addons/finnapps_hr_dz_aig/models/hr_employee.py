@@ -7,5 +7,6 @@ class employee(models.Model):
 
     _inherit = 'hr.employee'
 
+    birth_act = fields.Char(string='N° de l’acte de naissance')
     childrens_ids = fields.One2many('finn.hr.children','parent_id',string='Childrens')
 
