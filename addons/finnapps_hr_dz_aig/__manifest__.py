@@ -25,12 +25,16 @@
         'hr_contract',
         'account',
         'hr_holidays',
+        'purchase',
         'finnapps_hr_dz'
     ],
     
     'data': [
         'security/ir.model.access.csv',
         'views/hr_employee.xml',
+        'views/purchase_order.xml',
+        'reports/report_purchaseorder_document.xml',
+        
     ],
 
     'license'       : "LGPL-3",
