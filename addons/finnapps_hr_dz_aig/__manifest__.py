@@ -32,6 +32,7 @@
     'data': [
         'security/ir.model.access.csv',
         'views/hr_employee.xml',
+        'views/hr_contract.xml',
         'views/purchase_order.xml',
         'reports/report_purchaseorder_document.xml',
         
