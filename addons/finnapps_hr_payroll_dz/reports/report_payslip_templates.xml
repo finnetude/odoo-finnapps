@@ -78,7 +78,6 @@
                                                 <span t-esc="o.date_to"/>
                                             </div>
                                     </div>
-                                    <t t-if="o.company_id.iep_rate == True" >
                                         <t t-set="payement_mode" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).payement_mode[0].name"/>
                                         <t t-if="payement_mode">
                                             <div class="row py-1">
@@ -90,7 +89,6 @@
                                                 </div>
                                             </div>
                                         </t>
-                                    </t>
                                     <div class="row py-1">
                                         <div class="col-6 text-dark">
                                             <strong>N° Compte:</strong>
@@ -99,16 +97,18 @@
                                             <span t-field="o.employee_id.bank_account_id"/>
                                         </div>
                                     </div>
-                                    <t t-set="exp_prec" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).exp_prec"/>
-                                    <t t-if="exp_prec">
-                                        <div class="row py-1">
-                                            <div class="col-6 text-dark">
-                                                <strong>Taux IEP:</strong>
+                                    <t t-if="o.company_id.iep_rate == True" >
+                                        <t t-set="exp_prec" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).exp_prec"/>
+                                        <t t-if="exp_prec">
+                                            <div class="row py-1">
+                                                <div class="col-6 text-dark">
+                                                    <strong>Taux IEP:</strong>
+                                                </div>
+                                                <div class="col-6">
+                                                    <span t-esc="exp_prec"/>
+                                                </div>
                                             </div>
-                                            <div class="col-6">
-                                                <span t-esc="exp_prec"/>
-                                            </div>
-                                        </div>
+                                        </t>
                                     </t>
                                 </div>
                             </div>
@@ -258,6 +258,22 @@
                                           </t>
                                     </td>
 
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span>Base cotisable</span>
+                                    </td>
+                                    <td>
+                                        <span t-esc=" base_imposable" t-options='{"widget": "monetary", "display_currency":    o.company_id.currency_id}'/>
+                                    </td>
+                                    <td>
+                                    <span>1.00</span>
+                                    </td>
+                                    <td >
+                                        <span t-esc=" base_imposable" t-options='{"widget": "monetary", "display_currency":    o.company_id.currency_id}'/>
+                                    </td>
+                                    <td >
+                                    </td>
                                 </tr>
                                 <!-- <tfoot class="tfooter-book">
                                     <tr style="font-size:16px" >
