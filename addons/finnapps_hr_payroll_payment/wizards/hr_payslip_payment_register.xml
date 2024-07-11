@@ -1,0 +1,59 @@
+<odoo>
+	<data>
+		<record id="hr_payslip_payment_register" model="ir.ui.view">
+			<field name="name">Enregistrer un paiement de bulletin de paie</field>
+			<field name="model">hr.payslip.payment.register</field>
+			<field name="arch" type="xml">
+				<form >
+					
+					<group>
+						<group>
+							<field name="payslip_id" invisible="1"/>
+							<field name="payslip_run_id" invisible="1"/>
+							<field name="payment_type" invisible="1"/>
+							<field name="currency_id" invisible="1"/>
+							<!-- <field name="for_diff" invisible="1"/>
+							<field name="for_message" invisible="1"/> -->
+							<field name="journal_id"/>
+						</group>
+						<group>
+							<field name="amount"  options="{'currency_field': 'currency_id'}"/>
+							<!--<field name="amount_to_pay"   options="{'currency_field': 'currency_id'}"/>
+							<field name="diff" invisible="for_diff == True" options="{'currency_field': 'currency_id'}"/>-->
+							<field name="memo" />
+						</group>
+						
+
+
+					</group>				
+
+
+					<footer>
+						<button name="register" string="Enregistrer" type="object" class="oe_highlight" />
+	    				
+						<button string="Fermer" class="oe_link" special="cancel" />
+					</footer>
+
+				</form>
+			</field>
+		</record>
+
+		
+
+		<!-- <record id="action_hr_payslip_run_payment_register" model="ir.actions.act_window">
+			<field name="name">Enregistrer un paiement de lot des bulletins de paie</field>
+			<field name="res_model">hr.payslip.payment.register</field>
+			<field name="view_id" ref="hr_payslip_payment_register"/>
+			<field name="view_mode">form</field>
+			<field name="context">{'default_payslip_run_id':active_id, 'default_payment_type': 'payslip_run'}</field>
+			<field name="target">new</field>
+		</record> -->
+
+		
+	
+
+	</data>
+
+
+	
+</odoo>

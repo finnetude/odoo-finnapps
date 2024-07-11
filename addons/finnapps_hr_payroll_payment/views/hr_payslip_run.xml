@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="payroll_hr_run_payment_view_form" model="ir.ui.view">
+            <field name="name">Paiement de lot des bulletins de paie</field>
+            <field name="model">finn.hr.payslip.run</field>
+            <field name="inherit_id" ref="finnapps_hr_payroll_dz.hr_payslip_run_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//label[@for='name']" position="before">
+                    <widget name="web_ribbon" title="Payé" invisible="hr_run_payment_state != 'paid'"/>
+                </xpath>
+
+                <xpath expr="//field[@name='credit_note']" position="after">
+                    <field name="hr_run_payment_state" invisible="1"/>
+                    <field name="total_net" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//button[@name='close_payslip_run']" position="before">
+                    <button string="Enregistrer un paiement" name="hr_payment_run_register" type='object' class="oe_highlight" invisible="hr_run_payment_state == 'paid' or state != 'done'"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>

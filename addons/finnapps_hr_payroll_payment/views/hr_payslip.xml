@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="payroll_hr_payment_view_form" model="ir.ui.view">
+            <field name="name">Paiement de bulletin de paie</field>
+            <field name="model">finn.hr.payslip</field>
+            <field name="inherit_id" ref="finnapps_hr_payroll_dz.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//div[@name='button_box']" position="after">
+                    <widget name="web_ribbon" title="Payé" invisible="hr_payment_state != 'paid'"/>
+                    <widget name="web_ribbon" title="Partiel" invisible="hr_payment_state != 'partially_paid'"/>
+                </xpath>
+
+                <xpath expr="//field[@name='number']" position="after">
+                    <field name="hr_payment_state" invisible="1"/>
+                </xpath>
+
+                <xpath expr="//button[@name='action_refund_sheet']" position="before">
+                    <button string="Enregistrer un paiement" name="hr_payment_register" type='object' class="oe_highlight" invisible="hr_payment_state == 'paid' or state != 'done'"/>
+                </xpath>
+
+
+                <xpath expr="//notebook" position="inside">
+                    <page string="Paiements">
+                        <field name="payments_ids" nolabel="1">
+                            <tree>
+                                <field name="name"/>
+                                <field name="journal_id"/>
+                                <field name="date"/>
+                                <field name="amount_total_signed" string="Montant"/>
+                            </tree>
+                        </field>
+
+                    <group>
+                        <field name="still_to_pay" invisible="1"/>
+                        <field name="net_amount" invisible="1"/>
+                        <field name="payment_date"/>
+                    </group>
+                    </page>
+                </xpath>
+
+
+            </field>
+        </record>
+
+        <record id="payroll_hr_payment_view_list" model="ir.ui.view">
+            <field name="name">Paiement de bulletin de paie</field>
+            <field name="model">finn.hr.payslip</field>
+            <field name="inherit_id" ref="finnapps_hr_payroll_dz.view_hr_payslip_tree"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='state']" position="after">
+                    <field name="hr_payment_state"/>
+                </xpath>
+
+            </field>
+        </record>
+
+    </data>
+</odoo>
