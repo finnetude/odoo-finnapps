@@ -1,5 +1,5 @@
 from odoo import models, fields, api, _
-
+import logging
 class HrPayslip(models.Model):
     
 

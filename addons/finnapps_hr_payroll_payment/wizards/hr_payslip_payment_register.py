@@ -13,7 +13,7 @@ class HrPayslipPaymentRegister(models.TransientModel):
 
 
     payslip_id = fields.Many2one(
-        'elo.hr.payslip',
+        'finn.hr.payslip',
         string="Bulletin de paie"
         )
 
@@ -23,7 +23,7 @@ class HrPayslipPaymentRegister(models.TransientModel):
         )
 
     payslip_run_id = fields.Many2one(
-        'elo.hr.payslip.run',
+        'finn.hr.payslip.run',
         string="Lot de bulletin de paie"
         )
 
