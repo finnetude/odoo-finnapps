@@ -53,11 +53,15 @@
                                             <span t-field="o.company_id.employer_number"/>
                                         </div>
                                     </div>
-                                    <div class="row py-1 text-dark">
+                                    <div class="row py-1 text-dark row">
+                                           <div class="col-6">
                                             <strong>Periode de :</strong>
-                                            <span t-field="o.date_from"/>
+                                            <span t-esc="o.date_from" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                           </div>
+                                           <div class="col-6">
                                             <strong class='ml-2'> au :</strong>
-                                            <span t-field="o.date_to"/>
+                                            <span t-esc="o.date_to" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
+                                           </div>
                                     </div>
                                     
                                     <t t-if="o.all_accounts_balance == True" >
@@ -113,7 +117,8 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                                <table class="table table-sm table-bordered table-striped">
+                                <table class="table table-sm">
+                                   <tbody>
                                     <tr>
                                         <!-- <td>
                                             <strong>N° Employeur</strong>
@@ -206,9 +211,10 @@
                                             <span t-field="o.employee_id.private_state_id"/>
                                             <span t-field="o.employee_id.private_zip"/>
                                             <span t-field="o.employee_id.private_country_id"/>
-
                                         </td>
                                     </tr>
+                                    <tr></tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
