@@ -231,9 +231,29 @@
                         </thead>
                             <tbody>
                             <t t-foreach="o.line_ids.filtered(lambda line: line.appears_on_payslip)" t-as="line">  
+                                  <tr t-if="line.code == 'SS'">
+                                        <td>
+                                            <span>Base Cotisable</span>
+                                        </td>
+                                        <td>
+                                            <span t-esc="base_cotisable" t-options='{"widget": "monetary", "display_currency":    o.company_id.currency_id}'/>
+                                        </td>
+                                        <td>
+                                        <span>1.00</span>
+                                        </td>
+                                        <td >
+                                            <span t-esc="base_cotisable" t-options='{"widget": "monetary", "display_currency":    o.company_id.currency_id}'/>
+                                        </td>
+                                        <td >
+                                        </td>
+                                    </tr>
                                     <tr t-if="line.amount and line.category_id.code not in ['GROSS','NET','INTERM','HJ','COEFF']">
                                         <td>
-                                            <span t-field="line.name" />
+                                        
+                                            <span t-if="line.code == 'SS'" >
+                                            Retenue Sécurité Sociale
+                                            </span>
+                                            <span t-else=""  t-field="line.name" />
                                         </td>
                                         <td>
                                             <span t-if="line.code == 'IRG'" t-esc="base_imposable" t-options='{"widget": "monetary", "display_currency": o.company_id.currency_id}'/>
@@ -267,22 +287,7 @@
                                         </td>
 
                                     </tr>
-                                    <tr t-if="line.code == 'SS'">
-                                        <td>
-                                            <span>Base Cotisable</span>
-                                        </td>
-                                        <td>
-                                            <span t-esc="base_cotisable" t-options='{"widget": "monetary", "display_currency":    o.company_id.currency_id}'/>
-                                        </td>
-                                        <td>
-                                        <span>1.00</span>
-                                        </td>
-                                        <td >
-                                            <span t-esc="base_cotisable" t-options='{"widget": "monetary", "display_currency":    o.company_id.currency_id}'/>
-                                        </td>
-                                        <td >
-                                        </td>
-                                    </tr>
+                                  
                                 </t>
                                 <!-- <tfoot class="tfooter-book">
                                     <tr style="font-size:16px" >
