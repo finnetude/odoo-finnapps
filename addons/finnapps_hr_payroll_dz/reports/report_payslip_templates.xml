@@ -79,7 +79,7 @@
                                                 <strong>Date de paiement :</strong>
                                             </div>
                                             <div class="col-6">
-                                                <span t-esc="o.date_to"/>
+                                                <span t-esc="o.date_to" t-options='{"widget": "date","format": "dd-MM-yyyy"}'/>
                                             </div>
                                     </div>
                                         <t t-set="payement_mode" t-value="o.env['hr.contract'].search([('employee_id','=', o.employee_id.id)],order='date_start desc',limit=1).payement_mode[0].name"/>
