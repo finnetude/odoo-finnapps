@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    
+    <template id="finnetude_internal_layout">
+            <t t-if="not o" t-set="o" t-value="doc"/>
+            <t t-if="not company">
+                <!-- Multicompany -->
+                <t t-if="company_id">
+                    <t t-set="company" t-value="company_id"/>
+                </t>
+                <t t-elif="o and 'company_id' in o">
+                    <t t-set="company" t-value="o.company_id.sudo()"/>
+                </t>
+                <t t-else="else">
+                    <t t-set="company" t-value="res_company"/>
+                </t>
+            </t>
+
+            <div class="header" style="height:0px;">
+                <div>
+                     <div style="float: left;" >
+                        <img  t-att-src="image_data_uri(company.logo)" alt="Logo" style="max-height: 45px;"/>
+                     <!--  <div style="border-top: solid 1px black;margin-top:5px;"/> -->
+                          <br/>
+                          <span t-field="company.forme_juridique.code"/> <span t-field="company.name"/>
+                     </div>
+                      <div style="float: right;" >
+                            <span t-field="company.street"/>
+                            <span t-field="company.street2"/>
+                            <br/>
+                            Tel/Fax: <span><span t-field="company.mobile"/> / <span t-field="company.phone"/></span>
+                            <br/>
+                            E-mail: <span t-field="company.email"/>
+                      </div>
+                
+                </div>
+
+                
+            </div>
+
+            <div class="article" t-att-data-oe-model="o and o._name" t-att-data-oe-id="o and o.id" t-att-data-oe-lang="o and o.env.context.get('lang')">
+              <t t-raw="0"/>
+            </div>
+
+            <div class="footer">
+                <div style="float:left;font-size:13px;margin-bottom:35px;">
+                    <b>Sarl au capital de</b> <span t-field="company.capital_social"></span><span t-field="company.currency_id.symbol"></span><br/>
+                    <span t-field="company.website"></span><br/>
+                    <b>A.I N°</b><span t-field="company.ai"></span><br/>
+                    <b>R.C N°</b><span t-field="company.rc"></span><br/>
+                    <b>NIF N°</b><span t-field="company.nif"></span><br/>
+                    
+                </div>
+            </div>
+       </template>
+
+</odoo>

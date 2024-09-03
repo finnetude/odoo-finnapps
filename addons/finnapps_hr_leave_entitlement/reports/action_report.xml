@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+  <odoo>
+    <data noupdate="0">
+      <report id="action_hr_leave_entitlement_report"
+        model="hr.leave.entitlement"
+        string="Titre de congé"
+        report_type="qweb-pdf"
+        name="finnapps_hr_leave_entitlement.call_leave_entitlement_report"
+        file="finnapps_hr_leave_entitlement.call_leave_entitlement_report"
+      />
+
+    </data>
+  </odoo>
+

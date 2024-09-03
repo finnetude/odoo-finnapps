@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+
+    <menuitem   id="menu_bank"
+                parent="contacts.menu_contacts"
+                name="Virement"
+                sequence="3"/>
+
+
+    <menuitem   id="menu_transfer_order"
+                parent="account.menu_finance_payables"
+                name="Ordres de virement"
+                groups="account.group_account_manager"
+                action="finnapp_bank_transfer_order.transfer_order_action"
+                sequence="50"/>
+</odoo>
+
+

@@ -1,0 +1,59 @@
+<odoo>
+	<data>
+		<record id="get_employee_view_form" model="ir.ui.view">
+			<field name="name">Récupérer les employés</field>
+			<field name="model">finn.get.employees</field>
+			<field name="arch" type="xml">
+				<form >
+					<span>
+						Cette fenêtre permet de récupérer les montant NET des bulletins de paie dans la date de fin est comprise entre la période choisir et si le mode de paiement sur le contrat n'est pas de type espèce
+	                </span>
+
+						
+		
+					<field name="transfer_order_id"  invisible="1"/>
+					<group string="Veuillez sélectionner les banques">
+						<field name="hr_bank_ids" widget="many2many_tags"/>
+					</group>
+					<group>
+						<group>
+							<field name="date_from"/>
+						</group>
+						<group>
+							<field name="date_to"/>
+						</group>
+					</group>
+
+					<notebook>
+                        <page string="Employés">
+                            <field name="employee_ids" nolabel="1"/>
+                        </page>
+					</notebook>
+						
+
+						
+			
+						
+					
+					<footer>
+						<button name="validate_getting" string="Valider" type="object" class="oe_highlight" />
+	    				
+						<button string="Fermer" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_get_employees" model="ir.actions.act_window">
+			<field name="name">Récupérer les employés</field>
+			<field name="res_model">finn.get.employees</field>
+			<field name="context">{'default_transfer_order_id':active_id}</field>
+			<field name="view_mode">form</field>
+			<field name="target">new</field>
+		</record>
+
+		
+	
+
+	</data>
+</odoo>

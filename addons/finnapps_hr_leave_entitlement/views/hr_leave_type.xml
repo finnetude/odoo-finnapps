@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  	<data>
+  		<record id="hr_leave_type_view_form" model="ir.ui.view">
+			<field name="name">Paramétrage de titre de congé</field>
+			<field name="model">hr.leave.type</field>
+			<field name="inherit_id" ref="hr_holidays.edit_holiday_status_form"/>
+			<field name="arch" type="xml">
+				
+				<xpath expr="//group[1]" position="inside">
+					<group string="Titre de congé">
+						<field name="print_entitlement_leave" widget="boolean_toggle"/>
+					</group>
+				</xpath>
+			
+			</field>
+		</record>
+
+
+  	</data>
+</odoo>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="transfer_order_view_form_inherit" model="ir.ui.view">
+        <field name="name">Ordre de virement</field>
+        <field name="model">finn.transfer.order</field>
+        <field name="inherit_id" ref="finnapps_bank_transfer_order.transfer_order_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page/div/button" position="after">
+                <button 
+                    name="%(action_get_employees)d"
+                    string="Récupérer les employés"
+                    class="oe_highlight"
+                    type="action"
+                    icon = "fa-user"
+                    invisible="beneficiary != 'employee'"
+                    />
+            </xpath>
+        </field>
+    </record>
+
+    <record id='hr_transfer_order_action' model='ir.actions.act_window'>
+        <field name="name">Ordre de virement</field>
+        <field name="res_model">finn.transfer.order</field>
+        <field name="domain">[('beneficiary','=','employee')]</field>
+        <field name="context">{'default_beneficiary': 'employee'}</field>
+        <field name="view_mode">search,tree,form</field>
+    </record>
+
+
+    <menuitem   id="menu_hr_transfer_order"
+                parent="finnapps_hr_payroll_dz.menu_hr_payroll_root"
+                name="Ordres de virement"
+                groups="account.group_account_manager"
+                action="finnapps_hr_bank_transfer_order.hr_transfer_order_action"
+                sequence="50"/>
+
+
+</odoo>

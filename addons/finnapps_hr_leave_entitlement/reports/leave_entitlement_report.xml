@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+       <template id="leave_entitlement_report">
+            <t t-call="web.external_layout">
+                <strong><h2 style="text-align:center;margin-top:15px;">Titre de congé</h2></strong>
+                <br/><br/><br/>
+                <div style="
+                    height:100;
+                    width:880px;
+                    border: solid 1px black;
+                    padding-left:20px;
+                    padding-top:10px;
+                    padding-bottom:10px;
+                    font-size:20px;
+                    ">
+
+                    <strong>Nom et prénom: </strong><span t-esc="doc.employee_id.name"/><br/>
+                    <strong>Fonction: </strong><span t-esc="doc.employee_id.contract_id.job_id.name"/><br/>
+                    <strong>Recruté le: </strong><span t-esc="doc.employee_id.contract_id.date_start.strftime('%d/%m/%Y')"/><br/>
+                </div>
+
+                <br/><br/>
+
+                <div style="
+                    height:70;
+                    width:880px;
+                    border: solid 1px black;
+                    padding-left:20px;
+                    padding-top:10px;
+                    padding-bottom:10px;
+                    font-size:20px;
+                    ">
+
+                    <strong>Bénéficie du droit à congé pour l’exercice: </strong><span t-esc="doc.leave_id.display_name"/><br/>
+                    
+                </div>
+
+                <br/><br/>
+
+                <div style="
+                    height:100;
+                    width:880px;
+                    border: solid 1px black;
+                    padding-left:20px;
+                    padding-top:10px;
+                    padding-bottom:10px;
+                    font-size:20px;
+                    ">
+
+                    <strong>Nombre de jours calendaires: </strong><span t-esc="int(doc.employee_allocation)"/><br/>
+                    <strong>Congé accordé: </strong><span t-esc="int(doc.leave_id.number_of_days_display)"/><br/>
+                    <strong>Reliquat: </strong><span t-esc="int(doc.reliquat)"/><br/>
+                </div>
+
+
+                <br/><br/>
+
+                <div style="
+                    height:100px;
+                    width:880px;
+                    border: solid 1px black;
+                    padding-left:20px;
+                    padding-top:10px;
+                    padding-bottom:10px;
+                    font-size:20px;
+                    ">
+
+                    <strong>Date départ en congé: </strong><span t-esc="doc.leave_id.request_date_from.strftime('%d/%m/%Y')"/><br/>
+                    <strong>Date fin en congé: </strong><span t-esc="doc.leave_id.request_date_to.strftime('%d/%m/%Y')"/><br/>
+                    <strong>Date de reprise du travail: </strong><span t-esc="doc.leave_id.return_to_work_date.strftime('%d/%m/%Y')"/><br/>
+                </div>
+                <br/>
+                <span style="font-size:20px;"><strong>Adresse durant le congé : </strong><span t-esc="doc.address_during_leave"/></span><br/>
+                <br/><br/><br/><br/>
+                <span style="float:right;margin-right:30px;font-size:20px;"><span t-esc="doc.employee_id.address_id.city"/>  le, ....................</span><br/>
+
+                <br/><br/>
+
+                <div style="font-size:20px;margin-top:30px;">
+                    <span style="float:left;margin-left:70px;">Le salarié.</span>
+                    <span style="float:right;margin-right:70px;">Le Gérant.</span>
+                </div>
+                
+            </t> 
+        </template>
+
+        <template id="call_leave_entitlement_report" >
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="finnapps_hr_leave_entitlement.leave_entitlement_report"/>
+                </t>
+            </t>
+        </template>
+
+    <record id="action_hr_leave_entitlement_report" model="ir.actions.report">
+        <field name="name">Titre de congé</field>
+        <field name="model">hr.leave.entitlement</field>
+        <field name="report_name">finnapps_hr_leave_entitlement.call_leave_entitlement_report</field>
+        <field name="paperformat_id" ref="finnapps_hr_leave_entitlement.leave_entitlement_report_format" />
+
+    </record>
+
+</odoo>

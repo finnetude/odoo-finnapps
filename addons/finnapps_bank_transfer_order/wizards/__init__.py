@@ -1,0 +1,1 @@
+from . import finn_transfer_order_beneficiary

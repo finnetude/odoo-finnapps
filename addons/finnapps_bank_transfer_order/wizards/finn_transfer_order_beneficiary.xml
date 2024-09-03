@@ -1,0 +1,47 @@
+<odoo>
+	<data>
+		<record id="transfer_order_beneficiary" model="ir.ui.view">
+			<field name="name">Veuillez sélectionner les Bénéficiaires de l'ordre de virement</field>
+			<field name="model">finn.transfer.order.beneficiary</field>
+			<field name="arch" type="xml">
+				<form >
+					<group string="Veuillez sélectionner les bénéficiaires de l'ordre de virement">
+
+	                </group>
+
+						
+		
+					<field name="bank_order_id"  invisible="1"/>
+					<field name="beneficiary_ids"  nolabel="1">
+						<tree editable="bottom">
+							<field name="display_name"/>
+							<field name="city" />
+							<field name="country_id"/>
+						</tree>
+
+					</field>
+			
+						
+					
+					<footer>
+						<button name="validate" string="Valider" type="object" class="oe_highlight" />
+	    				
+						<button string="Fermer" class="oe_link" special="cancel" />
+					</footer>
+				</form>
+			</field>
+		</record>
+
+		<record id="action_transfer_order_beneficiary" model="ir.actions.act_window">
+			<field name="name">Bénéficiaires de l'Ordre de virement</field>
+			<field name="res_model">finn.transfer.order.beneficiary</field>
+			<field name="view_mode">form</field>
+			<field name="context">{'default_bank_order_id':active_id}</field>
+			<field name="target">new</field>
+		</record>
+
+		
+	
+
+	</data>
+</odoo>

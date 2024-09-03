@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="transfer_order_line_view_tree" model="ir.ui.view">
+        <field name="name">Ligne d'ordre de virement</field>
+        <field name="model">finn.transfer.order.line</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="beneficiary_id"/>
+                <field name="beneficiary_address"/>
+                <field name="bank_account_id"/>
+                <field name="operation_amount"/>
+                <field name="label"/>
+                
+            </tree>
+        </field>
+    </record>
+
+</odoo>
+  

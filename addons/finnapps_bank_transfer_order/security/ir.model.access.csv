@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_finn_transfer_order_line,finn.transfer.order.line,model_finn_transfer_order_line,finnapps_bank_transfer_order.group_transfer_order,1,1,1,1
+access_finn_transfer_order,finn.transfer.order,model_finn_transfer_order,finnapps_bank_transfer_order.group_transfer_order,1,1,1,1
+access_finn_transfer_order_beneficiary,finn.transfer.order.beneficiary,model_finn_transfer_order_beneficiary,finnapps_bank_transfer_order.group_transfer_order,1,1,1,1
+

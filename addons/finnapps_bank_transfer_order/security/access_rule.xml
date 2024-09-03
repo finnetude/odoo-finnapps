@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="rule_transfer_order_line" model="ir.rule">
+            <field name="name">Règle lignes d'ordre de virement</field>
+            <field name="model_id" ref="model_finn_transfer_order_line"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('finnapps_bank_transfer_order.group_transfer_order'))]"/>
+        </record>
+
+
+        <record id="rule_transfer_order" model="ir.rule">
+            <field name="name">Règle ordre de virement</field>
+            <field name="model_id" ref="model_finn_transfer_order"/>
+            <field name="domain_force">['|',('company_id','=',False),('company_id', 'in', company_ids)]</field>
+            <field name="groups" eval="[(4, ref('finnapps_bank_transfer_order.group_transfer_order'))]"/>
+        </record>
+
+
+    </data>
+</odoo>

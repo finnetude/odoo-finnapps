@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="transfer_order_view_tree" model="ir.ui.view">
+        <field name="name">Ordre de virement</field>
+        <field name="model">finn.transfer.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="beneficiary"/>
+                <field name="transfer_order_date"/>
+                <field name="operation_number"/>
+                <field name="giver_bank_account_id"/>
+                <field name="company_id"/>
+                <field name="global_amount"/>
+            </tree>
+        </field>
+    </record>
+
+
+    <record id="transfer_order_view_form" model="ir.ui.view">
+        <field name="name">Ordre de virement</field>
+        <field name="model">elo.transfer.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button 
+                        name="generate_transfer_order"
+                        string="Générer l'ordre de virement"
+                        class="oe_highlight"
+                        type="object"
+                        icon = "fa-file-o"
+                        />
+
+                    
+                    <button 
+                        name="confirm_order"
+                        string="Confirmer"
+                        class="oe_highlight"
+                        type="object"
+                        />
+
+
+                    <button 
+                        name="cancel_order"
+                        string="Annuler"
+                        type="object"
+                        />
+                        
+                    <field name="order_state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <div class="oe_title">
+                        <label class="oe_edit_only" for="name" string="Désignation"/>
+                        <h1>
+                            <field name="name" default_focus="1" placeholder="Name"/>
+                        </h1>
+                        
+                        <field name="beneficiary" widget="radio" options="{'horizontal': true}"/>
+                    </div>
+                    <group>
+                        <group string="Donneur">
+                            <field name="order_giver"/>
+                            <field name="giver_name"/>
+                            <field name="company_address"/>
+                            <field name="giver_bank_account_id"/>
+                            <field name="giver_rib"/>
+                            <field name="first_tree_rib" invisible="1"/>
+                        </group>
+
+                        <group  string="Ordre">
+                            <field name="transfer_order_date"/>
+                            <field name="operation_number"/>
+                            <field name="global_amount"/>
+                            <field name="company_id" invisible="1"/>
+                            <field name="currency_id" invisible="1"/>
+                        </group>
+                    </group>
+                   
+
+                    
+                    <notebook>
+                        <page string="Ligne d'ordre de virement">
+                            <div class="o_row no-gutters d-flex">
+                                 <button 
+                                    name="%(action_transfer_order_beneficiary)d"
+                                    string="Sélectionner les bénéficiaires"
+                                    class="oe_highlight"
+                                    type="action"
+                                    icon = "fa-users"
+                                    invisible="beneficiary != 'supplier'"
+                                    />
+
+                            </div><br/>
+
+                            <field name="transfer_order_line_ids" nolabel="1">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="beneficiary_id" />
+                                    <field name="beneficiary_address"/>
+                                    <field name="bank_account_id"/>
+                                    <field name="operation_amount"/>
+                                    <field name="label"/>
+                                </tree>
+                            </field>
+                        </page>
+
+                        <page string="Banques">
+                            <field name="bank_ids" nolabel="1"/>
+                        </page>
+
+
+                        <page string="Notes">
+                            <group>
+                                <field name="note" nolabel="1"/>
+                            </group>
+                        </page>
+
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" />
+                    <field name="activity_ids" />
+                    <field name="message_ids" />
+                </div>
+
+            </form>
+        </field>
+    </record>
+
+
+    <record id="transfer_order_view_search" model="ir.ui.view">
+        <field name="name">Ordre de virement</field>
+        <field name="model">elo.transfer.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <group string="Group By">
+                    <filter string="Bénéficiaires" name="beneficiary" context="{'group_by': 'beneficiary'}"/>
+                    <filter string="Compte bancaire" name="giver_bank_account_id" context="{'group_by': 'giver_bank_account_id'}"/>
+                    
+                    
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <record id="transfer_order_view_tree" model="ir.ui.view">
+        <field name="name">Ordre de virement</field>
+        <field name="model">elo.transfer.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="beneficiary"/>
+                <field name="order_giver"/>
+                <field name="giver_bank_account_id"/>
+                <field name="transfer_order_date"/>
+                <field name="operation_number"/>
+                <field name="global_amount"/>
+                <field name="order_state"/>
+
+            </tree>
+        </field>
+    </record>
+
+
+
+    <record id='transfer_order_action' model='ir.actions.act_window'>
+        <field name="name">Ordre de virement</field>
+        <field name="res_model">elo.transfer.order</field>
+        <field name="domain">[('beneficiary','=','supplier')]</field>
+        <field name="context">{'default_beneficiary': 'supplier'}</field>
+        <field name="view_mode">search,tree,form</field>
+    </record>
+
+
+</odoo>
+  
